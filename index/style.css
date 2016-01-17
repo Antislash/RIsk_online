@@ -1,0 +1,100 @@
+.top_navigation{
+	height: 85px;
+	line-height: 85px;
+	background-image:url(nav.png);
+	background-repeat:no-repeat;
+	background-size: cover;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 1);
+}
+
+#logo_risk{
+	margin-left: 30px;
+	height: 50%;
+	vertical-align:middle;
+}
+
+
+body{
+	background-image: url(background.jpg);
+	background-repeat:no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	font-family: 'Roboto', sans-serif;
+	font-size: 15px;
+	color: #efefef;
+}
+
+#table_login{
+	float: right;
+}
+
+#table_login table{
+	line-height:normal;	
+	display: inline-block;
+	vertical-align: middle;
+	border-collapse: separate;
+	border-spacing: 40px 2px;
+}
+
+.textbox{
+	border: 0px;
+    border-radius: 5px;
+    box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 0.9);
+    width: 150px;
+    height: 20px;
+}
+
+#button_submit{
+	width: 270px;
+	margin:auto;
+	display: block;
+}
+
+.button{
+	background-color: #9d0404;
+	border: 0px;
+	border-radius: 5px;
+	box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 0.9);
+	padding: 5px;
+	text-align: center;
+	font-family: 'Roboto', sans-serif;
+	font-size: 15px;
+	color: #efefef;
+}
+
+.button:hover{
+	cursor: pointer;
+	box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0);
+}
+
+#table_signin{
+	margin: 250px auto 0px auto;
+	width: 320px;
+	background-image:url(degrade.png);
+	background-size: 100%;
+	border-radius: 15px;
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.8);
+	padding: 30px;
+	display: block;
+}
+
+#table_signin table{
+	margin: 0px auto 10px auto;
+	vertical-align: middle;
+	border-collapse: separate;
+	border-spacing: 20px 15px;
+	text-align: right;
+}
+
+h2{
+	font-size: 30px;
+	margin: 0px 0px 10px 0px;
+	text-align: center;
+	width: 100%;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #efefef;
+}
