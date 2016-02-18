@@ -1,9 +1,12 @@
 var main = require('./main.js');
-var sql = require('./sql.js');
-var color = require('color');
+var db = require('./sql.js');
 
 console.log('fichier application');
 
+
+/*
+*Fonction de traitement de la base de données
+*/
 var empty = function empty(object) {
   for (var i in object) 
     if (object.hasOwnProperty(i))
