@@ -20,7 +20,7 @@ var processResult = function(row) {
     console.log(row[0]['id']);		
 }
 
-db.connect("localhost", "root", "gatien", "test");
-db.executeSelectQuery("select * from test",processResult);
+//db.connect("localhost", "root", "gatien", "test");
+//db.executeSelectQuery("select * from test",processResult);
 //db.executeInsertQuery("INSERT INTO test (id, label,valeur) VALUES(4,'je fais un test',7)");
-db.close();
+//db.close();

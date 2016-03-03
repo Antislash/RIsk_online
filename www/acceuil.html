@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="style.css" />
+		<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+		<meta name="viewport" content="width=device-width" />
+		<title>MAP</title>
+	</head>
+	<body>
+		<nav id="top_navigation">
+			<img id="logo_risk" src="images/logo_risk.png"/>
+			<a href="#"><img class="icon_menu" src="images/profil.png" onmouseover="this.src='images/profil_hover.png'" onmouseout="this.src='images/profil.png'"/></a>
+			<a href="#"><img class="icon_menu" src="images/stats.png" onmouseover="this.src='images/stats_hover.png'" onmouseout="this.src='images/stats.png'"/></a>
+			<a href="#"><img class="icon_menu" src="images/news.png" onmouseover="this.src='images/news_hover.png'" onmouseout="this.src='images/news.png'"/></a>
+			<a href="#"><img class="icon_menu" src="images/help.png" onmouseover="this.src='images/help_hover.png'" onmouseout="this.src='images/help.png'"/></a>
+			<div id="table_login">
+				<table>
+					<tr>
+						<td class="button" id="button_game">New Game</td>
+						<td class="button" id="button_game">Join Game</td>
+					</tr>
+				</table>
+			</div>
+		</nav>
+		<div class="bloc" id="profil_home">
+			<img id="avatar" src="images/avatar.png"/>
+			<div id="profil_infos">
+				<h2>Busquets91</h2>
+				Membre depuis 52 jours <br/>
+				Niveau 8<br/>
+				<span id="status_profil">En ligne</span><br/>
+				<img id ="achievement" src="images/achievement.png"/>
+			</div>
+		</div>
+		<div class="bloc" id="news_home">
+			<h2>Actualités</h2>
+			<img id="img_news" src="images/img_news.png"/>
+			<h3>Refonte des statistiques</h3>
+			<span class="date_news">15/02/2016</span><br/><br/>
+			Les statistiques ont été étoffés et vous pouvez maintenant avoir accés à de nombreuses nouvelles statistiques dans votre page statistiques.<br/><br/>
+			<span class="more">Plus d'infos ...</span>
+			<div id="list_news">
+				<span class="date_news">10/02/2016</span>Création de la page d'accueil<br/>
+				<span class="date_news">08/02/2016</span>Ceci est une autre news trés intéressante et ...<br/>
+				<span class="date_news">02/02/2016</span>Le titre des news s'affiche ici<br/>
+				<span class="date_news">16/01/2016</span>Et le reste des news s'affiche lorsque l'on c...<br/>
+				<span class="date_news">04/01/2016</span>Les news suivantes sont des news d'exemples<br/>
+				<span class="date_news">01/01/2016</span>Bonne année à tous !<br/>
+				<span class="date_news">28/12/2015</span>Ajout de la map Walking Dead<br/>
+				<span class="date_news">22/12/2015</span>Bugfix : Le bug qui causait un saut de tour a ...<br/>
+				<span class="date_news">18/12/2015</span>Ajout de nouvelles stats dans votre panneau st...<br/>
+			</div>
+		</div>
+		<div class="bloc" id="stats_home">
+			<h2>Statistiques</h2>
+			<table id="list_stats">
+				<tr>
+					<td class="stats_chiffre">54</td>
+					<td class="stats_text">% de parties gagnés</td>
+				</tr>
+				<tr>
+					<td class="stats_chiffre">37</td>
+					<td class="stats_text">nombre de tours moyen pour gagner</td>
+				</tr>
+				<tr>
+					<td class="stats_chiffre">8</td>
+					<td class="stats_text">achievements</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html>

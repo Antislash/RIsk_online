@@ -1,23 +1,6 @@
-.top_navigation{
-	height: 85px;
-	line-height: 85px;
-	background-image:url(images/nav.png);
-	background-repeat:no-repeat;
-	background-size: cover;
-	position: fixed;
-	top: 0px;
-	left: 0px;
-	width: 100%;
-    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 1);
-}
+/********GLOBAL********/
 
-#logo_risk{
-	margin-left: 30px;
-	height: 50%;
-	vertical-align:middle;
-}
-
-
+/*Style du fond et de la police de base*/
 body{
 	background-image: url(images/background.jpg);
 	background-repeat:no-repeat;
@@ -26,20 +9,20 @@ body{
 	font-family: 'Roboto', sans-serif;
 	font-size: 15px;
 	color: #efefef;
+	text-align: justify;
 }
 
-#table_login{
-	float: right;
+/*Style des titres*/
+h2{
+	font-size: 30px;
+	text-align: center;
 }
 
-#table_login table{
-	line-height:normal;	
-	display: inline-block;
-	vertical-align: middle;
-	border-collapse: separate;
-	border-spacing: 40px 2px;
+h3{
+	margin: 5px 0px;
 }
 
+/*Textbox*/
 .textbox{
 	border: 0px;
     border-radius: 5px;
@@ -48,12 +31,21 @@ body{
     height: 20px;
 }
 
-#button_submit{
-	width: 270px;
-	margin:auto;
-	display: block;
+/*Plus d'infos*/
+.more{
+	font-size: 0.7em;
+	font-style: italic;
+	text-align: right;
 }
 
+/*Date news*/
+.date_news{
+	font-style: italic;
+	margin-right: 15px;
+	color: rgba(255,255,255,0.6)
+}
+
+/*Style des bouttons*/
 .button{
 	background-color: #9d0404;
 	border: 0px;
@@ -65,23 +57,100 @@ body{
 	font-size: 15px;
 	color: #efefef;
 }
-
 .button:hover{
 	cursor: pointer;
 	box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0);
 }
 
+/*Style d'un bloc*/
+.bloc{
+	background-image:linear-gradient(#444444, #272727); /* Norme W3C */
+	background-image:-moz-linear-gradient(#444444, #272727); /* Firefox */
+	background-image:-webkit-gradient(linear, #444444, #272727); /* Chrome, Safari */
+	background-image:-o-linear-gradient(#444444, #272727); /* Opera */
+	background-image:-ms-linear-gradient(#444444, #272727); /* IE */
+	border-radius: 15px;
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.8);
+}
+
+/********BARRE DE NAVIGATION********/
+
+/*Style de la barre*/
+#top_navigation{
+	z-index: 2;
+	height: 85px;
+	line-height: 85px;
+	background-image:linear-gradient(#525252, #272727); /* Norme W3C */
+	background-image:-moz-linear-gradient(#525252, #272727); /* Firefox */
+	background-image:-webkit-gradient(linear, #525252, #272727); /* Chrome, Safari */
+	background-image:-o-linear-gradient(#525252, #272727); /* Opera */
+	background-image:-ms-linear-gradient(#525252, #272727); /* IE */
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 1);
+}
+
+/*Style des icons de menu*/
+.icon_menu{
+	margin-left: 50px;
+	height: 50%;
+	vertical-align:middle;
+}
+
+/*Logo du Risk*/
+#logo_risk{
+	margin-left: 30px;
+	height: 50%;
+	vertical-align:middle;
+}
+
+
+/********BLOC DE CONNECTION (BARRE DE NAV)********/
+
+/*Style permettant d'aligner la division à droite*/
+#table_login{
+	float: right;
+}
+
+/*Espacement des cases et centrage vertical*/
+#table_login table{
+	line-height:normal;	
+	display: inline-block;
+	vertical-align: middle;
+	border-collapse: separate;
+	border-spacing: 40px 2px;
+}
+
+
+/********BOUTTONS NEW GAME AND JOIN GAME(BARRE DE NAV)********/
+
+/*Boutton création de partie & rejoindre partie */
+#button_game{
+	font-size: 25px;
+	padding: 5px 20px;
+}
+
+
+/********BLOC D'INSCRIPTION********/
+
+/*Boutton pour s'inscrire*/
+#button_submit{
+	width: 270px;
+	margin:auto;
+	display: block;
+}
+
+/*Style du bloc: fond, possitionnement, forme, taille*/
 #table_signin{
 	margin: 250px auto 0px auto;
 	width: 320px;
-	background-image:url(images/degrade.png);
-	background-size: 100%;
-	border-radius: 15px;
-    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.8);
 	padding: 30px;
 	display: block;
 }
 
+/*Style du tableau + alignage vertical*/
 #table_signin table{
 	margin: 0px auto 10px auto;
 	vertical-align: middle;
@@ -90,11 +159,128 @@ body{
 	text-align: right;
 }
 
-h2{
-	font-size: 30px;
+/*Titre h2 du bloc d'inscription*/
+#table_signin h2{
 	margin: 0px 0px 10px 0px;
-	text-align: center;
 	width: 100%;
 	padding-bottom: 10px;
 	border-bottom: 1px solid #efefef;
+}
+
+/********PAGE ACCUEIL********/
+
+/*Titre h2 des différentes parties*/
+#profil_home h2, #news_home h2, #stats_home h2{
+	color: #9d0404;
+}
+
+/********AFFICHAGE PROFIL ACCUEIL********/
+
+/*Style du bloc: fond, possitionnement, forme, taille*/
+#profil_home {
+	margin-top: 130px ;
+	margin-left: 150px;
+	margin-bottom: -50px;
+	display: inline-block;
+	line-height: 1.4em;
+	padding-right: 20px;
+	float: left;
+}
+
+/*Taille et possionements de achievements*/
+#achievement {
+	margin-top: 10px;
+	height: 40px;
+}
+
+/*Style du status*/
+#status_profil {
+	color: green;
+	font-style: italic;
+}
+
+/*Style des infos*/
+#profil_infos{
+	height: 200px;
+	margin-left: 120px;
+	padding: 8px;
+}
+
+/*Style de l'avatar*/
+#avatar {
+	z-index: 1;
+	float: left;
+	margin-left: -100px;
+	position: absolute;
+	height: 200px;
+	padding: 8px;
+	background-image:linear-gradient(#444444, #272727); /* Norme W3C */
+	background-image:-moz-linear-gradient(#444444, #272727); /* Firefox */
+	background-image:-webkit-gradient(linear, #444444, #272727); /* Chrome, Safari */
+	background-image:-o-linear-gradient(#444444, #272727); /* Opera */
+	background-image:-ms-linear-gradient(#444444, #272727); /* IE */
+	border-radius:50%;
+    box-shadow: -10px 0px 15px -5px rgba(0, 0, 0, 0.7);
+}
+
+/********AFFICHAGE NEWS ACCUEIL********/
+
+/*Bloc*/
+#news_home{
+	margin-top: 130px;
+	display: inline-block;
+	width: 35%;
+	min-width: 430px;
+	padding: 0px 30px 30px 30px;
+	margin-right: 100px;
+	font-size: 0.85em;
+	margin-bottom: -50px;
+	float: right;
+}
+
+/*Image main news*/
+#img_news{
+	float: left;
+	height: 130px;
+	border-radius:15px;
+	margin: 5px 15px 10px 0px;
+}
+
+/*style de la liste de news*/
+#list_news{
+	margin-top: 20px;
+}
+
+/********AFFICHAGE STATS ACCUEIL********/
+
+/*Bloc*/
+#stats_home{
+	float: left;
+	position: relative;
+	margin-top: 130px;
+	display: inline-block;
+	width: 35%;
+	min-width: 430px;
+	padding: 0px 30px 30px 30px;
+	margin-left: 100px;
+	font-size: 0.85em;
+	margin-bottom: -50px;
+}
+
+/*Chiffres*/
+.stats_chiffre{
+	font-size: 5em;
+	text-align: right;
+	font-weight: bold;
+	vertical-align: bottom;
+	padding: 0px;
+	margin: -5px 5px;
+}
+
+/*Texte*/
+.stats_text{
+	font-size: 1.5em;
+	text-align: left;
+	vertical-align: bottom;
+	padding: 0px;
 }

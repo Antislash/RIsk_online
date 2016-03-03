@@ -8,25 +8,25 @@
 		<title>MAP</title>
 	</head>
 	<body>
-		<nav class="top_navigation">
+		<nav id="top_navigation">
 			<img id="logo_risk" src="images/logo_risk.png"/>
 			<div id="table_login">
 				<table>
-					<form>
+					<form method="post" action="post.html">
 						<tr>
 							<td>Identifiant:</td>
 							<td colspan="2">Mot de passe:</td>
 						</tr>
 						<tr>
-							<td><input class="textbox" type="text"/></td>
-							<td><input class="textbox" type="text"/></td>
+							<td><input class="textbox" type="text" name="pseudo"/></td>
+							<td><input class="textbox" type="password" name="mdp"/></td>
 							<td><input class="button" type="submit" value="GO"></td>
 						</tr>
 					</form>
 				</table>
 			</div>
 		</nav>
-		<div id="table_signin">
+		<div class="bloc" id="table_signin">
 			<h2>INSCRIPTION</h2>
 			<table>
 				<form>
