@@ -180,7 +180,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `email` varchar(40) CHARACTER SET utf8,
   `avatar` varchar(40) CHARACTER SET utf8 NOT NULL,
   `date_inscription` date,
-  `statut` int(11) NOT NULL,
+  `statut` int(11),
   PRIMARY KEY (`id_user`),
   KEY `fk_statut` (`statut`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
