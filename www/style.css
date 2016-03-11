@@ -284,3 +284,41 @@ h3{
 	vertical-align: bottom;
 	padding: 0px;
 }
+
+/*AFFICHAGE AMIS*/
+
+.friends{
+	position: fixed;
+	bottom: 0px;
+	right: 50px;
+	z-index: 3;
+}
+
+#languette{
+	background-color: #9d0404;
+	padding: 10px 15px;
+	border-radius: 20px 20px 0px 0px;
+	display: table;
+	margin: auto;
+	font-size: 1.4em;	
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.8);
+}
+
+#list_friends{
+	background-color: #9d0404;
+	padding: 5px 20px;
+	border-radius: 10px 10px 0px 0px;
+	width: 200px;	
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.8);
+}
+
+.bloc_friends td{
+	border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+	padding: 5px 0px;
+}
+
+.avatar_friends{
+}
+
+.info_friends{
+}
