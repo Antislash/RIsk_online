@@ -204,6 +204,25 @@ CREATE TABLE IF NOT EXISTS `user1_has_user2` (
   KEY `fk_id_user1` (`id_user1`),
   KEY `fk_id_user2` (`id_user2`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Table pour les liens d''amitié';
+=======
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Table pour les liens d''amitié';
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `user`
+--
+
+CREATE TABLE IF NOT EXISTS `user` (
+  `id_user` int(11) NOT NULL AUTO_INCREMENT,
+  `password` varchar(40) CHARACTER SET utf8 NOT NULL,
+  `email` varchar(40) CHARACTER SET utf8,
+  `pseudo` varchar(40) CHARACTER SET utf8 NOT NULL,
+  `date_inscription` date,
+  `statut` int(11),
+  PRIMARY KEY (`id_user`),
+  KEY `fk_statut` (`statut`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Contraintes pour les tables exportées

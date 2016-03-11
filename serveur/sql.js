@@ -22,8 +22,8 @@ db = module.exports = {
     console.log("Fermeture de la base de données");
   },
  
-  //Executé une requête de selection
-  executeSelectQuery : function( selectQuery, callbackResultFunction ) {
+  //Executé une requête de selection (use sert à demander si on veut utiliser la fonction de callback)
+  executeSelectQuery : function( selectQuery, callbackResultFunction, donnees ) { 
     this.mySqlClient.query(
     selectQuery,
     function select(error, results, fields) {
@@ -35,12 +35,12 @@ db = module.exports = {
       }
       //Si nous avons au moins un résultat
       if ( results.length > 0 ){ 
-
-        callbackResultFunction(results);
         console.log('Données récupéré');
+
+        callbackResultFunction(results,donnees);
+
       } else {
-        callbackResultFunction(0);
-        console.log("Pas de données");
+          callbackResultFunction(results, donnees);
 
       }
       //this.mySqlClient.end();

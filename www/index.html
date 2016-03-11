@@ -27,25 +27,88 @@
 			</div>
 		</nav>
 		<div class="bloc" id="table_signin">
-			<h2>INSCRIPTION</h2>
-			<table>
-				<form method="post" action="inscription.html">
-					<tr>
-						<td>Identifiant:</td>
-						<td><input class="textbox" type="text" name="nom"/></td>
-					</tr>
-					<tr>
-						<td>Mot de passe:</td>
-						<td><input class="textbox" type="password" name="pass"/></td>
-					</tr>
-					<tr>
-						<td>Confirmation: </td>
-						<td><input class="textbox" type="text"/></td>
-					</tr>
+				
+			<h2>INSCRIPTION</h2>		
+			<form method="post" action="inscription.html" onSubmit="return checkRegistration(this)">
+
+					<table>
+						<tr>
+							<td>Identifiant:</td>
+							<td><input class="textbox" type="text" name="nom" id="inscriptionIdentifier" onkeypress="return checkSpecialCharacters(event)" maxlength=20/></td>
+						</tr>
+						<tr>
+							<td>Mot de passe:</td>
+							<td><input class="textbox" type="password" name="pass1" onkeypress="return checkPasswordCharacters(event)" maxlength=20/></td>
+						</tr>
+						<tr>
+							<td>Confirmation: </td>
+							<td><input class="textbox" type="password" name="pass2" onkeypress="return checkPasswordCharacters(event)" maxlength=20/></td>
+						</tr>
+
+					</table>
 
 					<input class="button" id="button_submit" type="submit" value="ENVOYER">
+
+					<div class="error" id="passError">
+					</div>
 				</form>
-			</table>
 		</div>
 	</body>
 </html>
+
+<script language="JavaScript">
+	function checkRegistration(form) {
+	  if (form.pass1.value == '' || form.pass2.value == '') {
+	    document.getElementById('passError').innerHTML = ("Veuillez remplir tous les champs.");
+	    form.pass1.focus();
+	    return false;
+	  }
+
+	  else if (form.pass1.value != form.pass2.value) {
+	    document.getElementById('passError').innerHTML = ("Les deux mots de passes sont différents.");
+	    form.pass1.focus();
+	    return false;
+	  }
+
+	  else if (form.pass1.value == form.pass2.value) {
+	    return true;
+	  }
+
+	  else {
+	    form.pass1.focus();
+	    return false;
+	    }
+	 }
+
+	function checkSpecialCharacters(event) {
+		
+		var key = String.fromCharCode(event.charCode);
+
+		var listChars = 'àâäãçéèêëìîïòôöõùûüñ &*?!:;,\t#~"^¨%$£?²¤§%*()]{}<>|\\/`\'';
+		if (listChars.indexOf(key) == -1) {
+			document.getElementById('passError').innerHTML = "";
+			return true;
+		}
+
+		else {
+			document.getElementById('passError').innerHTML = ("Caractères spéciaux interdits.");
+			return false;
+		}
+	}
+
+	function checkPasswordCharacters(event) {
+		
+		var key = String.fromCharCode(event.charCode);
+
+		var listChars = ' <>\\/`\'';
+		if (listChars.indexOf(key) == -1) {
+			document.getElementById('passError').innerHTML = "";
+			return true;
+		}
+
+		else {
+			document.getElementById('passError').innerHTML = ("Caractère interdit.");
+			return false;
+		}
+	}
+</script>
