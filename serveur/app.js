@@ -17,10 +17,19 @@ var empty = function empty(object) {
 
 //Test d'utilisation de la connection avec la base de données
 var processResult = function(row) {
-    console.log(row[0]['id']);		
+	if(row == 0){
+		console.log("ok");
+	}
+	else{
+    	console.log(row[0]['nom']);
+    }		
 }
 
-//db.connect("localhost", "root", "gatien", "test");
-//db.executeSelectQuery("select * from test",processResult);
+
+
+/*Fonction de test pour les instructions SQL*/
+
+db.connect("localhost", "root", "gatien", "risk");
+//db.executeSelectQuery("select * from continent",processResult);		
 //db.executeInsertQuery("INSERT INTO test (id, label,valeur) VALUES(4,'je fais un test',7)");
 //db.close();

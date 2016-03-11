@@ -29,22 +29,23 @@
 		<div class="bloc" id="table_signin">
 			<h2>INSCRIPTION</h2>
 			<table>
-				<form>
+				<form method="post" action="inscription.html">
 					<tr>
 						<td>Identifiant:</td>
-						<td><input class="textbox" type="text"/></td>
+						<td><input class="textbox" type="text" name="nom"/></td>
 					</tr>
 					<tr>
 						<td>Mot de passe:</td>
-						<td><input class="textbox" type="text"/></td>
+						<td><input class="textbox" type="password" name="pass"/></td>
 					</tr>
 					<tr>
 						<td>Confirmation: </td>
 						<td><input class="textbox" type="text"/></td>
 					</tr>
+
+					<input class="button" id="button_submit" type="submit" value="ENVOYER">
 				</form>
 			</table>
-			<input class="button" id="button_submit" type="submit" value="ENVOYER">
 		</div>
 	</body>
 </html>

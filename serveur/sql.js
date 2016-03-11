@@ -38,9 +38,8 @@ db = module.exports = {
 
         callbackResultFunction(results);
         console.log('Données récupéré');
-
       } else {
-
+        callbackResultFunction(0);
         console.log("Pas de données");
 
       }
@@ -54,12 +53,14 @@ db = module.exports = {
 	    insertQuery,
 	    function result(error, info) {
 
-	      console.log("Donnée inséré");
+	      
 
 	      if (error) {
+          console.log(error);
 	        db.close();
 	        return error;
 	      }
+        else console.log("Donnée inséré");
 	      return info.insertId;
 	    }
 	  );

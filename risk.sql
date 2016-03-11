@@ -25,6 +25,8 @@ SET time_zone = "+00:00";
 --
 -- Structure de la table `continent`
 --
+CREATE DATABASE Risk;
+USE risk;
 
 CREATE TABLE IF NOT EXISTS `continent` (
   `nom` varchar(40) CHARACTER SET utf8 NOT NULL,
@@ -175,9 +177,9 @@ CREATE TABLE IF NOT EXISTS `user1_has_user2` (
 CREATE TABLE IF NOT EXISTS `utilisateur` (
   `id_user` int(11) NOT NULL AUTO_INCREMENT,
   `password` varchar(40) CHARACTER SET utf8 NOT NULL,
-  `email` varchar(40) CHARACTER SET utf8 NOT NULL,
-  `avatar` int(11) NOT NULL,
-  `date_inscription` date NOT NULL,
+  `email` varchar(40) CHARACTER SET utf8,
+  `avatar` varchar(40) CHARACTER SET utf8 NOT NULL,
+  `date_inscription` date,
   `statut` int(11) NOT NULL,
   PRIMARY KEY (`id_user`),
   KEY `fk_statut` (`statut`)
