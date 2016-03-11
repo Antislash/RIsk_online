@@ -34,15 +34,15 @@
 					<table>
 						<tr>
 							<td>Identifiant:</td>
-							<td><input class="textbox" type="text" name="nom"/></td>
+							<td><input class="textbox" type="text" name="nom" id="inscriptionIdentifier" onkeypress="return checkSpecialCharacters(event)" maxlength=20/></td>
 						</tr>
 						<tr>
 							<td>Mot de passe:</td>
-							<td><input class="textbox" type="password" name="pass1"/></td>
+							<td><input class="textbox" type="password" name="pass1" onkeypress="return checkPasswordCharacters(event)" maxlength=20/></td>
 						</tr>
 						<tr>
 							<td>Confirmation: </td>
-							<td><input class="textbox" type="password" name="pass2"/></td>
+							<td><input class="textbox" type="password" name="pass2" onkeypress="return checkPasswordCharacters(event)" maxlength=20/></td>
 						</tr>
 
 					</table>
@@ -78,5 +78,37 @@
 	    form.pass1.focus();
 	    return false;
 	    }
-	  }
+	 }
+
+	function checkSpecialCharacters(event) {
+		
+		var key = String.fromCharCode(event.charCode);
+
+		var listChars = 'àâäãçéèêëìîïòôöõùûüñ &*?!:;,\t#~"^¨%$£?²¤§%*()]{}<>|\\/`\'';
+		if (listChars.indexOf(key) == -1) {
+			document.getElementById('passError').innerHTML = "";
+			return true;
+		}
+
+		else {
+			document.getElementById('passError').innerHTML = ("Caractères spéciaux interdits.");
+			return false;
+		}
+	}
+
+	function checkPasswordCharacters(event) {
+		
+		var key = String.fromCharCode(event.charCode);
+
+		var listChars = ' <>\\/`\'';
+		if (listChars.indexOf(key) == -1) {
+			document.getElementById('passError').innerHTML = "";
+			return true;
+		}
+
+		else {
+			document.getElementById('passError').innerHTML = ("Caractère interdit.");
+			return false;
+		}
+	}
 </script>
