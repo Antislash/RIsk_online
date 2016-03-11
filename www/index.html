@@ -27,8 +27,6 @@
 			</div>
 		</nav>
 		<div class="bloc" id="table_signin">
-			<h2>INSCRIPTION</h2>
-			<table>
 				<script language="JavaScript">
 				function checkRegistration(form) {
 				  if (form.pass1.value == '' || form.pass2.value == '') {
@@ -54,26 +52,31 @@
 				  }
 				</script>
 
-				<form method="post" action="inscription.html" onSubmit="return checkRegistration(this)">
-					<tr>
-						<td>Identifiant:</td>
-						<td><input class="textbox" type="text" name="nom"/></td>
-					</tr>
-					<tr>
-						<td>Mot de passe:</td>
-						<td><input class="textbox" type="password" name="pass1"/></td>
-					</tr>
-					<tr>
-						<td>Confirmation: </td>
-						<td><input class="textbox" type="password" name="pass2"/></td>
-					</tr>
+			<h2>INSCRIPTION</h2>		
+			<form method="post" action="inscription.html">
+				<form method="post" action="inscription.html">
+
+					<table>
+						<tr>
+							<td>Identifiant:</td>
+							<td><input class="textbox" type="text" name="nom"/></td>
+						</tr>
+						<tr>
+							<td>Mot de passe:</td>
+							<td><input class="textbox" type="password" name="pass1"/></td>
+						</tr>
+						<tr>
+							<td>Confirmation: </td>
+							<td><input class="textbox" type="password" name="pass2"/></td>
+						</tr>
+
+					</table>
+
 					<input class="button" id="button_submit" type="submit" value="ENVOYER">
 
 					<div class="error" id="passError">
 					</div>
 				</form>
-
-			</table>
 		</div>
 	</body>
 </html>
