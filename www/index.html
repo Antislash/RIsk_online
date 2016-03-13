@@ -18,8 +18,8 @@
 							<td colspan="2">Mot de passe:</td>
 						</tr>
 						<tr>
-							<td><input class="textbox" type="text" name="pseudo"/></td>
-							<td><input class="textbox" type="password" name="mdp"/></td>
+							<td><input class="textbox" type="text" name="pseudo" onkeypress="return checkSpecialCharacters(event)" maxlength=20/></td>
+							<td><input class="textbox" type="password" name="mdp" onkeypress="return checkPasswordCharacters(event)" maxlength=20/></td>
 							<td><input class="button" type="submit" value="GO"></td>
 						</tr>
 					</form>
