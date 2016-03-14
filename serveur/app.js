@@ -29,7 +29,7 @@ var processResult = function(row) {
 
 /*Fonction de test pour les instructions SQL*/
 
-db.connect("localhost", "root", "gatien", "risk");
+db.connect("localhost", "root", "root", "risk");
 //db.executeSelectQuery("select * from continent",processResult);		
 //db.executeInsertQuery("INSERT INTO test (id, label,valeur) VALUES(4,'je fais un test',7)");
 //db.close();

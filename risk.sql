@@ -204,8 +204,6 @@ CREATE TABLE IF NOT EXISTS `user1_has_user2` (
   KEY `fk_id_user1` (`id_user1`),
   KEY `fk_id_user2` (`id_user2`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Table pour les liens d''amitié';
-=======
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Table pour les liens d''amitié';
 
 -- --------------------------------------------------------
 

@@ -40,6 +40,7 @@ db = module.exports = {
         callbackResultFunction(results,donnees);
 
       } else {
+          console.log('Données vides');
           callbackResultFunction(results, donnees);
 
       }
