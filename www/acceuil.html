@@ -6,6 +6,17 @@
 		<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 		<meta name="viewport" content="width=device-width" />
 		<title>MAP</title>
+		<script>
+			function derouler(){
+				elm = document.getElementById("friends");
+				if(elm.className == "unwrap"){
+					elm.className = "wrapped";
+				}
+				else{
+					elm.className = "unwrap";
+				}
+			}
+		</script>
 	</head>
 	<body>
 		<nav id="top_navigation">
@@ -69,38 +80,151 @@
 				</tr>
 			</table>
 		</div>
-		<div class="friends">
+		<div id="friends">
 			<div id="languette">
-				Contacts
+				<span id="deroule" onclick="derouler();">Contacts (5)</span>
 			</div>
-			<table id="list_friends" cellspacing="0">
-				<tr class="bloc_friends">
-					<td class="avatar_friends">
-						<img src="images/avatar.png" height="60px"/>
-					</td>
-					<td class="info_friends">
-						Busquets91<br/>
-						En Ligne
-					</td>
-				</tr>
-				<tr class="bloc_friends">
-					<td class="avatar_friends">
-						<img src="images/avatar.png" height="60px"/>
-					</td>
-					<td class="info_friends">
-						Busquets91<br/>
-						En Ligne
-					</td>
-				</tr>
-				<tr class="bloc_friends">
-					<td class="avatar_friends">
-						<img src="images/avatar.png" height="60px"/>
-					</td>
-					<td class="info_friends">
-						Busquets91<br/>
-						En Ligne
-					</td>
-				</tr>
+			<div id="friends_scroll" class="null">
+				<table id="list_friends" cellspacing="0">
+					<tr class="bloc_friends">
+						<td class="avatar_friends">
+							<img src="images/avatar.png"/>
+						</td>
+						<td class="info_friends">
+							Busquets91<br/>
+							En Ligne
+						</td>
+					</tr>
+					<tr class="bloc_friends">
+						<td class="avatar_friends">
+							<img src="images/avatar2.png"/>
+						</td>
+						<td class="info_friends">
+							Gatafdu42<br/>
+							En Ligne
+						</td>
+					</tr>
+					<tr class="bloc_friends">
+						<td class="avatar_friends">
+							<img src="images/avatar3.png"/>
+						</td>
+						<td class="info_friends">
+							AnusWan91<br/>
+							En Ligne
+						</td>
+					</tr>
+					<tr class="bloc_friends">
+						<td class="avatar_friends">
+							<img src="images/avatar.png"/>
+						</td>
+						<td class="info_friends">
+							Busquets91<br/>
+							En Ligne
+						</td>
+					</tr>
+					<tr class="bloc_friends">
+						<td class="avatar_friends">
+							<img src="images/avatar2.png"/>
+						</td>
+						<td class="info_friends">
+							Gatafdu42<br/>
+							En Ligne
+						</td>
+					</tr>
+					<tr class="bloc_friends">
+						<td class="avatar_friends">
+							<img src="images/avatar3.png"/>
+						</td>
+						<td class="info_friends">
+							AnusWan91<br/>
+							En Ligne
+						</td>
+					</tr>
+					<tr class="bloc_friends">
+						<td class="avatar_friends">
+							<img src="images/avatar.png"/>
+						</td>
+						<td class="info_friends">
+							Busquets91<br/>
+							En Ligne
+						</td>
+					</tr>
+					<tr class="bloc_friends">
+						<td class="avatar_friends">
+							<img src="images/avatar2.png"/>
+						</td>
+						<td class="info_friends">
+							Gatafdu42<br/>
+							En Ligne
+						</td>
+					</tr>
+					<tr class="bloc_friends">
+						<td class="avatar_friends">
+							<img src="images/avatar3.png"/>
+						</td>
+						<td class="info_friends">
+							AnusWan91<br/>
+							En Ligne
+						</td>
+					</tr>
+					<tr class="bloc_friends">
+						<td class="avatar_friends">
+							<img src="images/avatar.png"/>
+						</td>
+						<td class="info_friends">
+							Busquets91<br/>
+							En Ligne
+						</td>
+					</tr>
+					<tr class="bloc_friends">
+						<td class="avatar_friends">
+							<img src="images/avatar2.png"/>
+						</td>
+						<td class="info_friends">
+							Gatafdu42<br/>
+							En Ligne
+						</td>
+					</tr>
+					<tr class="bloc_friends">
+						<td class="avatar_friends">
+							<img src="images/avatar3.png"/>
+						</td>
+						<td class="info_friends">
+							AnusWan91<br/>
+							En Ligne
+						</td>
+					</tr><tr class="bloc_friends">
+						<td class="avatar_friends">
+							<img src="images/avatar.png"/>
+						</td>
+						<td class="info_friends">
+							Busquets91<br/>
+							En Ligne
+						</td>
+					</tr>
+					<tr class="bloc_friends">
+						<td class="avatar_friends">
+							<img src="images/avatar2.png"/>
+						</td>
+						<td class="info_friends">
+							Gatafdu42<br/>
+							En Ligne
+						</td>
+					</tr>
+					<tr class="bloc_friends">
+						<td class="avatar_friends">
+							<img src="images/avatar3.png"/>
+						</td>
+						<td class="info_friends">
+							AnusWan91<br/>
+							En Ligne
+						</td>
+					</tr>
+				</table>
+				<form id="add_friends">
+					<input class="textbox" type="text" name="friend" maxlength=20/>
+					<input class="button" type="submit" value="+">
+				</form>
 			</div>
 		</div>
 	</body>

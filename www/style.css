@@ -179,7 +179,7 @@ h3{
 /*Style du bloc: fond, possitionnement, forme, taille*/
 #profil_home {
 	margin-top: 130px ;
-	margin-left: 150px;
+	margin-left: 200px;
 	margin-bottom: -50px;
 	display: inline-block;
 	line-height: 1.4em;
@@ -287,11 +287,20 @@ h3{
 
 /*AFFICHAGE AMIS*/
 
-.friends{
+#friends{
 	position: fixed;
-	bottom: 0px;
+	bottom: -445px;
 	right: 50px;
 	z-index: 3;
+	transition: transform 1s;
+}
+
+.wrapped{
+	transform: translateY(0px);
+}
+
+.unwrap{
+	transform: translateY(-445px);
 }
 
 #languette{
@@ -305,20 +314,50 @@ h3{
 }
 
 #list_friends{
-	background-color: #9d0404;
-	padding: 5px 20px;
-	border-radius: 10px 10px 0px 0px;
-	width: 200px;	
-    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.8);
+	width: 200px;
 }
 
 .bloc_friends td{
-	border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.4);	
+	padding: 5px 0px 5px 16px;
+}
+
+#list_friends tr:hover{
+	background-color: #BE4747;
+}
+
+.avatar_friends, .avatar_friends img{
+	width: 35px;
+}
+
+.avatar_friends img{
+	border: 1px solid rgba(0,0,0,1);
+}
+
+#friends_scroll{
+    height: 400px;
+	overflow-y: auto;	
+	overflow-x: hidden;
+	background-color: #9d0404;
+	padding-top: 5px;
+	border-radius: 10px 10px 0px 0px;
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.8);
+    margin-bottom: 40px;
+}
+
+#deroule{
+	cursor: pointer;
+}
+
+#add_friends{
+	position: absolute;
+	bottom: 0px;
+	background-image:linear-gradient(#444444, #272727); /* Norme W3C */
+	background-image:-moz-linear-gradient(#444444, #272727); /* Firefox */
+	background-image:-webkit-gradient(linear, #444444, #272727); /* Chrome, Safari */
+	background-image:-o-linear-gradient(#444444, #272727); /* Opera */
+	background-image:-ms-linear-gradient(#444444, #272727); /* IE */
 	padding: 5px 0px;
-}
-
-.avatar_friends{
-}
-
-.info_friends{
+	width: 200px;
+	text-align: center;
 }
