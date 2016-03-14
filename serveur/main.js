@@ -1,13 +1,30 @@
 var express = require('express'); //Module express requis (Framework node js)
-var path = require('path'); //Module Path requis, pour les chemins de fichier
 var http = require('http');
-var bosyParser = require("body-parser");
-var util = require('util');
+
+var path = require('path'); //Module Path requis, pour les chemins de fichier
+
+//var util = require('util');
+
+var bosyParser = require("body-parser"); //Utile pour lire les réponses des formulaires
+var cookieSession = require('cookie-session');
+var cookieParser = require('cookie-parser'); //La session est stocké dans un cookie, nous utilisons ce parse 
+
 
 var app = express(); //Instantiation du serveur
 
+
+
+app.set('port', process.env.PORT || 8080) //Port d'écoute
+app.use(bosyParser.urlencoded({extended: true})); //Utile pour lire les données envoyés dans les formulaires.
+app.use(express.static(path.join(__dirname, '../www'))); //Pour pouvoir utiliser des chemins relatifs dans les fichier utilisés
+
+//Autorisé les cookie dans les entête html
+
+app.use(cookieParser());
+app.use(cookieSession({ name: 'testSession', keys: ['key1', 'key2']}));
+
 /** Configuration **/
-app.configure(function(){
+/*app.configure(function(){
 	//this.set('views', path.join(__dirname, 'view'));
 	//this.set('view engine', 'ejs');
 
@@ -22,18 +39,14 @@ app.configure(function(){
     	"store":  new express.session.MemoryStore({ reapInterval: 60000 * 10 })
 	}));
 
-});
-
-app.set('port', process.env.PORT || 8080) //Port d'écoute
-app.use(bosyParser.urlencoded({extended: true}));
-app.use(express.static(path.join(__dirname, '../www'))); //Pour pouvoir utiliser des chemins relatifs dans les fichier utilisés
+});*/
 
 http.createServer(app).listen(app.get('port'), function(){
 	console.log('Serveur express ouvert au port ' + app.get('port'));
 }); //Création du serveur et écoute du port 8080
 
 //Sert pour les inscription
-app.post('/inscription.html', function(req, res){
+app.post('/inscription', function(req, res){
 	var name = req.body.nom;
 
 	var mdp = req.body.pass1;
@@ -43,18 +56,25 @@ app.post('/inscription.html', function(req, res){
 	compte.mdp = mdp;
 	compte.res = res;
 
-db.executeSelectQuery("select * from utilisateur where avatar = \'" +  name+"\'",inscription,compte);		
+	db.executeSelectQuery("select * from user where pseudo = \'" +  name + "\'", inscription, compte);		
 
-});
+})
 
 //Fonction qui gère le formulaire de connexion
-app.post('/post.html', function(req,res){
+app.post('/connexion', function(req,res){
 	var name = req.body.pseudo;
-	console.log('La variable vaut = ' + name);
+	var mdp = req.body.mdp;
 
-	//db.executeSelectQuery("select * from joueur",processResult);
+	req.session.pseudo = name;
 
-	res.redirect('/');
+	var compte = new Object();
+	compte.name = name;
+	compte.mdp = mdp;
+	compte.req = req;
+	compte.res = res;
+
+	var requette = "SELECT * FROM user WHERE pseudo = \'" + name + "\' AND password = \'" + mdp + "\'";
+	db.executeSelectQuery(requette, connexion, compte);
 	
 })
 
@@ -64,7 +84,7 @@ app.get('/', function(req, res){
 })
 
 //Renvois la page home
-app.get('/home', [requireLogin], function(req, res){
+app.get('/home', /*[requireLogin],*/ function(req, res){
 	res.sendFile(path.resolve(__dirname + '/../www/acceuil.html')); //Envoye la page d'accueil
 })
 
@@ -77,7 +97,7 @@ function inscription(row, data) {
 
 	if(row.length == 0){
 
-		var requette = "INSERT INTO utilisateur (password,email,avatar,date_inscription,statut) VALUES( \'"+ mdp +"\' , NULL, \'" + name +"\', CURDATE(),NULL)";
+		var requette = "INSERT INTO user (password,email,pseudo,date_inscription,statut) VALUES( \'"+ mdp +"\' , NULL, \'" + name +"\', CURDATE(),'En ligne')";
 		db.executeInsertQuery(requette);
 
 		data.res.redirect('/home');
@@ -85,10 +105,20 @@ function inscription(row, data) {
 	else data.res.redirect('/');
 }
 
-function requireLogin(req, res, next){
+/*function requireLogin(req, res, next){
 	if(req.session.username){
 		next(); 
 	} else {
 		res.redirect('/');
+}*/
+function connexion(row, data) {
+
+	console.log(data.req.session.pseudo);
+	if (row.length == 0) {
+		data.res.redirect('/');
+	}
+
+	else {
+		data.res.redirect('/home');
 	}
 }
