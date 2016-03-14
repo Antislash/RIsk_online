@@ -6,6 +6,24 @@ var util = require('util');
 
 var app = express(); //Instantiation du serveur
 
+/** Configuration **/
+app.configure(function(){
+	//this.set('views', path.join(__dirname, 'view'));
+	//this.set('view engine', 'ejs');
+
+	// Allow parsing cookie from request header
+	this.use(express.cokieParser());
+	//session management
+	this.use(express.session({
+		//private scripting key
+		"secret" : "some private string",
+		// Internal session data storage engine, this is the default engine embedded with connect.
+    	// Much more can be found as external modules (Redis, Mongo, Mysql, file...). look at "npm search connect session store"
+    	"store":  new express.session.MemoryStore({ reapInterval: 60000 * 10 })
+	}));
+
+});
+
 app.set('port', process.env.PORT || 8080) //Port d'écoute
 app.use(bosyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, '../www'))); //Pour pouvoir utiliser des chemins relatifs dans les fichier utilisés
@@ -27,7 +45,7 @@ app.post('/inscription.html', function(req, res){
 
 db.executeSelectQuery("select * from utilisateur where avatar = \'" +  name+"\'",inscription,compte);		
 
-})
+});
 
 //Fonction qui gère le formulaire de connexion
 app.post('/post.html', function(req,res){
@@ -46,10 +64,12 @@ app.get('/', function(req, res){
 })
 
 //Renvois la page home
-app.get('/home', function(req, res){
+app.get('/home', [requireLogin], function(req, res){
 	res.sendFile(path.resolve(__dirname + '/../www/acceuil.html')); //Envoye la page d'accueil
 })
 
+
+//Fonction de gestion des inscription
 function inscription(row, data) {
 
 	var name = data.name;
@@ -63,4 +83,12 @@ function inscription(row, data) {
 		data.res.redirect('/home');
 	}
 	else data.res.redirect('/');
+}
+
+function requireLogin(req, res, next){
+	if(req.session.username){
+		next(); 
+	} else {
+		res.redirect('/');
+	}
 }
