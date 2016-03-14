@@ -15,7 +15,7 @@ http.createServer(app).listen(app.get('port'), function(){
 }); //Création du serveur et écoute du port 8080
 
 //Sert pour les inscription
-app.post('/inscription.html', function(req, res){
+app.post('/inscription', function(req, res){
 	var name = req.body.nom;
 
 	var mdp = req.body.pass1;
@@ -30,7 +30,7 @@ app.post('/inscription.html', function(req, res){
 })
 
 //Fonction qui gère le formulaire de connexion
-app.post('/post.html', function(req,res){
+app.post('/connexion', function(req,res){
 	var name = req.body.pseudo;
 	var mdp = req.body.mdp;
 
