@@ -15,28 +15,41 @@ http.createServer(app).listen(app.get('port'), function(){
 }); //Création du serveur et écoute du port 8080
 
 //Sert pour les inscription
-app.post('/inscription.html', function(req, res){
-	var name = req.body.nom;
-
-	var mdp = req.body.pass1;
+app.post('/inscription', function(req, res){
+	var name = req.body.inscriptionPseudo;
+	var mdp = req.body.inscriptionPassword1;
 
 	var compte = new Object();
 	compte.name = name;
 	compte.mdp = mdp;
 	compte.res = res;
 
-db.executeSelectQuery("select * from utilisateur where avatar = \'" +  name+"\'",inscription,compte);		
+	console.log(mdp);
+	console.log(req.body.inscriptionMD51);
+
+	db.executeSelectQuery("select * from user where pseudo = \'" +  name + "\'", inscription, compte);		
 
 })
 
 //Fonction qui gère le formulaire de connexion
-app.post('/post.html', function(req,res){
-	var name = req.body.pseudo;
-	console.log('La variable vaut = ' + name);
+app.post('/connexion', function(req,res){
+	var name = req.body.connexionPseudo;
+	var mdp = req.body.connexionPassword;
 
-	//db.executeSelectQuery("select * from joueur",processResult);
+	var compte = new Object();
+	compte.name = name;
+	compte.mdp = mdp;
+	compte.res = res;
 
-	res.redirect('/');
+	console.log(mdp);
+	console.log(req.body.connexionMD5);
+
+	//console.log('La variable vaut = ' + name + mdp);
+
+	var requette = "SELECT * FROM user WHERE pseudo = \'" + name + "\' AND password = \'" + mdp + "\'";
+	db.executeSelectQuery(requette, connexion, compte);
+
+	//res.redirect('/');
 	
 })
 
@@ -57,10 +70,21 @@ function inscription(row, data) {
 
 	if(row.length == 0){
 
-		var requette = "INSERT INTO utilisateur (password,email,avatar,date_inscription,statut) VALUES( \'"+ mdp +"\' , NULL, \'" + name +"\', CURDATE(),NULL)";
+		var requette = "INSERT INTO user (password,email,pseudo,date_inscription,statut) VALUES( \'"+ mdp +"\' , NULL, \'" + name +"\', CURDATE(),'En ligne')";
 		db.executeInsertQuery(requette);
 
 		data.res.redirect('/home');
 	}
 	else data.res.redirect('/');
+}
+
+function connexion(row, data) {
+
+	if (row.length == 0) {
+		data.res.redirect('/');
+	}
+
+	else {
+		data.res.redirect('/home');
+	}
 }

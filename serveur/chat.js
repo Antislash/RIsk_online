@@ -1,6 +1,5 @@
-//Création de l'objet db qui comporte les méthodes utilent pour l'interaction avec mysql
-db = module.exports = {
-  mysql : require('mysql'), //Ce qui va être nécessaire pour faire fonctionner l'objet db
+chat = module.exports = {
+  socket : require('socket.io'), //Ce qui va être nécessaire pour faire fonctionner l'objet db
   mySqlClient : null, //Variable qui va contenir la connexion et les différentes fonction d'intéraction avec la bd
  
   //Fonction de connexion
@@ -48,40 +47,40 @@ db = module.exports = {
     });
   },
 
-  	//Exécuté une requête d'insertion
-	executeInsertQuery : function( insertQuery ) {
-	  this.mySqlClient.query(
-	    insertQuery,
-	    function result(error, info) {
+    //Exécuté une requête d'insertion
+  executeInsertQuery : function( insertQuery ) {
+    this.mySqlClient.query(
+      insertQuery,
+      function result(error, info) {
 
-	      
+        
 
-	      if (error) {
+        if (error) {
           console.log(error);
-	        db.close();
-	        return error;
-	      }
+          db.close();
+          return error;
+        }
         else console.log("Donnée inséré");
-	      return info.insertId;
-	    }
-	  );
-	},
+        return info.insertId;
+      }
+    );
+  },
 
-	//Exécuté une requête de mise à jour
-	executeUpdateQuery : function(updateQuery){
-	   this.mySqlClient.query(
-		updateQuery,
-		function result(error){
+  //Exécuté une requête de mise à jour
+  executeUpdateQuery : function(updateQuery){
+     this.mySqlClient.query(
+    updateQuery,
+    function result(error){
 
-			console.log("Donnée mise à jour");
+      console.log("Donnée mise à jour");
 
-			if(error){
-				db.close();
-				return error;
-			}
-			return;
-		}
-	);
-	}
+      if(error){
+        db.close();
+        return error;
+      }
+      return;
+    }
+  );
+  }
  
 };

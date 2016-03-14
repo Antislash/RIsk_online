@@ -5,6 +5,7 @@
 		<link rel="stylesheet" href="style.css" />
 		<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 		<meta name="viewport" content="width=device-width" />
+		<script type="text/javascript" src="md5.js"></script>
 		<title>MAP</title>
 	</head>
 	<body>
@@ -12,15 +13,15 @@
 			<img id="logo_risk" src="images/logo_risk.png"/>
 			<div id="table_login">
 				<table>
-					<form method="post" action="post.html">
+					<form method="post" action="connexion">
 						<tr>
 							<td>Identifiant:</td>
 							<td colspan="2">Mot de passe:</td>
 						</tr>
 						<tr>
-							<td><input class="textbox" type="text" name="pseudo" onkeypress="return checkSpecialCharacters(event)" maxlength=20/></td>
-							<td><input class="textbox" type="password" name="mdp" onkeypress="return checkPasswordCharacters(event)" maxlength=20/></td>
-							<td><input class="button" type="submit" value="GO"></td>
+							<td><input class="textbox" type="text" name="connexionPseudo" onkeypress="return checkSpecialCharacters(event)" maxlength=20/></td>
+							<td><input class="textbox" type="password" name="connexionPassword" id="connexionPassword" onkeypress="return checkPasswordCharacters(event)" maxlength=20/><input name="connexionMD5" id="connexionMD5" type="hidden"/></td>
+							<td><input class="button" type="submit" value="GO" onClick="return cryptConnexionPassword(this)"></td>
 						</tr>
 					</form>
 				</table>
@@ -29,25 +30,25 @@
 		<div class="bloc" id="table_signin">
 				
 			<h2>INSCRIPTION</h2>		
-			<form method="post" action="inscription.html" onSubmit="return checkRegistration(this)">
+			<form method="post" action="inscription" onSubmit="return checkRegistration(this)">
 
 					<table>
 						<tr>
 							<td>Identifiant:</td>
-							<td><input class="textbox" type="text" name="nom" id="inscriptionIdentifier" onkeypress="return checkSpecialCharacters(event)" maxlength=20/></td>
+							<td><input class="textbox" type="text" name="inscriptionPseudo" id="inscriptionIdentifier" onkeypress="return checkSpecialCharacters(event)" maxlength=20/></td>
 						</tr>
 						<tr>
 							<td>Mot de passe:</td>
-							<td><input class="textbox" type="password" name="pass1" onkeypress="return checkPasswordCharacters(event)" maxlength=20/></td>
+							<td><input class="textbox" type="password" name="inscriptionPassword1" id="inscriptionPassword1" onkeypress="return checkPasswordCharacters(event)" maxlength=20/><input name="inscriptionMD51" id="inscriptionMD51" type="hidden"/></td>
 						</tr>
 						<tr>
 							<td>Confirmation: </td>
-							<td><input class="textbox" type="password" name="pass2" onkeypress="return checkPasswordCharacters(event)" maxlength=20/></td>
+							<td><input class="textbox" type="password" name="inscriptionPassword2" id="inscriptionPassword2" onkeypress="return checkPasswordCharacters(event)" maxlength=20/><input name="inscriptionMD52" id="inscriptionMD52" type="hidden"/></td>
 						</tr>
 
 					</table>
 
-					<input class="button" id="button_submit" type="submit" value="ENVOYER">
+					<input class="button" id="button_submit" type="submit" value="ENVOYER" onClick="return cryptInscriptionPasswords(this)">
 
 					<div class="error" id="passError">
 					</div>
@@ -58,29 +59,30 @@
 
 <script language="JavaScript">
 	function checkRegistration(form) {
-	  if (form.pass1.value == '' || form.pass2.value == '') {
+	  if (form.inscriptionPassword1.value == '' || form.inscriptionPassword2.value == '') {
 	    document.getElementById('passError').innerHTML = ("Veuillez remplir tous les champs.");
-	    form.pass1.focus();
+	    form.inscriptionPassword1.focus();
 	    return false;
 	  }
 
-	  else if (form.pass1.value != form.pass2.value) {
+	  else if (form.inscriptionPassword1.value != form.inscriptionPassword2.value) {
 	    document.getElementById('passError').innerHTML = ("Les deux mots de passes sont différents.");
-	    form.pass1.focus();
+	    form.inscriptionPassword1.focus();
 	    return false;
 	  }
 
-	  else if (form.pass1.value == form.pass2.value) {
+	  else if (form.inscriptionPassword1.value == form.inscriptionPassword2.value) {
 	    return true;
 	  }
 
 	  else {
-	    form.pass1.focus();
+	    form.inscriptionPassword1.focus();
 	    return false;
 	    }
 	 }
 
-	function checkSpecialCharacters(event) {
+	 // Empêche l'utilisation de caractères spéciaux dans le login
+	function checkSpecialCharacters (event) {
 		
 		var key = String.fromCharCode(event.charCode);
 
@@ -96,7 +98,8 @@
 		}
 	}
 
-	function checkPasswordCharacters(event) {
+	// Empêche l'utilisation de certains caractères dans le mot de passe (évite ainsi l'injection SQL)
+	function checkPasswordCharacters (event) {
 		
 		var key = String.fromCharCode(event.charCode);
 
@@ -110,5 +113,19 @@
 			document.getElementById('passError').innerHTML = ("Caractère interdit.");
 			return false;
 		}
+	}
+
+	function cryptConnexionPassword (form) {
+		//document.getElementById('connexionMD5').value = md5(document.getElementById('connexionPassword').value);
+		document.getElementById('connexionPassword').value = md5(document.getElementById('connexionPassword').value);
+		return true;
+	}
+
+	function cryptInscriptionPasswords (form) {
+		//document.getElementById('inscriptionMD51').value = md5(document.getElementById('inscriptionPassword1').value);
+		//document.getElementById('inscriptionMD52').value = md5(document.getElementById('inscriptionPassword2').value);
+		document.getElementById('inscriptionPassword1').value = md5(document.getElementById('inscriptionPassword1').value);
+		document.getElementById('inscriptionPassword2').value = md5(document.getElementById('inscriptionPassword2').value);
+		return true;
 	}
 </script>
