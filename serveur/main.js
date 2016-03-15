@@ -47,14 +47,16 @@ http.createServer(app).listen(app.get('port'), function(){
 
 //Sert pour les inscription
 app.post('/inscription', function(req, res){
-	var name = req.body.nom;
-
-	var mdp = req.body.pass1;
+	var name = req.body.inscriptionPseudo;
+	var mdp = req.body.inscriptionPassword1;
 
 	var compte = new Object();
 	compte.name = name;
 	compte.mdp = mdp;
 	compte.res = res;
+
+	console.log(mdp);
+	console.log(req.body.inscriptionMD51);
 
 	db.executeSelectQuery("select * from user where pseudo = \'" +  name + "\'", inscription, compte);		
 
@@ -62,8 +64,8 @@ app.post('/inscription', function(req, res){
 
 //Fonction qui gère le formulaire de connexion
 app.post('/connexion', function(req,res){
-	var name = req.body.pseudo;
-	var mdp = req.body.mdp;
+	var name = req.body.connexionPseudo;
+	var mdp = req.body.connexionPassword;
 
 	req.session.pseudo = name;
 
@@ -72,6 +74,11 @@ app.post('/connexion', function(req,res){
 	compte.mdp = mdp;
 	compte.req = req;
 	compte.res = res;
+
+	console.log(mdp);
+	console.log(req.body.connexionMD5);
+
+	//console.log('La variable vaut = ' + name + mdp);
 
 	var requette = "SELECT * FROM user WHERE pseudo = \'" + name + "\' AND password = \'" + mdp + "\'";
 	db.executeSelectQuery(requette, connexion, compte);
