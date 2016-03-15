@@ -25,7 +25,7 @@ app.post('/inscription', function(req, res){
 	compte.res = res;
 
 	console.log(mdp);
-	console.log(req.body.inscriptionMD51);
+	console.log(name);
 
 	db.executeSelectQuery("select * from user where pseudo = \'" +  name + "\'", inscription, compte);		
 
@@ -42,7 +42,7 @@ app.post('/connexion', function(req,res){
 	compte.res = res;
 
 	console.log(mdp);
-	console.log(req.body.connexionMD5);
+	console.log(name);
 
 	//console.log('La variable vaut = ' + name + mdp);
 
