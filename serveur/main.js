@@ -6,7 +6,7 @@ var path = require('path'); //Module Path requis, pour les chemins de fichier
 //var util = require('util');
 
 var bosyParser = require("body-parser"); //Utile pour lire les réponses des formulaires
-var cookieSession = require('cookie-session');
+var cookieSession = require('express-session');
 var cookieParser = require('cookie-parser'); //La session est stocké dans un cookie, nous utilisons ce parse 
 
 
@@ -21,25 +21,13 @@ app.use(express.static(path.join(__dirname, '../www'))); //Pour pouvoir utiliser
 //Autorisé les cookie dans les entête html
 
 app.use(cookieParser());
-app.use(cookieSession({ name: 'testSession', keys: ['key1', 'key2']}));
-
-/** Configuration **/
-/*app.configure(function(){
-	//this.set('views', path.join(__dirname, 'view'));
-	//this.set('view engine', 'ejs');
-
-	// Allow parsing cookie from request header
-	this.use(express.cokieParser());
-	//session management
-	this.use(express.session({
-		//private scripting key
-		"secret" : "some private string",
-		// Internal session data storage engine, this is the default engine embedded with connect.
-    	// Much more can be found as external modules (Redis, Mongo, Mysql, file...). look at "npm search connect session store"
-    	"store":  new express.session.MemoryStore({ reapInterval: 60000 * 10 })
-	}));
-
-});*/
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true }
+}))
 
 http.createServer(app).listen(app.get('port'), function(){
 	console.log('Serveur express ouvert au port ' + app.get('port'));
