@@ -1,5 +1,6 @@
 var express = require('express'); //Module express requis (Framework node js)
 var http = require('http');
+<<<<<<< HEAD
 
 var path = require('path'); //Module Path requis, pour les chemins de fichier
 
@@ -9,6 +10,11 @@ var bosyParser = require("body-parser"); //Utile pour lire les réponses des for
 var cookieSession = require('express-session');
 var cookieParser = require('cookie-parser'); //La session est stocké dans un cookie, nous utilisons ce parse 
 
+=======
+var bosyParser = require("body-parser");
+var util = require('util');
+var md5 = require('md5');
+>>>>>>> a860204187e349bafaab15d0d170593167646d4d
 
 var app = express(); //Instantiation du serveur
 
@@ -44,7 +50,7 @@ app.post('/inscription', function(req, res){
 	compte.res = res;
 
 	console.log(mdp);
-	console.log(req.body.inscriptionMD51);
+	console.log(name);
 
 	db.executeSelectQuery("select * from user where pseudo = \'" +  name + "\'", inscription, compte);		
 
@@ -63,12 +69,12 @@ app.post('/connexion', function(req,res){
 	compte.req = req;
 	compte.res = res;
 
-	console.log(mdp);
-	console.log(req.body.connexionMD5);
+	console.log(md5(mdp));
+	console.log(name);
 
 	//console.log('La variable vaut = ' + name + mdp);
 
-	var requette = "SELECT * FROM user WHERE pseudo = \'" + name + "\' AND password = \'" + mdp + "\'";
+	var requette = "SELECT * FROM user WHERE pseudo = \'" + name + "\' AND password = \'" + md5(mdp) + "\'";
 	db.executeSelectQuery(requette, connexion, compte);
 	
 })
@@ -92,7 +98,7 @@ function inscription(row, data) {
 
 	if(row.length == 0){
 
-		var requette = "INSERT INTO user (password,email,pseudo,date_inscription,statut) VALUES( \'"+ mdp +"\' , NULL, \'" + name +"\', CURDATE(),'En ligne')";
+		var requette = "INSERT INTO user (password,email,pseudo,date_inscription,statut) VALUES( \'"+ md5(mdp) +"\' , NULL, \'" + name +"\', CURDATE(),'En ligne')";
 		db.executeInsertQuery(requette);
 
 		data.res.redirect('/home');
