@@ -82,7 +82,7 @@ db = module.exports = {
 			return;
 		}
 	);
-	}
+	},
 
     //Exécuté une requête de supression
   executeDeleteQuery : function(deleteQuery){
