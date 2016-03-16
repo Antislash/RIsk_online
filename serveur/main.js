@@ -3,6 +3,7 @@ var path = require('path'); //Module Path requis, pour les chemins de fichier
 var http = require('http');
 var bosyParser = require("body-parser");
 var util = require('util');
+var md5 = require('md5');
 
 var app = express(); //Instantiation du serveur
 
@@ -41,12 +42,12 @@ app.post('/connexion', function(req,res){
 	compte.mdp = mdp;
 	compte.res = res;
 
-	console.log(mdp);
+	console.log(md5(mdp));
 	console.log(name);
 
 	//console.log('La variable vaut = ' + name + mdp);
 
-	var requette = "SELECT * FROM user WHERE pseudo = \'" + name + "\' AND password = \'" + mdp + "\'";
+	var requette = "SELECT * FROM user WHERE pseudo = \'" + name + "\' AND password = \'" + md5(mdp) + "\'";
 	db.executeSelectQuery(requette, connexion, compte);
 
 	//res.redirect('/');
@@ -70,7 +71,7 @@ function inscription(row, data) {
 
 	if(row.length == 0){
 
-		var requette = "INSERT INTO user (password,email,pseudo,date_inscription,statut) VALUES( \'"+ mdp +"\' , NULL, \'" + name +"\', CURDATE(),'En ligne')";
+		var requette = "INSERT INTO user (password,email,pseudo,date_inscription,statut) VALUES( \'"+ md5(mdp) +"\' , NULL, \'" + name +"\', CURDATE(),'En ligne')";
 		db.executeInsertQuery(requette);
 
 		data.res.redirect('/home');

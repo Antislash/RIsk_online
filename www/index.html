@@ -21,7 +21,7 @@
 						<tr>
 							<td><input class="textbox" type="text" name="connexionPseudo" onkeypress="return checkSpecialCharacters(event)" maxlength=20/></td>
 							<td><input class="textbox" type="password" name="connexionPassword" id="connexionPassword" onkeypress="return checkPasswordCharacters(event)" maxlength=20/></td>
-							<td><input class="button" type="submit" value="GO" onClick="return cryptConnexionPassword(this)"></td>
+							<td><input class="button" type="submit" value="GO"></td>
 						</tr>
 					</form>
 				</table>
@@ -48,7 +48,7 @@
 
 					</table>
 
-					<input class="button" id="button_submit" type="submit" value="ENVOYER" onClick="return cryptInscriptionPasswords(this)">
+					<input class="button" id="button_submit" type="submit" value="ENVOYER">
 
 					<div class="error" id="passError">
 					</div>
@@ -115,7 +115,7 @@
 		}
 	}
 
-	function cryptConnexionPassword (form) {
+	/*function cryptConnexionPassword (form) {
 		//document.getElementById('connexionMD5').value = md5(document.getElementById('connexionPassword').value);
 		document.getElementById('connexionPassword').value = md5(document.getElementById('connexionPassword').value);
 		return true;
@@ -127,5 +127,6 @@
 		document.getElementById('inscriptionPassword1').value = md5(document.getElementById('inscriptionPassword1').value);
 		document.getElementById('inscriptionPassword2').value = md5(document.getElementById('inscriptionPassword2').value);
 		return true;
-	}
+	}*/
 </script>
+
