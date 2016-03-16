@@ -29,7 +29,7 @@ var processResult = function(row) {
 
 /*Fonction de test pour les instructions SQL*/
 
-db.connect("localhost", "root", "root", "risk");
+db.connect("ivgz2rnl5rh7sphb.chr7pe7iynqr.eu-west-1.rds.amazonaws.com", "dm0pel1q4vrf307y", "ex0g988gs33tlltu", "m9ivktqfxzjgpbe3");
 //db.executeSelectQuery("select * from continent",processResult);		
 //db.executeInsertQuery("INSERT INTO test (id, label,valeur) VALUES(4,'je fais un test',7)");
 //db.close();
