@@ -16,6 +16,25 @@
 					elm.className = "unwrap";
 				}
 			}
+			function generateFriends(){
+				var friends = [{avatar:"images/avatar.png", pseudo:"Busquets91", codeStatus:"on" ,status:"En ligne"},{avatar:"images/avatar2.png", pseudo:"Gatafdu42",codeStatus:"gam" , status:"En jeu"},{avatar:"images/avatar3.png", pseudo:"Vivou", codeStatus:"off" ,status:"Hors ligne"}];
+				var elm = document.getElementById("list_friends");
+				var ctn = "";
+				for (var i = 0; i < friends.length; i++){
+					ctn += "<tr class=\"bloc_friends\">";
+					ctn += "<td class=\"avatar_friends\">";
+					ctn += "<img src=\"" + friends[i].avatar + "\"/></td>";
+					ctn += "<td class=\"info_friends\">" + friends[i].pseudo + "<br/>";
+					ctn += "<span class=\"";
+					if(friends[i].codeStatus == "on") ctn += "online";
+					if(friends[i].codeStatus == "off") ctn += "offline";
+					if(friends[i].codeStatus == "gam") ctn += "ingame";
+					ctn += "\">" + friends[i].status + "</span>";
+					ctn += "</td></tr>";
+				}
+				elm.innerHTML = ctn;
+			}
+
 		</script>
 	</head>
 	<body>
@@ -82,144 +101,11 @@
 		</div>
 		<div id="friends">
 			<div id="languette">
-				<span id="deroule" onclick="derouler();">Contacts (5)</span>
+				<span id="deroule" onclick="derouler();generateFriends();">Contacts (5)</span>
 			</div>
 			<div id="friends_scroll" class="null">
-				<table id="list_friends" cellspacing="0">
-					<tr class="bloc_friends">
-						<td class="avatar_friends">
-							<img src="images/avatar.png"/>
-						</td>
-						<td class="info_friends">
-							Busquets91<br/>
-							En Ligne
-						</td>
-					</tr>
-					<tr class="bloc_friends">
-						<td class="avatar_friends">
-							<img src="images/avatar2.png"/>
-						</td>
-						<td class="info_friends">
-							Gatafdu42<br/>
-							En Ligne
-						</td>
-					</tr>
-					<tr class="bloc_friends">
-						<td class="avatar_friends">
-							<img src="images/avatar3.png"/>
-						</td>
-						<td class="info_friends">
-							AnusWan91<br/>
-							En Ligne
-						</td>
-					</tr>
-					<tr class="bloc_friends">
-						<td class="avatar_friends">
-							<img src="images/avatar.png"/>
-						</td>
-						<td class="info_friends">
-							Busquets91<br/>
-							En Ligne
-						</td>
-					</tr>
-					<tr class="bloc_friends">
-						<td class="avatar_friends">
-							<img src="images/avatar2.png"/>
-						</td>
-						<td class="info_friends">
-							Gatafdu42<br/>
-							En Ligne
-						</td>
-					</tr>
-					<tr class="bloc_friends">
-						<td class="avatar_friends">
-							<img src="images/avatar3.png"/>
-						</td>
-						<td class="info_friends">
-							AnusWan91<br/>
-							En Ligne
-						</td>
-					</tr>
-					<tr class="bloc_friends">
-						<td class="avatar_friends">
-							<img src="images/avatar.png"/>
-						</td>
-						<td class="info_friends">
-							Busquets91<br/>
-							En Ligne
-						</td>
-					</tr>
-					<tr class="bloc_friends">
-						<td class="avatar_friends">
-							<img src="images/avatar2.png"/>
-						</td>
-						<td class="info_friends">
-							Gatafdu42<br/>
-							En Ligne
-						</td>
-					</tr>
-					<tr class="bloc_friends">
-						<td class="avatar_friends">
-							<img src="images/avatar3.png"/>
-						</td>
-						<td class="info_friends">
-							AnusWan91<br/>
-							En Ligne
-						</td>
-					</tr>
-					<tr class="bloc_friends">
-						<td class="avatar_friends">
-							<img src="images/avatar.png"/>
-						</td>
-						<td class="info_friends">
-							Busquets91<br/>
-							En Ligne
-						</td>
-					</tr>
-					<tr class="bloc_friends">
-						<td class="avatar_friends">
-							<img src="images/avatar2.png"/>
-						</td>
-						<td class="info_friends">
-							Gatafdu42<br/>
-							En Ligne
-						</td>
-					</tr>
-					<tr class="bloc_friends">
-						<td class="avatar_friends">
-							<img src="images/avatar3.png"/>
-						</td>
-						<td class="info_friends">
-							AnusWan91<br/>
-							En Ligne
-						</td>
-					</tr><tr class="bloc_friends">
-						<td class="avatar_friends">
-							<img src="images/avatar.png"/>
-						</td>
-						<td class="info_friends">
-							Busquets91<br/>
-							En Ligne
-						</td>
-					</tr>
-					<tr class="bloc_friends">
-						<td class="avatar_friends">
-							<img src="images/avatar2.png"/>
-						</td>
-						<td class="info_friends">
-							Gatafdu42<br/>
-							En Ligne
-						</td>
-					</tr>
-					<tr class="bloc_friends">
-						<td class="avatar_friends">
-							<img src="images/avatar3.png"/>
-						</td>
-						<td class="info_friends">
-							AnusWan91<br/>
-							En Ligne
-						</td>
-					</tr>
+				<table id="list_friends" cellspacing="0" onload="generateFriends();">
+					
 				</table>
 				<form id="add_friends">
 					<input class="textbox" type="text" name="friend" maxlength=20/>

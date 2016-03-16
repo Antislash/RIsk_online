@@ -3,6 +3,7 @@ var path = require('path'); //Module Path requis, pour les chemins de fichier
 var http = require('http');
 var bosyParser = require("body-parser");
 var util = require('util');
+var md5 = require('md5');
 
 var app = express(); //Instantiation du serveur
 
@@ -10,9 +11,11 @@ app.set('port', process.env.PORT || 8080) //Port d'écoute
 app.use(bosyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, '../www'))); //Pour pouvoir utiliser des chemins relatifs dans les fichier utilisés
 
-http.createServer(app).listen(app.get('port'), function(){
+var server = http.createServer(app).listen(app.get('port'), function(){
 	console.log('Serveur express ouvert au port ' + app.get('port'));
 }); //Création du serveur et écoute du port 8080
+
+exports.server = server;
 
 //Sert pour les inscription
 app.post('/inscription', function(req, res){
@@ -23,9 +26,6 @@ app.post('/inscription', function(req, res){
 	compte.name = name;
 	compte.mdp = mdp;
 	compte.res = res;
-
-	console.log(mdp);
-	console.log(req.body.inscriptionMD51);
 
 	db.executeSelectQuery("select * from user where pseudo = \'" +  name + "\'", inscription, compte);		
 
@@ -41,12 +41,12 @@ app.post('/connexion', function(req,res){
 	compte.mdp = mdp;
 	compte.res = res;
 
-	console.log(mdp);
-	console.log(req.body.connexionMD5);
+	console.log(md5(mdp));
+	console.log(name);
 
 	//console.log('La variable vaut = ' + name + mdp);
 
-	var requette = "SELECT * FROM user WHERE pseudo = \'" + name + "\' AND password = \'" + mdp + "\'";
+	var requette = "SELECT * FROM user WHERE pseudo = \'" + name + "\' AND password = \'" + md5(mdp) + "\'";
 	db.executeSelectQuery(requette, connexion, compte);
 
 	//res.redirect('/');
@@ -66,11 +66,11 @@ app.get('/home', function(req, res){
 function inscription(row, data) {
 
 	var name = data.name;
-	var mdp = data.mdp
+	var mdp = data.mdp;
 
 	if(row.length == 0){
 
-		var requette = "INSERT INTO user (password,email,pseudo,date_inscription,statut) VALUES( \'"+ mdp +"\' , NULL, \'" + name +"\', CURDATE(),'En ligne')";
+		var requette = "INSERT INTO user (password,email,pseudo,date_inscription,statut) VALUES( \'"+ md5(mdp) +"\' , NULL, \'" + name +"\', CURDATE(),'En ligne')";
 		db.executeInsertQuery(requette);
 
 		data.res.redirect('/home');
