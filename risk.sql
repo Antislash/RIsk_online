@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Ven 11 Mars 2016 à 16:57
+-- Généré le: Mer 16 Mars 2016 à 11:24
 -- Version du serveur: 5.1.73
 -- Version de PHP: 5.3.3
 
@@ -16,12 +16,27 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
-CREATE DATABASE Risk;
-USE Risk;
+--
+-- Base de données: `risk`
+--
+CREATE DATABASE IF NOT EXISTS `risk` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `risk`;
+
+-- --------------------------------------------------------
 
 --
--- Base de données :  `risk`
+-- Structure de la table `actualites`
 --
+
+CREATE TABLE IF NOT EXISTS `actualites` (
+  `id_actualite` int(11) NOT NULL AUTO_INCREMENT,
+  `titre` varchar(40) NOT NULL,
+  `contenu` text NOT NULL,
+  `date` date NOT NULL,
+  `image_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_actualite`),
+  KEY `fk_image_id` (`image_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 -- --------------------------------------------------------
 
@@ -35,7 +50,21 @@ CREATE TABLE IF NOT EXISTS `continent` (
   `nb_pays` int(11) NOT NULL,
   `nb_renfort` int(11) NOT NULL DEFAULT '0' COMMENT 'nombre de renfort une fois le continent conquit',
   PRIMARY KEY (`id_continent`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `image`
+--
+
+CREATE TABLE IF NOT EXISTS `image` (
+  `id_image` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(60) NOT NULL,
+  `chemin` int(100) DEFAULT NULL,
+  PRIMARY KEY (`id_image`),
+  UNIQUE KEY `nom` (`nom`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 -- --------------------------------------------------------
 
@@ -112,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `pays` (
   `continent_id` int(11) NOT NULL COMMENT 'Continent du pays',
   PRIMARY KEY (`id_pays`),
   KEY `fk_continent_id` (`continent_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=43 ;
 
 -- --------------------------------------------------------
 
@@ -162,17 +191,9 @@ CREATE TABLE IF NOT EXISTS `stats_user` (
 
 CREATE TABLE IF NOT EXISTS `statut_user` (
   `nom` varchar(40) NOT NULL,
+  `nom_complet` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`nom`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Contenu de la table `statut_user`
---
-
-INSERT INTO `statut_user` (`nom`) VALUES
-('En Ligne'),
-('Hors Ligne'),
-('Occupé');
 
 -- --------------------------------------------------------
 
@@ -182,14 +203,16 @@ INSERT INTO `statut_user` (`nom`) VALUES
 
 CREATE TABLE IF NOT EXISTS `user` (
   `id_user` int(11) NOT NULL AUTO_INCREMENT,
+  `pseudo` varchar(40) NOT NULL,
   `password` varchar(40) NOT NULL,
   `email` varchar(40) DEFAULT NULL,
-  `pseudo` varchar(40) NOT NULL,
   `date_inscription` date DEFAULT NULL,
-  `statut` varchar(40) NOT NULL COMMENT '(ex: en ligne ...)',
+  `image_id` int(11) DEFAULT NULL COMMENT 'Avatar (TODO: mettre avatar par défaut)',
+  `statut` varchar(40) DEFAULT 'off' COMMENT '(ex: en ligne ...)',
   PRIMARY KEY (`id_user`),
-  KEY `fk_statut` (`statut`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  KEY `fk_statut` (`statut`),
+  KEY `fk_image_id` (`image_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 -- --------------------------------------------------------
 
@@ -205,26 +228,15 @@ CREATE TABLE IF NOT EXISTS `user1_has_user2` (
   KEY `fk_id_user2` (`id_user2`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Table pour les liens d''amitié';
 
--- --------------------------------------------------------
-
---
--- Structure de la table `user`
---
-
-CREATE TABLE IF NOT EXISTS `user` (
-  `id_user` int(11) NOT NULL AUTO_INCREMENT,
-  `password` varchar(40) CHARACTER SET utf8 NOT NULL,
-  `email` varchar(40) CHARACTER SET utf8,
-  `pseudo` varchar(40) CHARACTER SET utf8 NOT NULL,
-  `date_inscription` date,
-  `statut` int(11),
-  PRIMARY KEY (`id_user`),
-  KEY `fk_statut` (`statut`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
 --
 -- Contraintes pour les tables exportées
 --
+
+--
+-- Contraintes pour la table `actualites`
+--
+ALTER TABLE `actualites`
+  ADD CONSTRAINT `actualites_ibfk_1` FOREIGN KEY (`image_id`) REFERENCES `image` (`id_image`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `joueur`
@@ -277,7 +289,8 @@ ALTER TABLE `stats_user`
 -- Contraintes pour la table `user`
 --
 ALTER TABLE `user`
-  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`statut`) REFERENCES `statut_user` (`nom`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`statut`) REFERENCES `statut_user` (`nom`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `user_ibfk_2` FOREIGN KEY (`image_id`) REFERENCES `image` (`id_image`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Contraintes pour la table `user1_has_user2`
