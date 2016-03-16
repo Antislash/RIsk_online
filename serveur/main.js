@@ -11,9 +11,11 @@ app.set('port', process.env.PORT || 8080) //Port d'écoute
 app.use(bosyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, '../www'))); //Pour pouvoir utiliser des chemins relatifs dans les fichier utilisés
 
-http.createServer(app).listen(app.get('port'), function(){
+var server = http.createServer(app).listen(app.get('port'), function(){
 	console.log('Serveur express ouvert au port ' + app.get('port'));
 }); //Création du serveur et écoute du port 8080
+
+exports.server = server;
 
 //Sert pour les inscription
 app.post('/inscription', function(req, res){
