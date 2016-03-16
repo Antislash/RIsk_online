@@ -49,20 +49,20 @@ db = module.exports = {
   },
 
   	//Exécuté une requête d'insertion
-	executeInsertQuery : function( insertQuery ) {
+	executeInsertQuery : function( insertQuery, callbackResultFunction ) {
 	  this.mySqlClient.query(
 	    insertQuery,
 	    function result(error, info) {
-
-	      
-
 	      if (error) {
           console.log(error);
 	        db.close();
 	        return error;
 	      }
         else console.log("Donnée inséré");
-	      return info.insertId;
+			if(typeof(callbackResultFunction) != "undefined"){
+				callbackResultFunction(info.insertId);
+			}
+			return info.insertId;
 	    }
 	  );
 	},

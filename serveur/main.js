@@ -49,9 +49,6 @@ app.post('/inscription', function(req, res){
 	compte.mdp = mdp;
 	compte.res = res;
 
-	console.log(mdp);
-	console.log(name);
-
 	db.executeSelectQuery("select * from user where pseudo = \'" +  name + "\'", inscription, compte);		
 
 })
@@ -94,7 +91,7 @@ app.get('/home', /*[requireLogin],*/ function(req, res){
 function inscription(row, data) {
 
 	var name = data.name;
-	var mdp = data.mdp
+	var mdp = data.mdp;
 
 	if(row.length == 0){
 
