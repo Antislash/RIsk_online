@@ -58,10 +58,10 @@ db = module.exports = {
 	        db.close();
 	        return error;
 	      }
-        else console.log("Donnée inséré");
-			if(typeof(callbackResultFunction) != "undefined"){
-				callbackResultFunction(info.insertId);
-			}
+        else {console.log("Donnée inséré");
+			   if(typeof(callbackResultFunction) != "undefined")
+          callbackResultFunction(info.insertId);
+        }
 			return info.insertId;
 	    }
 	  );
