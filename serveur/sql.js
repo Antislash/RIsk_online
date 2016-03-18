@@ -82,6 +82,23 @@ db = module.exports = {
 			return;
 		}
 	);
-	}
+	},
+
+    //Exécuté une requête de supression
+  executeDeleteQuery : function(deleteQuery){
+     this.mySqlClient.query(
+    deleteQuery,
+    function result(error){
+
+      console.log("Donnée supprimée");
+
+      if(error){
+        db.close();
+        return error;
+      }
+      return;
+    }
+  );
+  }
  
 };

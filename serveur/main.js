@@ -22,6 +22,7 @@ app.set('port', process.env.PORT || 8080) //Port d'écoute
 app.use(bosyParser.urlencoded({extended: true})); //Utile pour lire les données envoyés dans les formulaires.
 app.use(express.static(path.join(__dirname, '../www'))); //Pour pouvoir utiliser des chemins relatifs dans les fichier utilisés
 
+
 //Autorisé les cookie dans les entête html
 
 app.use(cookieParser());
@@ -34,19 +35,23 @@ app.use(cookieSession({
   saveUninitialized: true
 }))
 
-
-http.createServer(app).listen(app.get('port'), function(){
+var server = http.createServer(app).listen(app.get('port'), function(){
 	console.log('Serveur express ouvert au port ' + app.get('port'));
 }); //Création du serveur et écoute du port 8080
+
+exports.server = server;
 
 //Sert pour les inscription
 app.post('/inscription', function(req, res){
 	var name = req.body.inscriptionPseudo;
 	var mdp = req.body.inscriptionPassword1;
 
+	req.session.pseudo = name;
+
 	var compte = new Object();
 	compte.name = name;
 	compte.mdp = mdp;
+	compte.req = req;
 	compte.res = res;
 
 	db.executeSelectQuery("select * from user where pseudo = \'" +  name + "\'", inscription, compte);		
@@ -60,8 +65,6 @@ app.post('/connexion', function(req,res){
 
 	 // Increment "index" in session
 	  req.session.pseudo = name;
-	  console.log(req.session.pseudo);
-	  console.log("Session id vaut : "+ req.sessionID);
 
 	var compte = new Object();
 	compte.name = name;
@@ -69,13 +72,32 @@ app.post('/connexion', function(req,res){
 	compte.req = req;
 	compte.res = res;
 
-	var requette = "SELECT * FROM user WHERE pseudo = \'" + name + "\' AND password = \'" + md5(mdp) + "\'";
+	var requette = "SELECT * FROM user WHERE pseudo = \'" + req.session.pseudo + "\' AND password = \'" + md5(mdp) + "\'";
 	db.executeSelectQuery(requette, connexion, compte);
+	
+})
+
+app.post('/co',function(req,res){
+	  console.log("Session id vaut : "+ req.session.pseudo);
+	  res.redirect('/home');
 	
 })
 
 //On renvois le fichier index.html lorsque l'on cherche le chemin /
 app.get('/', function(req, res){
+	console.log('passe1');
+	if(req.session.pseudo){
+
+	console.log('passe2');
+		res.redirect('/home');
+	}else{
+	console.log('passe3');
+		res.redirect('/login');
+	}
+})
+
+//On renvois le fichier index.html lorsque l'on cherche le chemin /
+app.get('/login', function(req, res){
 	res.sendFile(path.resolve(__dirname + '/../www/index.html')); //Envoi à la page de connection
 })
 
@@ -85,13 +107,15 @@ app.get('/home', /*[requireLogin],*/ function(req, res){
 })
 
 
+
+
 //Fonction de gestion des inscription
 function inscription(row, data) {
 
 	var name = data.name;
-	var mdp = data.mdp
+	var mdp = data.mdp;
 
-	if(row.length == 0){
+	if(row.length == 0 && data.req.session.pseudo &&  data.req.session.pseudo == name){
 
 		var requette = "INSERT INTO user (password,email,pseudo,date_inscription,statut) VALUES( \'"+ md5(mdp) +"\' , NULL, \'" + name +"\', CURDATE(),'En ligne')";
 		db.executeInsertQuery(requette);
@@ -109,12 +133,11 @@ function inscription(row, data) {
 }*/
 function connexion(row, data) {
 
-	console.log(req.session.pseudo);
-	if (row.length == 0) {
-		data.res.redirect('/');
+	if (row.length > 0 && data.req.session.pseudo && data.req.session.pseudo == data.name) {
+		data.res.redirect('/home');
 	}
 
 	else {
-		data.res.redirect('/home');
+		data.res.redirect('/');
 	}
 }

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Lun 14 Mars 2016 à 17:03
+-- Généré le: Mer 16 Mars 2016 à 11:26
 -- Version du serveur: 5.1.73
 -- Version de PHP: 5.3.3
 
@@ -21,6 +21,19 @@ SET time_zone = "+00:00";
 --
 
 --
+-- Contenu de la table `actualites`
+--
+
+INSERT INTO `actualites` (`id_actualite`, `titre`, `contenu`, `date`, `image_id`) VALUES
+(1, 'News jeu', 'GDC 2016 : Un Star Wars : Battlefront exclusif au Playstation VR en préparation ', '2016-03-01', 1),
+(2, 'News hardware', 'GDC 2016 : Playstation VR, disponible en octobre 2016 pour la somme de 399 euros ! ', '2016-03-02', 2),
+(3, 'News bon plan', 'PlayStation Store : Derniers jours de promos sur les exclus numériques !', '2016-03-04', 3),
+(4, 'News jeu', 'Far Cry Primal : Le Patch 1.02 disponible sur PS4 et Xbox One ', '2016-03-09', 4),
+(5, 'News bon plan', 'Promo : The Division à - 25% ', '2016-03-13', 4),
+(6, 'News jeu', 'XING : The Land Beyond compatible avec le Playstation VR ', '2016-03-13', 5),
+(7, 'News culture', 'Metro 2033 : L''adaptation cinématographique hérite du producteur de 50 Shades of Grey ', '2016-03-15', 6);
+
+--
 -- Contenu de la table `continent`
 --
 
@@ -31,6 +44,18 @@ INSERT INTO `continent` (`id_continent`, `nom`, `nb_pays`, `nb_renfort`) VALUES
 (4, 'Amérique du Sud', 4, 2),
 (5, 'Afrique', 6, 3),
 (6, 'Océanie', 4, 2);
+
+--
+-- Contenu de la table `image`
+--
+
+INSERT INTO `image` (`id_image`, `nom`, `chemin`) VALUES
+(1, 'avatar.png', NULL),
+(2, 'avatar2.png', NULL),
+(3, 'avatar3.png', NULL),
+(4, 'img_news.png', NULL),
+(5, 'logo_risk.png', NULL),
+(6, 'stats.png', NULL);
 
 --
 -- Contenu de la table `pays`
@@ -256,10 +281,35 @@ INSERT INTO `pays1_has_pays2` (`id_pays1`, `id_pays2`) VALUES
 -- Contenu de la table `statut_user`
 --
 
-INSERT INTO `statut_user` (`nom`) VALUES
-('En Ligne'),
-('Hors Ligne'),
-('Occupé');
+INSERT INTO `statut_user` (`nom`, `nom_complet`) VALUES
+('gam', 'Occupé'),
+('off', 'Hors Ligne'),
+('on', 'En Ligne');
+
+--
+-- Contenu de la table `user`
+--
+
+INSERT INTO `user` (`id_user`, `pseudo`, `password`, `email`, `date_inscription`, `image_id`, `statut`) VALUES
+(2, 'Mathilde', '2226544ec104d654102a154fb4c2de52', NULL, '2016-01-05', 3, 'gam'),
+(3, 'Luc', '893785018d20a58cf029e2e9fa6aacf8', NULL, '2016-03-11', NULL, 'off'),
+(4, 'Vivien', 'f7d71c05a57c4f4300601662e5eba4ae', NULL, '2015-11-16', 4, 'on'),
+(5, 'Ali', '7a9b46ab6d983a85dd4d9a1aa64a3945', NULL, '2016-03-01', 1, 'on'),
+(6, 'Max', '6a061313d22e51e0f25b7cd4dc065233', NULL, '2016-03-08', 5, 'off');
+
+--
+-- Contenu de la table `user1_has_user2`
+--
+
+INSERT INTO `user1_has_user2` (`id_user1`, `id_user2`) VALUES
+(2, 3),
+(2, 4),
+(2, 6),
+(3, 2),
+(3, 4),
+(4, 2),
+(4, 3),
+(6, 2);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -361,3 +361,25 @@ h3{
 	width: 200px;
 	text-align: center;
 }
+
+.online{
+	color: green;
+	font-weight: bold;
+	font-size: 0.8em;
+	font-style: italic;
+}
+
+.offline{
+	color: black;
+	font-size: 0.8em;
+	font-style: italic;
+}
+
+.ingame{
+	color: yellow;
+	font-style: italic;
+	font-size: 0.8em;
+}
+
+
+

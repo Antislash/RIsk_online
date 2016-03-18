@@ -1,5 +1,6 @@
 var main = require('./main.js');
 var db = require('./sql.js');
+var chat = require('./chat.js');
 
 console.log('fichier application');
 
