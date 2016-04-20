@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10.12
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
--- Client: localhost
--- Généré le: Mer 16 Mars 2016 à 11:24
--- Version du serveur: 5.1.73
--- Version de PHP: 5.3.3
+-- Client :  127.0.0.1
+-- Généré le :  Mar 22 Mars 2016 à 18:15
+-- Version du serveur :  5.6.17
+-- Version de PHP :  5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `risk`
+-- Base de données :  `risk`
 --
 CREATE DATABASE IF NOT EXISTS `risk` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `risk`;
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `image` (
 
 CREATE TABLE IF NOT EXISTS `joueur` (
   `user_id` int(11) NOT NULL,
-  `stats_id` int(11) NOT NULL,
+  `stats_id` int(11) DEFAULT NULL,
   `nb_pays` int(11) NOT NULL DEFAULT '0',
   `nb_continent` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`user_id`),
@@ -90,12 +90,27 @@ CREATE TABLE IF NOT EXISTS `joueur` (
 
 CREATE TABLE IF NOT EXISTS `partie` (
   `id_partie` int(11) NOT NULL,
+  `nb_joueurs` int(6) NOT NULL DEFAULT '0',
   `date_crea` date NOT NULL COMMENT 'avec l''heure',
   `date_maj` date NOT NULL COMMENT 'avec l''heure',
-  `map` int(11) NOT NULL COMMENT 'On reste sur la Terre',
+  `map` int(11) DEFAULT NULL COMMENT 'On reste sur la Terre',
   `a_qui_le_tour` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_partie`),
   KEY `fk_a_qui_le_tour` (`a_qui_le_tour`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `partie_has_joueur`
+--
+
+CREATE TABLE IF NOT EXISTS `partie_has_joueur` (
+  `id_partie` int(11) NOT NULL,
+  `id_joueur` int(11) NOT NULL,
+  PRIMARY KEY (`id_partie`,`id_joueur`),
+  KEY `fk_partie` (`id_partie`),
+  KEY `fk_joueur` (`id_joueur`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -114,20 +129,6 @@ CREATE TABLE IF NOT EXISTS `partie_has_joueur_has_pays` (
   KEY `fk_id_joueur` (`id_joueur`),
   KEY `fk_id_pays` (`id_pays`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Table pour savoir qui possède quel pays pour une partie';
-
--- --------------------------------------------------------
-
---
--- Structure de la table `partie_has_user`
---
-
-CREATE TABLE IF NOT EXISTS `partie_has_user` (
-  `id_partie` int(11) NOT NULL,
-  `id_joueur` int(11) NOT NULL,
-  PRIMARY KEY (`id_partie`,`id_joueur`),
-  KEY `fk_partie` (`id_partie`),
-  KEY `fk_joueur` (`id_joueur`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -242,8 +243,8 @@ ALTER TABLE `actualites`
 -- Contraintes pour la table `joueur`
 --
 ALTER TABLE `joueur`
-  ADD CONSTRAINT `joueur_ibfk_2` FOREIGN KEY (`stats_id`) REFERENCES `stats_joueur` (`id_stats`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `joueur_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `joueur_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `joueur_ibfk_2` FOREIGN KEY (`stats_id`) REFERENCES `stats_joueur` (`id_stats`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Contraintes pour la table `partie`
@@ -252,19 +253,19 @@ ALTER TABLE `partie`
   ADD CONSTRAINT `partie_ibfk_1` FOREIGN KEY (`a_qui_le_tour`) REFERENCES `joueur` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Contraintes pour la table `partie_has_joueur`
+--
+ALTER TABLE `partie_has_joueur`
+  ADD CONSTRAINT `partie_has_joueur_ibfk_1` FOREIGN KEY (`id_partie`) REFERENCES `partie` (`id_partie`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `partie_has_joueur_ibfk_2` FOREIGN KEY (`id_joueur`) REFERENCES `joueur` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
 -- Contraintes pour la table `partie_has_joueur_has_pays`
 --
 ALTER TABLE `partie_has_joueur_has_pays`
   ADD CONSTRAINT `partie_has_joueur_has_pays_ibfk_3` FOREIGN KEY (`id_pays`) REFERENCES `pays` (`id_pays`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `partie_has_joueur_has_pays_ibfk_1` FOREIGN KEY (`id_partie`) REFERENCES `partie` (`id_partie`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `partie_has_joueur_has_pays_ibfk_2` FOREIGN KEY (`id_joueur`) REFERENCES `joueur` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Contraintes pour la table `partie_has_user`
---
-ALTER TABLE `partie_has_user`
-  ADD CONSTRAINT `partie_has_user_ibfk_1` FOREIGN KEY (`id_partie`) REFERENCES `partie` (`id_partie`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `partie_has_user_ibfk_2` FOREIGN KEY (`id_joueur`) REFERENCES `joueur` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Contraintes pour la table `pays`
