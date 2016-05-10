@@ -1,16 +1,11 @@
 <?php
+try {
 
-try
-    {
+    $bdd = new PDO('mysql:host=localhost;dbname=risk;charset=utf8', 'root', '');
 
-        $bdd = new PDO('mysql:host=localhost;dbname=risk;charset=utf8', 'root', '');
+} catch (Exception $e) {
 
-    }
-catch (Exception $e)
-    {
+    die('Erreur : ' . $e->getMessage());
 
-        die('Erreur : ' . $e->getMessage());
-
-    }
-
+}
 ?>
