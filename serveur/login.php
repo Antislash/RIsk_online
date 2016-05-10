@@ -1,27 +1,24 @@
-<?php
-//On démarre les session
-session_start();
 
-//On inclut le fichier de connexion a la base de données
-include("connexion.php");
-
-//On vérifie que l'utilisateur à bien renseigné le login et le mdp
-if (isset($_POST['connexionPseudo']) && isset($_POST['connexionPassword'])) {
-    $pseudo = htmlspecialchars($_POST['connexionPseudo']);
-    $mdp = htmlspecialchars($_POST['connexionPassword']);
-
-    //On recherche l'utilisateur dans la base de données
-    $result = $bdd->query("Select * FROM user WHERE pseudo = " . $pseudo . " AND password = " . $mdp);
-
-    //On vérifie que l'utilisateur existe
-    if(isset($result['pseudo']) && sizeof($result) == 1){
-        $_SESSION['login'] = $pseudo;
-        header('Location: ../www/acceuil.html');
-    }
-
-    header('Location: ../www/login.html');
-
-
-}
-
+<?php 
+	include "connexion.php";
+	
+	//Exemple TEST
+	$_POST['connexionPseudo'] = 'Luc';
+	$_POST['connexionPassword'] = 'test';
+	if(isset($_POST['connexionPseudo']) && isset($_POST['connexionPassword'])){
+		$pseudo = filter_var($_POST['connexionPseudo'], FILTER_SANITIZE_STRING);
+		$password = filter_var($_POST['connexionPassword'], FILTER_SANITIZE_STRING);
+		$user = $bdd->query("SELECT * FROM user WHERE pseudo = '".$pseudo."'");
+		/*foreach($user as $us){
+			var_dump($us);
+		}*/
+		if($user == false){
+			//l'user n'existe pas
+			//TODO renvoyer vers inscription
+		}
+		else if(true){	//TODO comparer les password
+			
+		}
+		//var_dump($user);
+	}
 ?>
