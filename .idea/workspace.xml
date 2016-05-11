@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="29c69774-bbb5-4715-837f-b80a351a14c6" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/php/logout.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/php/login.php" afterPath="$PROJECT_DIR$/php/login.php" />
     </list>
@@ -45,18 +46,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="login.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/php/login.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
+            <state relative-caret-position="-241">
+              <caret line="3" column="24" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
               <folding>
-                <marker date="1462958746557" expanded="true" signature="392:441" placeholder="SELECT * FRO... user" />
-                <marker date="1462958746557" expanded="true" signature="392:456" placeholder="SELECT * FRO... user" />
-                <marker date="1462958746557" expanded="true" signature="392:457" placeholder="SELECT * FRO... user" />
-                <marker date="1462958746557" expanded="true" signature="392:458" placeholder="SELECT * FRO... user" />
-                <marker date="1462958746557" expanded="true" signature="982:1047" placeholder="SELECT * FRO... user" />
+                <marker date="1462959107419" expanded="true" signature="392:441" placeholder="SELECT * FRO... user" />
+                <marker date="1462959107419" expanded="true" signature="392:456" placeholder="SELECT * FRO... user" />
+                <marker date="1462959107419" expanded="true" signature="392:457" placeholder="SELECT * FRO... user" />
+                <marker date="1462959107419" expanded="true" signature="392:458" placeholder="SELECT * FRO... user" />
+                <marker date="1462959107419" expanded="true" signature="985:1050" placeholder="SELECT * FRO... user" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="logout.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/php/logout.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="38" selection-start-line="5" selection-start-column="38" selection-end-line="5" selection-end-column="38" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -75,6 +86,7 @@
         <option value="$PROJECT_DIR$/serveur/inscription.php" />
         <option value="$PROJECT_DIR$/insert.sql" />
         <option value="$PROJECT_DIR$/php/login.php" />
+        <option value="$PROJECT_DIR$/php/logout.php" />
       </list>
     </option>
   </component>
@@ -217,12 +229,12 @@
       <option name="presentableId" value="Default" />
       <updated>1462892981400</updated>
       <workItem from="1462892984935" duration="911000" />
-      <workItem from="1462894340014" duration="5924000" />
+      <workItem from="1462894340014" duration="6309000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6835000" />
+    <option name="totallyTimeSpent" value="7220000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -339,15 +351,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/php/login.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
+        <state relative-caret-position="-241">
+          <caret line="3" column="24" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
           <folding>
-            <marker date="1462958746557" expanded="true" signature="392:441" placeholder="SELECT * FRO... user" />
-            <marker date="1462958746557" expanded="true" signature="392:456" placeholder="SELECT * FRO... user" />
-            <marker date="1462958746557" expanded="true" signature="392:457" placeholder="SELECT * FRO... user" />
-            <marker date="1462958746557" expanded="true" signature="392:458" placeholder="SELECT * FRO... user" />
-            <marker date="1462958746557" expanded="true" signature="982:1047" placeholder="SELECT * FRO... user" />
+            <marker date="1462959107419" expanded="true" signature="392:441" placeholder="SELECT * FRO... user" />
+            <marker date="1462959107419" expanded="true" signature="392:456" placeholder="SELECT * FRO... user" />
+            <marker date="1462959107419" expanded="true" signature="392:457" placeholder="SELECT * FRO... user" />
+            <marker date="1462959107419" expanded="true" signature="392:458" placeholder="SELECT * FRO... user" />
+            <marker date="1462959107419" expanded="true" signature="985:1050" placeholder="SELECT * FRO... user" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/logout.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="38" selection-start-line="5" selection-start-column="38" selection-end-line="5" selection-end-column="38" />
+          <folding />
         </state>
       </provider>
     </entry>
