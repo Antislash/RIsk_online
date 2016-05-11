@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="style/style.css" />
 		<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 		<meta name="viewport" content="width=device-width" />
 		<title>Acceuil</title>
@@ -19,8 +19,8 @@
 		</script>
 	</head>
 	<body>
-		<?php include('navigation.php');?>
-		<?php include('../serveur/connexion.php');$image = "images/avatar.png";?>
+		<?php include('include/navigation.php');?>
+		<?php include('../php/connexion.php');$image = "images/avatar.png";?>
 		<div class="bloc" id="profil_home">
 			<?php 
 				$profils = $bdd->query('SELECT usr.pseudo, img.chemin, sta.nom_complet, DATEDIFF(CURDATE(), usr.date_inscription) as date FROM user usr INNER JOIN image img ON img.id_image = usr.image_id INNER JOIN statut_user sta ON sta.nom = usr.statut WHERE usr.id_user = 2');
