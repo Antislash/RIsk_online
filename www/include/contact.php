@@ -24,8 +24,59 @@
 				?>
 				</table>
 				<form id="add_friends">
-					<input class="textbox" type="text" name="friend" maxlength=20/>
+					<input class="textbox" id="search_user" onkeyup="searchUser();" type="text" name="friend" maxlength=20/>
 					<input class="button" type="submit" value="+">
 				</form>
 			</div>
 		</div>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+		<<script type="text/javascript">
+		function derouler(){
+			elm = document.getElementById("friends");
+			if(elm.className == "unwrap"){
+				elm.className = "wrapped";
+			}
+			else{
+				elm.className = "unwrap";
+			}
+		}
+		/*$(document).ready(function(){
+				$("#search_user").hide();
+			});*/
+		function getXhr(){
+			var xhr = null; 
+			if(window.XMLHttpRequest) // Firefox et autres
+			   xhr = new XMLHttpRequest(); 
+			else if(window.ActiveXObject){ // Internet Explorer 
+			   try {
+		                xhr = new ActiveXObject("Msxml2.XMLHTTP");
+		            } catch (e) {
+		                xhr = new ActiveXObject("Microsoft.XMLHTTP");
+		            }
+			}
+			else { // XMLHttpRequest non support� par le navigateur 
+			   alert("Votre navigateur ne supporte pas les objets XMLHTTPRequest..."); 
+			   xhr = false; 
+			}
+			return xhr;
+		}
+			
+		function searchUser(){
+			var xhr = getXhr();
+			var url = "C:/wamp/www/RIsk_online/www/include/ajout_ami.php?";
+			//on construit l'url avec les params en GET
+			if($("#search_user").val() != null && $("#search_user").val() != ""){
+				url = url + "pseudoSearch=" + $("#search_user").val();
+			}
+			//alert(url);
+			xhr.onreadystatechange = function(){
+				// On ne fait quelque chose que si on a tout re�u et que le serveur est ok
+				if(xhr.readyState == 4 && xhr.status == 200){
+					//$(reponse).html(xhr.responseText);	//On �crit la reponse de la page "traitement.php"
+					alert(xhr.responseText);
+				}
+			}
+			xhr.open("GET",url,true);	//On lance la page en GET
+			xhr.send(null);
+		}
+		</script>

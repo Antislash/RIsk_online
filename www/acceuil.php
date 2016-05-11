@@ -6,17 +6,6 @@
 		<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 		<meta name="viewport" content="width=device-width" />
 		<title>Acceuil</title>
-		<script>
-			function derouler(){
-				elm = document.getElementById("friends");
-				if(elm.className == "unwrap"){
-					elm.className = "wrapped";
-				}
-				else{
-					elm.className = "unwrap";
-				}
-			}
-		</script>
 	</head>
 	<body>
 		<?php include('include/navigation.php');?>
