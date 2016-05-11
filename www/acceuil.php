@@ -20,6 +20,7 @@
 	</head>
 	<body>
 		<?php include('include/navigation.php');?>
+		<?php include('include/notif.php');?>
 		<?php include('../php/connexion.php');$image = "images/avatar.png";?>
 		<div class="bloc" id="profil_home">
 			<?php 
