@@ -241,7 +241,7 @@ h3{
 /*Image main news*/
 #img_news{
 	float: left;
-	height: 130px;
+	height: 120px;
 	border-radius:15px;
 	margin: 5px 15px 10px 0px;
 }
@@ -381,5 +381,9 @@ h3{
 	font-size: 0.8em;
 }
 
+a {
+ text-decoration: none;
+ color: white; /*par exemple*/
+}
 
 
