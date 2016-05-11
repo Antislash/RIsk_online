@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 4.0.10.12
 -- http://www.phpmyadmin.net
 --
@@ -24,14 +24,7 @@ SET time_zone = "+00:00";
 -- Contenu de la table `actualites`
 --
 
-INSERT INTO `actualites` (`id_actualite`, `titre`, `contenu`, `date`, `image_id`) VALUES
-(1, 'News jeu', 'GDC 2016 : Un Star Wars : Battlefront exclusif au Playstation VR en préparation ', '2016-03-01', 1),
-(2, 'News hardware', 'GDC 2016 : Playstation VR, disponible en octobre 2016 pour la somme de 399 euros ! ', '2016-03-02', 2),
-(3, 'News bon plan', 'PlayStation Store : Derniers jours de promos sur les exclus numériques !', '2016-03-04', 3),
-(4, 'News jeu', 'Far Cry Primal : Le Patch 1.02 disponible sur PS4 et Xbox One ', '2016-03-09', 4),
-(5, 'News bon plan', 'Promo : The Division à - 25% ', '2016-03-13', 4),
-(6, 'News jeu', 'XING : The Land Beyond compatible avec le Playstation VR ', '2016-03-13', 5),
-(7, 'News culture', 'Metro 2033 : L''adaptation cinématographique hérite du producteur de 50 Shades of Grey ', '2016-03-15', 6);
+
 
 --
 -- Contenu de la table `continent`

@@ -5,7 +5,7 @@
 		<link rel="stylesheet" href="style.css" />
 		<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 		<meta name="viewport" content="width=device-width" />
-		<title>MAP</title>
+		<title>Acceuil</title>
 		<script>
 			function derouler(){
 				elm = document.getElementById("friends");
@@ -16,61 +16,43 @@
 					elm.className = "unwrap";
 				}
 			}
-			function generateFriends(){
-				var friends = [{avatar:"images/avatar.png", pseudo:"Busquets91", codeStatus:"on" ,status:"En ligne"},{avatar:"images/avatar2.png", pseudo:"Gatafdu42",codeStatus:"gam" , status:"En jeu"},{avatar:"images/avatar3.png", pseudo:"Vivou", codeStatus:"off" ,status:"Hors ligne"}];
-				var elm = document.getElementById("list_friends");
-				var ctn = "";
-				for (var i = 0; i < friends.length; i++){
-					ctn += "<tr class=\"bloc_friends\">";
-					ctn += "<td class=\"avatar_friends\">";
-					ctn += "<img src=\"" + friends[i].avatar + "\"/></td>";
-					ctn += "<td class=\"info_friends\">" + friends[i].pseudo + "<br/>";
-					ctn += "<span class=\"";
-					if(friends[i].codeStatus == "on") ctn += "online";
-					if(friends[i].codeStatus == "off") ctn += "offline";
-					if(friends[i].codeStatus == "gam") ctn += "ingame";
-					ctn += "\">" + friends[i].status + "</span>";
-					ctn += "</td></tr>";
-				}
-				elm.innerHTML = ctn;
-			}
-
 		</script>
 	</head>
 	<body>
-		<nav id="top_navigation">
-			<img id="logo_risk" src="images/logo_risk.png"/>
-			<a href="#"><img class="icon_menu" src="images/profil.png" onmouseover="this.src='images/profil_hover.png'" onmouseout="this.src='images/profil.png'"/></a>
-			<a href="#"><img class="icon_menu" src="images/stats.png" onmouseover="this.src='images/stats_hover.png'" onmouseout="this.src='images/stats.png'"/></a>
-			<a href="#"><img class="icon_menu" src="images/news.png" onmouseover="this.src='images/news_hover.png'" onmouseout="this.src='images/news.png'"/></a>
-			<a href="#"><img class="icon_menu" src="images/help.png" onmouseover="this.src='images/help_hover.png'" onmouseout="this.src='images/help.png'"/></a>
-			<div id="table_login">
-				<table>
-					<tr>
-						<td class="button" id="button_game">New Game</td>
-						<td class="button" id="button_game">Join Game</td>
-					</tr>
-				</table>
-			</div>
-		</nav>
+		<?php include('navigation.php');?>
+		<?php include('connexion.php');?>
 		<div class="bloc" id="profil_home">
-			<img id="avatar" src="images/avatar.png"/>
+			<?php 
+				$profils = $bdd->query('SELECT usr.pseudo, img.chemin, sta.nom_complet, DATEDIFF(CURDATE(), usr.date_inscription) as date FROM user usr INNER JOIN image img ON img.id_image = usr.image_id INNER JOIN statut sta ON sta.nom = usr.statut WHERE usr.id_user = '. $id_usr);
+				$profil = $profils->fetch();
+			?>
+			<img id="avatar" src="<?php echo $profil['chemin'];?>"/>
 			<div id="profil_infos">
-				<h2>Busquets91</h2>
-				Membre depuis 52 jours <br/>
-				Niveau 8<br/>
-				<span id="status_profil">En ligne</span><br/>
-				<img id ="achievement" src="images/achievement.png"/>
+				<h2><?php echo $profil['pseudo'];?></h2>
+				Membre depuis <?php echo $profil['date'];?> jours <br/>
+				Niveau <?php echo "8";?><br/>
+				<span id="status_profil"><?php echo $profil["nom_complet"];?></span><br/>
 			</div>
 		</div>
 		<div class="bloc" id="news_home">
 			<h2>Actualités</h2>
-			<img id="img_news" src="images/img_news.png"/>
-			<h3>Refonte des statistiques</h3>
-			<span class="date_news">15/02/2016</span><br/><br/>
-			Les statistiques ont été étoffés et vous pouvez maintenant avoir accés à de nombreuses nouvelles statistiques dans votre page statistiques.<br/><br/>
-			<span class="more">Plus d'infos ...</span>
-			<div id="list_news">
+			<?php
+					$news = $bdd->query('SELECT nws.id_actualite, img.chemin, nws.date, nws.contenu, nws.titre FROM actualites nws INNER JOIN image img ON img.id_image = nws.image_id ORDER BY nws.date desc');
+					$i = 0;
+					while($new = $news->fetch()){
+						if($i == 0){
+							echo "<img id=\"img_news\" src=\"".$new['chemin']."\"/>";
+							echo "<h3>".$new['titre']."</h3>";
+							echo "<span class=\"date_news\">".$new['date']."</span><br/><br/>";
+							echo mb_strimwidth($new['contenu'], 0, 100, "...")."<br/><br/>";
+							echo "<span class=\"more\"><a href=\"news.php?news=".$new['id_actualite']."\">Plus d'infos ...</a></span>";
+							echo "<div id=\"list_news\">";
+						}
+						else{
+							echo "<span class=\"date_news\">".$new['date']."</span><a href=\"news.php?news=".$new['id_actualite']."\">".mb_strimwidth($new['titre'], 0, 40, "...")."</a><br/>";
+						}
+					}
+				?>
 				<span class="date_news">10/02/2016</span>Création de la page d'accueil<br/>
 				<span class="date_news">08/02/2016</span>Ceci est une autre news trés intéressante et ...<br/>
 				<span class="date_news">02/02/2016</span>Le titre des news s'affiche ici<br/>
@@ -86,26 +68,39 @@
 			<h2>Statistiques</h2>
 			<table id="list_stats">
 				<tr>
-					<td class="stats_chiffre">54</td>
+					<td class="stats_chiffre"><?php echo "55";?></td>
 					<td class="stats_text">% de parties gagnés</td>
 				</tr>
 				<tr>
-					<td class="stats_chiffre">37</td>
+					<td class="stats_chiffre"><?php echo "37";?></td>
 					<td class="stats_text">nombre de tours moyen pour gagner</td>
 				</tr>
 				<tr>
-					<td class="stats_chiffre">8</td>
+					<td class="stats_chiffre"><?php echo "8";?></td>
 					<td class="stats_text">achievements</td>
 				</tr>
 			</table>
 		</div>
 		<div id="friends">
 			<div id="languette">
-				<span id="deroule" onclick="derouler();generateFriends();">Contacts (5)</span>
+				<span id="deroule" onclick="derouler();">Contacts (5)</span>
 			</div>
 			<div id="friends_scroll" class="null">
-				<table id="list_friends" cellspacing="0" onload="generateFriends();">
-					
+				<table id="list_friends" cellspacing="0">
+				<?php
+					$amis = $bdd->query('SELECT usr.pseudo, img.chemin, sta.nom_complet, DATEDIFF(CURDATE(), usr.date_inscription) FROM user usr INNER JOIN user1_has_user2 frd ON frd.id_user2 = usr.id_user INNER JOIN image img ON img.id_image = usr.image_id INNER JOIN statut sta ON sta.nom = usr.statut WHERE frd.id_user1 = '. $id_usr. ' ORDER BY statut desc');
+					while($ami = $amis->fetch()){
+						echo "<tr class=\"bloc_friends\">";
+						echo "<td class=\"avatar_friends\">";
+						echo "<img src=\"" . $ami['chemin'] . "\"/>";
+						echo "</td>";
+						echo "<td class=\"info_friends\">";
+						echo $ami['pseudo']."<br/>";
+						echo "<span class=\"".$ami['statut_class']."\">".$ami['nom_complet']."</span>";
+						echo "</td>";
+						echo "</tr>";
+					}
+				?>
 				</table>
 				<form id="add_friends">
 					<input class="textbox" type="text" name="friend" maxlength=20/>
