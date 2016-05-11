@@ -1,3 +1,9 @@
+<div class="container-info">
+	<div class="div-info-base">
+		<span class="txt-info"></span>
+		<img class="img-info" onclick="closeInfoMsg();" onchange="var info = document.getElementsByClassName('div-info-base');	info[0].className = 'div-info-actif';" height="15px" src="images/close.png"/>
+	</div>
+</div>
 <nav id="top_navigation">
 	<img id="logo_risk" src="images/logo_risk.png"/>
 	<a href="#"><img class="icon_menu" src="images/profil.png" onmouseover="this.src='images/profil_hover.png'" onmouseout="this.src='images/profil.png'"/></a>
@@ -13,3 +19,9 @@
 		</table>
 	</div>
 </nav>
+<script>
+function closeInfoMsg(){
+	var info = document.getElementsByClassName('div-info-actif');
+	info[0].className = 'div-info-base';
+}
+</script>
