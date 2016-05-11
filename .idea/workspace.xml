@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="29c69774-bbb5-4715-837f-b80a351a14c6" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/serveur/inscription.php" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/php/inscription.php" afterPath="$PROJECT_DIR$/php/inscription.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/php/login.php" afterPath="$PROJECT_DIR$/php/login.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/php/logout.php" afterPath="$PROJECT_DIR$/php/logout.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/php/verif_connexion.php" afterPath="$PROJECT_DIR$/php/verif_connexion.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/acceuil.php" afterPath="$PROJECT_DIR$/www/acceuil.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/login.html" afterPath="$PROJECT_DIR$/www/login.html" />
     </list>
     <ignored path="RIsk_online.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -91,11 +85,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="acceuil.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="acceuil.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/acceuil.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="16" column="305" selection-start-line="16" selection-start-column="305" selection-end-line="16" selection-end-column="305" />
+            <state relative-caret-position="301">
+              <caret line="21" column="60" selection-start-line="21" selection-start-column="60" selection-end-line="21" selection-end-column="60" />
               <folding>
                 <marker date="1462998956737" expanded="true" signature="547:584" placeholder="..." />
                 <marker date="1462998956737" expanded="true" signature="586:597" placeholder="SELECT usr.p... " />
@@ -113,13 +107,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="verif_connexion.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="verif_connexion.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/php/verif_connexion.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+            <state relative-caret-position="309">
+              <caret line="30" column="94" selection-start-line="30" selection-start-column="94" selection-end-line="30" selection-end-column="94" />
               <folding>
-                <marker date="1462998644770" expanded="true" signature="386:465" placeholder="SELECT * FRO... user" />
+                <marker date="1462999917778" expanded="true" signature="386:465" placeholder="SELECT * FRO... user" />
               </folding>
             </state>
           </provider>
@@ -159,8 +153,8 @@
         <option value="$PROJECT_DIR$/www/login.html" />
         <option value="$PROJECT_DIR$/php/inscription.php" />
         <option value="$PROJECT_DIR$/php/login.php" />
-        <option value="$PROJECT_DIR$/php/verif_connexion.php" />
         <option value="$PROJECT_DIR$/www/acceuil.php" />
+        <option value="$PROJECT_DIR$/php/verif_connexion.php" />
       </list>
     </option>
   </component>
@@ -323,12 +317,12 @@
       <option name="presentableId" value="Default" />
       <updated>1462892981400</updated>
       <workItem from="1462892984935" duration="911000" />
-      <workItem from="1462894340014" duration="17932000" />
+      <workItem from="1462894340014" duration="18310000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18843000" />
+    <option name="totallyTimeSpent" value="19221000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -504,16 +498,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/verif_connexion.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding>
-            <marker date="1462998644770" expanded="true" signature="386:465" placeholder="SELECT * FRO... user" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/php/login.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="201">
@@ -539,8 +523,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/acceuil.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="16" column="305" selection-start-line="16" selection-start-column="305" selection-end-line="16" selection-end-column="305" />
+        <state relative-caret-position="301">
+          <caret line="21" column="60" selection-start-line="21" selection-start-column="60" selection-end-line="21" selection-end-column="60" />
           <folding>
             <marker date="1462998956737" expanded="true" signature="547:584" placeholder="..." />
             <marker date="1462998956737" expanded="true" signature="586:597" placeholder="SELECT usr.p... " />
@@ -553,6 +537,16 @@
             <marker date="1462998956737" expanded="true" signature="973:1001" placeholder="..." />
             <marker date="1462998956737" expanded="true" signature="1245:1302" placeholder="..." />
             <marker date="1462998956737" expanded="true" signature="1304:1472" placeholder="SELECT nws.n... news" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/verif_connexion.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="30" column="94" selection-start-line="30" selection-start-column="94" selection-end-line="30" selection-end-column="94" />
+          <folding>
+            <marker date="1462999917778" expanded="true" signature="386:465" placeholder="SELECT * FRO... user" />
           </folding>
         </state>
       </provider>

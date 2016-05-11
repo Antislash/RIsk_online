@@ -22,7 +22,14 @@ if (isset($_COOKIE['pseudo']) && isset($_COOKIE['password']) && !isset($_SESSION
     }
 
 }
+else if (isset($_COOKIE['pseudo']) && isset($_COOKIE['password'])
+    && isset($_SESSION['pseudo']) && isset($_SESSION['password'])
+    && $_SESSION['pseudo'] != $_COOKIE['pseudo']){
 
+    //On créé les cookie a partir des session pendant 1 journée
+    setcookie('pseudo', $_SESSION['pseudo'], time() + 24 * 3600, null, null, false, true);
+    setcookie('password', $_SESSION['password'], time() + 24 * 3600, null, null, false, true);
+}
 //On vérifie si les session sont renseignés mais pas les cookies
 else if (!isset($_COOKIE['pseudo']) && !isset($_COOKIE['password']) && isset($_SESSION['pseudo']) && isset($_SESSION['password'])) {
     //On créé les cookie a partir des session pendant 1 journée
