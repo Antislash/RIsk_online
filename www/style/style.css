@@ -421,3 +421,50 @@ a {
 	top: 5px;
 	cursor: pointer;
 }
+
+#room{
+	margin-top: 100px;
+}
+
+.chat{
+	height: 200px;
+	background-image:linear-gradient(#212121, #101010); /* Norme W3C */
+	background-image:-moz-linear-gradient(#212121, #101010); /* Firefox */
+	background-image:-webkit-gradient(linear, #212121, #101010)); /* Chrome, Safari */
+	background-image:-o-linear-gradient(#212121, #101010); /* Opera */
+	background-image:-ms-linear-gradient(#212121, #101010); /* IE */
+	padding: 10px;
+	margin: 20px;
+	margin-bottom: 0px;
+	border-radius:15px 15px 0px 0px;
+    box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 0.9);
+	vertical-align: bottom;
+}
+
+.liste-joueur{
+	height: 350px;
+	width: 150px;
+	background-image:linear-gradient(#212121, #101010); /* Norme W3C */
+	background-image:-moz-linear-gradient(#212121, #101010); /* Firefox */
+	background-image:-webkit-gradient(linear, #212121, #101010)); /* Chrome, Safari */
+	background-image:-o-linear-gradient(#212121, #101010); /* Opera */
+	background-image:-ms-linear-gradient(#212121, #101010); /* IE */
+	padding: 10px;
+	margin: 20px;
+	border-radius:15px;
+    box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 0.9);
+}
+
+#chat-message{
+	width: 100%;
+	margin: 20px;
+	margin-top: 0px;
+}
+
+#send-msg{
+	width: 14%;
+}
+
+#barre-msg{
+	width: 85%;
+}
