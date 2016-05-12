@@ -2,10 +2,10 @@
 -- version 4.1.14
 -- http://www.phpmyadmin.net
 --
--- Client :  127.0.0.1
--- Généré le :  Mer 11 Mai 2016 à 18:33
--- Version du serveur :  5.6.17
--- Version de PHP :  5.5.12
+-- Host: 127.0.0.1
+-- Generation Time: May 12, 2016 at 03:36 PM
+-- Server version: 5.6.17
+-- PHP Version: 5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données :  `risk`
+-- Database: `risk`
 --
 CREATE DATABASE IF NOT EXISTS `risk` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `risk`;
@@ -25,7 +25,7 @@ USE `risk`;
 -- --------------------------------------------------------
 
 --
--- Structure de la table `continent`
+-- Table structure for table `continent`
 --
 
 CREATE TABLE IF NOT EXISTS `continent` (
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `continent` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
--- Contenu de la table `continent`
+-- Dumping data for table `continent`
 --
 
 INSERT INTO `continent` (`cnt_id`, `cnt_nom`, `cnt_nb_pays`, `cnt_nb_renfort`) VALUES
@@ -51,7 +51,7 @@ INSERT INTO `continent` (`cnt_id`, `cnt_nom`, `cnt_nb_pays`, `cnt_nb_renfort`) V
 -- --------------------------------------------------------
 
 --
--- Structure de la table `image`
+-- Table structure for table `image`
 --
 
 CREATE TABLE IF NOT EXISTS `image` (
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `image` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
--- Contenu de la table `image`
+-- Dumping data for table `image`
 --
 
 INSERT INTO `image` (`img_id`, `img_nom`, `img_chemin`) VALUES
@@ -77,7 +77,7 @@ INSERT INTO `image` (`img_id`, `img_nom`, `img_chemin`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `joueur`
+-- Table structure for table `joueur`
 --
 
 CREATE TABLE IF NOT EXISTS `joueur` (
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `joueur` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `news`
+-- Table structure for table `news`
 --
 
 CREATE TABLE IF NOT EXISTS `news` (
@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `news` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
--- Contenu de la table `news`
+-- Dumping data for table `news`
 --
 
 INSERT INTO `news` (`nws_id`, `nws_titre`, `nws_contenu`, `nws_date`, `id_img`) VALUES
@@ -122,7 +122,7 @@ INSERT INTO `news` (`nws_id`, `nws_titre`, `nws_contenu`, `nws_date`, `id_img`) 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `partie`
+-- Table structure for table `partie`
 --
 
 CREATE TABLE IF NOT EXISTS `partie` (
@@ -139,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `partie` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `partie_has_joueur`
+-- Table structure for table `partie_has_joueur`
 --
 
 CREATE TABLE IF NOT EXISTS `partie_has_joueur` (
@@ -153,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `partie_has_joueur` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `partie_has_joueur_has_pays`
+-- Table structure for table `partie_has_joueur_has_pays`
 --
 
 CREATE TABLE IF NOT EXISTS `partie_has_joueur_has_pays` (
@@ -170,7 +170,7 @@ CREATE TABLE IF NOT EXISTS `partie_has_joueur_has_pays` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `pays`
+-- Table structure for table `pays`
 --
 
 CREATE TABLE IF NOT EXISTS `pays` (
@@ -182,7 +182,7 @@ CREATE TABLE IF NOT EXISTS `pays` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=43 ;
 
 --
--- Contenu de la table `pays`
+-- Dumping data for table `pays`
 --
 
 INSERT INTO `pays` (`id_pays`, `nom`, `continent_id`) VALUES
@@ -232,7 +232,7 @@ INSERT INTO `pays` (`id_pays`, `nom`, `continent_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `pays1_has_pays2`
+-- Table structure for table `pays1_has_pays2`
 --
 
 CREATE TABLE IF NOT EXISTS `pays1_has_pays2` (
@@ -244,7 +244,7 @@ CREATE TABLE IF NOT EXISTS `pays1_has_pays2` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Frontière entre les pays';
 
 --
--- Contenu de la table `pays1_has_pays2`
+-- Dumping data for table `pays1_has_pays2`
 --
 
 INSERT INTO `pays1_has_pays2` (`id_pays1`, `id_pays2`) VALUES
@@ -418,7 +418,20 @@ INSERT INTO `pays1_has_pays2` (`id_pays1`, `id_pays2`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `stats_joueur`
+-- Table structure for table `room`
+--
+
+CREATE TABLE IF NOT EXISTS `room` (
+  `room_id` int(11) NOT NULL AUTO_INCREMENT,
+  `room_date_creation` date DEFAULT NULL,
+  `room_nb_joueur` int(11) DEFAULT '0',
+  PRIMARY KEY (`room_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Table de définition d''une room' AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stats_joueur`
 --
 
 CREATE TABLE IF NOT EXISTS `stats_joueur` (
@@ -429,7 +442,7 @@ CREATE TABLE IF NOT EXISTS `stats_joueur` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `stats_user`
+-- Table structure for table `stats_user`
 --
 
 CREATE TABLE IF NOT EXISTS `stats_user` (
@@ -444,7 +457,7 @@ CREATE TABLE IF NOT EXISTS `stats_user` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `statut_user`
+-- Table structure for table `statut_user`
 --
 
 CREATE TABLE IF NOT EXISTS `statut_user` (
@@ -455,7 +468,7 @@ CREATE TABLE IF NOT EXISTS `statut_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `statut_user`
+-- Dumping data for table `statut_user`
 --
 
 INSERT INTO `statut_user` (`sta_code`, `sta_nom`, `sta_class`) VALUES
@@ -466,7 +479,7 @@ INSERT INTO `statut_user` (`sta_code`, `sta_nom`, `sta_class`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
@@ -480,10 +493,10 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`usr_id`),
   KEY `fk_statut` (`code_sta`),
   KEY `fk_image_id` (`id_img`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
--- Contenu de la table `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`usr_id`, `usr_pseudo`, `usr_password`, `usr_email`, `usr_date_inscription`, `id_img`, `code_sta`) VALUES
@@ -491,12 +504,14 @@ INSERT INTO `user` (`usr_id`, `usr_pseudo`, `usr_password`, `usr_email`, `usr_da
 (3, 'Luc', '893785018d20a58cf029e2e9fa6aacf8', NULL, '2016-03-11', NULL, 'off'),
 (4, 'Vivien', 'f7d71c05a57c4f4300601662e5eba4ae', NULL, '2015-11-16', 4, 'on'),
 (5, 'Ali', '7a9b46ab6d983a85dd4d9a1aa64a3945', NULL, '2016-03-01', 1, 'on'),
-(6, 'Max', '6a061313d22e51e0f25b7cd4dc065233', NULL, '2016-03-08', 5, 'off');
+(6, 'Max', '6a061313d22e51e0f25b7cd4dc065233', NULL, '2016-03-08', 5, 'off'),
+(11, 'gataf', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-11', 1, 'on'),
+(12, 'test', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-11', 1, 'on');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `user1_has_user2`
+-- Table structure for table `user1_has_user2`
 --
 
 CREATE TABLE IF NOT EXISTS `user1_has_user2` (
@@ -508,7 +523,7 @@ CREATE TABLE IF NOT EXISTS `user1_has_user2` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Table pour les liens d''amitié';
 
 --
--- Contenu de la table `user1_has_user2`
+-- Dumping data for table `user1_has_user2`
 --
 
 INSERT INTO `user1_has_user2` (`id_usr1`, `id_usr2`) VALUES
@@ -521,38 +536,52 @@ INSERT INTO `user1_has_user2` (`id_usr1`, `id_usr2`) VALUES
 (4, 3),
 (6, 2);
 
+-- --------------------------------------------------------
+
 --
--- Contraintes pour les tables exportées
+-- Table structure for table `user_has_room`
+--
+
+CREATE TABLE IF NOT EXISTS `user_has_room` (
+  `id_room` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  PRIMARY KEY (`id_room`,`id_user`),
+  KEY `fk_id_room` (`id_room`),
+  KEY `fk_id_user` (`id_user`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Constraints for dumped tables
 --
 
 --
--- Contraintes pour la table `joueur`
+-- Constraints for table `joueur`
 --
 ALTER TABLE `joueur`
   ADD CONSTRAINT `joueur_ibfk_1` FOREIGN KEY (`usr_id`) REFERENCES `user` (`usr_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `joueur_ibfk_2` FOREIGN KEY (`stats_id`) REFERENCES `stats_joueur` (`id_stats`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Contraintes pour la table `news`
+-- Constraints for table `news`
 --
 ALTER TABLE `news`
   ADD CONSTRAINT `news_ibfk_1` FOREIGN KEY (`id_img`) REFERENCES `image` (`img_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `partie`
+-- Constraints for table `partie`
 --
 ALTER TABLE `partie`
   ADD CONSTRAINT `partie_ibfk_1` FOREIGN KEY (`a_qui_le_tour`) REFERENCES `joueur` (`usr_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Contraintes pour la table `partie_has_joueur`
+-- Constraints for table `partie_has_joueur`
 --
 ALTER TABLE `partie_has_joueur`
   ADD CONSTRAINT `partie_has_joueur_ibfk_1` FOREIGN KEY (`id_partie`) REFERENCES `partie` (`id_partie`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `partie_has_joueur_ibfk_2` FOREIGN KEY (`id_joueur`) REFERENCES `joueur` (`usr_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Contraintes pour la table `partie_has_joueur_has_pays`
+-- Constraints for table `partie_has_joueur_has_pays`
 --
 ALTER TABLE `partie_has_joueur_has_pays`
   ADD CONSTRAINT `partie_has_joueur_has_pays_ibfk_3` FOREIGN KEY (`id_pays`) REFERENCES `pays` (`id_pays`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -560,37 +589,44 @@ ALTER TABLE `partie_has_joueur_has_pays`
   ADD CONSTRAINT `partie_has_joueur_has_pays_ibfk_2` FOREIGN KEY (`id_joueur`) REFERENCES `joueur` (`usr_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Contraintes pour la table `pays`
+-- Constraints for table `pays`
 --
 ALTER TABLE `pays`
   ADD CONSTRAINT `pays_ibfk_1` FOREIGN KEY (`continent_id`) REFERENCES `continent` (`cnt_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Contraintes pour la table `pays1_has_pays2`
+-- Constraints for table `pays1_has_pays2`
 --
 ALTER TABLE `pays1_has_pays2`
   ADD CONSTRAINT `pays1_has_pays2_ibfk_2` FOREIGN KEY (`id_pays2`) REFERENCES `pays` (`id_pays`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `pays1_has_pays2_ibfk_1` FOREIGN KEY (`id_pays1`) REFERENCES `pays` (`id_pays`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Contraintes pour la table `stats_user`
+-- Constraints for table `stats_user`
 --
 ALTER TABLE `stats_user`
   ADD CONSTRAINT `stats_user_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`usr_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Contraintes pour la table `user`
+-- Constraints for table `user`
 --
 ALTER TABLE `user`
   ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`code_sta`) REFERENCES `statut_user` (`sta_code`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `user_ibfk_2` FOREIGN KEY (`id_img`) REFERENCES `image` (`img_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Contraintes pour la table `user1_has_user2`
+-- Constraints for table `user1_has_user2`
 --
 ALTER TABLE `user1_has_user2`
   ADD CONSTRAINT `user1_has_user2_ibfk_1` FOREIGN KEY (`id_usr1`) REFERENCES `user` (`usr_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `user1_has_user2_ibfk_2` FOREIGN KEY (`id_usr2`) REFERENCES `user` (`usr_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `user_has_room`
+--
+ALTER TABLE `user_has_room`
+  ADD CONSTRAINT `user_has_room_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`usr_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `user_has_room_ibfk_1` FOREIGN KEY (`id_room`) REFERENCES `room` (`room_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
