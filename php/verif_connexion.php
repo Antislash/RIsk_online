@@ -16,7 +16,7 @@ if (isset($_COOKIE['pseudo']) && isset($_COOKIE['password']) && !isset($_SESSION
     if ($user['usr_id'] == null) {
         header('Location: ../www/login.html');
     } else {
-        $_SESSION['id_user'] = $user['id'];
+        $_SESSION['usr_id'] = $user['id'];
         $_SESSION['pseudo'] = $pseudo;
         $_SESSION['password'] = $mdp;
     }

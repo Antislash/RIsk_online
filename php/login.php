@@ -32,7 +32,6 @@ if (isset($_POST['connexionPseudo']) && isset($_POST['connexionPassword'])) {
 else if (isset($_SESSION['pseudo']) && isset($_SESSION['password'])) {
 
     $select = "SELECT * FROM user WHERE usr_pseudo = '" . $_SESSION['pseudo'] . "' AND usr_password = '" . $_SESSION['password']."'";
-    var_dump($select);
     $user = $bdd->query($select);
 
     $user = $user->fetch(PDO::FETCH_ASSOC);
