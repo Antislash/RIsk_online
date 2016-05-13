@@ -60,10 +60,16 @@
 			
 		function searchUser(){
 			var xhr = getXhr();
-			var pathname = window.location.pathname;
-			pathname = pathname.substring(0,17);
-			var url = pathname+"/include/ajout_ami.php?";
-			var urlH = window.location.href;
+			//alert(getHostProjectName()); // /~vblum/RIsk_online/www/acceuil.php
+			//alert(window.location.href); // http://tp-ssh2.ups.u-psud.fr/~vblum/RIsk_online/www/acceuil.php
+			//var pathname = window.location.pathname;
+			//pathname = pathname.substring(0,17);
+			var url = getHostProjectName() + "/www/include/ajout_ami.php?";
+			//var url2 = "/~vblum/RIsk_online/www/include/ajout_ami.php?";
+			//alert(url);
+			//alert(url2);
+			//TODO onsubmit();
+			//var urlH = window.location.href;
 			//on construit l'url avec les params en GET
 			if($("#search_user").val() != null && $("#search_user").val() != ""){
 				url = url + "pseudoSearch=" + $("#search_user").val();
@@ -72,11 +78,19 @@
 				// On ne fait quelque chose que si on a tout re�u et que le serveur est ok
 				if(xhr.readyState == 4 && xhr.status == 200){
 					if(xhr.responseText != ""){
+						//alert("ca marche");
 						notif(xhr.responseText,1);
 					}
 				}
 			}
 			xhr.open("GET",url,true);	//On lance la page en GET
 			xhr.send(null);
+		}
+		
+		function getHostProjectName(){
+			var pathname = window.location.pathname;
+			var projectName = "/RIsk_online/";
+			pathname = pathname.substr(0,pathname.indexOf(projectName)+projectName.length);
+			return pathname;
 		}
 		</script>

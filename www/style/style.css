@@ -31,6 +31,10 @@ h3{
     height: 20px;
 }
 
+#number{
+    width: 30px;	
+}
+
 /*Plus d'infos*/
 .more{
 	font-size: 0.7em;
@@ -422,6 +426,10 @@ a {
 	cursor: pointer;
 }
 
+#room table{
+	margin: auto;
+}
+
 #room{
 	display: table;
 	padding: 20px;
@@ -482,4 +490,13 @@ a {
 
 #send-msg{
 	width: 14%;
+}
+
+.options table {
+    border-collapse: collapse;
+}
+
+.options td {
+    padding-top: .5em;
+    padding-bottom: .5em;
 }
