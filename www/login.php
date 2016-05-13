@@ -5,8 +5,8 @@
 		<link rel="stylesheet" href="style/style.css" />
 		<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 		<meta name="viewport" content="width=device-width" />
-		<script type="text/javascript" src="md5.js"></script>
-		<script type="text/javascript" src="generateHome.js"></script>
+		<!--<script type="text/javascript" src="md5.js"></script>-->
+		<!--<script type="text/javascript" src="generateHome.js"></script>-->
 		<title>MAP</title>
 	</head>
 	<body>
@@ -14,7 +14,7 @@
 			<img id="logo_risk" src="images/logo_risk.png"/>
 			<div id="table_login">
 				<table>
-					<form method="post" action="../php/login.php">
+					<form method="post" action="../php/log.php">
 						<tr>
 							<td>Identifiant:</td>
 							<td colspan="2">Mot de passe:</td>

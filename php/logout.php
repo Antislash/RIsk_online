@@ -5,7 +5,9 @@ if (isset($_SESSION['id'])) {
     $bdd->query("UPDATE user SET statut = off WHERE id = " . $_SESSION['id_user']);
 }
 
-session_destroy();
+setcookie('pseudo',NULL,time()-3600);
+setcookie('password',NULL,time()-3600);
 
-header('Location: ../www/login.html');
+session_destroy();
+header('Location: ../www/login.php');
 ?>

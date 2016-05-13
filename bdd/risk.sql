@@ -24,6 +24,24 @@ USE `risk`;
 
 -- --------------------------------------------------------
 
+ --
+-- Structure de la table `ancien_message`
+--
+CREATE TABLE IF NOT EXISTS `ancien_message` (
+`pseudo` varchar(255) NOT NULL,
+`message` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Structure de la table `chat_messages`
+--
+CREATE TABLE IF NOT EXISTS `chat_messages` (
+`message_id` int(11) NOT NULL AUTO_INCREMENT,
+`message_text` longtext CHARACTER SET latin1 COLLATE latin1_german1_ci NOT NULL,
+`pseudo` varchar(255) NOT NULL,
+`timestamp` int(11) NOT NULL,
+PRIMARY KEY (`message_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=159 ;
 --
 -- Table structure for table `continent`
 --
