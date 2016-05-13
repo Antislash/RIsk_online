@@ -13,9 +13,13 @@ session_start();
         <script type="text/javascript" src="script.js"></script>
 	</head>
 	<body>
-		<?php include('include/navigation.php');?>
-		<?php include('include/notif.php');?>
-		<?php include('../php/connexion.php');$image = "images/avatar.png";?>
+		<?php include('include/navigation.php');
+		include('include/notif.php');
+		include('../php/connexion.php');$image = "images/avatar.png";
+		$room = $bdd->query("SELECT * FROM room rm INNER JOIN user_has_room uhr ON rm.room_id = uhr.id_room  WHERE rm.statut_room= 'en cours' AND uhr.id_user ='". $_SESSION['usr_id']."'");
+		$room = $room->fetch();
+		?>
+
 		<div class="bloc" id="room"><form>
 				<table class="options">
 					<tr>
@@ -28,30 +32,47 @@ session_start();
 							Nom de la partie:
 						</td>
 						<td>
-							<input class="textbox" type="text" name="nom_room" maxlength=20/>
+							<label><?php echo $room['room_name']; ?></label>
 						</td>
 					</tr>
 					<tr>
 						<td>
-							Mot de passe (facultatif):
+							Privée:
 						</td>
 						<td>
-							<input class="textbox" type="password" name="password" maxlength=20/>
+							<?php if($room['room_password'] == NULL ){
+								echo "Non";
+							} else{
+								echo "Oui";
+							} ?>
 						</td>
 					</tr>
+					<?php if($room['room_password'] =! NULL ){ ?>
+						<tr>
+							<td>
+								Mot de passe:
+							</td>
+							<td>
+								<?php echo $room['room_password'] ?>
+							</td>
+						</tr>
+					<?php } ?>
 					<tr>
 						<td>
 							Nombre de joueurs (2 - 6):
 						</td>
 						<td>
-							<input class="textbox" id="number" type="number" value="4" min="2" max="6"/>
+							<label><?php echo $room['room_nb_joueur']; ?></label>
 						</td>
 					</tr>
+					<?php if($room['usr_admin']){?>
 					<tr>
 						<td colspan="2">
+
 							<center><input class="button" type="submit" value="Lancer"/></center>
 						</td>
 					</tr>
+					<?php } ?>
 				</table>
 			</form>
 			<table>

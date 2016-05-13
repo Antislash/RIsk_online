@@ -4,7 +4,7 @@
   include "connexion.php";
 
 
-  if(isset($_POST['nom_room']) && isset($_POST['nb_joueur'])){
+  if(isset($_POST['nom_room']) && isset($_POST['nb_joueur']) && !empty($_POST['nom_room']) && !empty($_POST['nb_joueur'])){
     room_creation($_SESSION['usr_id'], $bdd, $_POST['nb_joueur'], $_POST['nom_room'],$_POST['password']);
   }
   else{
