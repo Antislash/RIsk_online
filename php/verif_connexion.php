@@ -10,8 +10,11 @@ if (isset($_COOKIE['pseudo']) && isset($_COOKIE['password']) && !isset($_SESSION
     $mdp = $_COOKIE['password'];
 
     //On vérifie que les données des cookies ne soient pas erronés
-    $user = $bdd->query("SELECT * FROM user WHERE pseudo = '" . $pseudo . "' AND password = '" . $mdp."'");
-    $user = $user->fecth();
+	$pseudo = 'Luc';
+	$mdp = '893785018d20a58cf029e2e9fa6aacf8';
+	echo "SELECT * FROM user WHERE usr_pseudo = '" . $pseudo . "' AND usr_password = '" . $mdp."'";
+    $users = $bdd->query("SELECT * FROM user WHERE usr_pseudo = '" . $pseudo . "' AND usr_password = '" . $mdp."'");
+    $user = $users->fetch();
 
     if ($user['usr_id'] == null) {
         header('Location: ../www/login.html');
