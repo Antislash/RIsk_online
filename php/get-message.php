@@ -1,10 +1,10 @@
 <?php
-include "connexion.php":
+include "connexion.php";
 
 header("Content-Type: text/plain");
 
 if($_GET['action'] == 'new') {
-    $reponse = $bdd->query('SELECT pseudo, message_text FROM chat_messages ORDER BY message_id DESC LIMIT 0, 50');
+    $reponse = $bdd->query('SELECT pseudo, message_text FROM chat_messages ORDER BY message_id ASC LIMIT 0, 50');
 
 
     while ($donnees = $reponse->fetch())
@@ -19,7 +19,7 @@ if($_GET['action'] == 'new') {
 }
 
 if ($_GET['action'] == 'anc') {
-  $reponse_2 = $bdd->query('SELECT pseudo, message FROM ancien_message ORDER BY id DESC ');
+  $reponse_2 = $bdd->query('SELECT pseudo, message FROM ancien_message ORDER BY id ASC ');
 
 
     while ($donnees_2 = $reponse_2->fetch())
@@ -34,34 +34,34 @@ if ($_GET['action'] == 'anc') {
 }
 
 function smiley($texte) {
-  $texte = str_replace(' :) ', '<img src="./image/sourire.png" />', $texte);
-  $texte = str_replace(':) ', '<img src="./image/sourire.png" />', $texte);
-  $texte = str_replace(':)', '<img src="./image/sourire.png"  />', $texte);
-  $texte = str_replace(' :)', '<img src="./image/sourire.png" />', $texte);
-  $texte = str_replace(' ;) ', '<img src="./image/clin.png" />', $texte);
-  $texte = str_replace(';) ', '<img src="./image/clin.png" />', $texte);
-  $texte = str_replace(';)', '<img src="./image/clin.png" />', $texte);
-  $texte = str_replace(' ;)', '<img src="./image/clin.png" />', $texte);
-  $texte = str_replace(' :p ', '<img src="./image/langue.png" />', $texte);
-  $texte = str_replace(':p ', '<img src="./image/langue.png" />', $texte);
-  $texte = str_replace(' :p', '<img src="./image/langue.png" />', $texte);
-  $texte = str_replace(':p', '<img src="./image/langue.png" />', $texte);
-  $texte = str_replace(' :d ', '<img src="./image/rigole.png" />', $texte);
-  $texte = str_replace(':d ', '<img src="./image/rigole.png" />', $texte);
-  $texte = str_replace(' :d', '<img src="./image/rigole.png" />', $texte);
-  $texte = str_replace(':d', '<img src="./image/rigole.png" />', $texte);
-  $texte = str_replace(' :D ', '<img src="./image/rigole.png" />', $texte);
-  $texte = str_replace(':D ', '<img src="./image/rigole.png" />', $texte);
-  $texte = str_replace(' :D', '<img src="./image/rigole.png" />', $texte);
-  $texte = str_replace(':D', '<img src="./image/rigole.png" />', $texte);
-  $texte = str_replace(' <3 ', '<img src="./image/coeur.png" />', $texte);
-  $texte = str_replace('<3 ', '<img src="./image/coeur.png" />', $texte);
-  $texte = str_replace(' <3', '<img src="./image/coeur.png" />', $texte);
-  $texte = str_replace('<3', '<img src="./image/coeur.png" />', $texte);
-  $texte = str_replace('^^', '<img src="./image/hihi.png" />', $texte);
-  $texte = str_replace(' ^^', '<img src="./image/hihi.png" />', $texte);
-  $texte = str_replace('^^ ', '<img src="./image/hihi.png" />', $texte);
-  $texte = str_replace(' ^^ ', '<img src="./image/hihi.png" />', $texte);
+  $texte = str_replace(' :) ', '<img src="./images/sourire.png" />', $texte);
+  $texte = str_replace(':) ', '<img src="./images/sourire.png" />', $texte);
+  $texte = str_replace(':)', '<img src="./images/sourire.png"  />', $texte);
+  $texte = str_replace(' :)', '<img src="./images/sourire.png" />', $texte);
+  $texte = str_replace(' ;) ', '<img src="./images/clin.png" />', $texte);
+  $texte = str_replace(';) ', '<img src="./images/clin.png" />', $texte);
+  $texte = str_replace(';)', '<img src="./images/clin.png" />', $texte);
+  $texte = str_replace(' ;)', '<img src="./images/clin.png" />', $texte);
+  $texte = str_replace(' :p ', '<img src="./images/langue.png" />', $texte);
+  $texte = str_replace(':p ', '<img src="./images/langue.png" />', $texte);
+  $texte = str_replace(' :p', '<img src="./images/langue.png" />', $texte);
+  $texte = str_replace(':p', '<img src="./images/langue.png" />', $texte);
+  $texte = str_replace(' :d ', '<img src="./images/rigole.png" />', $texte);
+  $texte = str_replace(':d ', '<img src="./images/rigole.png" />', $texte);
+  $texte = str_replace(' :d', '<img src="./images/rigole.png" />', $texte);
+  $texte = str_replace(':d', '<img src="./images/rigole.png" />', $texte);
+  $texte = str_replace(' :D ', '<img src="./images/rigole.png" />', $texte);
+  $texte = str_replace(':D ', '<img src="./images/rigole.png" />', $texte);
+  $texte = str_replace(' :D', '<img src="./images/rigole.png" />', $texte);
+  $texte = str_replace(':D', '<img src="./images/rigole.png" />', $texte);
+  $texte = str_replace(' <3 ', '<img src="./images/coeur.png" />', $texte);
+  $texte = str_replace('<3 ', '<img src="./images/coeur.png" />', $texte);
+  $texte = str_replace(' <3', '<img src="./images/coeur.png" />', $texte);
+  $texte = str_replace('<3', '<img src="./images/coeur.png" />', $texte);
+  $texte = str_replace('^^', '<img src="./images/hihi.png" />', $texte);
+  $texte = str_replace(' ^^', '<img src="./images/hihi.png" />', $texte);
+  $texte = str_replace('^^ ', '<img src="./images/hihi.png" />', $texte);
+  $texte = str_replace(' ^^ ', '<img src="./images/hihi.png" />', $texte);
 
   return $texte;
 }

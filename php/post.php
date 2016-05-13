@@ -10,7 +10,7 @@ $req->execute(array(
   'message_text' => $_GET['message'],
   'timestamp' => time()
 ));
-header('Location: chat.php');
+//header('Location: room.php#chat-room');
 
 function delete_msg($bdd) {
   

@@ -36,10 +36,10 @@ function request(callback) {
  
 function readData(sData) {    
     if (sData.length > 0) {
-	document.getElementById('cadre_chat').innerHTML = sData;
+	document.getElementById('chat-room').innerHTML = sData;
 	}
 	else {
-	document.getElementById('cadre_chat').innerHTML = '<center><b>Pas de messages pour le moment.</b></center>';
+	document.getElementById('chat-room').innerHTML = '<center><b>Pas de messages pour le moment.</b></center>';
 	}
 }
 setInterval('request(readData)',500);
@@ -53,9 +53,9 @@ function post() {
          write(msg);
         }
     };
-    var msg = encodeURIComponent(document.getElementById("message").value);
+    var msg = encodeURIComponent(document.getElementById("barre-msg").value);
       xhr.open("GET", "../php/post.php?message=" + msg, true);
       xhr.send(null);
 	  
-      document.getElementById("message").value = '';
+      document.getElementById("barre-msg").value = '';
 }

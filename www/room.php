@@ -145,11 +145,11 @@ session_start();
 				</tr>
 				<tr>
 					<td>
-						<div class="chat">
+						<div class="chat" id="chat-room">
 						</div>
 						<form id="chat-message">
 							<input class="textbox" onclick="if(event.keyCode==13){post(); clear();}" type="textarea" name="msg_chat" id="barre-msg"/>
-							<input class="button" onClick="post(), clear()" type="submit" value="Envoyer" id="send-msg"/>
+							<input class="button" onClick="post(), clear()" value="Envoyer" id="send-msg"/>
 						</form>
 					</td>
 				</tr>
