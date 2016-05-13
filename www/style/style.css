@@ -441,6 +441,8 @@ a {
 }
 
 .chat{
+	overflow-y: auto;	
+	overflow-x: hidden;
 	height: 200px;
 	width: 600px;
 	background-image:linear-gradient(#212121, #101010); /* Norme W3C */
@@ -503,4 +505,59 @@ a {
 
 #submit_friend{
 	width: 15px;
+}
+
+.list-room{
+	width: 500px;
+	height: 400px;
+	background-image:linear-gradient(#212121, #101010); /* Norme W3C */
+	background-image:-moz-linear-gradient(#212121, #101010); /* Firefox */
+	background-image:-webkit-gradient(linear, #212121, #101010)); /* Chrome, Safari */
+	background-image:-o-linear-gradient(#212121, #101010); /* Opera */
+	background-image:-ms-linear-gradient(#212121, #101010); /* IE */
+	padding: 10px;
+	margin: 20px;
+	border-radius:15px 15px 0px 0px;
+    box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 0.9);
+}
+#list{
+	display: table;
+	margin: 100px auto;
+}
+
+.list-room{
+	overflow-y: auto;	
+	overflow-x: hidden;
+}
+
+.list-room table{
+	width: 100%;
+}
+
+.list-room table td{
+	border-bottom: 1px solid rgba(100, 100, 100, 0.5);
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	border-collapse: collapse;
+}
+
+.list-room tr{
+	border-collapse: collapse;
+}
+
+.list-room tr:hover{
+	background-color: #535353;
+}
+
+.room-date{
+	width: 20%;
+}
+
+.room-name{
+	width: 75%;
+}
+
+.room-nb{
+	width: 5%;
 }
