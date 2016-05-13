@@ -13,11 +13,13 @@ session_start();
         <script type="text/javascript" src="script.js"></script>
 	</head>
 	<body>
-		<?php include('include/navigation.php');
-		include('include/notif.php');
-		include('../php/connexion.php');$image = "images/avatar.png";
-		$room = $bdd->query("SELECT * FROM room rm INNER JOIN user_has_room uhr ON rm.room_id = uhr.id_room  WHERE rm.statut_room= 'en cours' AND uhr.id_user ='". $_SESSION['usr_id']."'");
-		$room = $room->fetch();
+		<?php
+			include('include/navigation.php');
+			include('include/notif.php');
+			include('../php/connexion.php');
+			$image = "images/avatar.png";
+			$room = $bdd->query("SELECT * FROM room rm INNER JOIN user_has_room uhr ON rm.room_id = uhr.id_room  WHERE rm.statut_room= 'en cours' AND uhr.id_user ='". $_SESSION['usr_id']."'");
+			$room = $room->fetch();
 		?>
 
 		<div class="bloc" id="room"><form>

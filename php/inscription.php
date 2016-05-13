@@ -26,7 +26,7 @@
 			$_SESSION['pseudo'] = $pseudo;
 			$_SESSION['password'] = md5($password);
 			$_SESSION['usr_id'] = $user['usr_id'];
-			header('Location: login.php');
+			header('Location: log.php');
 		}
 		else{
 			//Nom d'utilisateur déjà existant.
