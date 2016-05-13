@@ -22,30 +22,32 @@ function getHostProjectName(projectName = "/RIsk_online"){
 	return pathname;
 }
 
-function reqAjax(param, pageActionPhp, action){
+function reqAjax(param = null, pageActionPhp, action, mod = 'Text'){
+	var xhr = getXhr();
+	var url = getHostProjectName() + pageActionPhp + "?";
 	if( (typeof param === "object") && (param !== null) )
 	{
-		var xhr = getXhr();
-		var url = getHostProjectName() + pageActionPhp + "?";
 		for (var id in param) {
 			url = url + id+"="+param[id]+"&";
 			//alert(id+" = "+param[id]);
 		}
 		//On enleve le dernier "&"
 		url = url.substr(0, url.length-1);
-		xhr.onreadystatechange = function(){
-		// On ne fait quelque chose que si on a tout re�u et que le serveur est ok
-		if(xhr.readyState == 4 && xhr.status == 200){
-			if(xhr.responseText != ""){
-				action(xhr.responseText);
+	}
+	xhr.onreadystatechange = function(){
+			// On ne fait quelque chose que si on a tout re�u et que le serveur est ok
+			if(xhr.readyState == 4 && xhr.status == 200){
+				if(mod == 'Text'){
+					if(xhr.responseText != ""){
+						action(xhr.responseText);
+					}
+					else{	//HTML
+						action(xhr.responseHtml);
+					}
+				}
 			}
-		}
 	}
 	xhr.open("GET",url,true);	//On lance la page en GET
 	xhr.send(null);
-	}
-	else{
-		return false;
-	}
 }
 

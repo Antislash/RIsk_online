@@ -51,5 +51,6 @@
 				pseudoSearch: $("#search_user").val(),
 			};
 			reqAjax(param, "/www/include/ajout_ami.php", notif);
+			//TODO reqAjax(null, "/php/contact.php", ecrire dans la div contact);
 		}
 		</script>
