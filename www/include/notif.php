@@ -9,7 +9,7 @@ function closeInfoMsg(){
 	var info = document.getElementsByClassName('div-info-actif');
 	info[0].className = 'div-info-base';
 }
-function notif(chaine, codeColor){
+function notif(chaine, codeColor = 1){
 	document.getElementsByClassName('txt-info')[0].innerHTML = chaine;
 	var color;
 	switch(codeColor) {

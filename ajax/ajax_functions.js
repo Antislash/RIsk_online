@@ -37,7 +37,7 @@ function reqAjax(param, pageActionPhp, action){
 		// On ne fait quelque chose que si on a tout re�u et que le serveur est ok
 		if(xhr.readyState == 4 && xhr.status == 200){
 			if(xhr.responseText != ""){
-				action(xhr.responseText,1);
+				action(xhr.responseText);
 			}
 		}
 	}
