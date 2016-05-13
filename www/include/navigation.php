@@ -12,4 +12,5 @@
 			</tr>
 		</table>
 	</div>
+	<a href="../php/logout.php">Déconnexion</a>
 </nav>

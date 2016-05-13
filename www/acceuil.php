@@ -8,10 +8,10 @@
 		<title>Acceuil</title>
 	</head>
 	<body>
-		<?php include('include/navigation.php');?>
-		<?php include('include/notif.php');?>
-		<?php include('../php/connexion.php');$image = "images/avatar.png";?>
-		<?php include ('../php/verif_connexion.php'); ?>
+		<?php include('include/navigation.php');
+			  include('include/notif.php');
+		      include('../php/connexion.php');$image = "images/avatar.png";
+		      include ('../php/verif_connexion.php'); ?>
 		<div class="bloc" id="profil_home">
 			<?php
 				$profils = $bdd->query("SELECT usr.usr_pseudo, img.img_chemin, sta.sta_nom, DATEDIFF(CURDATE(), usr.usr_date_inscription) as date FROM user usr INNER JOIN image img ON img.img_id = usr.id_img INNER JOIN statut_user sta ON sta.sta_code = usr.code_sta WHERE usr.usr_id ='".$_SESSION['usr_id']."'" );
