@@ -32,8 +32,11 @@
 								</td>
 								<td class="room-nb">
 									<?php
+									//On récupére le nombre de joueur pour cette room
 									$nb_joueur = $bdd->query("SELECT COUNT(*) AS nbJoueur FROM user_has_room WHERE id_room = ". $room['room_id']);
 									$nb_joueur = $nb_joueur->fetch();
+
+									//On affiche le nombre de joueur / nombre de joueur max
 									echo  $nb_joueur['nbJoueur']."/". $room['room_nb_joueur']; ?>
 								</td>
 				<?php } ?>
