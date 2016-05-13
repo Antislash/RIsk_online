@@ -563,6 +563,7 @@ INSERT INTO `user1_has_user2` (`id_usr1`, `id_usr2`) VALUES
 CREATE TABLE IF NOT EXISTS `user_has_room` (
   `id_room` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
+  `usr_admin` tinyint(1) NOT NULL,
   PRIMARY KEY (`id_room`,`id_user`),
   KEY `fk_id_room` (`id_room`),
   KEY `fk_id_user` (`id_user`)
