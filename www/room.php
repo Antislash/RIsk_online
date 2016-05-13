@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -5,12 +8,15 @@
 		<link rel="stylesheet" href="style/style.css" />
 		<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 		<meta name="viewport" content="width=device-width" />
-		<title>Room</title>
+		<title>Room</title>		
+        <script href="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+        <script type="text/javascript" src="script.js"></script>
 	</head>
 	<body>
 		<?php include('include/navigation.php');?>
 		<?php include('include/notif.php');?>
 		<?php include('../php/connexion.php');$image = "images/avatar.png";?>
+		<?php include('../php/new_game.php');?>
 		<div class="bloc" id="room"><form>
 				<table class="options">
 					<tr>
@@ -142,8 +148,8 @@
 						<div class="chat">
 						</div>
 						<form id="chat-message">
-							<input class="textbox" type="textarea" name="msg_chat" id="barre-msg"/>
-							<input class="button" type="submit" value="Envoyer" id="send-msg"/>
+							<input class="textbox" onclick="if(event.keyCode==13){post(); clear();}" type="textarea" name="msg_chat" id="barre-msg"/>
+							<input class="button" onClick="post(), clear()" type="submit" value="Envoyer" id="send-msg"/>
 						</form>
 					</td>
 				</tr>
