@@ -41,9 +41,9 @@ function reqAjax(param = null, pageActionPhp, action, mod = 'Text'){
 					if(xhr.responseText != ""){
 						action(xhr.responseText);
 					}
-					else{	//HTML
-						action(xhr.responseHtml);
-					}
+				}
+				else{	//HTML
+					action(xhr.responseXML);
 				}
 			}
 	}
