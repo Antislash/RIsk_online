@@ -17,7 +17,6 @@
 			//l'user n'existe pas
 			//TODO inscrire le joueur
 			$insert = "INSERT INTO user (usr_pseudo, usr_password, usr_email, usr_date_inscription, id_img,code_sta) VALUES ('".$pseudo."','". md5($password)."', NULL,CURDATE(), 1, 'on'  )";
-			var_dump($insert);
 			$req = $bdd->exec($insert);
 
 			$user = $bdd->query("SELECT * FROM user WHERE usr_pseudo = '" . $pseudo . "' AND usr_password = '" . md5($password)."'");
@@ -32,12 +31,12 @@
 		else{
 			//Nom d'utilisateur déjà existant.
 			//TODO Redirigé vers formulaire inscription
-			header('Location: ../www/login.html');
+			header('Location: ../www/login.php');
 		}
 	}
 	else{
 		//Formulaire incomlet
 		//TODO Redirigé vers formulaire inscription
-		header('Location: ../www/login.html');
+		header('Location: ../www/login.php');
 	}
 ?>

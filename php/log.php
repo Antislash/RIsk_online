@@ -11,7 +11,11 @@ if (isset($_POST['connexionPseudo']) && isset($_POST['connexionPassword'])) {
 
     //On vérifie en base de données
     $user = $bdd->query("SELECT * FROM user WHERE usr_pseudo = '" . $pseudo . "' AND usr_password = '" . md5($password)."'");
-    $user = $user->fetch(PDO::FETCH_ASSOC);
+    $user = $user->fetch();
+
+    if($user == false){
+        echo "Problème de connexion a la base de données";
+    }
 
     //On vérifie que l'utilisateur est bien présent et qu'il n'est pas présent plusieurs fois
     if ($user['usr_pseudo'] != null) {
@@ -34,7 +38,11 @@ else if (isset($_SESSION['pseudo']) && isset($_SESSION['password'])) {
     $select = "SELECT * FROM user WHERE usr_pseudo = '" . $_SESSION['pseudo'] . "' AND usr_password = '" . $_SESSION['password']."'";
     $user = $bdd->query($select);
 
-    $user = $user->fetch(PDO::FETCH_ASSOC);
+    $user = $user->fetch();
+
+    if($user == false){
+        echo "Problème de connexion a la base de données";
+    }
 
     if ($user['usr_pseudo'] != null) {
         //TODO Rediriger l'utilisateur sur la page d'accueil
@@ -42,10 +50,10 @@ else if (isset($_SESSION['pseudo']) && isset($_SESSION['password'])) {
     }
     else{
         //TODO Rediriger l'utilisateur sur la page de login
-        header('Location: ../www/login.html');
+        header('Location: ../www/login.php');
     }
 }
 else{
-    header('Location: ../www/login.html');
+    header('Location: ../www/login.php');
 }
 ?>

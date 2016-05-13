@@ -12,13 +12,14 @@ if (isset($_COOKIE['pseudo']) && isset($_COOKIE['password']) && !isset($_SESSION
     //On vérifie que les données des cookies ne soient pas erronés
     $users = $bdd->query("SELECT * FROM user WHERE usr_pseudo = '" . $pseudo . "' AND usr_password = '" . $mdp."'");
     $user = $users->fetch();
-
+    echo "passe";
     if ($user['usr_id'] == null) {
-        header('Location: ../www/login.html');
+        header('Location: ../www/login.php');
     } else {
-        $_SESSION['usr_id'] = $user['id'];
+        $_SESSION['usr_id'] = $user['usr_id'];
         $_SESSION['pseudo'] = $pseudo;
         $_SESSION['password'] = $mdp;
+        //header('Location: ../www/acceuil.php');
     }
 
 }
@@ -29,7 +30,9 @@ else if (isset($_COOKIE['pseudo']) && isset($_COOKIE['password'])
     //On créé les cookie a partir des session pendant 1 journée
     setcookie('pseudo', $_SESSION['pseudo'], time() + 24 * 3600, null, null, false, true);
     setcookie('password', $_SESSION['password'], time() + 24 * 3600, null, null, false, true);
+
 }
+
 //On vérifie si les session sont renseignés mais pas les cookies
 else if (!isset($_COOKIE['pseudo']) && !isset($_COOKIE['password']) && isset($_SESSION['pseudo']) && isset($_SESSION['password'])) {
     //On créé les cookie a partir des session pendant 1 journée
@@ -39,8 +42,7 @@ else if (!isset($_COOKIE['pseudo']) && !isset($_COOKIE['password']) && isset($_S
 
 //Si n'y les sessions, n'y les cookies ne sont renseignés nous considérons cela comme une fraude
 else if (!isset($_COOKIE['pseudo']) && !isset($_COOKIE['password']) && !isset($_SESSION['pseudo']) && !isset($_SESSION['password'])) {
-    header('Location: ../www/login.html');
+    header('Location: ../www/login.php');
 }
-
 //Dans le cas où les cookies et les session sont renseignés, nous ne faisons rien
 ?>
