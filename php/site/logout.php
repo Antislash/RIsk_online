@@ -1,8 +1,12 @@
 <?php
 session_start();
 
-if (isset($_SESSION['id'])) {
-    $bdd->query("UPDATE user SET statut = 'off' WHERE id = " . $_SESSION['id_user']);
+include "connexion.php";
+
+if (isset($_SESSION['usr_id'])) {
+
+    //Met le statut du joueur à "hors ligne"
+    $bdd->exec("UPDATE user SET code_sta = 'off' WHERE usr_id =" . $_SESSION['usr_id']);
 }
 
 setcookie('pseudo',NULL,time()-3600);
