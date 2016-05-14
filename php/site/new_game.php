@@ -34,7 +34,8 @@
       'room_id' => $room_id[0],
       'user_id' => $user_id,
       ));
-
+    
+    
     header('Location: ../../www/room.php');
   }
 ?>

@@ -56,6 +56,6 @@ else if (isset($_SESSION['pseudo']) && isset($_SESSION['password'])) {
     }
 }
 else{
-    header('Location: ../../www/login.php');
+    //header('Location: ../../www/login.php');
 }
 ?>

@@ -20,7 +20,10 @@ session_start();
 			$image = "images/avatar.png";
 
 			//On récupére les informations d'une room
-			$room = $bdd->query("SELECT * FROM room rm INNER JOIN user_has_room uhr ON rm.room_id = uhr.id_room  WHERE rm.statut_room= 'en cours' AND uhr.id_user ='". $_SESSION['usr_id']."'");
+			$room = $bdd->query("SELECT * FROM room rm 
+								 INNER JOIN user_has_room uhr ON rm.room_id = uhr.id_room  
+								 WHERE rm.statut_room= 'en cours' AND uhr.id_user ='". $_SESSION['usr_id']."'");
+
 			$room = $room->fetch();
 		?>
 
@@ -89,80 +92,47 @@ session_start();
 					<td>
 						<table class="liste-joueur">
 							<tr>
-								<td class="player-desc">
-									<table>
-										<tr>
-											<td>
-												<img src="images/avatar.png"/>											
-											</td>
-											<td>
-												<span class="txt-desc">Alexis</br>Niveau 8</span>
-											</td>
-										</tr>										
-									</table>
-								</td>
-								<td class="player-desc">
-									<table>
-										<tr>
-											<td>
-												<img src="images/avatar.png"/>											
-											</td>
-											<td>
-												<span class="txt-desc">Alexis</br>Niveau 8</span>
-											</td>
-										</tr>										
-									</table>
-								</td>
-								<td class="player-desc">
-									<table>
-										<tr>
-											<td>
-												<img src="images/avatar.png"/>											
-											</td>
-											<td>
-												<span class="txt-desc">Alexis</br>Niveau 8</span>
-											</td>
-										</tr>										
-									</table>
-								</td>
-							</tr>
-							<tr>
-								<td class="player-desc">
-									<table>
-										<tr>
-											<td>
-												<img src="images/avatar.png"/>											
-											</td>
-											<td>
-												<span class="txt-desc">Alexis</br>Niveau 8</span>
-											</td>
-										</tr>										
-									</table>
-								</td>
-								<td class="player-desc">
-									<table>
-										<tr>
-											<td>
-												<img src="images/avatar.png"/>											
-											</td>
-											<td>
-												<span class="txt-desc">Alexis</br>Niveau 8</span>
-											</td>
-										</tr>										
-									</table>
-								</td>
-								<td class="player-desc">
-									<table>
-										<tr>
-											<td>
-												<img src="images/avatar.png"/>											
-											</td>
-											<td>
-												<span class="txt-desc">Alexis</br>Niveau 8</span>
-											</td>
-										</tr>										
-									</table>
-								</td>
+								<?php
+									//Requête pour récupérer les informations des profils des joueurs d'une room
+									$joueurs = $bdd->query("SELECT id_img, usr_pseudo 
+															FROM `user` u
+															INNER JOIN user_has_room uhr ON uhr.id_user = u.usr_id
+															WHERE uhr.id_room= (SELECT id_room 
+																				FROM user_has_room uhr
+																				INNER JOIN room r ON r.room_id = uhr.id_room
+																				WHERE id_user =".$_SESSION['usr_id']."
+																				AND statut_room = 'en cours')");
+
+									$saut_ligne = 0;
+									while($joueur = $joueurs->fetch(PDO::FETCH_ASSOC)){
+										//On récupére le chemin de l'image à partir de l'id
+										$img = $bdd->query("SELECT img_nom FROM image WHERE img_id = ".$joueur['id_img']);
+										$img = $img->fetch();
+
+										if($saut_ligne == 0 || $saut_ligne == 3) {
+											?> <tr> <?php
+										}
+										?>
+												<td class="player-desc">
+													<table>
+														<tr>
+															<td>
+																<img src="<?php echo "images/".$img['img_nom'];?>"/>
+															</td>
+															<td>
+																<span class="txt-desc"><?php echo $joueur['usr_pseudo']; ?></br>Niveau 8</span>
+															</td>
+														</tr>
+													</table>
+												</td>
+
+										<?php
+										if($saut_ligne == 2 || $saut_ligne ==5) {
+											?> </tr> <?php
+										}
+										$saut_ligne += 1;
+									}
+								?>
 							</tr>
 						</table>
 					</td>

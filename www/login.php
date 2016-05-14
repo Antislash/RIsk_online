@@ -39,7 +39,6 @@
 			<!--Bloc d'inscription-->
 			<h2>INSCRIPTION</h2>		
 			<form method="post" action="../php/site/inscription.php" onSubmit="return checkRegistration(this)">
-
 					<table>
 						<tr>
 							<td>Identifiant:</td>

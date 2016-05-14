@@ -16,10 +16,6 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
---
--- Database: `risk`
---
-
 -- --------------------------------------------------------
 
 --
@@ -59,6 +55,13 @@ CREATE TABLE IF NOT EXISTS `continent` (
   PRIMARY KEY (`cnt_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
+INSERT INTO `continent` (`cnt_id`, `cnt_nom`, `cnt_nb_pays`, `cnt_nb_renfort`) VALUES
+(1, 'Europe', 7, 5),
+(2, 'Asie', 12, 7),
+(3, 'Amérique du Nord', 9, 5),
+(4, 'Amérique du Sud', 4, 2),
+(5, 'Afrique', 6, 3),
+(6, 'Océanie', 4, 2);
 -- --------------------------------------------------------
 
 --
@@ -72,6 +75,18 @@ CREATE TABLE IF NOT EXISTS `image` (
   PRIMARY KEY (`img_id`),
   UNIQUE KEY `nom` (`img_nom`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `image`
+--
+
+INSERT INTO `image` (`img_id`, `img_nom`, `img_chemin`) VALUES
+(1, 'avatar.png', '0'),
+(2, 'avatar2.png', '0'),
+(3, 'avatar3.png', '0'),
+(4, 'img_news.png', '0'),
+(5, 'logo_risk.png', '0'),
+(6, 'stats.png', '0');
 
 -- --------------------------------------------------------
 
@@ -105,6 +120,18 @@ CREATE TABLE IF NOT EXISTS `news` (
   KEY `fk_image_id` (`id_img`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
+--
+-- Dumping data for table `news`
+--
+
+INSERT INTO `news` (`nws_id`, `nws_titre`, `nws_contenu`, `nws_date`, `id_img`) VALUES
+(1, 'News jeu', 'GDC 2016 : Un Star Wars : Battlefront exclusif au Playstation VR en préparation ', '2016-03-01', 1),
+(2, 'News hardware', 'GDC 2016 : Playstation VR, disponible en octobre 2016 pour la somme de 399 euros ! ', '2016-03-02', 2),
+(3, 'News bon plan', 'PlayStation Store : Derniers jours de promos sur les exclus numériques !', '2016-03-04', 3),
+(4, 'News jeu', 'Far Cry Primal : Le Patch 1.02 disponible sur PS4 et Xbox One ', '2016-03-09', 4),
+(5, 'News bon plan', 'Promo : The Division à - 25% ', '2016-03-13', 4),
+(6, 'News jeu', 'XING : The Land Beyond compatible avec le Playstation VR ', '2016-03-13', 5),
+(7, 'News culture', 'Metro 2033 : L''adaptation cinématographique hérite du producteur de 50 Shades of Grey ', '2016-03-15', 6);
 -- --------------------------------------------------------
 
 --
@@ -167,6 +194,50 @@ CREATE TABLE IF NOT EXISTS `pays` (
   KEY `fk_continent_id` (`continent_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=43 ;
 
+INSERT INTO `pays` (`id_pays`, `nom`, `continent_id`) VALUES
+(1, 'Grande-Bretagne', 1),
+(2, 'Islande', 1),
+(3, 'Europe du Nord', 1),
+(4, 'Scandinavie', 1),
+(5, 'Europe du Sud', 1),
+(6, 'Ukraine', 1),
+(7, 'Europe occidentale', 1),
+(8, 'Afghanistan', 2),
+(9, 'Chine', 2),
+(10, 'Inde', 2),
+(11, 'Tchita', 2),
+(12, 'Japon', 2),
+(13, 'Kamchatka', 2),
+(14, 'Moyen-Orient', 2),
+(15, 'Mongolie', 2),
+(16, 'Siam', 2),
+(17, 'Sibérie', 2),
+(18, 'Oural', 2),
+(19, 'Yakoutie', 2),
+(20, 'Alaska', 3),
+(21, 'Alberta', 3),
+(22, 'Amérique centrale', 3),
+(23, 'États de l''Est', 3),
+(24, 'Groenland', 3),
+(25, 'Territoires du Nord-Ouest', 3),
+(26, 'Ontario', 3),
+(27, 'Québec', 3),
+(28, 'États de l''Ouest', 3),
+(29, 'Argentine', 4),
+(30, 'Brésil', 4),
+(31, 'Pérou', 4),
+(32, 'Venezuela', 4),
+(33, 'Congo', 5),
+(34, 'Afrique de l''Est', 5),
+(35, 'Égypte', 5),
+(36, 'Madagascar', 5),
+(37, 'Afrique du Nord', 5),
+(38, 'Afrique du Sud', 5),
+(39, 'Australie Orientale', 6),
+(40, 'Indonésie', 6),
+(41, 'Nouvelle-Guinée', 6),
+(42, 'Australie Occidentale', 6);
+
 -- --------------------------------------------------------
 
 --
@@ -180,6 +251,174 @@ CREATE TABLE IF NOT EXISTS `pays1_has_pays2` (
   KEY `fk_pays1` (`id_pays1`),
   KEY `fk_pays2` (`id_pays2`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Frontière entre les pays';
+
+INSERT INTO `pays1_has_pays2` (`id_pays1`, `id_pays2`) VALUES
+(1, 2),
+(1, 3),
+(1, 4),
+(1, 7),
+(2, 1),
+(2, 4),
+(2, 24),
+(3, 1),
+(3, 4),
+(3, 5),
+(3, 6),
+(3, 7),
+(4, 1),
+(4, 2),
+(4, 3),
+(4, 6),
+(5, 3),
+(5, 6),
+(5, 7),
+(5, 14),
+(5, 35),
+(5, 37),
+(6, 3),
+(6, 4),
+(6, 5),
+(6, 8),
+(6, 14),
+(6, 18),
+(7, 1),
+(7, 3),
+(7, 5),
+(7, 37),
+(8, 6),
+(8, 9),
+(8, 10),
+(8, 14),
+(8, 18),
+(9, 8),
+(9, 10),
+(9, 15),
+(9, 16),
+(9, 17),
+(9, 18),
+(10, 8),
+(10, 9),
+(10, 14),
+(10, 16),
+(11, 13),
+(11, 15),
+(11, 17),
+(11, 19),
+(12, 13),
+(12, 15),
+(13, 11),
+(13, 12),
+(13, 15),
+(13, 19),
+(13, 20),
+(14, 5),
+(14, 6),
+(14, 8),
+(14, 10),
+(14, 34),
+(14, 35),
+(15, 9),
+(15, 11),
+(15, 12),
+(15, 13),
+(15, 17),
+(16, 9),
+(16, 10),
+(16, 40),
+(17, 9),
+(17, 11),
+(17, 15),
+(17, 18),
+(17, 19),
+(18, 6),
+(18, 8),
+(18, 9),
+(18, 17),
+(19, 11),
+(19, 13),
+(19, 17),
+(20, 13),
+(20, 21),
+(20, 25),
+(21, 20),
+(21, 25),
+(21, 26),
+(21, 28),
+(22, 23),
+(22, 28),
+(22, 32),
+(23, 22),
+(23, 26),
+(23, 27),
+(23, 28),
+(24, 2),
+(24, 25),
+(24, 26),
+(24, 27),
+(25, 20),
+(25, 21),
+(25, 24),
+(25, 26),
+(26, 21),
+(26, 23),
+(26, 24),
+(26, 25),
+(26, 27),
+(26, 28),
+(27, 23),
+(27, 24),
+(27, 26),
+(28, 21),
+(28, 22),
+(28, 23),
+(28, 26),
+(29, 30),
+(29, 31),
+(30, 29),
+(30, 31),
+(30, 32),
+(30, 37),
+(31, 29),
+(31, 30),
+(31, 32),
+(32, 22),
+(32, 30),
+(32, 31),
+(33, 34),
+(33, 37),
+(33, 38),
+(34, 14),
+(34, 33),
+(34, 35),
+(34, 36),
+(34, 37),
+(34, 38),
+(35, 5),
+(35, 14),
+(35, 34),
+(35, 37),
+(36, 34),
+(36, 38),
+(37, 5),
+(37, 7),
+(37, 30),
+(37, 33),
+(37, 34),
+(37, 35),
+(38, 33),
+(38, 34),
+(38, 36),
+(39, 41),
+(39, 42),
+(40, 16),
+(40, 41),
+(40, 42),
+(41, 39),
+(41, 40),
+(41, 42),
+(42, 39),
+(42, 40),
+(42, 41);
 
 -- --------------------------------------------------------
 
@@ -223,6 +462,8 @@ CREATE TABLE IF NOT EXISTS `stats_user` (
   KEY `fk_user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+
+
 -- --------------------------------------------------------
 
 --
@@ -255,6 +496,19 @@ CREATE TABLE IF NOT EXISTS `user` (
   KEY `fk_image_id` (`id_img`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`usr_id`, `usr_pseudo`, `usr_password`, `usr_email`, `usr_date_inscription`, `id_img`, `code_sta`) VALUES
+(2, 'Mathilde', '2226544ec104d654102a154fb4c2de52', NULL, '2016-01-05', 3, 'gam'),
+(3, 'Luc', '893785018d20a58cf029e2e9fa6aacf8', NULL, '2016-03-11', NULL, 'off'),
+(4, 'Vivien', 'f7d71c05a57c4f4300601662e5eba4ae', NULL, '2015-11-16', 4, 'on'),
+(5, 'Ali', '7a9b46ab6d983a85dd4d9a1aa64a3945', NULL, '2016-03-01', 1, 'on'),
+(6, 'Max', '6a061313d22e51e0f25b7cd4dc065233', NULL, '2016-03-08', 5, 'off'),
+(11, 'gataf', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-11', 1, 'on'),
+(12, 'test', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-11', 1, 'on');
+
 -- --------------------------------------------------------
 
 --
@@ -268,7 +522,19 @@ CREATE TABLE IF NOT EXISTS `user1_has_user2` (
   KEY `fk_id_user1` (`id_usr1`),
   KEY `fk_id_user2` (`id_usr2`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Table pour les liens d''amitié';
+--
+-- Dumping data for table `user1_has_user2`
+--
 
+INSERT INTO `user1_has_user2` (`id_usr1`, `id_usr2`) VALUES
+(2, 3),
+(2, 4),
+(2, 6),
+(3, 2),
+(3, 4),
+(4, 2),
+(4, 3),
+(6, 2);
 -- --------------------------------------------------------
 
 --
@@ -345,7 +611,6 @@ ALTER TABLE `stats_user`
 -- Constraints for table `user`
 --
 ALTER TABLE `user`
-  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`code_sta`) REFERENCES `statut_user` (`sta_code`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `user_ibfk_2` FOREIGN KEY (`id_img`) REFERENCES `image` (`img_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --

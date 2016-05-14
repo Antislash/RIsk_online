@@ -1,0 +1,8 @@
+INSERT INTO `statut_user` (`sta_code`, `sta_nom`, `sta_class`) VALUES
+('gam', 'Occupé', 'ingame'),
+('off', 'Hors Ligne', 'offline'),
+('on', 'En Ligne', 'online');
+
+
+ALTER TABLE `user`
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`code_sta`) REFERENCES `statut_user` (`sta_code`) ON DELETE NO ACTION ON UPDATE NO ACTION,
