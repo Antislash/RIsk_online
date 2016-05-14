@@ -2,8 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="29c69774-bbb5-4715-837f-b80a351a14c6" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/php/connexion.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/php/get-message.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/php/inscription.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/php/join_game.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/php/log.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/php/logout.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/php/new_game.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/php/post.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/php/verif_connexion.php" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/acceuil.php" afterPath="$PROJECT_DIR$/www/acceuil.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/create_room.php" afterPath="$PROJECT_DIR$/www/create_room.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/include/navigation.php" afterPath="$PROJECT_DIR$/www/include/navigation.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/list-room.php" afterPath="$PROJECT_DIR$/www/list-room.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/login.php" afterPath="$PROJECT_DIR$/www/login.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/room.php" afterPath="$PROJECT_DIR$/www/room.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/script.js" afterPath="$PROJECT_DIR$/www/script.js" />
     </list>
     <ignored path="RIsk_online.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,80 +40,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="new_game.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/php/new_game.php">
+      <file leaf-file-name="connexion.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/php/site/connexion.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="118" selection-start-line="6" selection-start-column="118" selection-end-line="6" selection-end-column="118" />
-              <folding>
-                <marker date="1463140794921" expanded="true" signature="517:689" placeholder="INSERT INTO room... " />
-                <marker date="1463140794921" expanded="true" signature="880:909" placeholder="SELECT MAX(r... room" />
-                <marker date="1463140794921" expanded="true" signature="1017:1102" placeholder="INSERT INTO user_has_room... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="log.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/php/log.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="27" selection-start-line="12" selection-start-column="4" selection-end-line="13" selection-end-column="27" />
-              <folding>
-                <marker date="1463131464951" expanded="true" signature="392:489" placeholder="SELECT * FRO... user" />
-                <marker date="1463131464951" expanded="true" signature="1051:1115" placeholder="UPDATE user " />
-                <marker date="1463131464951" expanded="true" signature="1352:1468" placeholder="SELECT * FRO... user" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="acceuil.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/acceuil.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
-              <folding>
-                <marker date="1463159227252" expanded="true" signature="546:583" placeholder="..." />
-                <marker date="1463159227252" expanded="true" signature="585:596" placeholder="SELECT usr.p... " />
-                <marker date="1463159227252" expanded="true" signature="585:829" placeholder="SELECT usr.u... " />
-                <marker date="1463159227252" expanded="true" signature="585:830" placeholder="SELECT usr.u... " />
-                <marker date="1463159227252" expanded="true" signature="585:854" placeholder="SELECT usr.u... " />
-                <marker date="1463159227252" expanded="true" signature="585:855" placeholder="SELECT usr.u... " />
-                <marker date="1463159227252" expanded="true" signature="585:856" placeholder="SELECT usr.u... " />
-                <marker date="1463159227252" expanded="true" signature="1303:1471" placeholder="SELECT nws.n... news" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="list-room.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/www/list-room.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="38" column="91" selection-start-line="38" selection-start-column="91" selection-end-line="38" selection-end-column="91" />
-              <folding>
-                <marker date="1463165081845" expanded="true" signature="523:572" placeholder="SELECT * FRO... room" />
-                <marker date="1463165081845" expanded="true" signature="1054:1117" placeholder="SELECT COUNT... user_has_room" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="inscription.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/php/inscription.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="28" column="33" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
-              <folding>
-                <marker date="1463164579086" expanded="true" signature="402:441" placeholder="SELECT * FRO... user" />
-                <marker date="1463164579086" expanded="true" signature="402:453" placeholder="SELECT * FRO... user" />
-                <marker date="1463164579086" expanded="true" signature="402:454" placeholder="SELECT * FRO... user" />
-                <marker date="1463164579086" expanded="true" signature="634:750" placeholder="INSERT INTO user... " />
-                <marker date="1463164579086" expanded="true" signature="634:769" placeholder="INSERT INTO user... " />
-                <marker date="1463164579086" expanded="true" signature="634:799" placeholder="INSERT INTO user... " />
-                <marker date="1463164579086" expanded="true" signature="858:955" placeholder="SELECT * FRO... user" />
-              </folding>
+            <state relative-caret-position="170">
+              <caret line="10" column="40" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -106,24 +53,36 @@
       <file leaf-file-name="navigation.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/include/navigation.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="27" column="74" selection-start-line="27" selection-start-column="74" selection-end-line="27" selection-end-column="74" />
+            <state relative-caret-position="56">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
               <folding>
-                <marker date="1463164636808" expanded="true" signature="924:1045" placeholder="SELECT * FRO... user_has_room" />
-                <marker date="1463164636808" expanded="true" signature="924:1069" placeholder="SELECT * FRO... user_has_room" />
-                <marker date="1463164636808" expanded="true" signature="924:1070" placeholder="SELECT * FRO... user_has_room" />
+                <marker date="1463236782345" expanded="true" signature="955:1076" placeholder="SELECT * FRO... user_has_room" />
+                <marker date="1463236782345" expanded="true" signature="955:1100" placeholder="SELECT * FRO... user_has_room" />
+                <marker date="1463236782345" expanded="true" signature="955:1101" placeholder="SELECT * FRO... user_has_room" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="verif_connexion.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/php/verif_connexion.php">
+      <file leaf-file-name="login.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/login.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+            <state relative-caret-position="221">
+              <caret line="13" column="37" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="log.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/php/site/log.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="473">
+              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
               <folding>
-                <marker date="1463160279832" expanded="true" signature="387:474" placeholder="SELECT * FRO... user" />
+                <marker date="1463236568023" expanded="true" signature="392:489" placeholder="SELECT * FRO... user" />
+                <marker date="1463236568023" expanded="true" signature="1073:1137" placeholder="UPDATE user " />
+                <marker date="1463236568023" expanded="true" signature="1378:1494" placeholder="SELECT * FRO... user" />
               </folding>
             </state>
           </provider>
@@ -132,32 +91,83 @@
       <file leaf-file-name="room.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/room.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+            <state relative-caret-position="183">
+              <caret line="95" column="63" selection-start-line="95" selection-start-column="61" selection-end-line="95" selection-end-column="63" />
               <folding>
-                <marker date="1463160170205" expanded="true" signature="658:744" placeholder="SELECT * FRO... room" />
-                <marker date="1463160170205" expanded="true" signature="658:788" placeholder="SELECT * FRO... room" />
-                <marker date="1463160170205" expanded="true" signature="658:792" placeholder="SELECT * FRO... room" />
-                <marker date="1463160170205" expanded="true" signature="658:793" placeholder="SELECT * FRO... room" />
-                <marker date="1463160170205" expanded="true" signature="658:813" placeholder="SELECT * FRO... room" />
-                <marker date="1463160170205" expanded="true" signature="658:814" placeholder="SELECT * FRO... room" />
-                <marker date="1463160170205" expanded="true" signature="658:816" placeholder="SELECT * FRO... room" />
-                <marker date="1463160170205" expanded="true" signature="886:904" placeholder="..." />
-                <marker date="1463160170205" expanded="true" signature="924:943" placeholder="..." />
-                <marker date="1463160170205" expanded="true" signature="1071:1093" placeholder="..." />
+                <marker date="1463235930005" expanded="true" signature="709:795" placeholder="SELECT * FRO... room" />
+                <marker date="1463235930005" expanded="true" signature="709:839" placeholder="SELECT * FRO... room" />
+                <marker date="1463235930005" expanded="true" signature="709:843" placeholder="SELECT * FRO... room" />
+                <marker date="1463235930005" expanded="true" signature="709:844" placeholder="SELECT * FRO... room" />
+                <marker date="1463235930005" expanded="true" signature="709:864" placeholder="SELECT * FRO... room" />
+                <marker date="1463235930005" expanded="true" signature="709:865" placeholder="SELECT * FRO... room" />
+                <marker date="1463235930005" expanded="true" signature="709:867" placeholder="SELECT * FRO... room" />
+                <marker date="1463235930005" expanded="true" signature="937:955" placeholder="..." />
+                <marker date="1463235930005" expanded="true" signature="975:994" placeholder="..." />
+                <marker date="1463235930005" expanded="true" signature="1122:1144" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="contact.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/include/contact.php">
+      <file leaf-file-name="script.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/www/script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" column="18" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
+            <state relative-caret-position="227">
+              <caret line="56" column="35" selection-start-line="56" selection-start-column="35" selection-end-line="56" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="logout.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/php/site/logout.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="8" selection-end-column="39" />
               <folding>
-                <marker date="1463159373781" expanded="true" signature="85:298" placeholder="SELECT COUNT... user" />
-                <marker date="1463159373781" expanded="true" signature="2258:2263" placeholder="{...}" />
+                <marker date="1463236115495" expanded="true" signature="71:113" placeholder="UPDATE user " />
+                <marker date="1463236115495" expanded="true" signature="71:137" placeholder="UPDATE user " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="new_game.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/php/site/new_game.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="458">
+              <caret line="37" column="27" selection-start-line="37" selection-start-column="27" selection-end-line="37" selection-end-column="27" />
+              <folding>
+                <marker date="1463236131535" expanded="true" signature="520:692" placeholder="INSERT INTO room... " />
+                <marker date="1463236131535" expanded="true" signature="883:912" placeholder="SELECT MAX(r... room" />
+                <marker date="1463236131535" expanded="true" signature="1020:1105" placeholder="INSERT INTO user_has_room... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="post.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/php/site/post.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-119">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1463134510509" expanded="true" signature="90:192" placeholder="INSERT INTO chat_messages... " />
+                <marker date="1463134510509" expanded="true" signature="452:503" placeholder="SELECT * FRO... chat_messages" />
+                <marker date="1463134510509" expanded="true" signature="648:719" placeholder="INSERT INTO ancien_message... " />
+                <marker date="1463134510509" expanded="true" signature="874:923" placeholder="DELETE FROM " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="verif_connexion.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/php/site/verif_connexion.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="429">
+              <caret line="44" column="28" selection-start-line="44" selection-start-column="28" selection-end-line="44" selection-end-column="28" />
+              <folding>
+                <marker date="1463236173760" expanded="true" signature="387:474" placeholder="SELECT * FRO... user" />
               </folding>
             </state>
           </provider>
@@ -181,18 +191,24 @@
         <option value="$PROJECT_DIR$/divers/map.svg" />
         <option value="$PROJECT_DIR$/divers/map.html" />
         <option value="$PROJECT_DIR$/php/log.php" />
-        <option value="$PROJECT_DIR$/www/login.php" />
         <option value="$PROJECT_DIR$/bdd/risk.sql" />
         <option value="$PROJECT_DIR$/php/join_game.php" />
-        <option value="$PROJECT_DIR$/www/create_room.php" />
         <option value="$PROJECT_DIR$/php/new_game.php" />
-        <option value="$PROJECT_DIR$/www/acceuil.php" />
         <option value="$PROJECT_DIR$/php/connexion.php" />
-        <option value="$PROJECT_DIR$/www/room.php" />
         <option value="$PROJECT_DIR$/php/verif_connexion.php" />
         <option value="$PROJECT_DIR$/php/inscription.php" />
-        <option value="$PROJECT_DIR$/www/include/navigation.php" />
+        <option value="$PROJECT_DIR$/www/acceuil.php" />
+        <option value="$PROJECT_DIR$/www/create_room.php" />
         <option value="$PROJECT_DIR$/www/list-room.php" />
+        <option value="$PROJECT_DIR$/www/room.php" />
+        <option value="$PROJECT_DIR$/php/site/inscription.php" />
+        <option value="$PROJECT_DIR$/php/site/logout.php" />
+        <option value="$PROJECT_DIR$/php/site/new_game.php" />
+        <option value="$PROJECT_DIR$/php/site/verif_connexion.php" />
+        <option value="$PROJECT_DIR$/php/site/log.php" />
+        <option value="$PROJECT_DIR$/www/include/navigation.php" />
+        <option value="$PROJECT_DIR$/www/login.php" />
+        <option value="$PROJECT_DIR$/www/script.js" />
       </list>
     </option>
   </component>
@@ -299,6 +315,24 @@
               <option name="myItemId" value="php" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="site" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RIsk_online" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RIsk_online" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="php" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -362,12 +396,12 @@
       <workItem from="1462894340014" duration="19104000" />
       <workItem from="1463074104188" duration="428000" />
       <workItem from="1463079578459" duration="22629000" />
-      <workItem from="1463164517637" duration="590000" />
+      <workItem from="1463164517637" duration="3167000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43662000" />
+    <option name="totallyTimeSpent" value="46239000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -377,6 +411,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.055205047" sideWeight="0.52342606" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.340694" sideWeight="0.47657394" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -387,7 +422,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28706625" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.055205047" sideWeight="0.47657394" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -429,110 +463,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/php/new_game.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="118" selection-start-line="6" selection-start-column="118" selection-end-line="6" selection-end-column="118" />
-          <folding>
-            <marker date="1463140794921" expanded="true" signature="517:689" placeholder="INSERT INTO room... " />
-            <marker date="1463140794921" expanded="true" signature="880:909" placeholder="SELECT MAX(r... room" />
-            <marker date="1463140794921" expanded="true" signature="1017:1102" placeholder="INSERT INTO user_has_room... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/log.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="27" selection-start-line="12" selection-start-column="4" selection-end-line="13" selection-end-column="27" />
-          <folding>
-            <marker date="1463131464951" expanded="true" signature="392:489" placeholder="SELECT * FRO... user" />
-            <marker date="1463131464951" expanded="true" signature="1051:1115" placeholder="UPDATE user " />
-            <marker date="1463131464951" expanded="true" signature="1352:1468" placeholder="SELECT * FRO... user" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/acceuil.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
-          <folding>
-            <marker date="1463159227252" expanded="true" signature="546:583" placeholder="..." />
-            <marker date="1463159227252" expanded="true" signature="585:596" placeholder="SELECT usr.p... " />
-            <marker date="1463159227252" expanded="true" signature="585:829" placeholder="SELECT usr.u... " />
-            <marker date="1463159227252" expanded="true" signature="585:830" placeholder="SELECT usr.u... " />
-            <marker date="1463159227252" expanded="true" signature="585:854" placeholder="SELECT usr.u... " />
-            <marker date="1463159227252" expanded="true" signature="585:855" placeholder="SELECT usr.u... " />
-            <marker date="1463159227252" expanded="true" signature="585:856" placeholder="SELECT usr.u... " />
-            <marker date="1463159227252" expanded="true" signature="1303:1471" placeholder="SELECT nws.n... news" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/list-room.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1463165081845" expanded="true" signature="523:572" placeholder="SELECT * FRO... room" />
-            <marker date="1463165081845" expanded="true" signature="1054:1117" placeholder="SELECT COUNT... user_has_room" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/include/navigation.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="51" selection-start-line="1" selection-start-column="51" selection-end-line="1" selection-end-column="51" />
-          <folding>
-            <marker date="1463164636808" expanded="true" signature="924:1045" placeholder="SELECT * FRO... user_has_room" />
-            <marker date="1463164636808" expanded="true" signature="924:1069" placeholder="SELECT * FRO... user_has_room" />
-            <marker date="1463164636808" expanded="true" signature="924:1070" placeholder="SELECT * FRO... user_has_room" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/verif_connexion.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding>
-            <marker date="1463160279832" expanded="true" signature="387:474" placeholder="SELECT * FRO... user" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/room.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding>
-            <marker date="1463160170205" expanded="true" signature="658:744" placeholder="SELECT * FRO... room" />
-            <marker date="1463160170205" expanded="true" signature="658:788" placeholder="SELECT * FRO... room" />
-            <marker date="1463160170205" expanded="true" signature="658:792" placeholder="SELECT * FRO... room" />
-            <marker date="1463160170205" expanded="true" signature="658:793" placeholder="SELECT * FRO... room" />
-            <marker date="1463160170205" expanded="true" signature="658:813" placeholder="SELECT * FRO... room" />
-            <marker date="1463160170205" expanded="true" signature="658:814" placeholder="SELECT * FRO... room" />
-            <marker date="1463160170205" expanded="true" signature="658:816" placeholder="SELECT * FRO... room" />
-            <marker date="1463160170205" expanded="true" signature="886:904" placeholder="..." />
-            <marker date="1463160170205" expanded="true" signature="924:943" placeholder="..." />
-            <marker date="1463160170205" expanded="true" signature="1071:1093" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/include/contact.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="18" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
-          <folding>
-            <marker date="1463159373781" expanded="true" signature="85:298" placeholder="SELECT COUNT... user" />
-            <marker date="1463159373781" expanded="true" signature="2258:2263" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/php/connexion.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -555,14 +485,14 @@
         <state relative-caret-position="357">
           <caret line="21" column="60" selection-start-line="21" selection-start-column="60" selection-end-line="21" selection-end-column="60" />
           <folding>
-            <marker date="1463159227252" expanded="true" signature="546:583" placeholder="..." />
-            <marker date="1463159227252" expanded="true" signature="585:596" placeholder="SELECT usr.p... " />
-            <marker date="1463159227252" expanded="true" signature="585:829" placeholder="SELECT usr.u... " />
-            <marker date="1463159227252" expanded="true" signature="585:830" placeholder="SELECT usr.u... " />
-            <marker date="1463159227252" expanded="true" signature="585:854" placeholder="SELECT usr.u... " />
-            <marker date="1463159227252" expanded="true" signature="585:855" placeholder="SELECT usr.u... " />
-            <marker date="1463159227252" expanded="true" signature="585:856" placeholder="SELECT usr.u... " />
-            <marker date="1463159227252" expanded="true" signature="1303:1471" placeholder="SELECT nws.n... news" />
+            <marker date="1463234805788" expanded="true" signature="737:832" placeholder="..." />
+            <marker date="1463234805788" expanded="true" signature="834:845" placeholder="SELECT usr.p... " />
+            <marker date="1463234805788" expanded="true" signature="834:1078" placeholder="SELECT usr.u... " />
+            <marker date="1463234805788" expanded="true" signature="834:1079" placeholder="SELECT usr.u... " />
+            <marker date="1463234805788" expanded="true" signature="834:1103" placeholder="SELECT usr.u... " />
+            <marker date="1463234805788" expanded="true" signature="834:1104" placeholder="SELECT usr.u... " />
+            <marker date="1463234805788" expanded="true" signature="834:1105" placeholder="SELECT usr.u... " />
+            <marker date="1463234805788" expanded="true" signature="1552:1720" placeholder="SELECT nws.n... news" />
           </folding>
         </state>
       </provider>
@@ -571,9 +501,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
-          <folding>
-            <marker date="1463160279832" expanded="true" signature="387:474" placeholder="SELECT * FRO... user" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -582,16 +510,16 @@
         <state relative-caret-position="153">
           <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
           <folding>
-            <marker date="1463160170205" expanded="true" signature="658:744" placeholder="SELECT * FRO... room" />
-            <marker date="1463160170205" expanded="true" signature="658:788" placeholder="SELECT * FRO... room" />
-            <marker date="1463160170205" expanded="true" signature="658:792" placeholder="SELECT * FRO... room" />
-            <marker date="1463160170205" expanded="true" signature="658:793" placeholder="SELECT * FRO... room" />
-            <marker date="1463160170205" expanded="true" signature="658:813" placeholder="SELECT * FRO... room" />
-            <marker date="1463160170205" expanded="true" signature="658:814" placeholder="SELECT * FRO... room" />
-            <marker date="1463160170205" expanded="true" signature="658:816" placeholder="SELECT * FRO... room" />
-            <marker date="1463160170205" expanded="true" signature="886:904" placeholder="..." />
-            <marker date="1463160170205" expanded="true" signature="924:943" placeholder="..." />
-            <marker date="1463160170205" expanded="true" signature="1071:1093" placeholder="..." />
+            <marker date="1463235930005" expanded="true" signature="709:795" placeholder="SELECT * FRO... room" />
+            <marker date="1463235930005" expanded="true" signature="709:839" placeholder="SELECT * FRO... room" />
+            <marker date="1463235930005" expanded="true" signature="709:843" placeholder="SELECT * FRO... room" />
+            <marker date="1463235930005" expanded="true" signature="709:844" placeholder="SELECT * FRO... room" />
+            <marker date="1463235930005" expanded="true" signature="709:864" placeholder="SELECT * FRO... room" />
+            <marker date="1463235930005" expanded="true" signature="709:865" placeholder="SELECT * FRO... room" />
+            <marker date="1463235930005" expanded="true" signature="709:867" placeholder="SELECT * FRO... room" />
+            <marker date="1463235930005" expanded="true" signature="937:955" placeholder="..." />
+            <marker date="1463235930005" expanded="true" signature="975:994" placeholder="..." />
+            <marker date="1463235930005" expanded="true" signature="1122:1144" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -600,15 +528,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
           <caret line="28" column="29" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="29" />
-          <folding>
-            <marker date="1463164579086" expanded="true" signature="402:441" placeholder="SELECT * FRO... user" />
-            <marker date="1463164579086" expanded="true" signature="402:453" placeholder="SELECT * FRO... user" />
-            <marker date="1463164579086" expanded="true" signature="402:454" placeholder="SELECT * FRO... user" />
-            <marker date="1463164579086" expanded="true" signature="634:750" placeholder="INSERT INTO user... " />
-            <marker date="1463164579086" expanded="true" signature="634:769" placeholder="INSERT INTO user... " />
-            <marker date="1463164579086" expanded="true" signature="634:799" placeholder="INSERT INTO user... " />
-            <marker date="1463164579086" expanded="true" signature="858:955" placeholder="SELECT * FRO... user" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -654,13 +574,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/join_game.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="34" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/php/get-message.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="648">
@@ -672,20 +585,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6120">
           <caret line="360" column="58" selection-start-line="360" selection-start-column="58" selection-end-line="360" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/create_room.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="30" column="69" selection-start-line="30" selection-start-column="61" selection-end-line="30" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/login.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="33" column="18" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -704,18 +604,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="13" column="27" selection-start-line="12" selection-start-column="4" selection-end-line="13" selection-end-column="27" />
-          <folding>
-            <marker date="1463131464951" expanded="true" signature="392:489" placeholder="SELECT * FRO... user" />
-            <marker date="1463131464951" expanded="true" signature="1051:1115" placeholder="UPDATE user " />
-            <marker date="1463131464951" expanded="true" signature="1352:1468" placeholder="SELECT * FRO... user" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -727,51 +616,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/acceuil.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
-          <folding>
-            <marker date="1463159227252" expanded="true" signature="546:583" placeholder="..." />
-            <marker date="1463159227252" expanded="true" signature="585:596" placeholder="SELECT usr.p... " />
-            <marker date="1463159227252" expanded="true" signature="585:829" placeholder="SELECT usr.u... " />
-            <marker date="1463159227252" expanded="true" signature="585:830" placeholder="SELECT usr.u... " />
-            <marker date="1463159227252" expanded="true" signature="585:854" placeholder="SELECT usr.u... " />
-            <marker date="1463159227252" expanded="true" signature="585:855" placeholder="SELECT usr.u... " />
-            <marker date="1463159227252" expanded="true" signature="585:856" placeholder="SELECT usr.u... " />
-            <marker date="1463159227252" expanded="true" signature="1303:1471" placeholder="SELECT nws.n... news" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/room.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding>
-            <marker date="1463160170205" expanded="true" signature="658:744" placeholder="SELECT * FRO... room" />
-            <marker date="1463160170205" expanded="true" signature="658:788" placeholder="SELECT * FRO... room" />
-            <marker date="1463160170205" expanded="true" signature="658:792" placeholder="SELECT * FRO... room" />
-            <marker date="1463160170205" expanded="true" signature="658:793" placeholder="SELECT * FRO... room" />
-            <marker date="1463160170205" expanded="true" signature="658:813" placeholder="SELECT * FRO... room" />
-            <marker date="1463160170205" expanded="true" signature="658:814" placeholder="SELECT * FRO... room" />
-            <marker date="1463160170205" expanded="true" signature="658:816" placeholder="SELECT * FRO... room" />
-            <marker date="1463160170205" expanded="true" signature="886:904" placeholder="..." />
-            <marker date="1463160170205" expanded="true" signature="924:943" placeholder="..." />
-            <marker date="1463160170205" expanded="true" signature="1071:1093" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/php/new_game.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="118" selection-start-line="6" selection-start-column="118" selection-end-line="6" selection-end-column="118" />
-          <folding>
-            <marker date="1463140794921" expanded="true" signature="517:689" placeholder="INSERT INTO room... " />
-            <marker date="1463140794921" expanded="true" signature="880:909" placeholder="SELECT MAX(r... room" />
-            <marker date="1463140794921" expanded="true" signature="1017:1102" placeholder="INSERT INTO user_has_room... " />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -779,9 +628,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding>
-            <marker date="1463160279832" expanded="true" signature="387:474" placeholder="SELECT * FRO... user" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -789,38 +636,197 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
           <caret line="28" column="33" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/join_game.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="34" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/acceuil.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="69" column="32" selection-start-line="69" selection-start-column="32" selection-end-line="69" selection-end-column="32" />
           <folding>
-            <marker date="1463164579086" expanded="true" signature="402:441" placeholder="SELECT * FRO... user" />
-            <marker date="1463164579086" expanded="true" signature="402:453" placeholder="SELECT * FRO... user" />
-            <marker date="1463164579086" expanded="true" signature="402:454" placeholder="SELECT * FRO... user" />
-            <marker date="1463164579086" expanded="true" signature="634:750" placeholder="INSERT INTO user... " />
-            <marker date="1463164579086" expanded="true" signature="634:769" placeholder="INSERT INTO user... " />
-            <marker date="1463164579086" expanded="true" signature="634:799" placeholder="INSERT INTO user... " />
-            <marker date="1463164579086" expanded="true" signature="858:955" placeholder="SELECT * FRO... user" />
+            <marker date="1463234805788" expanded="true" signature="737:832" placeholder="..." />
+            <marker date="1463234805788" expanded="true" signature="834:845" placeholder="SELECT usr.p... " />
+            <marker date="1463234805788" expanded="true" signature="834:1078" placeholder="SELECT usr.u... " />
+            <marker date="1463234805788" expanded="true" signature="834:1079" placeholder="SELECT usr.u... " />
+            <marker date="1463234805788" expanded="true" signature="834:1103" placeholder="SELECT usr.u... " />
+            <marker date="1463234805788" expanded="true" signature="834:1104" placeholder="SELECT usr.u... " />
+            <marker date="1463234805788" expanded="true" signature="834:1105" placeholder="SELECT usr.u... " />
+            <marker date="1463234805788" expanded="true" signature="1552:1720" placeholder="SELECT nws.n... news" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/create_room.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="29">
+          <caret line="18" column="68" selection-start-line="18" selection-start-column="68" selection-end-line="18" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/list-room.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
+          <folding>
+            <marker date="1463235793980" expanded="true" signature="528:577" placeholder="SELECT * FRO... room" />
+            <marker date="1463235793980" expanded="true" signature="1097:1160" placeholder="SELECT COUNT... user_has_room" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/site/get-message.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1463134510494" expanded="true" signature="128:210" placeholder="SELECT pseud... chat_messages" />
+            <marker date="1463134510494" expanded="true" signature="555:613" placeholder="SELECT pseud... ancien_message" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/site/inscription.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="39" column="31" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
+          <folding>
+            <marker date="1463235990246" expanded="true" signature="402:453" placeholder="SELECT * FRO... user" />
+            <marker date="1463235990246" expanded="true" signature="634:799" placeholder="INSERT INTO user... " />
+            <marker date="1463235990246" expanded="true" signature="858:955" placeholder="SELECT * FRO... user" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/site/join_game.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1463135615334" expanded="true" signature="280:365" placeholder="INSERT INTO user_has_room... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/site/new_game.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="458">
+          <caret line="37" column="27" selection-start-line="37" selection-start-column="27" selection-end-line="37" selection-end-column="27" />
+          <folding>
+            <marker date="1463236131535" expanded="true" signature="520:692" placeholder="INSERT INTO room... " />
+            <marker date="1463236131535" expanded="true" signature="883:912" placeholder="SELECT MAX(r... room" />
+            <marker date="1463236131535" expanded="true" signature="1020:1105" placeholder="INSERT INTO user_has_room... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/site/post.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-119">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1463134510509" expanded="true" signature="90:192" placeholder="INSERT INTO chat_messages... " />
+            <marker date="1463134510509" expanded="true" signature="452:503" placeholder="SELECT * FRO... chat_messages" />
+            <marker date="1463134510509" expanded="true" signature="648:719" placeholder="INSERT INTO ancien_message... " />
+            <marker date="1463134510509" expanded="true" signature="874:923" placeholder="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/site/verif_connexion.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="429">
+          <caret line="44" column="28" selection-start-line="44" selection-start-column="28" selection-end-line="44" selection-end-column="28" />
+          <folding>
+            <marker date="1463236173760" expanded="true" signature="387:474" placeholder="SELECT * FRO... user" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/site/connexion.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="40" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/site/log.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="473">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding>
+            <marker date="1463236568023" expanded="true" signature="392:489" placeholder="SELECT * FRO... user" />
+            <marker date="1463236568023" expanded="true" signature="1073:1137" placeholder="UPDATE user " />
+            <marker date="1463236568023" expanded="true" signature="1378:1494" placeholder="SELECT * FRO... user" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/include/navigation.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="74" selection-start-line="27" selection-start-column="74" selection-end-line="27" selection-end-column="74" />
+        <state relative-caret-position="56">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
           <folding>
-            <marker date="1463164636808" expanded="true" signature="924:1045" placeholder="SELECT * FRO... user_has_room" />
-            <marker date="1463164636808" expanded="true" signature="924:1069" placeholder="SELECT * FRO... user_has_room" />
-            <marker date="1463164636808" expanded="true" signature="924:1070" placeholder="SELECT * FRO... user_has_room" />
+            <marker date="1463236782345" expanded="true" signature="955:1076" placeholder="SELECT * FRO... user_has_room" />
+            <marker date="1463236782345" expanded="true" signature="955:1100" placeholder="SELECT * FRO... user_has_room" />
+            <marker date="1463236782345" expanded="true" signature="955:1101" placeholder="SELECT * FRO... user_has_room" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/list-room.php">
+    <entry file="file://$PROJECT_DIR$/php/site/logout.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="38" column="91" selection-start-line="38" selection-start-column="91" selection-end-line="38" selection-end-column="91" />
+        <state relative-caret-position="119">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="8" selection-end-column="39" />
           <folding>
-            <marker date="1463165081845" expanded="true" signature="523:572" placeholder="SELECT * FRO... room" />
-            <marker date="1463165081845" expanded="true" signature="1054:1117" placeholder="SELECT COUNT... user_has_room" />
+            <marker date="1463236115495" expanded="true" signature="71:113" placeholder="UPDATE user " />
+            <marker date="1463236115495" expanded="true" signature="71:137" placeholder="UPDATE user " />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/login.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="37" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/room.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="95" column="63" selection-start-line="95" selection-start-column="61" selection-end-line="95" selection-end-column="63" />
+          <folding>
+            <marker date="1463235930005" expanded="true" signature="709:795" placeholder="SELECT * FRO... room" />
+            <marker date="1463235930005" expanded="true" signature="709:839" placeholder="SELECT * FRO... room" />
+            <marker date="1463235930005" expanded="true" signature="709:843" placeholder="SELECT * FRO... room" />
+            <marker date="1463235930005" expanded="true" signature="709:844" placeholder="SELECT * FRO... room" />
+            <marker date="1463235930005" expanded="true" signature="709:864" placeholder="SELECT * FRO... room" />
+            <marker date="1463235930005" expanded="true" signature="709:865" placeholder="SELECT * FRO... room" />
+            <marker date="1463235930005" expanded="true" signature="709:867" placeholder="SELECT * FRO... room" />
+            <marker date="1463235930005" expanded="true" signature="937:955" placeholder="..." />
+            <marker date="1463235930005" expanded="true" signature="975:994" placeholder="..." />
+            <marker date="1463235930005" expanded="true" signature="1122:1144" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="56" column="35" selection-start-line="56" selection-start-column="35" selection-end-line="56" selection-end-column="35" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -19,7 +19,7 @@ if (isset($_COOKIE['pseudo']) && isset($_COOKIE['password']) && !isset($_SESSION
         $_SESSION['usr_id'] = $user['usr_id'];
         $_SESSION['pseudo'] = $pseudo;
         $_SESSION['password'] = $mdp;
-        //header('Location: ../www/acceuil.php');
+        //header('Location: ../../www/acceuil.php');
     }
 
 }
@@ -42,7 +42,7 @@ else if (!isset($_COOKIE['pseudo']) && !isset($_COOKIE['password']) && isset($_S
 
 //Si n'y les sessions, n'y les cookies ne sont renseignés nous considérons cela comme une fraude
 else if (!isset($_COOKIE['pseudo']) && !isset($_COOKIE['password']) && !isset($_SESSION['pseudo']) && !isset($_SESSION['password'])) {
-    header('Location: ../www/login.php');
+    header('Location: ../../www/login.php');
 }
 //Dans le cas où les cookies et les session sont renseignés, nous ne faisons rien
 ?>

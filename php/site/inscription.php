@@ -31,12 +31,12 @@
 		else{
 			//Nom d'utilisateur déjà existant.
 			//TODO Redirigé vers formulaire inscription
-			header('Location: ../www/login.php');
+			header('Location: ../../www/login.php');
 		}
 	}
 	else{
 		//Formulaire incomlet
 		//TODO Redirigé vers formulaire inscription
-		header('Location: ../www/login.php');
+		header('Location: ../../www/login.php');
 	}
 ?>

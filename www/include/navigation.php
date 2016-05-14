@@ -4,11 +4,11 @@
 		session_start();
 	}
 
-	include "../php/connexion.php";
+	include "../php/site/connexion.php";
 ?>
 
 <nav id="top_navigation">
-	<img id="logo_risk" src="images/logo_risk.png"/>
+	<a href="acceuil.php"><img id="logo_risk" src="images/logo_risk.png"/></a>
 	<a href="#"><img class="icon_menu" src="images/profil.png" onmouseover="this.src='images/profil_hover.png'" onmouseout="this.src='images/profil.png'"/></a>
 	<a href="#"><img class="icon_menu" src="images/stats.png" onmouseover="this.src='images/stats_hover.png'" onmouseout="this.src='images/stats.png'"/></a>
 	<a href="#"><img class="icon_menu" src="images/news.png" onmouseover="this.src='images/news_hover.png'" onmouseout="this.src='images/news.png'"/></a>
@@ -30,5 +30,5 @@
 		</table>
 	</div>
 	<?php } ?>
-	<a href="../php/logout.php">Déconnexion</a>
+	<a href="../php/site/logout.php">Déconnexion</a>
 </nav>

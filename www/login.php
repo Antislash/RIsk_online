@@ -10,11 +10,17 @@
 		<title>MAP</title>
 	</head>
 	<body>
+		<?php
+			//Destruction des cookies
+			setcookie('pseudo',NULL,time()-3600);
+			setcookie('password',NULL,time()-3600);
+		?>
 		<nav id="top_navigation">
 			<img id="logo_risk" src="images/logo_risk.png"/>
 			<div id="table_login">
 				<table>
-					<form method="post" action="../php/log.php">
+					<!-- Formulaire de connexion-->
+					<form method="post" action="../php/site/log.php">
 						<tr>
 							<td>Identifiant:</td>
 							<td colspan="2">Mot de passe:</td>
@@ -29,9 +35,10 @@
 			</div>
 		</nav>
 		<div class="bloc" id="table_signin">
-				
+
+			<!--Bloc d'inscription-->
 			<h2>INSCRIPTION</h2>		
-			<form method="post" action="../php/inscription.php" onSubmit="return checkRegistration(this)">
+			<form method="post" action="../php/site/inscription.php" onSubmit="return checkRegistration(this)">
 
 					<table>
 						<tr>

@@ -12,9 +12,9 @@ if (isset($_POST['connexionPseudo']) && isset($_POST['connexionPassword'])) {
     //On vérifie en base de données
     $user = $bdd->query("SELECT * FROM user WHERE usr_pseudo = '" . $pseudo . "' AND usr_password = '" . md5($password)."'");
     $user = $user->fetch();
-
+    var_dump($user);
     if($user == false){
-        echo "Problème de connexion a la base de données";
+        echo "Problème de connexion a la base de données 1";
     }
 
     //On vérifie que l'utilisateur est bien présent et qu'il n'est pas présent plusieurs fois
@@ -29,10 +29,12 @@ if (isset($_POST['connexionPseudo']) && isset($_POST['connexionPassword'])) {
         //On met le statut du joueur en ligne
         $bdd->exec("UPDATE user SET code_sta = 'on' WHERE usr_pseudo = '".$pseudo."'");
         //Redirection vers la page d'accueil
-        header('Location: ../www/acceuil.php');
+        header('Location: ../../www/acceuil.php');
     }
 
-} //Connexion par le formulaire d'inscription
+}
+
+//Connexion par le formulaire d'inscription
 else if (isset($_SESSION['pseudo']) && isset($_SESSION['password'])) {
 
     $select = "SELECT * FROM user WHERE usr_pseudo = '" . $_SESSION['pseudo'] . "' AND usr_password = '" . $_SESSION['password']."'";
@@ -46,14 +48,14 @@ else if (isset($_SESSION['pseudo']) && isset($_SESSION['password'])) {
 
     if ($user['usr_pseudo'] != null) {
         //TODO Rediriger l'utilisateur sur la page d'accueil
-        header('Location: ../www/acceuil.php');
+        header('Location: ../../www/acceuil.php');
     }
     else{
         //TODO Rediriger l'utilisateur sur la page de login
-        header('Location: ../www/login.php');
+        header('Location: ../../www/login.php');
     }
 }
 else{
-    header('Location: ../www/login.php');
+    header('Location: ../../www/login.php');
 }
 ?>

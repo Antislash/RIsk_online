@@ -30,7 +30,7 @@ function request(callback) {
         }
     };
  var action  = encodeURIComponent('new');
-   xhr.open("GET", "../php/get-message.php?action=" + action, true);
+   xhr.open("GET", "../php/site/get-message.php?action=" + action, true);
     xhr.send(null);   
 }
  
@@ -54,7 +54,7 @@ function post() {
         }
     };
     var msg = encodeURIComponent(document.getElementById("barre-msg").value);
-      xhr.open("GET", "../php/post.php?message=" + msg, true);
+      xhr.open("GET", "../php/site/post.php?message=" + msg, true);
       xhr.send(null);
 	  
       document.getElementById("barre-msg").value = '';

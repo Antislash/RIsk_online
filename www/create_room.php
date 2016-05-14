@@ -15,8 +15,8 @@ session_start();
 <body>
 <?php include('include/navigation.php');?>
 <?php include('include/notif.php');?>
-<?php include('../php/connexion.php');$image = "images/avatar.png";?>
-<div class="bloc" id="room"><form method="post" action="../php/new_game.php" >
+<?php include('../php/site/connexion.php');$image = "images/avatar.png";?>
+<div class="bloc" id="room"><form method="post" action="../php/site/new_game.php" >
         <table class="options">
             <tr>
                 <td colspan="2">

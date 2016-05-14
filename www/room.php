@@ -16,8 +16,10 @@ session_start();
 		<?php
 			include('include/navigation.php');
 			include('include/notif.php');
-			include('../php/connexion.php');
+			include('../php/site/connexion.php');
 			$image = "images/avatar.png";
+
+			//On récupére les informations d'une room
 			$room = $bdd->query("SELECT * FROM room rm INNER JOIN user_has_room uhr ON rm.room_id = uhr.id_room  WHERE rm.statut_room= 'en cours' AND uhr.id_user ='". $_SESSION['usr_id']."'");
 			$room = $room->fetch();
 		?>

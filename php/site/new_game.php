@@ -9,7 +9,7 @@
   }
   else{
 
-    header('Location: ../www/create_room.php');
+    header('Location: ../../www/create_room.php');
   }
 
   function room_creation ($user_id, $bdd, $nb_joueur,$room_name, $room_mdp) {
@@ -35,6 +35,6 @@
       'user_id' => $user_id,
       ));
 
-    header('Location: ../www/room.php');
+    header('Location: ../../www/room.php');
   }
 ?>

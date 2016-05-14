@@ -8,13 +8,15 @@
 		<title>Acceuil</title>
 	</head>
 	<body>
-		<?php include('include/notif.php');
-		      include('../php/connexion.php');
+		<?php include('include/notif.php'); //Permet d'afficher des notifications sur la page
+		      include('../php/site/connexion.php'); //Connexion
 			  $image = "images/avatar.png";
-		      include ('../php/verif_connexion.php');
-		      include('include/navigation.php');?>
+		      include ('../php/site/verif_connexion.php'); //Permet de vérifier que l'utilisateur posséde les variables de session et cookies
+		      include('include/navigation.php'); //Affiche la barre de navigation
+		?>
 		<div class="bloc" id="profil_home">
 			<?php
+				//Requête pour récupérer les informations d'un profil
 				$profils = $bdd->query("SELECT usr.usr_pseudo, img.img_chemin, sta.sta_nom, DATEDIFF(CURDATE(), usr.usr_date_inscription) as date FROM user usr INNER JOIN image img ON img.img_id = usr.id_img INNER JOIN statut_user sta ON sta.sta_code = usr.code_sta WHERE usr.usr_id ='".$_SESSION['usr_id']."'" );
 				$profil = $profils->fetch();
 			?>
@@ -64,7 +66,8 @@
 					<td class="stats_text">achievements</td>
 				</tr>
 			</table>
-		</div>		
+		</div>
+		<!--Bloc de contact amis-->
 		<?php include('include/contact.php');?>
 	</body>
 </html>
