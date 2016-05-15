@@ -6,7 +6,9 @@
 
     include "connexion.php";
     //Requête pour récupérer la liste de room
-    $list_room = $bdd->query("SELECT * FROM room WHERE statut_room = 'en cours'");
+    $list_room = $bdd->query("SELECT * 
+                              FROM room 
+                              WHERE statut_room = 'en cours'");
 ?>
 <table>
     <!--On affiche les room	-->

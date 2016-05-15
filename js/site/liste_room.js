@@ -1,6 +1,6 @@
 document.write("<script type='text/javascript' src='../../ajax/ajax_functions.js'></script>" );
 
-setInterval('requestRoom(readRoom)',1000);
+setInterval('requestRoom(readRoom)',700);
 
 //Instantiation de l'objet ajax
 function getXMLHttpRequest() {

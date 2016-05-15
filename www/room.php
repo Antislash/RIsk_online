@@ -20,9 +20,10 @@ session_start();
 			$image = "images/avatar.png";
 
 			//On récupére les informations d'une room
-			$room = $bdd->query("SELECT * FROM room rm 
+			$room = $bdd->query("SELECT * 
+								 FROM room rm 
 								 INNER JOIN user_has_room uhr ON rm.room_id = uhr.id_room  
-								 WHERE rm.statut_room= 'en cours' 
+								 WHERE uhr.statut_usr_room = 'in'
 								 AND uhr.id_user ='". $_SESSION['usr_id']."'");
 
 			$room = $room->fetch();
@@ -30,6 +31,9 @@ session_start();
 			if($room != false){
 				$_SESSION['room_id'] = $room['id_room'];
 			}
+
+			//On passe le status du joueur à occupé
+			$bdd->exec("UPDATE user set code_sta = 'gam' WHERE usr_id =".$_SESSION['usr_id'] );
 		?>
 
 		<div class="bloc" id="room"><form>

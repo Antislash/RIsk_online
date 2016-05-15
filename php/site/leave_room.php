@@ -68,6 +68,19 @@
                 SET code_sta='on'
                 WHERE usr_id = ".$_SESSION['usr_id']);
 
-    unset($_SESSION['room_id']);
+    //On récupére le statut de la room
+    $statut_room= $bdd->query("SELECT statut_room
+                 FROM room
+                 WHERE room_id =".$_SESSION['room_id']);
+    $statut_room = $statut_room->fetch();
+    if($statut_room != false && $statut_room['statut_room'] == 'pleine')
+    {
+        //On change le statut du joueur
+        $bdd->exec("UPDATE room
+                    SET statut_room='en cours'
+                    WHERE room_id = ".$_SESSION['room_id']);
+    }
+
+    //unset($_SESSION['room_id']);
     header('Location: ../../www/acceuil.php');
 ?>

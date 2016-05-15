@@ -19,8 +19,7 @@
 	$user = $bdd->query("SELECT * 
 						 FROM user_has_room uhr 
 						 INNER JOIN room r ON r.room_id = uhr.id_room 
-						 WHERE statut_room = 'en cours' 
-						 AND id_user='".$_SESSION['usr_id']."'
+						 WHERE id_user='".$_SESSION['usr_id']."'
 						 AND statut_usr_room = 'in'");
 	$user = $user->fetch();
 

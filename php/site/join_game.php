@@ -34,10 +34,25 @@
                         WHERE id_room= ".$id_room."
                         AND id_user=".$user_id);
         }
+        
+        //On vérifie si la room est pleine
+        $limit_joueur = $bdd->query("SELECT room_nb_joueur
+                                     FROM room
+                                     WHERE room_id = ". $id_room);
+        $limit_joueur = $limit_joueur->fetch();
 
+        $nb_joueur = $bdd->query("SELECT COUNT(*) as nb
+                                  FROM user_has_room
+                                  WHERE statut_usr_room = 'in'
+                                  AND id_room =". $id_room);
 
-        //On passe le status du joueur à occupé
-        $bdd->exec("UPDATE user set code_sta = 'gam' WHERE usr_id =".$user_id );
+        $nb_joueur = $nb_joueur->fetch();
+
+        if($limit_joueur['room_nb_joueur'] <= $nb_joueur['nb'])
+        {
+            $bdd->exec("UPDATE room SET statut_room = 'pleine' WHERE room_id = ".$id_room);
+        }
+
 
         header('Location: ../../www/room.php');
     }

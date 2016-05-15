@@ -37,9 +37,6 @@
       'user_id' => $user_id,
       ));
 
-    //On passe le status du joueur à occupé
-    $bdd->exec("UPDATE user set code_sta = 'gam' WHERE usr_id =".$user_id );
-
     header('Location: ../../www/room.php');
   }
 ?>

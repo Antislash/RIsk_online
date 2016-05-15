@@ -1,5 +1,6 @@
 setInterval('requestChat(readMessage)',500);
 setInterval('requestListeJoueur(affichageListeJoueur)',700);
+setInterval('verifierRoom()',2000);
 
 //Instantiation de l'objet ajax
 function getXMLHttpRequest() {
@@ -52,7 +53,7 @@ function readMessage(sData) {
 //Méthode pour enregistrer les message en base de données
 function saveMessage() {
   var xhr = getXMLHttpRequest();
-     
+
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
             callback(xhr.responseText);
@@ -62,7 +63,7 @@ function saveMessage() {
     var msg = encodeURIComponent(document.getElementById("barre-msg").value);
       xhr.open("GET", "../php/site/save_chat_room.php?message=" + msg, true);
       xhr.send(null);
-	  
+
       document.getElementById("barre-msg").value = '';
 }
 
@@ -85,3 +86,19 @@ function affichageListeJoueur(data){
         document.getElementById('liste_joueur').innerHTML = data;
     }
 }
+
+// function verifierRoom(callback){
+//     var xhr = getXMLHttpRequest();
+//
+//     xhr.onreadystatechange = function() {
+//         if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+//             callback(xhr.responseText);
+//             write(msg);
+//         }
+//     };
+//     var msg = encodeURIComponent(document.getElementById("barre-msg").value);
+//     xhr.open("GET", "../php/site/save_chat_room.php?message=" + msg, true);
+//     xhr.send(null);
+//
+//     document.getElementById("barre-msg").value = '';
+// }
