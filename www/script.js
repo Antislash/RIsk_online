@@ -1,3 +1,7 @@
+setInterval('request(readData)',500);
+setInterval('requestListeJoueur(affichageListeJoueur)',700);
+
+//Instantiation de l'objet ajax
 function getXMLHttpRequest() {
     var xhr = null;
      
@@ -19,9 +23,10 @@ function getXMLHttpRequest() {
     return xhr;
 }
 
+//Requête pour demander les message
 function request(callback) {
     var xhr = getXMLHttpRequest();
-     
+
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
             
@@ -33,8 +38,9 @@ function request(callback) {
    xhr.open("GET", "../php/site/get-message.php?action=" + action, true);
     xhr.send(null);   
 }
- 
-function readData(sData) {    
+
+//Méthode pour afficher les message reçu
+function readData(sData) {
     if (sData.length > 0) {
 	document.getElementById('chat-room').innerHTML = sData;
 	}
@@ -42,8 +48,8 @@ function readData(sData) {
 	document.getElementById('chat-room').innerHTML = '<center><b>Pas de messages pour le moment.</b></center>';
 	}
 }
-setInterval('request(readData)',500);
 
+//Méthode pour enregistrer les message en base de données
 function post() {
   var xhr = getXMLHttpRequest();
      
@@ -58,4 +64,24 @@ function post() {
       xhr.send(null);
 	  
       document.getElementById("barre-msg").value = '';
+}
+
+//Affiche la liste des joueurs
+function requestListeJoueur(callback) {
+    var xhr = getXMLHttpRequest();
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+            callback(xhr.responseText);
+        }
+    };
+    var msg = encodeURIComponent(document.getElementById("barre-msg").value);
+    xhr.open("GET", "../php/site/liste_joueur_room.php", true);
+    xhr.send(null);
+}
+
+function affichageListeJoueur(data){
+    if(data.length > 0){
+        document.getElementById('liste_joueur').innerHTML = data;
+    }
 }

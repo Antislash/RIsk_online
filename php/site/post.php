@@ -4,11 +4,12 @@ session_start();
 include "connexion.php";
 
 delete_msg($bdd);
-$req = $bdd->prepare('INSERT INTO chat_messages (pseudo, message_text, timestamp) VALUES(:pseudo, :message_text, :timestamp)');
+$req = $bdd->prepare('INSERT INTO chat_messages (pseudo, message_text, timestamp, message_room_id) VALUES(:pseudo, :message_text, :timestamp, :room_id)');
 $req->execute(array(
   'pseudo' => $_SESSION['pseudo'],
   'message_text' => $_GET['message'],
-  'timestamp' => time()
+  'timestamp' => time(),
+    'room_id' => $_SESSION['room_id']
 ));
 //header('Location: room.php#chat-room');
 

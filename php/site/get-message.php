@@ -1,10 +1,18 @@
 <?php
+//On vérifie sur les session sont déja activées
+if(session_id() == null){
+    session_start();
+}
+
 include "connexion.php";
 
 header("Content-Type: text/plain");
 
 if($_GET['action'] == 'new') {
-    $reponse = $bdd->query('SELECT pseudo, message_text FROM chat_messages ORDER BY message_id ASC LIMIT 0, 50');
+    $reponse = $bdd->query("SELECT pseudo, message_text 
+                            FROM chat_messages 
+                            WHERE message_room_id=".$_SESSION['room_id']."
+                            ORDER BY message_id ASC LIMIT 0, 50");
 
 
     while ($donnees = $reponse->fetch())
@@ -19,7 +27,10 @@ if($_GET['action'] == 'new') {
 }
 
 if ($_GET['action'] == 'anc') {
-  $reponse_2 = $bdd->query('SELECT pseudo, message FROM ancien_message ORDER BY id ASC ');
+  $reponse_2 = $bdd->query("SELECT pseudo, message 
+                            FROM ancien_message 
+                            WHERE message_room_id=".$_SESSION['room_id']."
+                            ORDER BY id ASC ");
 
 
     while ($donnees_2 = $reponse_2->fetch())
