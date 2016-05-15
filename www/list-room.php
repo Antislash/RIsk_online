@@ -25,7 +25,7 @@
 					<?php while($room = $list_room->fetch(PDO::FETCH_ASSOC)){ ?>
 						<tr>
 							<td class="room-date">
-								<a href="#"><?php echo $room['room_date_creation']; ?></a>
+								<a href="../php/site/join_game.php?room_id=<?php echo $room['room_id']; ?>"><?php echo $room['room_date_creation']; ?></a>
 							</td>
 
 							<td class="room-name">
@@ -34,7 +34,10 @@
 							<td class="room-nb">
 								<?php
 								//On récupére le nombre de joueur pour cette room
-								$nb_joueur = $bdd->query("SELECT COUNT(*) AS nbJoueur FROM user_has_room WHERE id_room = ". $room['room_id']);
+								$nb_joueur = $bdd->query("SELECT COUNT(*) AS nbJoueur 
+														  FROM user_has_room 
+														  WHERE statut_usr_room = 'in'
+														  AND id_room = ". $room['room_id']);
 								$nb_joueur = $nb_joueur->fetch();
 
 								//On affiche le nombre de joueur / nombre de joueur max

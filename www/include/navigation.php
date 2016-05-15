@@ -7,7 +7,8 @@
 	include "../php/site/connexion.php";
 ?>
 
-<nav id="top_navigation">
+
+<nav id="top_navigation" onBeforeUnload="return confirm('sur?');" onUnload="alert('ok');">
 	<a href="acceuil.php"><img id="logo_risk" src="images/logo_risk.png"/></a>
 	<a href="#"><img class="icon_menu" src="images/profil.png" onmouseover="this.src='images/profil_hover.png'" onmouseout="this.src='images/profil.png'"/></a>
 	<a href="#"><img class="icon_menu" src="images/stats.png" onmouseover="this.src='images/stats_hover.png'" onmouseout="this.src='images/stats.png'"/></a>
@@ -15,7 +16,12 @@
 	<a href="#"><img class="icon_menu" src="images/help.png" onmouseover="this.src='images/help_hover.png'" onmouseout="this.src='images/help.png'"/></a>
 
 	<?php //Requête pour chercher si le joueur est présent dans une room
-	$user = $bdd->query("SELECT * FROM user_has_room uhr INNER JOIN room r ON r.room_id = uhr.id_room WHERE statut_room = 'en cours' AND id_user='".$_SESSION['usr_id']."'");
+	$user = $bdd->query("SELECT * 
+						 FROM user_has_room uhr 
+						 INNER JOIN room r ON r.room_id = uhr.id_room 
+						 WHERE statut_room = 'en cours' 
+						 AND id_user='".$_SESSION['usr_id']."'
+						 AND statut_usr_room = 'in'");
 	$user = $user->fetch();
 
 		//On vérifie que le joueur n'est pas déja présent dans une room, pour afficher les bouttons de création/rejoindre partie
@@ -29,6 +35,12 @@
 			</tr>
 		</table>
 	</div>
-	<?php } ?>
+
+	<?php }else{
+			echo "<a href='room.php'>Room</a>";
+		}
+	?>
+
 	<a href="../php/site/logout.php">Déconnexion</a>
+
 </nav>

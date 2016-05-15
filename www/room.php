@@ -22,9 +22,14 @@ session_start();
 			//On récupére les informations d'une room
 			$room = $bdd->query("SELECT * FROM room rm 
 								 INNER JOIN user_has_room uhr ON rm.room_id = uhr.id_room  
-								 WHERE rm.statut_room= 'en cours' AND uhr.id_user ='". $_SESSION['usr_id']."'");
+								 WHERE rm.statut_room= 'en cours' 
+								 AND uhr.id_user ='". $_SESSION['usr_id']."'");
 
 			$room = $room->fetch();
+
+			if($room != false){
+				$_SESSION['room_id'] = $room['id_room'];
+			}
 		?>
 
 		<div class="bloc" id="room"><form>
@@ -54,6 +59,7 @@ session_start();
 							} ?>
 						</td>
 					</tr>
+					<!--
 					<?php if($room['room_password'] =! NULL ){ ?>
 						<tr>
 							<td>
@@ -64,6 +70,7 @@ session_start();
 							</td>
 						</tr>
 					<?php } ?>
+					-->
 					<tr>
 						<td>
 							Nombre de joueurs (2 - 6):
@@ -74,12 +81,15 @@ session_start();
 					</tr>
 					<?php if($room['usr_admin']){?>
 					<tr>
-						<td colspan="2">
-
+						<td >
 							<center><input class="button" type="submit" value="Lancer"/></center>
 						</td>
-					</tr>
+
 					<?php } ?>
+					<td >
+						<a href="../php/site/leave_room.php" class="button">Quitter</a>
+					</td>
+					</tr>
 				</table>
 			</form>
 			<table>
@@ -94,14 +104,11 @@ session_start();
 							<tr>
 								<?php
 									//Requête pour récupérer les informations des profils des joueurs d'une room
-									$joueurs = $bdd->query("SELECT id_img, usr_pseudo 
+									$joueurs = $bdd->query("SELECT id_img, usr_pseudo, usr_level
 															FROM `user` u
 															INNER JOIN user_has_room uhr ON uhr.id_user = u.usr_id
-															WHERE uhr.id_room= (SELECT id_room 
-																				FROM user_has_room uhr
-																				INNER JOIN room r ON r.room_id = uhr.id_room
-																				WHERE id_user =".$_SESSION['usr_id']."
-																				AND statut_room = 'en cours')");
+															WHERE statut_usr_room = 'in'
+															AND uhr.id_room=". $_SESSION['room_id']);
 
 									$saut_ligne = 0;
 									while($joueur = $joueurs->fetch(PDO::FETCH_ASSOC)){
@@ -120,7 +127,7 @@ session_start();
 																<img src="<?php echo "images/".$img['img_nom'];?>"/>
 															</td>
 															<td>
-																<span class="txt-desc"><?php echo $joueur['usr_pseudo']; ?></br>Niveau 8</span>
+																<span class="txt-desc"><?php echo $joueur['usr_pseudo']; ?></br>Niveau <?php echo $joueur['usr_level']; ?></span>
 															</td>
 														</tr>
 													</table>

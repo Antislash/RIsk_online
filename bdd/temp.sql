@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2016 at 09:40 PM
+-- Generation Time: May 13, 2016 at 09:57 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -15,10 +15,6 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
-
---
--- Database: `risk`
---
 
 -- --------------------------------------------------------
 
@@ -59,10 +55,6 @@ CREATE TABLE IF NOT EXISTS `continent` (
   PRIMARY KEY (`cnt_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
---
--- Dumping data for table `continent`
---
-
 INSERT INTO `continent` (`cnt_id`, `cnt_nom`, `cnt_nb_pays`, `cnt_nb_renfort`) VALUES
 (1, 'Europe', 7, 5),
 (2, 'Asie', 12, 7),
@@ -70,7 +62,6 @@ INSERT INTO `continent` (`cnt_id`, `cnt_nom`, `cnt_nb_pays`, `cnt_nb_renfort`) V
 (4, 'Amérique du Sud', 4, 2),
 (5, 'Afrique', 6, 3),
 (6, 'Océanie', 4, 2);
-
 -- --------------------------------------------------------
 
 --
@@ -141,7 +132,6 @@ INSERT INTO `news` (`nws_id`, `nws_titre`, `nws_contenu`, `nws_date`, `id_img`) 
 (5, 'News bon plan', 'Promo : The Division à - 25% ', '2016-03-13', 4),
 (6, 'News jeu', 'XING : The Land Beyond compatible avec le Playstation VR ', '2016-03-13', 5),
 (7, 'News culture', 'Metro 2033 : L''adaptation cinématographique hérite du producteur de 50 Shades of Grey ', '2016-03-15', 6);
-
 -- --------------------------------------------------------
 
 --
@@ -204,10 +194,6 @@ CREATE TABLE IF NOT EXISTS `pays` (
   KEY `fk_continent_id` (`continent_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=43 ;
 
---
--- Dumping data for table `pays`
---
-
 INSERT INTO `pays` (`id_pays`, `nom`, `continent_id`) VALUES
 (1, 'Grande-Bretagne', 1),
 (2, 'Islande', 1),
@@ -265,10 +251,6 @@ CREATE TABLE IF NOT EXISTS `pays1_has_pays2` (
   KEY `fk_pays1` (`id_pays1`),
   KEY `fk_pays2` (`id_pays2`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Frontière entre les pays';
-
---
--- Dumping data for table `pays1_has_pays2`
---
 
 INSERT INTO `pays1_has_pays2` (`id_pays1`, `id_pays2`) VALUES
 (1, 2),
@@ -452,15 +434,7 @@ CREATE TABLE IF NOT EXISTS `room` (
   `room_name` varchar(60) NOT NULL,
   `statut_room` varchar(15) NOT NULL,
   PRIMARY KEY (`room_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Table de définition d''une room' AUTO_INCREMENT=45 ;
-
---
--- Dumping data for table `room`
---
-
-INSERT INTO `room` (`room_id`, `room_date_creation`, `room_nb_joueur`, `room_password`, `room_name`, `statut_room`) VALUES
-(43, '2016-05-15', 4, NULL, 'test gataf', 'supprime'),
-(44, '2016-05-15', 4, NULL, 'test gataf2', 'en cours');
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Table de définition d''une room' AUTO_INCREMENT=35 ;
 
 -- --------------------------------------------------------
 
@@ -488,6 +462,8 @@ CREATE TABLE IF NOT EXISTS `stats_user` (
   KEY `fk_user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+
+
 -- --------------------------------------------------------
 
 --
@@ -500,15 +476,6 @@ CREATE TABLE IF NOT EXISTS `statut_user` (
   `sta_class` varchar(255) NOT NULL DEFAULT 'offline',
   PRIMARY KEY (`sta_code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `statut_user`
---
-
-INSERT INTO `statut_user` (`sta_code`, `sta_nom`, `sta_class`) VALUES
-('gam', 'Occupé', 'ingame'),
-('off', 'Hors Ligne', 'offline'),
-('on', 'En Ligne', 'online');
 
 -- --------------------------------------------------------
 
@@ -524,28 +491,23 @@ CREATE TABLE IF NOT EXISTS `user` (
   `usr_date_inscription` date DEFAULT NULL,
   `id_img` int(11) DEFAULT '1',
   `code_sta` varchar(40) DEFAULT 'off' COMMENT '(ex: en ligne ...)',
-  `usr_level` int(4) DEFAULT NULL,
   PRIMARY KEY (`usr_id`),
   KEY `fk_statut` (`code_sta`),
   KEY `fk_image_id` (`id_img`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`usr_id`, `usr_pseudo`, `usr_password`, `usr_email`, `usr_date_inscription`, `id_img`, `code_sta`, `usr_level`) VALUES
-(2, 'Mathilde', '2226544ec104d654102a154fb4c2de52', NULL, '2016-01-05', 3, 'gam', 1),
-(3, 'Luc', '893785018d20a58cf029e2e9fa6aacf8', NULL, '2016-03-11', 1, 'off', 1),
-(4, 'Vivien', 'f7d71c05a57c4f4300601662e5eba4ae', NULL, '2015-11-16', 4, 'on', 1),
-(5, 'Ali', '7a9b46ab6d983a85dd4d9a1aa64a3945', NULL, '2016-03-01', 1, 'on', 1),
-(6, 'Max', '6a061313d22e51e0f25b7cd4dc065233', NULL, '2016-03-08', 5, 'off', 1),
-(11, 'gataf', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-11', 1, 'on', 1),
-(12, 'test', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-11', 1, 'off', 1),
-(14, 'patrick', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-15', 1, 'on', 1),
-(15, 'caf', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-15', 1, 'off', 1),
-(16, 'p', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-15', 1, 'off', 0),
-(17, 't', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-15', 1, 'off', 0);
+INSERT INTO `user` (`usr_id`, `usr_pseudo`, `usr_password`, `usr_email`, `usr_date_inscription`, `id_img`, `code_sta`) VALUES
+(2, 'Mathilde', '2226544ec104d654102a154fb4c2de52', NULL, '2016-01-05', 3, 'gam'),
+(3, 'Luc', '893785018d20a58cf029e2e9fa6aacf8', NULL, '2016-03-11', NULL, 'off'),
+(4, 'Vivien', 'f7d71c05a57c4f4300601662e5eba4ae', NULL, '2015-11-16', 4, 'on'),
+(5, 'Ali', '7a9b46ab6d983a85dd4d9a1aa64a3945', NULL, '2016-03-01', 1, 'on'),
+(6, 'Max', '6a061313d22e51e0f25b7cd4dc065233', NULL, '2016-03-08', 5, 'off'),
+(11, 'gataf', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-11', 1, 'on'),
+(12, 'test', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-11', 1, 'on');
 
 -- --------------------------------------------------------
 
@@ -560,7 +522,6 @@ CREATE TABLE IF NOT EXISTS `user1_has_user2` (
   KEY `fk_id_user1` (`id_usr1`),
   KEY `fk_id_user2` (`id_usr2`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Table pour les liens d''amitié';
-
 --
 -- Dumping data for table `user1_has_user2`
 --
@@ -574,7 +535,6 @@ INSERT INTO `user1_has_user2` (`id_usr1`, `id_usr2`) VALUES
 (4, 2),
 (4, 3),
 (6, 2);
-
 -- --------------------------------------------------------
 
 --
@@ -585,20 +545,10 @@ CREATE TABLE IF NOT EXISTS `user_has_room` (
   `id_room` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `usr_admin` tinyint(1) NOT NULL,
-  `statut_usr_room` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id_room`,`id_user`),
   KEY `fk_id_room` (`id_room`),
   KEY `fk_id_user` (`id_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `user_has_room`
---
-
-INSERT INTO `user_has_room` (`id_room`, `id_user`, `usr_admin`, `statut_usr_room`) VALUES
-(43, 11, 0, 'out'),
-(44, 11, 1, 'in'),
-(44, 14, 0, 'out');
 
 --
 -- Constraints for dumped tables
@@ -661,7 +611,6 @@ ALTER TABLE `stats_user`
 -- Constraints for table `user`
 --
 ALTER TABLE `user`
-  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`code_sta`) REFERENCES `statut_user` (`sta_code`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `user_ibfk_2` FOREIGN KEY (`id_img`) REFERENCES `image` (`img_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --

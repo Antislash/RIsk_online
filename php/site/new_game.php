@@ -17,8 +17,9 @@
     if(empty($room_mdp)) {
       $room_mdp = NULL;
     }
-
-      $room = $bdd->prepare("INSERT INTO room (room_date_creation, room_nb_joueur, room_name,room_password, statut_room) VALUES (CURRENT_TIMESTAMP(), :nb_joueur, :room_name, :room_password, 'en cours')");
+      //On créer la room
+      $room = $bdd->prepare("INSERT INTO room (room_date_creation, room_nb_joueur, room_name,room_password, statut_room) 
+                            VALUES (CURRENT_TIMESTAMP(), :nb_joueur, :room_name, :room_password, 'en cours')");
       $room->execute(array(
           'nb_joueur' => $nb_joueur,
           'room_name' => $room_name,
@@ -29,13 +30,16 @@
     $max_room_id->execute();
     $room_id = $max_room_id->fetch();
 
-    $user_has_room = $bdd->prepare("INSERT INTO user_has_room (id_room, id_user,usr_admin) VALUES (:room_id, :user_id, 1)");
+    //On lie la room au joueur
+    $user_has_room = $bdd->prepare("INSERT INTO user_has_room (id_room, id_user,usr_admin, statut_usr_room) VALUES (:room_id, :user_id, 1, 'in')");
     $user_has_room->execute(array(
       'room_id' => $room_id[0],
       'user_id' => $user_id,
       ));
-    
-    
+
+    //On passe le status du joueur à occupé
+    $bdd->exec("UPDATE user set code_sta = 'gam' WHERE usr_id =".$user_id );
+
     header('Location: ../../www/room.php');
   }
 ?>

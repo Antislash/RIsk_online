@@ -17,21 +17,27 @@
 		<div class="bloc" id="profil_home">
 			<?php
 				//Requête pour récupérer les informations d'un profil
-				$profils = $bdd->query("SELECT usr.usr_pseudo, img.img_chemin, sta.sta_nom, DATEDIFF(CURDATE(), usr.usr_date_inscription) as date FROM user usr INNER JOIN image img ON img.img_id = usr.id_img INNER JOIN statut_user sta ON sta.sta_code = usr.code_sta WHERE usr.usr_id ='".$_SESSION['usr_id']."'" );
+				$profils = $bdd->query("SELECT usr.usr_pseudo, img.img_chemin, sta.sta_nom, DATEDIFF(CURDATE(), usr.usr_date_inscription) as date, usr_level
+										FROM user usr INNER JOIN image img ON img.img_id = usr.id_img 
+										INNER JOIN statut_user sta ON sta.sta_code = usr.code_sta 
+										WHERE usr.usr_id ='".$_SESSION['usr_id']."'" );
 				$profil = $profils->fetch();
 			?>
 			<img id="avatar" src="<?php echo $image;?>"/>
 			<div id="profil_infos">
 				<h2><?php echo $profil['usr_pseudo'];?></h2>
 				Membre depuis <?php echo $profil['date'];?> jours <br/>
-				Niveau <?php echo "8";?><br/>
+				Niveau <?php echo $profil['usr_level'];;?><br/>
 				<span id="status_profil"><?php echo $profil["sta_nom"];?></span><br/>
 			</div>
 		</div>
 		<div class="bloc" id="news_home">
 			<h2>Actualités</h2>
 			<?php
-				$news = $bdd->query('SELECT nws.nws_id, img.img_chemin, nws.nws_date, nws.nws_contenu, nws.nws_titre FROM news nws INNER JOIN image img ON img.img_id = nws.id_img ORDER BY nws.nws_date desc');
+				$news = $bdd->query('SELECT nws.nws_id, img.img_chemin, nws.nws_date, nws.nws_contenu, nws.nws_titre 
+									 FROM news nws 
+									 INNER JOIN image img ON img.img_id = nws.id_img 
+									 ORDER BY nws.nws_date desc');
 				$i = 0;
 				while($new = $news->fetch()){
 					if($i == 0){

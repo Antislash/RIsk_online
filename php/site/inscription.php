@@ -16,8 +16,8 @@
 		if($user['usr_pseudo'] == null){
 			//l'user n'existe pas
 			//TODO inscrire le joueur
-			$insert = "INSERT INTO user (usr_pseudo, usr_password, usr_email, usr_date_inscription, id_img,code_sta) 
-					    VALUES ('".$pseudo."','". md5($password)."', NULL,CURDATE(), 1, 'on'  )";
+			$insert = "INSERT INTO user (usr_pseudo, usr_password, usr_email, usr_date_inscription, id_img,code_sta,usr_level) 
+					    VALUES ('".$pseudo."','". md5($password)."', NULL,CURDATE(), 1, 'on',0  )";
 			$req = $bdd->exec($insert);
 
 			$user = $bdd->query("SELECT * FROM user WHERE usr_pseudo = '" . $pseudo . "' AND usr_password = '" . md5($password)."'");
