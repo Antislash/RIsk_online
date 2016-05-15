@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="29c69774-bbb5-4715-837f-b80a351a14c6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/php/site/liste_joueur_room.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/php/site/get-message.php" afterPath="$PROJECT_DIR$/php/site/get-message.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/php/site/post.php" afterPath="$PROJECT_DIR$/php/site/post.php" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/php/site/post.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/www/script.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/room.php" afterPath="$PROJECT_DIR$/www/room.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/script.js" afterPath="$PROJECT_DIR$/www/script.js" />
     </list>
     <ignored path="RIsk_online.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -57,23 +54,28 @@
       <file leaf-file-name="room.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/room.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1614">
-              <caret line="103" column="28" selection-start-line="103" selection-start-column="28" selection-end-line="103" selection-end-column="28" />
+            <state relative-caret-position="204">
+              <caret line="12" column="59" selection-start-line="12" selection-start-column="59" selection-end-line="12" selection-end-column="59" />
               <folding>
-                <marker date="1463348768496" expanded="true" signature="709:895" placeholder="SELECT * FRO... room" />
-                <marker date="1463348768496" expanded="true" signature="2406:2434" placeholder="..." />
-                <marker date="1463348768496" expanded="true" signature="2416:2434" placeholder="..." />
+                <marker date="1463350375014" expanded="true" signature="718:904" placeholder="SELECT * FRO... room" />
+                <marker date="1463350375014" expanded="true" signature="2408:2436" placeholder="..." />
+                <marker date="1463350375014" expanded="true" signature="2418:2436" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="script.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/script.js">
+      <file leaf-file-name="save_chat_room.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/php/site/save_chat_room.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
-              <caret line="25" column="35" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
-              <folding />
+            <state relative-caret-position="156">
+              <caret line="11" column="35" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
+              <folding>
+                <marker date="1463350410986" expanded="true" signature="90:219" placeholder="INSERT INTO chat_messages... " />
+                <marker date="1463350410986" expanded="true" signature="516:567" placeholder="SELECT * FRO... chat_messages" />
+                <marker date="1463350410986" expanded="true" signature="712:783" placeholder="INSERT INTO ancien_message... " />
+                <marker date="1463350410986" expanded="true" signature="938:987" placeholder="DELETE FROM " />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -91,22 +93,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="post.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/php/site/post.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
-              <folding>
-                <marker date="1463349264399" expanded="true" signature="90:219" placeholder="INSERT INTO chat_messages... " />
-                <marker date="1463349264399" expanded="true" signature="518:569" placeholder="SELECT * FRO... chat_messages" />
-                <marker date="1463349264399" expanded="true" signature="714:785" placeholder="INSERT INTO ancien_message... " />
-                <marker date="1463349264399" expanded="true" signature="940:989" placeholder="DELETE FROM " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="get-message.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="get-message.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/php/site/get-message.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="493">
@@ -194,11 +181,12 @@
         <option value="$PROJECT_DIR$/js/fermeture.js" />
         <option value="$PROJECT_DIR$/www/include/navigation.php" />
         <option value="$PROJECT_DIR$/php/site/leave_room.php" />
-        <option value="$PROJECT_DIR$/www/room.php" />
-        <option value="$PROJECT_DIR$/www/script.js" />
         <option value="$PROJECT_DIR$/php/site/post.php" />
         <option value="$PROJECT_DIR$/php/site/liste_joueur_room.php" />
         <option value="$PROJECT_DIR$/php/site/get-message.php" />
+        <option value="$PROJECT_DIR$/www/script.js" />
+        <option value="$PROJECT_DIR$/www/room.php" />
+        <option value="$PROJECT_DIR$/php/site/save_chat_room.php" />
       </list>
     </option>
   </component>
@@ -402,21 +390,22 @@
       <workItem from="1463079578459" duration="22629000" />
       <workItem from="1463164517637" duration="6381000" />
       <workItem from="1463250157113" duration="98000" />
-      <workItem from="1463250581127" duration="20912000" />
+      <workItem from="1463250581127" duration="21327000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70463000" />
+    <option name="totallyTimeSpent" value="70878000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13909224" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15080526" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.055205047" sideWeight="0.52342606" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09621451" sideWeight="0.47657394" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -427,7 +416,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28706625" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15299684" sideWeight="0.47657394" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -469,7 +457,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/php/inscription.php" />
     <entry file="file://$PROJECT_DIR$/serveur/connexion.php" />
     <entry file="file://$PROJECT_DIR$/www/acceuil.html" />
     <entry file="file://$PROJECT_DIR$/www/login.html" />
@@ -718,26 +705,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="25" column="35" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/room.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1614">
-          <caret line="103" column="28" selection-start-line="103" selection-start-column="28" selection-end-line="103" selection-end-column="28" />
-          <folding>
-            <marker date="1463348768496" expanded="true" signature="709:895" placeholder="SELECT * FRO... room" />
-            <marker date="1463348768496" expanded="true" signature="2406:2434" placeholder="..." />
-            <marker date="1463348768496" expanded="true" signature="2416:2434" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/php/site/liste_joueur_room.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -766,12 +733,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
-          <folding>
-            <marker date="1463349264399" expanded="true" signature="90:219" placeholder="INSERT INTO chat_messages... " />
-            <marker date="1463349264399" expanded="true" signature="518:569" placeholder="SELECT * FRO... chat_messages" />
-            <marker date="1463349264399" expanded="true" signature="714:785" placeholder="INSERT INTO ancien_message... " />
-            <marker date="1463349264399" expanded="true" signature="940:989" placeholder="DELETE FROM " />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -786,6 +748,39 @@
             <marker date="1463349817344" expanded="true" signature="786:909" placeholder="SELECT pseud... ancien_message" />
             <marker date="1463349817344" expanded="true" signature="786:977" placeholder="SELECT pseud... ancien_message" />
             <marker date="1463349817344" expanded="true" signature="786:1055" placeholder="SELECT pseud... ancien_message" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-681">
+          <caret line="0" column="36" selection-start-line="0" selection-start-column="36" selection-end-line="0" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/room.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="59" selection-start-line="12" selection-start-column="59" selection-end-line="12" selection-end-column="59" />
+          <folding>
+            <marker date="1463350375014" expanded="true" signature="718:904" placeholder="SELECT * FRO... room" />
+            <marker date="1463350375014" expanded="true" signature="2408:2436" placeholder="..." />
+            <marker date="1463350375014" expanded="true" signature="2418:2436" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/site/save_chat_room.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="11" column="35" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
+          <folding>
+            <marker date="1463350410986" expanded="true" signature="90:219" placeholder="INSERT INTO chat_messages... " />
+            <marker date="1463350410986" expanded="true" signature="516:567" placeholder="SELECT * FRO... chat_messages" />
+            <marker date="1463350410986" expanded="true" signature="712:783" placeholder="INSERT INTO ancien_message... " />
+            <marker date="1463350410986" expanded="true" signature="938:987" placeholder="DELETE FROM " />
           </folding>
         </state>
       </provider>

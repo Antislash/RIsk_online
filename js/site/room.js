@@ -1,4 +1,4 @@
-setInterval('request(readData)',500);
+setInterval('requestChat(readMessage)',500);
 setInterval('requestListeJoueur(affichageListeJoueur)',700);
 
 //Instantiation de l'objet ajax
@@ -24,7 +24,7 @@ function getXMLHttpRequest() {
 }
 
 //Requête pour demander les message
-function request(callback) {
+function requestChat(callback) {
     var xhr = getXMLHttpRequest();
 
     xhr.onreadystatechange = function() {
@@ -40,7 +40,7 @@ function request(callback) {
 }
 
 //Méthode pour afficher les message reçu
-function readData(sData) {
+function readMessage(sData) {
     if (sData.length > 0) {
 	document.getElementById('chat-room').innerHTML = sData;
 	}
@@ -50,7 +50,7 @@ function readData(sData) {
 }
 
 //Méthode pour enregistrer les message en base de données
-function post() {
+function saveMessage() {
   var xhr = getXMLHttpRequest();
      
     xhr.onreadystatechange = function() {
@@ -60,7 +60,7 @@ function post() {
         }
     };
     var msg = encodeURIComponent(document.getElementById("barre-msg").value);
-      xhr.open("GET", "../php/site/post.php?message=" + msg, true);
+      xhr.open("GET", "../php/site/save_chat_room.php?message=" + msg, true);
       xhr.send(null);
 	  
       document.getElementById("barre-msg").value = '';

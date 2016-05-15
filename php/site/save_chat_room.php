@@ -9,7 +9,7 @@ $req->execute(array(
   'pseudo' => $_SESSION['pseudo'],
   'message_text' => $_GET['message'],
   'timestamp' => time(),
-    'room_id' => $_SESSION['room_id']
+  'room_id' => $_SESSION['room_id']
 ));
 //header('Location: room.php#chat-room');
 

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2016 at 09:40 PM
+-- Generation Time: May 16, 2016 at 12:14 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -31,6 +31,15 @@ CREATE TABLE IF NOT EXISTS `ancien_message` (
   `message` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `ancien_message`
+--
+
+INSERT INTO `ancien_message` (`pseudo`, `message`) VALUES
+('patrick', 'test'),
+('gataf', 'test'),
+('gataf', 'ok');
+
 -- --------------------------------------------------------
 
 --
@@ -42,8 +51,21 @@ CREATE TABLE IF NOT EXISTS `chat_messages` (
   `message_text` longtext CHARACTER SET latin1 COLLATE latin1_german1_ci NOT NULL,
   `pseudo` varchar(255) NOT NULL,
   `timestamp` int(11) NOT NULL,
+  `message_room_id` int(4) NOT NULL,
   PRIMARY KEY (`message_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=169 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=178 ;
+
+--
+-- Dumping data for table `chat_messages`
+--
+
+INSERT INTO `chat_messages` (`message_id`, `message_text`, `pseudo`, `timestamp`, `message_room_id`) VALUES
+(172, 'test', 'patrick', 1463349829, 47),
+(173, 'ok', 'gataf', 1463349916, 47),
+(174, 'Je fais un message pour voir si le chat est bien isolé par room', 'gataf', 1463349972, 49),
+(175, 'Je parle', 'patrick', 1463349988, 48),
+(176, 'ça marche?', 'gataf', 1463350313, 49),
+(177, 'test', 'gataf', 1463350383, 49);
 
 -- --------------------------------------------------------
 
@@ -452,15 +474,17 @@ CREATE TABLE IF NOT EXISTS `room` (
   `room_name` varchar(60) NOT NULL,
   `statut_room` varchar(15) NOT NULL,
   PRIMARY KEY (`room_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Table de définition d''une room' AUTO_INCREMENT=45 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Table de définition d''une room' AUTO_INCREMENT=50 ;
 
 --
 -- Dumping data for table `room`
 --
 
 INSERT INTO `room` (`room_id`, `room_date_creation`, `room_nb_joueur`, `room_password`, `room_name`, `statut_room`) VALUES
-(43, '2016-05-15', 4, NULL, 'test gataf', 'supprime'),
-(44, '2016-05-15', 4, NULL, 'test gataf2', 'en cours');
+(46, '2016-05-15', 4, NULL, 'test gataf', 'supprime'),
+(47, '2016-05-15', 4, NULL, 'test', 'supprime'),
+(48, '2016-05-16', 4, NULL, 'test p', 'en cours'),
+(49, '2016-05-16', 4, NULL, 'test gataf chat', 'en cours');
 
 -- --------------------------------------------------------
 
@@ -542,7 +566,7 @@ INSERT INTO `user` (`usr_id`, `usr_pseudo`, `usr_password`, `usr_email`, `usr_da
 (6, 'Max', '6a061313d22e51e0f25b7cd4dc065233', NULL, '2016-03-08', 5, 'off', 1),
 (11, 'gataf', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-11', 1, 'on', 1),
 (12, 'test', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-11', 1, 'off', 1),
-(14, 'patrick', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-15', 1, 'on', 1),
+(14, 'patrick', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-15', 1, 'off', 1),
 (15, 'caf', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-15', 1, 'off', 1),
 (16, 'p', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-15', 1, 'off', 0),
 (17, 't', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-15', 1, 'off', 0);
@@ -596,9 +620,12 @@ CREATE TABLE IF NOT EXISTS `user_has_room` (
 --
 
 INSERT INTO `user_has_room` (`id_room`, `id_user`, `usr_admin`, `statut_usr_room`) VALUES
-(43, 11, 0, 'out'),
-(44, 11, 1, 'in'),
-(44, 14, 0, 'out');
+(46, 11, 0, 'out'),
+(46, 14, 0, 'out'),
+(47, 11, 0, 'out'),
+(47, 14, 0, 'out'),
+(48, 14, 1, 'in'),
+(49, 11, 1, 'in');
 
 --
 -- Constraints for dumped tables

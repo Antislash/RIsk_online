@@ -10,7 +10,7 @@ session_start();
 		<meta name="viewport" content="width=device-width" />
 		<title>Room</title>		
         <script href="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-        <script type="text/javascript" src="script.js"></script>
+        <script type="text/javascript" src="../js/site/room.js"></script>
 	</head>
 	<body>
 		<?php
@@ -101,7 +101,7 @@ session_start();
 				<tr>
 					<td>
 						<table class="liste-joueur" id="liste_joueur">
-							
+
 						</table>
 					</td>
 				</tr>
@@ -110,8 +110,8 @@ session_start();
 						<div class="chat" id="chat-room">
 						</div>
 						<form id="chat-message">
-							<input class="textbox" onclick="if(event.keyCode==13){post(); clear();}" type="textarea" name="msg_chat" id="barre-msg"/>
-							<input class="button" onClick="post(), clear()" value="Envoyer" id="send-msg"/>
+							<input class="textbox" onclick="if(event.keyCode==13){saveMessage(); clear();}" type="textarea" name="msg_chat" id="barre-msg"/>
+							<input class="button" onClick="saveMessage(), clear()" value="Envoyer" id="send-msg"/>
 						</form>
 					</td>
 				</tr>
