@@ -1,4 +1,4 @@
-setInterval('requestChat(readMessage)',500);
+var chat = setInterval('requestChat(readMessage)',500);
 setInterval('requestListeJoueur(affichageListeJoueur)',700);
 var verif = setInterval('verifierRoom(compteARebours)',2000);
 
@@ -111,6 +111,8 @@ function verifierRoom(callback){
             //Si la partie commence
             if(xhr.responseText == "1"){
                 clearInterval(verif);
+                clearInterval(chat);
+
                 setInterval('compteARebours()',1000);
             }
         }
@@ -120,38 +122,26 @@ function verifierRoom(callback){
     xhr.send(null);
 }
 
-var seconde = 3;
+var seconde = 4;
 
 //Lorsque la partie commence on fait un compte a rebours
 function compteARebours(){
 
-    //Si 3s sont passé
+    //Si 3s sont passé on redirige vers la partie
     if(seconde == 0){
-        // var xhr = getXMLHttpRequest();
-        // xhr.onreadystatechange = function() {
-        //     if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-        //         //Si la partie commence
-        //         if(xhr.responseText == "1"){
-        //             clearInterval(verif);
-        //             setInterval('compteARebours()',1000);
-        //         }
-        //     }
-        // };
-        // xhr.open("GET", "../php/site/save_chat_room.php?message=" + msg, true);
-        // xhr.send(null);
-
         var adresseActuelle = window.location.origin ;
         window.location = adresseActuelle + "/risk_online/www/acceuil.php";
     }
-
-
-    //Provisoire
-    element = document.getElementById('chat-room');
-    element.scrollTop = element.scrollHeight;
-
-    var msg = "dans "+ seconde + "s";
+    //On annonce le début de la partie
+    else if(seconde == 4){
+        document.getElementById('chat-room').innerHTML = "La partie commence";
+    }
+    //On fait un compte a rebours de 3s
+    else{
+        var msg = "dans "+ seconde + "s";
+        document.getElementById('chat-room').innerHTML = msg;
+    }
     seconde -= 1;
-    document.getElementById('chat-room').innerHTML = msg;
 
 
 }
