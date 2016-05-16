@@ -1,5 +1,8 @@
 <?php
-session_start();
+	//On vérifie si les session sont déja activées
+	if(session_id() == null){
+		session_start();
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,7 +20,6 @@ session_start();
 			include('include/navigation.php');
 			include('include/notif.php');
 			include('../php/site/connexion.php');
-			$image = "images/avatar.png";
 
 			//On récupére les informations d'une room
 			$room = $bdd->query("SELECT * 
@@ -105,6 +107,7 @@ session_start();
 				<tr>
 					<td>
 						<table class="liste-joueur" id="liste_joueur">
+						<!--On affiche la liste des joueur grace a une méthode Ajax contenu dans le fichier "js/site/roomjs"-->
 
 						</table>
 					</td>

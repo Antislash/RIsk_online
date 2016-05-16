@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--Page permettant a un utilisateur de se connecter-->
 <html>
 	<head>
 		<meta charset="utf-8" />

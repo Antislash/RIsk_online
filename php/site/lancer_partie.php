@@ -1,6 +1,10 @@
-<!-- Ce script change le statut de la room a en partie si les conditions le permettent -->
 <?php
-    //On vérifie sur les session sont déja activées
+    /**
+     * Ce script change le statut de la room a "en partie" si les conditions le permettent quand le joueur a cliquer sur le boutton "Lancer" dans une room
+     * Appelé par la méthode "debutPartie()" dans le fichier "js/site/rooms.js
+     */
+
+    //On vérifie si les session sont déja activées
     if(session_id() == null){
         session_start();
     }

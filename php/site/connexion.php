@@ -1,4 +1,7 @@
 <?php
+/**
+ * Ce fichier sert à se connecter a la base de donnée
+ */
 
 try {
 	//Pour se connecter en local au PUIO

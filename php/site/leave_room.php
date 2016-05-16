@@ -1,5 +1,9 @@
 <?php
-    //On vérifie sur les session sont déja activées
+    /**
+     * Ce fichier gére le process pour permettre aux joueurs de quitter une room
+     * Appelé lors du clique sur le boutton "Quitter" dans une room
+     */
+    //On vérifie si les session sont déja activées
     if(session_id() == null){
         session_start();
     }

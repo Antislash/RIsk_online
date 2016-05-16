@@ -103,16 +103,20 @@ function debutPartie(){
 }
 
 //Méthode pour vérifier si la partie commence
-function verifierRoom(callback){
+function verifierRoom(){
     var xhr = getXMLHttpRequest();
 
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+
             //Si la partie commence
             if(xhr.responseText == "1"){
+                
+                //On déasctive le chat et la vérification du statut de la room
                 clearInterval(verif);
                 clearInterval(chat);
 
+                //On lance le compte a rebours
                 setInterval('compteARebours()',1000);
             }
         }
@@ -122,7 +126,7 @@ function verifierRoom(callback){
     xhr.send(null);
 }
 
-var seconde = 4;
+var seconde = 4; //Sert pour le compte a rebours
 
 //Lorsque la partie commence on fait un compte a rebours
 function compteARebours(){
@@ -142,6 +146,4 @@ function compteARebours(){
         document.getElementById('chat-room').innerHTML = msg;
     }
     seconde -= 1;
-
-
 }

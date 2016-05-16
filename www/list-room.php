@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--Page pemettant d'afficher la liste des rooms-->
 <html>
 	<head>
 		<meta charset="utf-8" />
@@ -13,12 +14,11 @@
 			include('include/navigation.php');
 			include('include/notif.php');
 			include('../php/site/connexion.php');
-			$image = "images/avatar.png";
-
 		?>
 		<div class="bloc" id="list">
 			<div class="list-room" id="liste_room">
-
+			<!--On affiche la liste des room grace à une méthode Ajax contenu dans le fichier "js/site/liste_room.js-->
+				
 			</div>
 		</div>
 		<?php include('include/contact.php');?>

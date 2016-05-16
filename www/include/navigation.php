@@ -1,10 +1,11 @@
 <?php
-	//On vérifie sur les session sont déja activées
+	//On vérifie si les session sont déja activées
 	if(session_id() == null){
 		session_start();
 	}
 
-	include "../php/site/connexion.php";
+	include "../php/site/connexion.php"; //Connexion a la base de données
+	include('../php/site/verif_connexion.php'); //Permet de garantir que l'utilisateur posséde bien les cookies et les variables de session essentiel
 ?>
 
 

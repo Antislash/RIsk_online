@@ -1,6 +1,10 @@
 <?php
+    /**
+     * Permet d'afficher dynamiquement la liste de joueurs dans une room
+     * Fichier appelé via une methode Ajax dans "js/site/liste_room.js"
+     */
 
-    //On vérifie sur les session sont déja activées
+    //On vérifie si les session sont déja activées
     if(session_id() == null){
         session_start();
     }
@@ -47,6 +51,7 @@
                                         }
                                         $saut_ligne += 1;
                                     }
+                                    $joueurs->closeCursor();
 								?>
 </tr>
 

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--Page d'accueil lorsqu'un utilisateur est connecté-->
 <html>
 	<head>
 		<meta charset="utf-8" />
@@ -8,22 +9,22 @@
 		<title>Acceuil</title>
 	</head>
 	<body>
-		<?php include('include/notif.php'); //Permet d'afficher des notifications sur la page
-		      include('../php/site/connexion.php'); //Connexion
-			  $image = "images/avatar.png";
-		      include ('../php/site/verif_connexion.php'); //Permet de vérifier que l'utilisateur posséde les variables de session et cookies
-		      include('include/navigation.php'); //Affiche la barre de navigation
+		<?php
+			include('include/notif.php'); //Permet d'afficher des notifications sur la page
+			include('../php/site/connexion.php'); //Connexion
+			include ('../php/site/verif_connexion.php'); //Permet de vérifier que l'utilisateur posséde les variables de session et cookies
+			include('include/navigation.php'); //Affiche la barre de navigation
 		?>
 		<div class="bloc" id="profil_home">
 			<?php
 				//Requête pour récupérer les informations d'un profil
-				$profils = $bdd->query("SELECT usr.usr_pseudo, img.img_chemin, sta.sta_nom, DATEDIFF(CURDATE(), usr.usr_date_inscription) as date, usr_level
+				$profils = $bdd->query("SELECT usr.usr_pseudo, img.img_chemin,img.img_nom, sta.sta_nom, DATEDIFF(CURDATE(), usr.usr_date_inscription) as date, usr_level
 										FROM user usr INNER JOIN image img ON img.img_id = usr.id_img 
 										INNER JOIN statut_user sta ON sta.sta_code = usr.code_sta 
 										WHERE usr.usr_id ='".$_SESSION['usr_id']."'" );
 				$profil = $profils->fetch();
 			?>
-			<img id="avatar" src="<?php echo $image;?>"/>
+			<img id="avatar" src="<?php echo "images/".$profil['img_nom'];?>"/>
 			<div id="profil_infos">
 				<h2><?php echo $profil['usr_pseudo'];?></h2>
 				Membre depuis <?php echo $profil['date'];?> jours <br/>
@@ -53,6 +54,7 @@
 						echo "<span class=\"date_news\">".$new['nws_date']."</span><a href=\"news.php?news=".$new['nws_id']."\">".mb_strimwidth($new['nws_titre'], 0, 40, "...")."</a><br/>";
 					}
 				}
+				$news->closeCursor();
 			?>
 			</div>
 		</div>

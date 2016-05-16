@@ -1,5 +1,12 @@
 <?php
-	session_start();
+	/**
+	 * Ce fichier sert pour l'inscription des joueurs dans la page "www/login.php"
+	 */
+
+	//On vérifie si les session sont déja activées
+	if(session_id() == null){
+		session_start();
+	}
 	include "connexion.php";
 	
 	//Exemple TEST

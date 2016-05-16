@@ -1,7 +1,11 @@
 <?php
-session_start();
+    //On vérifie si les session sont déja activées
+    if(session_id() == null){
+        session_start();
+    }
 ?>
 <!DOCTYPE html>
+<!--Page permettant de demander les informations nécessaire pour la création d'une room-->
 <html>
 <head>
     <meta charset="utf-8" />
@@ -13,9 +17,11 @@ session_start();
     <script type="text/javascript" src="script.js"></script>
 </head>
 <body>
-<?php include('include/navigation.php');?>
-<?php include('include/notif.php');?>
-<?php include('../php/site/connexion.php');$image = "images/avatar.png";?>
+<?php
+    include('include/navigation.php');
+    include('include/notif.php');
+    include('../php/site/connexion.php');
+?>
 <div class="bloc" id="room"><form method="post" action="../php/site/new_game.php" >
         <table class="options">
             <tr>

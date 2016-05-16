@@ -1,5 +1,10 @@
 <?php
-//On vérifie sur les session sont déja activées
+/**
+ * Ce fichier sert à renvoyer la liste des message envoyé dans le chat
+ * Appelé par la méthode "requestChat()" dans le fichier "js/site/room.js
+ */
+
+//On vérifie si les session sont déja activées
 if(session_id() == null){
     session_start();
 }

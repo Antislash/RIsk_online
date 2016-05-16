@@ -1,5 +1,10 @@
 <?php
-    //On vérifie sur les session sont déja activées
+    /**
+     * Ce fichier s'occupe du process lorsqu'un joueur souhaite rejoindre une room
+     * Appelé par le fichier "www/include/navigation.php"
+     */
+
+    //On vérifie si les session sont déja activées
     if(session_id() == null){
         session_start();
     }
@@ -34,7 +39,7 @@
                         WHERE id_room= ".$id_room."
                         AND id_user=".$user_id);
         }
-        
+
         //On vérifie si la room est pleine
         $limit_joueur = $bdd->query("SELECT room_nb_joueur
                                      FROM room

@@ -1,5 +1,10 @@
 <?php
-    //On vérifie sur les session sont déja activées
+    /**
+     * Permet d'afficher dynamiquement la liste de room qu'un utilisateur peut rejoindre
+     * Fichier appelé via la méthode Ajax "requestRoom()" contenu dans le fichier "js/site/liste_room.js"
+     */
+
+    //On vérifie si les session sont déja activées
     if(session_id() == null){
         session_start();
     }

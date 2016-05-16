@@ -1,5 +1,8 @@
 <?php
-	session_start();
+	//On vérifie si les session sont déja activées
+	if(session_id() == null){
+		session_start();
+	}
 	include "../../php/connexion.php";
 	if(isset($_GET['pseudoSearch']) && isset($_SESSION['usr_id'])){
 		$req = $bdd->query("SELECT * FROM user where usr_pseudo = '".$_GET['pseudoSearch']."'");

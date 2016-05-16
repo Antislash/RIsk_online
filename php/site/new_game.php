@@ -1,5 +1,12 @@
 <?php
-  session_start();
+  /**
+   * Ce fichier permet de créer une room appelé par le boutton "new game" dans "www/include/navigation.php"
+   */
+
+  //On vérifie si les session sont déja activées
+  if(session_id() == null){
+    session_start();
+  }
 
   include "connexion.php";
 
