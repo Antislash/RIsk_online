@@ -16,7 +16,10 @@
 		$pseudo = filter_var($_POST['inscriptionPseudo'], FILTER_SANITIZE_STRING);
 		$password = filter_var($_POST['inscriptionPassword1'], FILTER_SANITIZE_STRING);
 
-		$select = "SELECT * FROM user WHERE usr_pseudo = '".$pseudo."'";
+		$select = "SELECT * 
+				   FROM user 
+				   WHERE usr_pseudo = '".$pseudo."'";
+		
 		$user = $bdd->query($select);
 		$user = $user->fetch(PDO::FETCH_ASSOC);
 
@@ -27,7 +30,9 @@
 					    VALUES ('".$pseudo."','". md5($password)."', NULL,CURDATE(), 1, 'on',0  )";
 			$req = $bdd->exec($insert);
 
-			$user = $bdd->query("SELECT * FROM user WHERE usr_pseudo = '" . $pseudo . "' AND usr_password = '" . md5($password)."'");
+			$user = $bdd->query("SELECT * 
+								 FROM user WHERE usr_pseudo = '" . $pseudo . "' 
+								 AND usr_password = '" . md5($password)."'");
 			$user = $user->fetch(PDO::FETCH_ASSOC);
 
 			//TODO redirigé vers connexion.php

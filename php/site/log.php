@@ -63,6 +63,6 @@
         }
     }
     else{
-        //header('Location: ../../www/login.php');
+        header('Location: ../../www/login.php');
 }
 ?>

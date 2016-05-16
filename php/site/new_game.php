@@ -33,6 +33,7 @@
           'room_password' => $room_mdp,
       ));
 
+    //On récupére l'id de la room
     $max_room_id = $bdd->prepare("SELECT MAX(room_id) FROM room");
     $max_room_id->execute();
     $room_id = $max_room_id->fetch();

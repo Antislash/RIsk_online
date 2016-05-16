@@ -111,7 +111,7 @@ function verifierRoom(){
 
             //Si la partie commence
             if(xhr.responseText == "1"){
-                
+
                 //On déasctive le chat et la vérification du statut de la room
                 clearInterval(verif);
                 clearInterval(chat);
@@ -134,7 +134,7 @@ function compteARebours(){
     //Si 3s sont passé on redirige vers la partie
     if(seconde == 0){
         var adresseActuelle = window.location.origin ;
-        window.location = adresseActuelle + "/risk_online/www/acceuil.php";
+        window.location = adresseActuelle + "/risk_online/php/partie/initialiser_partie.php";
     }
     //On annonce le début de la partie
     else if(seconde == 4){
