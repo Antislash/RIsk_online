@@ -2,7 +2,7 @@
 
 /*Style du fond et de la police de base*/
 body{
-	background-image: url(../images/background.jpg);
+	background-image: url(../images/test.jpg);
 	background-repeat:no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
@@ -560,4 +560,16 @@ a {
 
 .room-nb{
 	width: 5%;
+}
+
+.country{
+	fill: red;
+	stroke:#000000;
+	stroke-width:1;
+}
+
+.country:hover{
+	stroke-width:1.5;
+	opacity: 0.5;
+	cursor: pointer;
 }
