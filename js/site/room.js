@@ -1,6 +1,6 @@
 setInterval('requestChat(readMessage)',500);
 setInterval('requestListeJoueur(affichageListeJoueur)',700);
-setInterval('verifierRoom()',2000);
+var verif = setInterval('verifierRoom(compteARebours)',2000);
 
 //Instantiation de l'objet ajax
 function getXMLHttpRequest() {
@@ -81,24 +81,77 @@ function requestListeJoueur(callback) {
     xhr.send(null);
 }
 
+//Permet d'afficher la liste des joueur dynamiquement
 function affichageListeJoueur(data){
     if(data.length > 0){
         document.getElementById('liste_joueur').innerHTML = data;
     }
 }
 
-// function verifierRoom(callback){
-//     var xhr = getXMLHttpRequest();
-//
-//     xhr.onreadystatechange = function() {
-//         if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-//             callback(xhr.responseText);
-//             write(msg);
-//         }
-//     };
-//     var msg = encodeURIComponent(document.getElementById("barre-msg").value);
-//     xhr.open("GET", "../php/site/save_chat_room.php?message=" + msg, true);
-//     xhr.send(null);
-//
-//     document.getElementById("barre-msg").value = '';
-// }
+//Permet de changer la statut de la room au clique du boutton "Lancer"
+function debutPartie(){
+    var xhr = getXMLHttpRequest();
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+            callback(xhr.responseText);
+        }
+    };
+    
+    xhr.open("GET", "../php/site/lancer_partie.php", true);
+    xhr.send(null);
+}
+
+//Méthode pour vérifier si la partie commence
+function verifierRoom(callback){
+    var xhr = getXMLHttpRequest();
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+            //Si la partie commence
+            if(xhr.responseText == "1"){
+                clearInterval(verif);
+                setInterval('compteARebours()',1000);
+            }
+        }
+    };
+
+    xhr.open("GET", "../php/site/commencer_partie.php", true);
+    xhr.send(null);
+}
+
+var seconde = 3;
+
+//Lorsque la partie commence on fait un compte a rebours
+function compteARebours(){
+
+    //Si 3s sont passé
+    if(seconde == 0){
+        // var xhr = getXMLHttpRequest();
+        // xhr.onreadystatechange = function() {
+        //     if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+        //         //Si la partie commence
+        //         if(xhr.responseText == "1"){
+        //             clearInterval(verif);
+        //             setInterval('compteARebours()',1000);
+        //         }
+        //     }
+        // };
+        // xhr.open("GET", "../php/site/save_chat_room.php?message=" + msg, true);
+        // xhr.send(null);
+
+        var adresseActuelle = window.location.origin ;
+        window.location = adresseActuelle + "/risk_online/www/acceuil.php";
+    }
+
+
+    //Provisoire
+    element = document.getElementById('chat-room');
+    element.scrollTop = element.scrollHeight;
+
+    var msg = "dans "+ seconde + "s";
+    seconde -= 1;
+    document.getElementById('chat-room').innerHTML = msg;
+
+
+}

@@ -86,7 +86,7 @@ session_start();
 					<?php if($room['usr_admin']){?>
 					<tr>
 						<td >
-							<center><input class="button" type="submit" value="Lancer"/></center>
+							<center><input class="button" type="submit" value="Lancer" onClick="debutPartie()"/></center>
 						</td>
 
 					<?php } ?>
