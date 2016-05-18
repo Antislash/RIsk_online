@@ -1,19 +1,22 @@
-function getXhr(){
-	var xhr = null; 
-	if(window.XMLHttpRequest) // Firefox et autres
-	   xhr = new XMLHttpRequest(); 
-	else if(window.ActiveXObject){ // Internet Explorer 
-	   try {
-				xhr = new ActiveXObject("Msxml2.XMLHTTP");
-			} catch (e) {
-				xhr = new ActiveXObject("Microsoft.XMLHTTP");
-			}
-	}
-	else { // XMLHttpRequest non support� par le navigateur 
-	   alert("Votre navigateur ne supporte pas les objets XMLHTTPRequest..."); 
-	   xhr = false; 
-	}
-	return xhr;
+function getXMLHttpRequest() {
+    var xhr = null;
+
+    if (window.XMLHttpRequest || window.ActiveXObject) {
+        if (window.ActiveXObject) {
+            try {
+                xhr = new ActiveXObject("Msxml2.XMLHTTP");
+            } catch(e) {
+                xhr = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+        } else {
+            xhr = new XMLHttpRequest();
+        }
+    } else {
+        alert("Votre navigateur ne supporte pas l'objet XMLHTTPRequest...");
+        return null;
+    }
+
+    return xhr;
 }
 
 function getHostProjectName(projectName = "/RIsk_online"){
@@ -23,7 +26,7 @@ function getHostProjectName(projectName = "/RIsk_online"){
 }
 
 function reqAjax(param = null, pageActionPhp, action, mod = 'Text'){
-	var xhr = getXhr();
+	var xhr = getXMLHttpRequest();
 	var url = getHostProjectName() + pageActionPhp + "?";
 	if( (typeof param === "object") && (param !== null) )
 	{
