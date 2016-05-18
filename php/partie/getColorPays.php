@@ -9,12 +9,15 @@ $infos = $bdd->query("	SELECT t1.id_pays, col.clr_css, t2.id_joueur, t1.nb_pions
 						WHERE t2.id_partie =119");
 $listePays = "";
 $listeCouleur = "";
+$listePions = "";
 while($info = $infos->fetch()){
 	$listePays = $listePays.$info['id_pays'].";";
 	$listeCouleur = $listeCouleur.$info['clr_css'].";";
+	$listePions = $listePions.$info['nb_pions'].";";
 }
 $listePays = substr($listePays, 0, -1);
 $listeCouleur = substr($listeCouleur, 0, -1);
+$listePions = substr($listePions, 0, -1);
 
-echo $listePays . "|" . $listeCouleur;
+echo $listePays . "|" . $listeCouleur . "|" . $listePions;
 ?>

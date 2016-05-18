@@ -24,6 +24,9 @@
 				header('Location: acceuil.php');
 			}
 		?>
+		<script>
+			refreshMap();
+		</script>
 		<div id="unites">
 			<table>
 				<tr>
@@ -222,7 +225,219 @@
 			   d="M 253.37151,214.74788 C 253.37151,214.74788 253.49651,214.87288 253.99651,216.37288 C 254.49651,217.87288 254.87151,218.87288 255.99651,220.87288 C 257.12151,222.87288 256.12151,228.87288 256.12151,228.87288 L 258.12151,231.62288 C 258.12151,231.62288 259.74651,232.37288 260.37151,232.49788 C 260.99651,232.62288 260.74651,235.74788 260.62151,236.99788 C 260.49651,238.24788 258.99651,237.62288 258.12151,237.87288 C 257.24651,238.12288 256.99651,240.24788 256.87151,241.49788 C 256.74651,242.74788 254.5,242.25 254.5,242.25 C 255.125,243.5 256.375,243.625 256.875,245.875 C 257.375,248.125 257.125,247.375 257.75,248.25 C 258.375,249.125 259.5,249.25 259.75,251.25 C 260,253.25 260,252.125 261.375,254.75 C 262.75,257.375 261.5,258.5 261.75,260.875 C 262,263.25 263.25,262.375 264.125,263.625 L 264.49651,264.99788 L 312.49651,264.87288 L 316.49651,216.49788 C 316.49651,216.49788 253.62151,214.74788 253.37151,214.74788 z"
 			   id="21" /><!-- "alberta" -->
 		  </g>
-		</svg>
+			<g id="nbRenfort">
+                    <text id="renfort_1"  y="172" x="312">
+
+                        1
+
+                    </text>
+                    <text id="renfort_2"  y="110" x="320">
+
+                        2
+
+                    </text>
+                    <text id="renfort_3"  y="180" x="370">
+
+                        3
+
+                    </text>
+                    <text id="renfort_4"  y="120" x="370">
+
+                        4
+
+                    </text>
+                    <text id="renfort_5"  y="220" x="380">
+
+                        5
+
+                    </text>
+                    <text id="renfort_6"  y="140" x="440">
+
+                        6
+
+                    </text>
+                    <text id="renfort_7"  y="215" x="330">
+
+                        7
+
+                    </text>
+                    <text id="renfort_8"  y="195" x="500">
+
+                        8
+
+                    </text>
+                    <text id="renfort_9"  y="230" x="580">
+
+                        9
+
+                    </text>
+                    <text id="renfort_10"  y="265" x="540">
+
+                        10
+
+                    </text>
+                    <text id="renfort_11"  y="130" x="593">
+
+                        11
+
+                    </text>
+                    <text id="renfort_12"  y="185" x="675">
+
+                        12
+
+                    </text>
+                    <text id="renfort_13"  y="80" x="660">
+
+                        13
+
+                    </text>
+                    <text id="renfort_14"  y="265" x="450">
+
+                        14
+
+                    </text>
+                    <text id="renfort_15"  y="185" x="600">
+
+                        15
+
+                    </text>
+                    <text id="renfort_16"  y="295" x="600">
+
+                        16
+
+                    </text>
+                    <text id="renfort_17"  y="100" x="550">
+
+                        17
+
+                    </text>
+                    <text id="renfort_18"  y="130" x="508">
+
+                        18
+
+                    </text>
+                    <text id="renfort_19"  y="70" x="605">
+
+                        19
+
+                    </text>
+                    <text id="renfort_20"  y="90" x="50">
+
+                        20
+
+                    </text>
+                    <text id="renfort_21"  y="128" x="110">
+
+                        21
+
+                    </text>
+                    <text id="renfort_22"  y="245" x="120">
+
+                        22
+
+                    </text>
+                    <text id="renfort_23"  y="195" x="175">
+
+                        23
+
+                    </text>
+                    <text id="renfort_24"  y="60" x="250">
+
+                        24
+
+                    </text>
+                    <text id="renfort_25"  y="88" x="120">
+
+                        25
+
+                    </text>
+                    <text id="renfort_26"  y="140" x="160">
+
+                        26
+
+                    </text>
+                    <text id="renfort_27"  y="135" x="210">
+
+                        27
+
+                    </text>
+                    <text id="renfort_28"  y="185" x="105">
+
+                        28
+
+                    </text>
+                    <text id="renfort_29"  y="410" x="185">
+
+                        29
+
+                    </text>
+                    <text id="renfort_30"  y="330" x="220">
+
+                        30
+
+                    </text>
+                    <text id="renfort_31"  y="355" x="185">
+
+                        31
+
+                    </text>
+                    <text id="renfort_32"  y="285" x="172">
+
+                        32
+
+                    </text>
+                    <text id="renfort_33"  y="380" x="400">
+
+                        33
+
+                    </text>
+                    <text id="renfort_34"  y="340" x="425">
+
+                        34
+
+                    </text>
+                    <text id="renfort_35"  y="295" x="400">
+
+                        35
+
+                    </text>
+                    <text id="renfort_36"  y="445" x="467">
+
+                        36
+
+                    </text>
+                    <text id="renfort_37"  y="320" x="340">
+
+                        37
+
+                    </text>
+                    <text id="renfort_38"  y="450" x="400">
+
+                        38
+
+                    </text>
+                    <text id="renfort_39"  y="420" x="690">
+
+                        39
+
+                    </text>
+                    <text id="renfort_40"  y="365" x="608">
+
+                        40
+
+                    </text>
+                    <text id="renfort_41"  y="353" x="671">
+
+                        41
+
+                    </text>
+                    <text id="renfort_42"  y="445" x="640">
+
+                        42
+
+                    </text>
+                </g>
+		  </svg>
 	</body>
 	<script>
 	function setMapSize(){
