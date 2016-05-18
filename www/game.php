@@ -9,6 +9,8 @@
 		<title>Game</title>
 	</head>
 	<body>
+		<script>
+			var tabPays = new Array();
 		<?php
 			include('include/notif.php'); //Permet d'afficher des notifications sur la page
 			//On vérifie si les session sont déja activées
@@ -18,7 +20,19 @@
 
 			include "../php/site/connexion.php"; //Connexion a la base de données
 			include('../php/site/verif_connexion.php'); //Permet de garantir que l'utilisateur posséde bien les cookies et les variables de session essentiel
+			$infos = $bdd->query("SELECT t1.id_pays, t2.color, t2.id_joueur, t1.nb_pions
+									FROM partie_has_joueur_has_pays t1
+									INNER JOIN partie_has_joueur t2 ON t1.id_partie = t2.id_partie
+									AND t2.id_joueur = t1.id_joueur
+									WHERE t2.id_partie =1");
+			while($info = $infos->fetch()){
+				echo "tabPays[".$info['id_pays']."] = ".$info['color'].";";
+			}
 		?>
+		for(var idPays in tabPays){
+			document.getElementById(idPays).style.backgroundColor = tabPays[idPays];
+		}
+		</script>
 		<div id="unites">
 			<table>
 				<tr>
