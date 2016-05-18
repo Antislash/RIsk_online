@@ -43,13 +43,15 @@
     //On enregistre l'id de la partie dans une session
     $_SESSION['id_partie'] = $id_partie['id'];
 
+    $couleur = array("rouge","bleu", "vert", "jaune", "rose", "noir");
+
     //On créé les joueur et on les lie à la partie
     for($i = 0; $i < $nb_joueur; $i++){
         $bdd->exec("INSERT INTO joueur (nb_continent, nb_pays, stats_id, usr_id)
                                         VALUES (0,0,1,".intval($liste_user[$i]).")");
 
-        $bdd->exec("INSERT INTO partie_has_joueur (id_joueur, id_partie)
-                                        VALUES (".intval($liste_user[$i])." , ".intval($id_partie['id']).")");
+        $bdd->exec("INSERT INTO partie_has_joueur (id_joueur, id_partie, code_clr, joueur_dans_partie)
+                                        VALUES (".intval($liste_user[$i])." , ".intval($id_partie['id']).",".$couleur[$i].",1)");
 
     }
 
@@ -76,10 +78,6 @@
         for($i = intval($nb_pays['nb'])-1; $i >= 0; $i--){
             $alea = rand(0, $i);
 
-            var_dump("On attrivu le pays : " .$liste_pays[$alea]. " au joueur : ". $liste_user[$i%$nb_joueur] . " pour la partie : ". $id_partie['id']);
-
-            var_dump("INSERT INTO partie_has_joueur_has_pays (id_joueur, id_partie, id_pays, nb_pions)
-                         VALUES (".$liste_user[$i%$nb_joueur].",".$id_partie['id'].",".$liste_pays[$alea].",1)");
             $bdd->query("INSERT INTO partie_has_joueur_has_pays (id_joueur, id_partie, id_pays, nb_pions)
                          VALUES (".$liste_user[$i%$nb_joueur].",".$id_partie['id'].",".$liste_pays[$alea].",1)");
 
@@ -87,24 +85,10 @@
             $arr2 = array_slice($liste_pays,$alea+1);
             $liste_pays = array_merge($arr1,$arr2 );
 
-
         }
     }
     else{
         var_dump("Erreur nombre de pays");
-    }
-
-
-    //Fonction qui récupére le pays à l'indice envoyé et décalle tous les élément au dessus d'une case en dessous pour raccourcir la liste de 1
-    function décallerElement($indice, $liste){
-
-        $pays = $liste[$indice];
-
-        for ($i = $indice; $i < count($liste); $i++){
-            $liste[$i] = $liste[$i+1];
-        }
-
-        return $pays;
     }
 
 ?>
