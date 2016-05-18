@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 16, 2016 at 05:30 PM
+-- Generation Time: May 18, 2016 at 05:19 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `ancien_message` (
   `pseudo` varchar(255) NOT NULL,
   `message` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ancien_message`
@@ -1120,13 +1120,20 @@ INSERT INTO `ancien_message` (`pseudo`, `message`) VALUES
 
 CREATE TABLE IF NOT EXISTS `chat_messages` (
   `message_id` int(11) NOT NULL AUTO_INCREMENT,
-  `message_text` longtext CHARACTER SET latin1 COLLATE latin1_german1_ci NOT NULL,
+  `message_text` longtext NOT NULL,
   `pseudo` varchar(255) NOT NULL,
   `timestamp` int(11) NOT NULL,
   `message_room_id` int(4) NOT NULL,
   PRIMARY KEY (`message_id`),
   UNIQUE KEY `fk_id_room` (`message_room_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1544 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1545 ;
+
+--
+-- Dumping data for table `chat_messages`
+--
+
+INSERT INTO `chat_messages` (`message_id`, `message_text`, `pseudo`, `timestamp`, `message_room_id`) VALUES
+(1544, 'yo', 'gataf', 1463481652, 81);
 
 -- --------------------------------------------------------
 
@@ -1153,6 +1160,25 @@ INSERT INTO `continent` (`cnt_id`, `cnt_nom`, `cnt_nb_pays`, `cnt_nb_renfort`) V
 (4, 'Amérique du Sud', 4, 2),
 (5, 'Afrique', 6, 3),
 (6, 'Océanie', 4, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `couleur`
+--
+
+CREATE TABLE IF NOT EXISTS `couleur` (
+  `clr_code` varchar(40) CHARACTER SET utf8 NOT NULL,
+  `clr_css` varchar(6) CHARACTER SET utf8 NOT NULL,
+  PRIMARY KEY (`clr_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=cp1250 COLLATE=cp1250_bin COMMENT='couleur du site';
+
+--
+-- Dumping data for table `couleur`
+--
+
+INSERT INTO `couleur` (`clr_code`, `clr_css`) VALUES
+('blanc', 'FFFFFF');
 
 -- --------------------------------------------------------
 
@@ -1201,8 +1227,10 @@ CREATE TABLE IF NOT EXISTS `joueur` (
 --
 
 INSERT INTO `joueur` (`usr_id`, `stats_id`, `nb_pays`, `nb_continent`) VALUES
+(0, 1, 0, 0),
 (11, 1, 0, 0),
-(14, 1, 0, 0);
+(14, 1, 0, 0),
+(16, 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -1249,22 +1277,15 @@ CREATE TABLE IF NOT EXISTS `partie` (
   `partie_statut` varchar(20) NOT NULL,
   PRIMARY KEY (`id_partie`),
   KEY `fk_a_qui_le_tour` (`a_qui_le_tour`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=34 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=120 ;
 
 --
 -- Dumping data for table `partie`
 --
 
 INSERT INTO `partie` (`id_partie`, `nb_joueurs`, `date_crea`, `date_maj`, `map`, `a_qui_le_tour`, `partie_statut`) VALUES
-(25, 2, '2016-05-16', '2016-05-16', 0, NULL, 'init'),
-(26, 2, '2016-05-16', '2016-05-16', 0, NULL, 'init'),
-(27, 2, '2016-05-16', '2016-05-16', 0, NULL, 'init'),
-(28, 2, '2016-05-16', '2016-05-16', 0, NULL, 'init'),
-(29, 2, '2016-05-16', '2016-05-16', 0, NULL, 'init'),
-(30, 2, '2016-05-16', '2016-05-16', 0, NULL, 'init'),
-(31, 2, '2016-05-16', '2016-05-16', 0, NULL, 'init'),
-(32, 2, '2016-05-16', '2016-05-16', 0, NULL, 'init'),
-(33, 2, '2016-05-16', '2016-05-16', 0, NULL, 'init');
+(118, 2, '2016-05-18', '2016-05-18', 0, 11, 'init'),
+(119, 2, '2016-05-18', '2016-05-18', 0, 11, 'init');
 
 -- --------------------------------------------------------
 
@@ -1275,18 +1296,22 @@ INSERT INTO `partie` (`id_partie`, `nb_joueurs`, `date_crea`, `date_maj`, `map`,
 CREATE TABLE IF NOT EXISTS `partie_has_joueur` (
   `id_partie` int(11) NOT NULL,
   `id_joueur` int(11) NOT NULL,
+  `code_clr` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`id_partie`,`id_joueur`),
   KEY `fk_partie` (`id_partie`),
-  KEY `fk_joueur` (`id_joueur`)
+  KEY `fk_joueur` (`id_joueur`),
+  KEY `fk_code_clr` (`code_clr`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `partie_has_joueur`
 --
 
-INSERT INTO `partie_has_joueur` (`id_partie`, `id_joueur`) VALUES
-(33, 11),
-(33, 14);
+INSERT INTO `partie_has_joueur` (`id_partie`, `id_joueur`, `code_clr`) VALUES
+(118, 11, 'blanc'),
+(118, 16, 'blanc'),
+(119, 11, 'blanc'),
+(119, 16, 'blanc');
 
 -- --------------------------------------------------------
 
@@ -1304,6 +1329,54 @@ CREATE TABLE IF NOT EXISTS `partie_has_joueur_has_pays` (
   KEY `fk_id_joueur` (`id_joueur`),
   KEY `fk_id_pays` (`id_pays`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Table pour savoir qui possède quel pays pour une partie';
+
+--
+-- Dumping data for table `partie_has_joueur_has_pays`
+--
+
+INSERT INTO `partie_has_joueur_has_pays` (`id_partie`, `id_joueur`, `id_pays`, `nb_pions`) VALUES
+(119, 11, 1, 1),
+(119, 11, 3, 1),
+(119, 11, 5, 1),
+(119, 11, 7, 1),
+(119, 11, 8, 1),
+(119, 11, 11, 1),
+(119, 11, 13, 1),
+(119, 11, 16, 1),
+(119, 11, 17, 1),
+(119, 11, 18, 1),
+(119, 11, 20, 1),
+(119, 11, 21, 1),
+(119, 11, 23, 1),
+(119, 11, 24, 1),
+(119, 11, 26, 1),
+(119, 11, 28, 1),
+(119, 11, 35, 1),
+(119, 11, 36, 1),
+(119, 11, 38, 1),
+(119, 11, 39, 1),
+(119, 11, 40, 1),
+(119, 16, 2, 1),
+(119, 16, 4, 1),
+(119, 16, 6, 1),
+(119, 16, 9, 1),
+(119, 16, 10, 1),
+(119, 16, 12, 1),
+(119, 16, 14, 1),
+(119, 16, 15, 1),
+(119, 16, 19, 1),
+(119, 16, 22, 1),
+(119, 16, 25, 1),
+(119, 16, 27, 1),
+(119, 16, 29, 1),
+(119, 16, 30, 1),
+(119, 16, 31, 1),
+(119, 16, 32, 1),
+(119, 16, 33, 1),
+(119, 16, 34, 1),
+(119, 16, 37, 1),
+(119, 16, 41, 1),
+(119, 16, 42, 1);
 
 -- --------------------------------------------------------
 
@@ -1567,7 +1640,7 @@ CREATE TABLE IF NOT EXISTS `room` (
   `room_name` varchar(60) NOT NULL,
   `statut_room` varchar(15) NOT NULL,
   PRIMARY KEY (`room_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Table de définition d''une room' AUTO_INCREMENT=81 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Table de définition d''une room' AUTO_INCREMENT=85 ;
 
 --
 -- Dumping data for table `room`
@@ -1589,8 +1662,12 @@ INSERT INTO `room` (`room_id`, `room_date_creation`, `room_nb_joueur`, `room_pas
 (76, '2016-05-16', 4, NULL, 'ezg', 'supprime'),
 (77, '2016-05-16', 4, NULL, 'tentgfhgesdbn', 'supprime'),
 (78, '2016-05-16', 4, NULL, 'test p', 'supprime'),
-(79, '2016-05-16', 4, NULL, 'test r', 'en partie'),
-(80, '2016-05-16', 4, NULL, 'gzeg', 'en partie');
+(79, '2016-05-16', 4, NULL, 'test r', 'supprime'),
+(80, '2016-05-16', 4, NULL, 'gzeg', 'en partie'),
+(81, '2016-05-17', 4, NULL, 'aeg', 'en partie'),
+(82, '2016-05-17', 4, NULL, 'test', 'supprime'),
+(83, '2016-05-17', 4, NULL, 'egzg', 'supprime'),
+(84, '2016-05-17', 4, NULL, 'zegez', 'en partie');
 
 -- --------------------------------------------------------
 
@@ -1677,11 +1754,11 @@ INSERT INTO `user` (`usr_id`, `usr_pseudo`, `usr_password`, `usr_email`, `usr_da
 (4, 'Vivien', 'f7d71c05a57c4f4300601662e5eba4ae', NULL, '2015-11-16', 4, 'on', 1),
 (5, 'Ali', '7a9b46ab6d983a85dd4d9a1aa64a3945', NULL, '2016-03-01', 1, 'on', 1),
 (6, 'Max', '6a061313d22e51e0f25b7cd4dc065233', NULL, '2016-03-08', 5, 'off', 1),
-(11, 'gataf', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-11', 1, 'on', 1),
+(11, 'gataf', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-11', 1, 'gam', 1),
 (12, 'test', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-11', 1, 'off', 1),
 (14, 'patrick', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-15', 1, 'off', 1),
 (15, 'caf', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-15', 1, 'off', 1),
-(16, 'p', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-15', 1, 'off', 0),
+(16, 'p', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-15', 1, 'gam', 0),
 (17, 't', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-15', 1, 'off', 0);
 
 -- --------------------------------------------------------
@@ -1734,42 +1811,19 @@ CREATE TABLE IF NOT EXISTS `user_has_room` (
   PRIMARY KEY (`id_room`,`id_user`),
   KEY `fk_id_room` (`id_room`),
   KEY `fk_id_user` (`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `user_has_room`
 --
 
 INSERT INTO `user_has_room` (`id_room`, `id_user`, `usr_admin`, `statut_usr_room`) VALUES
-(64, 11, 0, 'out'),
-(64, 14, 0, 'out'),
-(65, 11, 0, 'out'),
-(65, 16, 0, 'out'),
-(66, 16, 0, 'out'),
-(67, 11, 0, 'out'),
-(67, 16, 0, 'out'),
-(68, 11, 0, 'out'),
-(68, 16, 0, 'out'),
-(69, 11, 0, 'out'),
-(69, 16, 0, 'out'),
-(70, 11, 0, 'out'),
-(70, 14, 0, 'out'),
-(71, 11, 0, 'out'),
-(71, 16, 0, 'out'),
-(72, 11, 0, 'out'),
-(73, 11, 0, 'out'),
-(74, 11, 0, 'out'),
-(75, 11, 0, 'out'),
-(76, 11, 0, 'out'),
-(76, 16, 0, 'out'),
-(77, 11, 0, 'out'),
-(77, 16, 0, 'out'),
-(78, 11, 0, 'out'),
-(78, 16, 0, 'out'),
-(79, 11, 0, 'out'),
-(79, 16, 1, 'in'),
-(80, 11, 1, 'in'),
-(80, 14, 0, 'in');
+(82, 11, 0, 'out'),
+(82, 16, 0, 'out'),
+(83, 11, 0, 'out'),
+(83, 16, 0, 'out'),
+(84, 11, 1, 'in'),
+(84, 16, 0, 'in');
 
 --
 -- Constraints for dumped tables
@@ -1791,14 +1845,15 @@ ALTER TABLE `news`
 -- Constraints for table `partie_has_joueur`
 --
 ALTER TABLE `partie_has_joueur`
+  ADD CONSTRAINT `partie_has_joueur_ibfk_3` FOREIGN KEY (`code_clr`) REFERENCES `couleur` (`clr_code`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `partie_has_joueur_ibfk_2` FOREIGN KEY (`id_joueur`) REFERENCES `joueur` (`usr_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `partie_has_joueur_has_pays`
 --
 ALTER TABLE `partie_has_joueur_has_pays`
-  ADD CONSTRAINT `partie_has_joueur_has_pays_ibfk_3` FOREIGN KEY (`id_pays`) REFERENCES `pays` (`id_pays`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `partie_has_joueur_has_pays_ibfk_2` FOREIGN KEY (`id_joueur`) REFERENCES `joueur` (`usr_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `partie_has_joueur_has_pays_ibfk_2` FOREIGN KEY (`id_joueur`) REFERENCES `joueur` (`usr_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `partie_has_joueur_has_pays_ibfk_3` FOREIGN KEY (`id_pays`) REFERENCES `pays` (`id_pays`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `pays`
@@ -1810,8 +1865,8 @@ ALTER TABLE `pays`
 -- Constraints for table `pays1_has_pays2`
 --
 ALTER TABLE `pays1_has_pays2`
-  ADD CONSTRAINT `pays1_has_pays2_ibfk_2` FOREIGN KEY (`id_pays2`) REFERENCES `pays` (`id_pays`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `pays1_has_pays2_ibfk_1` FOREIGN KEY (`id_pays1`) REFERENCES `pays` (`id_pays`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `pays1_has_pays2_ibfk_1` FOREIGN KEY (`id_pays1`) REFERENCES `pays` (`id_pays`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `pays1_has_pays2_ibfk_2` FOREIGN KEY (`id_pays2`) REFERENCES `pays` (`id_pays`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `stats_user`

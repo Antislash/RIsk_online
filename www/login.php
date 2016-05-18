@@ -15,6 +15,12 @@
 			//Destruction des cookies
 			setcookie('pseudo',NULL,time()-3600);
 			setcookie('password',NULL,time()-3600);
+
+			include "include/notif.php";
+
+//			if(isset($_GET['mess']) && $_GET['mess'] == 1){
+//				echo "Le nom d'utilisateur ou le mot de passe n'est pas correct";
+//			}
 		?>
 		<nav id="top_navigation">
 			<img id="logo_risk" src="images/logo_risk.png"/>

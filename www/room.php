@@ -26,6 +26,7 @@
 								 FROM room rm 
 								 INNER JOIN user_has_room uhr ON rm.room_id = uhr.id_room  
 								 WHERE uhr.statut_usr_room = 'in'
+								 AND statut_room IN ('en cours','pleine', 'en partie')
 								 AND uhr.id_user ='". $_SESSION['usr_id']."'");
 
 			$room = $room->fetch();
@@ -85,15 +86,16 @@
 							<label><?php echo $room['room_nb_joueur']; ?></label>
 						</td>
 					</tr>
-					<?php if($room['usr_admin']){?>
+					<?php if($room['usr_admin']){ ?>
 					<tr>
+
 						<td >
 							<center><input class="button" type="submit" value="Lancer" onClick="debutPartie()"/></center>
 						</td>
 
 					<?php } ?>
 					<td >
-						<a href="../php/site/leave_room.php" class="button">Quitter</a>
+						<a href="../php/site/leave_room.php" class="button" id="quitter">Quitter</a>
 					</td>
 					</tr>
 				</table>

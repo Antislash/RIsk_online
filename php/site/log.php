@@ -17,21 +17,23 @@
         $password = filter_var($_POST['connexionPassword'], FILTER_SANITIZE_STRING);
 
         //On vérifie en base de données
-        $user = $bdd->query("SELECT * FROM user WHERE usr_pseudo = '" . $pseudo . "' AND usr_password = '" . md5($password)."'");
+        $user = $bdd->query("SELECT * 
+                             FROM user WHERE usr_pseudo = '" . $pseudo . "' 
+                             AND usr_password = '" . md5($password)."'");
         $user = $user->fetch();
-        var_dump($user);
+
         if($user == false){
+            header('Location: ../../www/login.php?mess=1');
             echo "Problème de connexion a la base de données 1";
         }
 
         //On vérifie que l'utilisateur est bien présent et qu'il n'est pas présent plusieurs fois
         if ($user['usr_pseudo'] != null) {
-            var_dump($user['usr_id']);
+
             //On créé les variables de session
             $_SESSION['usr_id'] = $user['usr_id'];
             $_SESSION['pseudo'] = $user['usr_pseudo'];
             $_SESSION['password'] = $user['usr_password'];
-
 
             //On met le statut du joueur en ligne
             $bdd->exec("UPDATE user SET code_sta = 'on' WHERE usr_pseudo = '".$pseudo."'");
@@ -64,5 +66,5 @@
     }
     else{
         header('Location: ../../www/login.php');
-}
+    }
 ?>
