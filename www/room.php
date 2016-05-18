@@ -26,13 +26,16 @@
 								 FROM room rm 
 								 INNER JOIN user_has_room uhr ON rm.room_id = uhr.id_room  
 								 WHERE uhr.statut_usr_room = 'in'
-								 AND statut_room IN ('en cours','pleine', 'en partie')
+								 AND statut_room IN ('en cours','pleine')
 								 AND uhr.id_user ='". $_SESSION['usr_id']."'");
 
 			$room = $room->fetch();
 
 			if($room != false){
 				$_SESSION['room_id'] = $room['id_room'];
+			}
+			else{
+				header('Location: acceuil.php');
 			}
 
 			//On passe le status du joueur à occupé

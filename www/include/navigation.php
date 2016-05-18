@@ -17,15 +17,25 @@
 	<a href="#"><img class="icon_menu" src="images/help.png" onmouseover="this.src='images/help_hover.png'" onmouseout="this.src='images/help.png'"/></a>
 
 	<?php //Requête pour chercher si le joueur est présent dans une room
-	$user = $bdd->query("SELECT * 
+	$room = $bdd->query("SELECT id_room 
 						 FROM user_has_room uhr 
 						 INNER JOIN room r ON r.room_id = uhr.id_room 
 						 WHERE id_user='".$_SESSION['usr_id']."'
-						 AND statut_usr_room = 'in'");
-	$user = $user->fetch();
+						 AND statut_usr_room = 'in'
+						 AND statut_room IN ('en cours', 'pleine')");
+	$room = $room->fetch();
 
+	//On vérifie si le joueur est présent dans une partie
+	$partie = $bdd->query("SELECT p.id_partie
+						   FROM partie p 
+						   INNER JOIN partie_has_joueur phj ON p.id_partie = phj.id_partie
+						   WHERE phj.joueur_dans_partie = 1
+						   AND p.partie_statut IN ('en cours', 'init')
+						   AND phj.id_joueur = ".$_SESSION['usr_id']);
+
+	$partie = $partie->fetch();
 		//On vérifie que le joueur n'est pas déja présent dans une room, pour afficher les bouttons de création/rejoindre partie
-		if($user['id_room'] == null){
+		if($room['id_room'] == null && $partie['id_partie'] == null){
 	?>
     <div id="table_login">
 		<table>
@@ -36,8 +46,11 @@
 		</table>
 	</div>
 
-	<?php }else{
+	<?php }else if ($room['id_room'] != null){
 			echo "<a href='room.php'>Room</a>";
+		}
+		else if($partie['id_partie'] != null){
+			echo "<a href='../php/partie/recup_info_joueur.php'>Game</a>";
 		}
 	?>
 

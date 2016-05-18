@@ -136,7 +136,7 @@ function compteARebours(){
     //Si 3s sont passé on redirige vers la partie
     if(seconde == 0){
         var adresseActuelle = window.location.origin ;
-        window.location = adresseActuelle + "/risk_online/php/partie/initialiser_partie.php";
+        window.location = adresseActuelle + "/risk_online/php/partie/recup_info_joueur.php";
     }
     //On annonce le début de la partie
     else if(seconde == 4){

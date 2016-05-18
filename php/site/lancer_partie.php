@@ -24,6 +24,8 @@
         $bdd->query("UPDATE room 
                      SET statut_room='en partie' 
                      WHERE room_id = ".$_SESSION['room_id']);
+
+        include "../partie/initialiser_partie.php";
     }
 
 ?>

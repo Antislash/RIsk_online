@@ -19,6 +19,10 @@
 
 			include "../php/site/connexion.php"; //Connexion a la base de données
 			include('../php/site/verif_connexion.php'); //Permet de garantir que l'utilisateur posséde bien les cookies et les variables de session essentiel
+		
+			if(!isset($_SESSION['id_partie'])){
+				header('Location: acceuil.php');
+			}
 		?>
 		<div id="unites">
 			<table>

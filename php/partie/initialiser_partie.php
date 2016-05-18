@@ -21,7 +21,7 @@
     //On enregistre les joueurs dans une liste ainsi que leur nombre
     $liste_user = array();
     $nb_joueur = 0;
-
+var_dump($liste_joueur);
     while($joueur = $liste_joueur->fetch()){
         array_push($liste_user, $joueur['id_user']);
         $nb_joueur++;
@@ -45,17 +45,18 @@
 
     $couleur = array("rouge","bleu", "vert", "jaune", "rose", "noir");
 
+
     //On créé les joueur et on les lie à la partie
     for($i = 0; $i < $nb_joueur; $i++){
         $bdd->exec("INSERT INTO joueur (nb_continent, nb_pays, stats_id, usr_id)
                                         VALUES (0,0,1,".intval($liste_user[$i]).")");
-
+        
         $bdd->exec("INSERT INTO partie_has_joueur (id_joueur, id_partie, code_clr, joueur_dans_partie)
-                                        VALUES (".intval($liste_user[$i])." , ".intval($id_partie['id']).",".$couleur[$i].",1)");
+                                        VALUES (".intval($liste_user[$i])." , ".intval($id_partie['id']).",'".$couleur[$i]."',1)");
 
     }
 
-    //On choisi un joueur au hasard qui commencera
+//    //On choisi un joueur au hasard qui commencera
     $joueur_commence = $liste_user[rand(0, $nb_joueur-1)];
 
     //On met a jour en base de données
