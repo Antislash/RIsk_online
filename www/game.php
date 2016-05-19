@@ -439,6 +439,7 @@
                 </g>
 		  </svg>
 		  <?php include "include/liste_joueur.php";?>
+		  <?php include "include/chat_game.php";?>
 	</body>
 	<script>
 	function setMapSize(){

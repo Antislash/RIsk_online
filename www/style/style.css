@@ -506,7 +506,7 @@ a {
 }
 
 #barre-msg{
-	width: 85%;
+	width: 83%;
 }
 
 #send-msg{
@@ -592,3 +592,35 @@ a {
 	opacity: 0.5;
 	cursor: pointer;
 }
+
+#chat_game{
+	position: fixed;
+	left: 50px;
+	z-index: 3;
+	transition: transform 1s;
+	bottom: -300px;
+}
+
+#chat_game_scroll{
+	background-image:linear-gradient(#444444, #272727); /* Norme W3C */
+	background-image:-moz-linear-gradient(#444444, #272727); /* Firefox */
+	background-image:-webkit-gradient(linear, #444444, #272727); /* Chrome, Safari */
+	background-image:-o-linear-gradient(#444444, #272727); /* Opera */
+	background-image:-ms-linear-gradient(#444444, #272727); /* IE */	
+	border-radius: 10px 10px 0px 0px;
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.8);
+	padding: 5px;
+}
+
+.wrapped_chat{
+	transform: translateY(0px);
+}
+
+.unwrap_chat{
+	transform: translateY(-280px);
+}
+
+#chat_game_scroll, #player_scroll{
+	opacity: 0.9;
+}
+
