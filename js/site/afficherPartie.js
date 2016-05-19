@@ -1,5 +1,5 @@
-setInterval('refreshMap()', 2000);
-setInterval('refreshEtatPartie()', 2000);
+setInterval('refreshMap()', 4000);
+setInterval('refreshEtatPartie()', 7000);
 
 function getXMLHttpRequest() {
     var xhr = null;
@@ -78,17 +78,22 @@ function afficherBouttonTroupe(){
 function bouttonPlus(){
 	var xhr = getXMLHttpRequest();
 	xhr.onreadystatechange = function() {
-		document.getElementById('unites').innerHTML = xhr.responseText;
+		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+			document.getElementById('unites').innerHTML = xhr.responseText;
+		}
 	};
 	xhr.open("GET", "../php/partie/boutton_troupe.php?b=1", true);
 	xhr.send(null);
 }
 
-function bouttonMoin(){
+function bouttonMoin() {
 	var xhr = getXMLHttpRequest();
-	xhr.onreadystatechange = function() {
-		document.getElementById('unites').innerHTML = xhr.responseText;
+	xhr.onreadystatechange = function () {
+		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+			document.getElementById('unites').innerHTML = xhr.responseText;
+		}
 	};
+
 	xhr.open("GET", "../php/partie/boutton_troupe.php?b=2", true);
 	xhr.send(null);
 }

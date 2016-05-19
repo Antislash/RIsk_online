@@ -12,6 +12,17 @@
                             AND id_partie = ".$_SESSION['id_partie']);
 
     $renfort = $renfort->fetch();
+
+
+    if(isset($_GET['b'])){
+        if($_GET['b'] == 1){
+            $_SESSION['boutton_troupe'] = "+";
+    }
+        if($_GET['b'] == 2){
+            $_SESSION['boutton_troupe'] = "-";
+    }
+    }
+
 ?>
 
 <table>
@@ -19,12 +30,12 @@
         <td rowspan="2">
             <span id="unites-sup"><?php echo $renfort['nb_renforts']; ?></span>
         </td>
-        <td onclick="bouttonPlus()" class="td-selected" >
+        <td onclick="bouttonPlus()" <?php if(isset($_SESSION['boutton_troupe']) && $_SESSION['boutton_troupe'] == "+") {  echo "class=\"td-selected\""; } ?> >
             <span id="unites-plus">+</span>
         </td>
     </tr>
     <tr>
-        <td onclick="bouttonMoin()">
+        <td onclick="bouttonMoin()" <?php if(isset($_SESSION['boutton_troupe']) && $_SESSION['boutton_troupe'] == "-") {  echo "class=\"td-selected\""; } ?>>
             <span id="unites-moins">-</span>
         </td>
     </tr>

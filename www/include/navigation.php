@@ -50,7 +50,7 @@
 		}
 		else if($partie['id_partie'] != null){
 			echo "
-	<a href='game.php'><img class=\"icon_menu\" src=\"images/icon-game.png\" onmouseover=\"this.src='images/icon-game-hover.png'\" onmouseout=\"this.src='images/icon-game.png'\"/></a>";
+	<a href='../php/partie/recup_info_joueur.php'><img class=\"icon_menu\" src=\"images/icon-game.png\" onmouseover=\"this.src='images/icon-game-hover.png'\" onmouseout=\"this.src='images/icon-game.png'\"/></a>";
 		}
 	?>
 
