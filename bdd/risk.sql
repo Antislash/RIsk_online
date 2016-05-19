@@ -1121,6 +1121,21 @@ INSERT INTO `ancien_message` (`pseudo`, `message`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `chat_game`
+--
+
+DROP TABLE IF EXISTS `chat_game`;
+CREATE TABLE IF NOT EXISTS `chat_game` (
+  `message_id` int(11) NOT NULL AUTO_INCREMENT,
+  `message_text` longtext NOT NULL,
+  `pseudo` varchar(255) NOT NULL,
+  `timetsamp` int(11) NOT NULL,
+  `message_partie_id` int(4) NOT NULL,
+  PRIMARY KEY (`message_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+--
 -- Structure de la table `chat_messages`
 --
 

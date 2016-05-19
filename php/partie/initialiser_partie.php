@@ -31,7 +31,7 @@
 
     //On créé la partie en base
     $bdd->exec("INSERT INTO partie (a_qui_le_tour, date_crea, date_maj, map, nb_joueurs, partie_statut)
-               VALUES (NULL, CURDATE(),CURDATE(),'Monde', ".$nb_joueur.", 'init')");
+               VALUES (NULL, CURRENT_DATE,CURRENT_DATE,'0', ".$nb_joueur.", 'init')");
 
     //On récupére l'id de la partie créé
     $id_partie = $bdd->query("SELECT MAX(id_partie) as id 
