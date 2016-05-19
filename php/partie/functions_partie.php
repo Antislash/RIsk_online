@@ -3,10 +3,14 @@
 include "../site/connexion.php";
 
 //TODO récupérer ces valeurs en GET
-/*//TEST
-$id_partie = 119;
-$id_joueur = 16;*/
-
+//TEST
+/*$id_partie = 166;
+$id_joueur = 2;*/
+//initialiseRenfortTour($bdd, $id_partie, $id_joueur);
+//initialiseRenfortStart($bdd, $id_partie);
+//addRenfortPays($bdd, $id_partie, $id_joueur, 2);
+//removeRenfortPays($bdd, $id_partie, $id_joueur, 2);
+//moveOneToFrom($bdd, $id_partie, $id_joueur, 2, 3);
 
 //Fonction récursive pour savoir s'il existe un chemin entre 2 pays
 function canMove($bdd, $id_partie, $id_joueur, $id_pays1, $id_pays2){
@@ -78,7 +82,9 @@ function getNeighbourCountry($bdd, $id_partie, $id_joueur, $id_pays){
  * @param $id_paysTo
  */
 function moveOneToFrom($bdd, $id_partie, $id_joueur, $id_paysFrom, $id_paysTo){
-	$allPays = $bdd->query("SELECT * FROM partie_has_joueur_has_pays WHERE id_partie = ".$id_partie." AND id_joueur = ".$id_joueur);
+	$allPays = $bdd->query("SELECT * 
+							FROM partie_has_joueur_has_pays 
+							WHERE id_partie = ".$id_partie." AND id_joueur = ".$id_joueur);
 	global $paysVisited;
 	$paysVisited = array();
 	//On initialise le tabeleau des pays visités à false
@@ -102,10 +108,10 @@ function moveOneToFrom($bdd, $id_partie, $id_joueur, $id_paysFrom, $id_paysTo){
 				//frontièere commune
 				$update1 = "UPDATE partie_has_joueur_has_pays
 							SET nb_pions = ".($paysFrom['nb_pions']-1)."
-							WHERE id_pays = ".$paysFrom['id_pays'];
+							WHERE id_partie = ".$id_partie." AND id_joueur = ".$id_joueur." AND id_pays = ".$paysFrom['id_pays'];
 				$update2 = "UPDATE partie_has_joueur_has_pays
 							SET nb_pions = ".($paysTo['nb_pions']+1)."
-							WHERE id_pays = ".$paysTo['id_pays'];
+							WHERE id_partie = ".$id_partie." AND id_joueur = ".$id_joueur." AND id_pays = ".$paysTo['id_pays'];
 				$req1 = $bdd->exec($update1);
 				$req2 = $bdd->exec($update2);
 				if(!($req1 == false || $req2 == false)){	//Si l'update est bon
@@ -157,9 +163,9 @@ function getAllCountryJoueur($bdd, $id_partie, $id_joueur){
 							WHERE id_partie = ".$id_partie." AND id_joueur = ".$id_joueur);
 	//On récupère le pays complet pour chaque pays
 	foreach($allPays as $pays){
-		$req = $bdd->query("	SELECT * 
-						FROM pays
-						WHERE id_pays = ".$pays['id_pays']);
+		$req = $bdd->query("SELECT * 
+						  	FROM pays
+							WHERE id_pays = ".$pays['id_pays']);
 		$paysComplete = $req->fetch();
 		array_push($allPaysJoueur, $paysComplete);
 	}
@@ -179,5 +185,111 @@ function getNbRenforts($bdd, $id_partie, $id_joueur){
 		$nbRenfortsContinent += $continent['cnt_nb_renfort'];
 	}
 	return $nbRenfortsPays + $nbRenfortsContinent;
+}
+
+function initialiseRenfortTour($bdd, $id_partie, $id_joueur){
+	$nbRenfort = getNbRenforts($bdd, $id_partie, $id_joueur);
+	$update = "	UPDATE partie_has_joueur
+			  	SET nb_renforts = ".$nbRenfort."
+				WHERE id_partie = ".$id_partie." AND id_joueur = ".$id_joueur;
+	$req = $bdd->exec($update);
+	if($req != false){
+		return true;
+	}
+	return false;
+}
+
+function initialiseRenfortStart($bdd, $id_partie){
+	$joueurs =array();
+	$req = $bdd->query("SELECT * 
+						FROM partie_has_joueur
+						WHERE id_partie = ".$id_partie);
+
+	foreach($req as $joueur){
+		array_push($joueurs, $joueur);
+	}
+	$nb_joueurs = sizeof($joueurs); //TODO calculer
+	switch($nb_joueurs){
+		case 2: $nb_renforts = 40;
+			break;
+		case 3: $nb_renforts = 35;
+			break;
+		case 4 : $nb_renforts = 30;
+			break;
+		case 5 : $nb_renforts = 25;
+			break;
+		case 6 : $nb_renforts = 20;
+			break;
+		default : $nb_renforts = 0;
+	}
+	foreach($joueurs as $joueur){
+		$update = "	UPDATE partie_has_joueur
+				  	SET nb_renforts = ".$nb_renforts."
+					WHERE id_partie = ".$id_partie." AND id_joueur = ".$joueur['id_joueur'];
+		$req = $bdd->exec($update);
+		if($req == false){
+			return false;
+		}
+	}
+}
+
+function addRenfortPays($bdd, $id_partie, $id_joueur, $id_pays){
+	$req = $bdd->query("SELECT * 
+						FROM partie_has_joueur_has_pays 
+						WHERE id_partie = ".$id_partie." AND id_joueur = ".$id_joueur." AND id_pays = ".$id_pays);
+	$pays = $req->fetch();
+	if($pays != false){	//Si le joueur possède bien le pays
+		$req = $bdd->query("SELECT * 
+							FROM partie_has_joueur
+							WHERE id_partie = ".$id_partie." AND id_joueur = ".$id_joueur);
+		$joueur = $req->fetch();
+		if($joueur != false){
+			if($joueur['nb_renforts'] > 0){
+				//var_dump($pays);
+				$update1 = "UPDATE partie_has_joueur
+							SET nb_renforts = ".($joueur['nb_renforts']-1)."
+							WHERE id_partie = ".$id_partie." AND id_joueur = ".$id_joueur;
+				$update2 = "UPDATE partie_has_joueur_has_pays
+							SET nb_pions = ".($pays['nb_pions']+1)."
+							WHERE id_partie = ".$id_partie." AND id_joueur = ".$id_joueur." AND id_pays = ".$pays['id_pays'];
+				$req1 = $bdd->exec($update1);
+				$req2 = $bdd->exec($update2);
+				if($req1 != false && $req2 != false){
+					return true;
+				}
+			}
+		}
+	}
+	return false;
+}
+
+function removeRenfortPays($bdd, $id_partie, $id_joueur, $id_pays){
+	$req = $bdd->query("SELECT * 
+						FROM partie_has_joueur_has_pays 
+						WHERE id_partie = ".$id_partie." AND id_joueur = ".$id_joueur." AND id_pays = ".$id_pays);
+	$pays = $req->fetch();
+	if($pays != false){	//Si le joueur possède bien le pays avec + d'1 renfort
+		$req = $bdd->query("SELECT * 
+							FROM partie_has_joueur
+							WHERE id_partie = ".$id_partie." AND id_joueur = ".$id_joueur);
+		$joueur = $req->fetch();
+		if($joueur != false){
+			if($pays['nb_pions'] > 1){
+				//var_dump($pays);
+				$update1 = "UPDATE partie_has_joueur
+							SET nb_renforts = ".($joueur['nb_renforts']+1)."
+							WHERE id_partie = ".$id_partie." AND id_joueur = ".$id_joueur;
+				$update2 = "UPDATE partie_has_joueur_has_pays
+							SET nb_pions = ".($pays['nb_pions']-1)."
+							WHERE id_partie = ".$id_partie." AND id_joueur = ".$id_joueur." AND id_pays = ".$pays['id_pays'];
+				$req1 = $bdd->exec($update1);
+				$req2 = $bdd->exec($update2);
+				if($req1 != false && $req2 != false){
+					return true;
+				}
+			}
+		}
+	}
+	return false;
 }
 ?>
