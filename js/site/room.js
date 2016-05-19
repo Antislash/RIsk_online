@@ -36,7 +36,7 @@ function requestChat(callback) {
         }
     };
  var action  = encodeURIComponent('new');
-   xhr.open("GET", "../php/site/get-message.php?action=" + action, true);
+   xhr.open("GET", "../php/site/get_message_room.php?action=" + action, true);
     xhr.send(null);   
 }
 

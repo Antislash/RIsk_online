@@ -42,7 +42,7 @@
     //On enregistre l'id de la partie dans une session
     $_SESSION['id_partie'] = $id_partie['id'];
 
-    $couleur = array("rouge","bleu", "vert", "jaune", "rose", "blanc");
+    $couleur = array("rouge","bleu", "vert", "jaune", "orange", "blanc");
 
 
     //On créé les joueur et on les lie à la partie

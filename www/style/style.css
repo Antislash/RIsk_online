@@ -2,7 +2,7 @@
 
 /*Style du fond et de la police de base*/
 body{
-	background-image: url(../images/test.jpg);
+	background-image: url(../images/background.png);
 	background-repeat:no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
@@ -591,7 +591,7 @@ a {
 
 .country:hover{
 	stroke-width:1.5;
-	opacity: 0.5;
+	opacity: 0.8;
 	cursor: pointer;
 }
 
@@ -699,4 +699,8 @@ a {
 
 #unites-sup{
 	font-size: 1.5em;
+}
+
+.pointer-tr:hover{
+	cursor: pointer;
 }

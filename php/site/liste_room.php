@@ -18,7 +18,7 @@
 <table>
     <!--On affiche les room	-->
     <?php while($room = $list_room->fetch(PDO::FETCH_ASSOC)){ ?>
-        <tr>
+        <tr onclick="document.location.href='../php/site/join_game.php?room_id=<?php echo $room['room_id']; ?>'" class="pointer-tr">
             <td class="room-date">
                 <a href="../php/site/join_game.php?room_id=<?php echo $room['room_id']; ?>"><?php echo $room['room_date_creation']; ?></a>
             </td>

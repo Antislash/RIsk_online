@@ -1,7 +1,7 @@
 <div id="emplacement_des">
 <?php
 
-include "../php/site/connexion.php";
+include "../../php/site/connexion.php";
 
 function getAttackableCountry($bdd, $id_partie, $id_joueur, $id_pays){
 	//On recupere les pays voisins du pays
@@ -127,5 +127,7 @@ function affichage_des($des_attack, $des_defense) {
 	}
 	echo '</div>';
 }
+
+attack($bdd, 119, 1, 2, 11);
 ?>
 </div>
