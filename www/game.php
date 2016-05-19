@@ -28,24 +28,9 @@
 			refreshMap();
 		</script>
 		<div id="unites">
-			<table>
-				<tr>
-					<td rowspan="2">
-						<span id="unites-sup">6</span>
-					</td>
-					<td class="td-selected" >
-						<span id="unites-plus">+</span>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<span id="unites-moins">-</span>
-					</td>
-				</tr>
-			</table>
+			<!-- Methode ajax pour afficher les boutton d'ajout de troupe-->
 		</div>
 		<div id="etat">
-			Vivien joue ...
 		</div>
 		<div id="fleche">
 			<img src="images/fleche-droite.png" onmouseover="this.src='images/fleche-droite-hover.png'" onmouseout="this.src='images/fleche-droite.png'"/>

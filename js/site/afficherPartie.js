@@ -1,4 +1,5 @@
-setInterval('refreshMap()', 1000);
+setInterval('refreshMap()', 2000);
+setInterval('refreshEtatPartie()', 2000);
 
 function getXMLHttpRequest() {
     var xhr = null;
@@ -46,4 +47,48 @@ function afficherCouleurCarte(infos){
 			document.getElementById("renfort_" + pays[i]).innerHTML = pions[i];
 		}
 	}
+}
+
+function refreshEtatPartie(){
+	var xhr = getXMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+			var etat = xhr.responseText;
+
+			document.getElementById('etat').innerHTML = etat;
+
+			if(etat == "renforcement" || etat == "attente pret"){
+				afficherBouttonTroupe();
+			}
+		}
+	};
+	xhr.open("GET", "../php/partie/etat_partie.php", true);
+	xhr.send(null);
+}
+
+function afficherBouttonTroupe(){
+	var xhr = getXMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		document.getElementById('unites').innerHTML = xhr.responseText;
+	};
+	xhr.open("GET", "../php/partie/boutton_troupe.php", true);
+	xhr.send(null);
+}
+
+function bouttonPlus(){
+	var xhr = getXMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		document.getElementById('unites').innerHTML = xhr.responseText;
+	};
+	xhr.open("GET", "../php/partie/boutton_troupe.php?b=1", true);
+	xhr.send(null);
+}
+
+function bouttonMoin(){
+	var xhr = getXMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		document.getElementById('unites').innerHTML = xhr.responseText;
+	};
+	xhr.open("GET", "../php/partie/boutton_troupe.php?b=2", true);
+	xhr.send(null);
 }
