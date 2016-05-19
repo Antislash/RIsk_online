@@ -1,11 +1,12 @@
 <?php
 
 include "../site/connexion.php";
-//TEST
+
 //TODO récupérer ces valeurs en GET
+/*//TEST
 $id_partie = 119;
-$id_joueur = 11;
-var_dump(moveOneToFrom($bdd, $id_partie, $id_joueur, 11, 17));
+$id_joueur = 16;*/
+
 
 //Fonction récursive pour savoir s'il existe un chemin entre 2 pays
 function canMove($bdd, $id_partie, $id_joueur, $id_pays1, $id_pays2){
@@ -117,6 +118,66 @@ function moveOneToFrom($bdd, $id_partie, $id_joueur, $id_paysFrom, $id_paysTo){
 }
 
 function getContinentJoueur($bdd, $id_partie, $id_joueur){
-	return true;
+	//Tableau pour savoir le le nombre de pays pour chaque continent
+	$continentArrayNb = array();
+	//Tableau retourné avec les continents possédés par le joueur
+	$continentArray = array();
+	//Tableau de tous les continents
+	$allContinent = array();
+	$reqContinent = $bdd->query("	SELECT * 
+									FROM continent");
+	//On récupère tous les continents
+	foreach($reqContinent as $continent){
+		$allContinent[$continent['cnt_id']] = $continent;
+	}
+	//On initialise un tableau à 0 avec comme clé l'id du continent
+	foreach($allContinent as $continent){
+		$continentArrayNb[$continent['cnt_id']] = 0;
+	}
+	//On récupère tous les pays du joueur
+	$allPaysJoueur = getAllCountryJoueur($bdd, $id_partie, $id_joueur);
+	//On calcule combien de pays à la joueur dans chaque continent
+	foreach($allPaysJoueur as $pays){
+		$continentArrayNb[intval($pays['continent_id'])]++;
+	}
+	foreach($continentArrayNb as $key => $nbPays){
+		//Si le joueur possède le continent
+		if($nbPays == $allContinent[$key]['cnt_nb_pays']){
+			array_push($continentArray, $allContinent[$key]);
+		}
+	}
+	return $continentArray;
+}
+
+function getAllCountryJoueur($bdd, $id_partie, $id_joueur){
+	//On récupère tous les pays du joueur
+	$allPaysJoueur = array();
+	$allPays = $bdd->query("SELECT * 
+							FROM partie_has_joueur_has_pays 
+							WHERE id_partie = ".$id_partie." AND id_joueur = ".$id_joueur);
+	//On récupère le pays complet pour chaque pays
+	foreach($allPays as $pays){
+		$req = $bdd->query("	SELECT * 
+						FROM pays
+						WHERE id_pays = ".$pays['id_pays']);
+		$paysComplete = $req->fetch();
+		array_push($allPaysJoueur, $paysComplete);
+	}
+	return $allPaysJoueur;
+}
+
+function getNbRenforts($bdd, $id_partie, $id_joueur){
+	//On récupère les continents possédés par le joueur;
+	$continentJoueur = getContinentJoueur($bdd, $id_partie, $id_joueur);
+	//On récupère les pays possédés par le joueur;
+	$paysJoueur = getAllCountryJoueur($bdd, $id_partie, $id_joueur);
+	//On prend le max entre 3 et (nb_pays)/3 (Pour avoir au minimum 3 renforts)
+	$nbRenfortsPays = max(3, sizeof($paysJoueur)/3);
+	$nbRenfortsContinent = 0;
+	//On récupère le nombre de renfort pour chaque continent possédé par le joueur
+	foreach($continentJoueur as $continent){
+		$nbRenfortsContinent += $continent['cnt_nb_renfort'];
+	}
+	return $nbRenfortsPays + $nbRenfortsContinent;
 }
 ?>
