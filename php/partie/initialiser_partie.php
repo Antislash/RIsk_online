@@ -21,7 +21,6 @@
     //On enregistre les joueurs dans une liste ainsi que leur nombre
     $liste_user = array();
     $nb_joueur = 0;
-var_dump($liste_joueur);
     while($joueur = $liste_joueur->fetch()){
         array_push($liste_user, $joueur['id_user']);
         $nb_joueur++;
@@ -43,7 +42,7 @@ var_dump($liste_joueur);
     //On enregistre l'id de la partie dans une session
     $_SESSION['id_partie'] = $id_partie['id'];
 
-    $couleur = array("rouge","bleu", "vert", "jaune", "rose", "noir");
+    $couleur = array("rouge","bleu", "vert", "jaune", "rose", "blanc");
 
 
     //On créé les joueur et on les lie à la partie
@@ -56,7 +55,7 @@ var_dump($liste_joueur);
 
     }
 
-//    //On choisi un joueur au hasard qui commencera
+    //On choisi un joueur au hasard qui commencera
     $joueur_commence = $liste_user[rand(0, $nb_joueur-1)];
 
     //On met a jour en base de données

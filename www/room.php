@@ -34,9 +34,6 @@
 			if($room != false){
 				$_SESSION['room_id'] = $room['id_room'];
 			}
-			else{
-				header('Location: acceuil.php');
-			}
 
 			//On passe le status du joueur à occupé
 			$bdd->exec("UPDATE user set code_sta = 'gam' WHERE usr_id =".$_SESSION['usr_id'] );
@@ -69,18 +66,6 @@
 							} ?>
 						</td>
 					</tr>
-					<!--
-					<?php if($room['room_password'] =! NULL ){ ?>
-						<tr>
-							<td>
-								Mot de passe:
-							</td>
-							<td>
-								<?php echo $room['room_password'] ?>
-							</td>
-						</tr>
-					<?php } ?>
-					-->
 					<tr>
 						<td>
 							Nombre de joueurs (2 - 6):
