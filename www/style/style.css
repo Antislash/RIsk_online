@@ -2,7 +2,7 @@
 
 /*Style du fond et de la police de base*/
 body{
-	background-image: url(../images/test.jpg);
+	background-image: url(../images/background.jpg);
 	background-repeat:no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
@@ -289,14 +289,21 @@ h3{
 	padding: 0px;
 }
 
-/*AFFICHAGE AMIS*/
+/*AFFICHAGE AMIS & JOUEURS EN JEU*/
 
-#friends{
+#friends, #player{
 	position: fixed;
-	bottom: -445px;
 	right: 50px;
 	z-index: 3;
 	transition: transform 1s;
+}
+
+#friends{
+	bottom: -245px;
+}
+
+#player{
+	bottom: -285px;
 }
 
 .wrapped{
@@ -304,7 +311,7 @@ h3{
 }
 
 .unwrap{
-	transform: translateY(-445px);
+	transform: translateY(-245px);
 }
 
 #languette{
@@ -321,31 +328,43 @@ h3{
 	width: 200px;
 }
 
-.bloc_friends td{
+#list_player{
+	width: 300px;
+}
+
+.bloc_friends td, .bloc_player td{
 	border-bottom: 1px solid rgba(255, 255, 255, 0.4);	
 	padding: 5px 0px 5px 16px;
 }
 
-#list_friends tr:hover{
+#list_friends tr:hover, #list_player tr:hover{
 	background-color: #BE4747;
 }
 
-.avatar_friends, .avatar_friends img{
+.avatar_friends, .avatar_friends img , .avatar_player, .avatar_player img{
 	width: 35px;
 }
 
-.avatar_friends img{
+.avatar_friends img, .avatar_player img{
 	border: 1px solid rgba(0,0,0,1);
 }
 
-#friends_scroll{
-    height: 400px;
+#friends_scroll, #player_scroll{
 	overflow-y: auto;	
 	overflow-x: hidden;
 	background-color: #9d0404;
 	padding-top: 5px;
 	border-radius: 10px 10px 0px 0px;
     box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.8);
+}
+
+#friends_scroll{
+    height: 200px;
+    margin-bottom: 40px;
+}
+
+#player_scroll{
+    height: 240px;
     margin-bottom: 40px;
 }
 

@@ -1,3 +1,5 @@
+setInterval('refreshMap()', 1000);
+
 function getXMLHttpRequest() {
     var xhr = null;
 

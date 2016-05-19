@@ -438,6 +438,7 @@
                     </text>
                 </g>
 		  </svg>
+		  <?php include "include/liste_joueur.php";?>
 	</body>
 	<script>
 	function setMapSize(){
