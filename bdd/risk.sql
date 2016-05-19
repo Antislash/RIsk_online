@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 18, 2016 at 08:04 PM
+-- Generation Time: May 19, 2016 at 03:22 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -1113,7 +1113,10 @@ INSERT INTO `ancien_message` (`pseudo`, `message`) VALUES
 ('room_77', 'La partie commence'),
 ('room_77', 'La partie commence'),
 ('room_77', 'La partie commence'),
-('room_77', 'La partie commence');
+('room_77', 'La partie commence'),
+('gataf', 'yo'),
+('gataf', 'yo'),
+('p', 'gezg');
 
 -- --------------------------------------------------------
 
@@ -1130,14 +1133,14 @@ CREATE TABLE IF NOT EXISTS `chat_messages` (
   `message_room_id` int(4) NOT NULL,
   PRIMARY KEY (`message_id`),
   UNIQUE KEY `fk_id_room` (`message_room_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1545 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1562 ;
 
 --
 -- Dumping data for table `chat_messages`
 --
 
 INSERT INTO `chat_messages` (`message_id`, `message_text`, `pseudo`, `timestamp`, `message_room_id`) VALUES
-(1544, 'yo', 'gataf', 1463481652, 81);
+(1557, 'gezg', 'p', 1463662662, 104);
 
 -- --------------------------------------------------------
 
@@ -1241,9 +1244,9 @@ CREATE TABLE IF NOT EXISTS `joueur` (
 --
 
 INSERT INTO `joueur` (`usr_id`, `stats_id`, `nb_pays`, `nb_continent`) VALUES
-(0, 1, 0, 0),
 (11, 1, 0, 0),
 (14, 1, 0, 0),
+(15, 1, 0, 0),
 (16, 1, 0, 0);
 
 -- --------------------------------------------------------
@@ -1293,15 +1296,7 @@ CREATE TABLE IF NOT EXISTS `partie` (
   `partie_statut` varchar(20) NOT NULL,
   PRIMARY KEY (`id_partie`),
   KEY `fk_a_qui_le_tour` (`a_qui_le_tour`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=120 ;
-
---
--- Dumping data for table `partie`
---
-
-INSERT INTO `partie` (`id_partie`, `nb_joueurs`, `date_crea`, `date_maj`, `map`, `a_qui_le_tour`, `partie_statut`) VALUES
-(118, 2, '2016-05-18', '2016-05-18', 0, 11, 'init'),
-(119, 2, '2016-05-18', '2016-05-18', 0, 11, 'init');
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=166 ;
 
 -- --------------------------------------------------------
 
@@ -1315,21 +1310,12 @@ CREATE TABLE IF NOT EXISTS `partie_has_joueur` (
   `id_joueur` int(11) NOT NULL,
   `code_clr` varchar(40) DEFAULT NULL,
   `joueur_dans_partie` int(2) NOT NULL,
+  `etat_joueur` varchar(20) NOT NULL COMMENT 'phase (attaque...), attente ou prêt',
   PRIMARY KEY (`id_partie`,`id_joueur`),
   KEY `fk_partie` (`id_partie`),
   KEY `fk_joueur` (`id_joueur`),
   KEY `fk_code_clr` (`code_clr`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `partie_has_joueur`
---
-
-INSERT INTO `partie_has_joueur` (`id_partie`, `id_joueur`, `code_clr`, `joueur_dans_partie`) VALUES
-(118, 11, 'blanc', 0),
-(118, 16, 'blanc', 0),
-(119, 11, 'blanc', 0),
-(119, 16, 'blanc', 0);
 
 -- --------------------------------------------------------
 
@@ -1354,48 +1340,48 @@ CREATE TABLE IF NOT EXISTS `partie_has_joueur_has_pays` (
 --
 
 INSERT INTO `partie_has_joueur_has_pays` (`id_partie`, `id_joueur`, `id_pays`, `nb_pions`) VALUES
-(119, 11, 1, 1),
-(119, 11, 3, 1),
-(119, 11, 5, 1),
-(119, 11, 7, 1),
-(119, 11, 8, 1),
-(119, 11, 11, 1),
-(119, 11, 13, 1),
-(119, 11, 16, 1),
-(119, 11, 17, 1),
-(119, 11, 18, 1),
-(119, 11, 20, 1),
-(119, 11, 21, 1),
-(119, 11, 23, 1),
-(119, 11, 24, 1),
-(119, 11, 26, 1),
-(119, 11, 28, 1),
-(119, 11, 35, 1),
-(119, 11, 36, 1),
-(119, 11, 38, 1),
-(119, 11, 39, 1),
-(119, 11, 40, 1),
-(119, 16, 2, 1),
-(119, 16, 4, 1),
-(119, 16, 6, 1),
-(119, 16, 9, 1),
-(119, 16, 10, 1),
-(119, 16, 12, 1),
-(119, 16, 14, 1),
-(119, 16, 15, 1),
-(119, 16, 19, 1),
-(119, 16, 22, 1),
-(119, 16, 25, 1),
-(119, 16, 27, 1),
-(119, 16, 29, 1),
-(119, 16, 30, 1),
-(119, 16, 31, 1),
-(119, 16, 32, 1),
-(119, 16, 33, 1),
-(119, 16, 34, 1),
-(119, 16, 37, 1),
-(119, 16, 41, 1),
-(119, 16, 42, 1);
+(165, 11, 1, 1),
+(165, 11, 2, 1),
+(165, 11, 3, 1),
+(165, 11, 4, 1),
+(165, 11, 7, 1),
+(165, 11, 8, 1),
+(165, 11, 10, 1),
+(165, 11, 13, 1),
+(165, 11, 14, 1),
+(165, 11, 15, 1),
+(165, 11, 17, 1),
+(165, 11, 19, 1),
+(165, 11, 22, 1),
+(165, 11, 24, 1),
+(165, 11, 25, 1),
+(165, 11, 26, 1),
+(165, 11, 30, 1),
+(165, 11, 35, 1),
+(165, 11, 37, 1),
+(165, 11, 41, 1),
+(165, 11, 42, 1),
+(165, 16, 5, 1),
+(165, 16, 6, 1),
+(165, 16, 9, 1),
+(165, 16, 11, 1),
+(165, 16, 12, 1),
+(165, 16, 16, 1),
+(165, 16, 18, 1),
+(165, 16, 20, 1),
+(165, 16, 21, 1),
+(165, 16, 23, 1),
+(165, 16, 27, 1),
+(165, 16, 28, 1),
+(165, 16, 29, 1),
+(165, 16, 31, 1),
+(165, 16, 32, 1),
+(165, 16, 33, 1),
+(165, 16, 34, 1),
+(165, 16, 36, 1),
+(165, 16, 38, 1),
+(165, 16, 39, 1),
+(165, 16, 40, 1);
 
 -- --------------------------------------------------------
 
@@ -1662,34 +1648,7 @@ CREATE TABLE IF NOT EXISTS `room` (
   `room_name` varchar(60) NOT NULL,
   `statut_room` varchar(15) NOT NULL,
   PRIMARY KEY (`room_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Table de définition d''une room' AUTO_INCREMENT=85 ;
-
---
--- Dumping data for table `room`
---
-
-INSERT INTO `room` (`room_id`, `room_date_creation`, `room_nb_joueur`, `room_password`, `room_name`, `statut_room`) VALUES
-(64, '2016-05-16', 2, NULL, 'test room 2', 'supprime'),
-(65, '2016-05-16', 2, NULL, 'test gataf', 'supprime'),
-(66, '2016-05-16', 4, NULL, 'ok20', 'supprime'),
-(67, '2016-05-16', 4, NULL, 'test begin', 'supprime'),
-(68, '2016-05-16', 4, NULL, 'ok gataf', 'supprime'),
-(69, '2016-05-16', 4, NULL, 'test commence', 'supprime'),
-(70, '2016-05-16', 4, NULL, 'ezg', 'supprime'),
-(71, '2016-05-16', 4, NULL, 'test', 'supprime'),
-(72, '2016-05-16', 4, NULL, 'ezg', 'supprime'),
-(73, '2016-05-16', 4, NULL, 'gezg', 'supprime'),
-(74, '2016-05-16', 4, NULL, 'fzeaf', 'supprime'),
-(75, '2016-05-16', 4, NULL, 'eg', 'supprime'),
-(76, '2016-05-16', 4, NULL, 'ezg', 'supprime'),
-(77, '2016-05-16', 4, NULL, 'tentgfhgesdbn', 'supprime'),
-(78, '2016-05-16', 4, NULL, 'test p', 'supprime'),
-(79, '2016-05-16', 4, NULL, 'test r', 'supprime'),
-(80, '2016-05-16', 4, NULL, 'gzeg', 'en partie'),
-(81, '2016-05-17', 4, NULL, 'aeg', 'en partie'),
-(82, '2016-05-17', 4, NULL, 'test', 'supprime'),
-(83, '2016-05-17', 4, NULL, 'egzg', 'supprime'),
-(84, '2016-05-17', 4, NULL, 'zegez', 'en partie');
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Table de définition d''une room' AUTO_INCREMENT=105 ;
 
 -- --------------------------------------------------------
 
@@ -1780,11 +1739,11 @@ INSERT INTO `user` (`usr_id`, `usr_pseudo`, `usr_password`, `usr_email`, `usr_da
 (4, 'Vivien', 'f7d71c05a57c4f4300601662e5eba4ae', NULL, '2015-11-16', 4, 'on', 1),
 (5, 'Ali', '7a9b46ab6d983a85dd4d9a1aa64a3945', NULL, '2016-03-01', 1, 'on', 1),
 (6, 'Max', '6a061313d22e51e0f25b7cd4dc065233', NULL, '2016-03-08', 5, 'off', 1),
-(11, 'gataf', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-11', 1, 'gam', 1),
-(12, 'test', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-11', 1, 'off', 1),
+(11, 'gataf', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-11', 1, 'off', 1),
+(12, 'test', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-11', 1, 'gam', 1),
 (14, 'patrick', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-15', 1, 'off', 1),
 (15, 'caf', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-15', 1, 'off', 1),
-(16, 'p', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-15', 1, 'gam', 0),
+(16, 'p', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-15', 1, 'off', 0),
 (17, 't', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-15', 1, 'off', 0);
 
 -- --------------------------------------------------------
@@ -1802,28 +1761,6 @@ CREATE TABLE IF NOT EXISTS `user1_has_user2` (
   KEY `fk_id_user2` (`id_usr2`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Table pour les liens d''amitié';
 
---
--- Dumping data for table `user1_has_user2`
---
-
-INSERT INTO `user1_has_user2` (`id_usr1`, `id_usr2`) VALUES
-(2, 3),
-(2, 4),
-(2, 6),
-(3, 2),
-(3, 4),
-(4, 2),
-(4, 3),
-(6, 2),
-(6, 11),
-(11, 6),
-(11, 12),
-(11, 14),
-(11, 17),
-(12, 11),
-(14, 11),
-(17, 11);
-
 -- --------------------------------------------------------
 
 --
@@ -1840,18 +1777,6 @@ CREATE TABLE IF NOT EXISTS `user_has_room` (
   KEY `fk_id_room` (`id_room`),
   KEY `fk_id_user` (`id_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `user_has_room`
---
-
-INSERT INTO `user_has_room` (`id_room`, `id_user`, `usr_admin`, `statut_usr_room`) VALUES
-(82, 11, 0, 'out'),
-(82, 16, 0, 'out'),
-(83, 11, 0, 'out'),
-(83, 16, 0, 'out'),
-(84, 11, 1, 'in'),
-(84, 16, 0, 'in');
 
 --
 -- Constraints for dumped tables

@@ -44,9 +44,13 @@
                                     WHERE id_partie =". $_SESSION['id_partie']);
         //On récupére l'id du joueur suivant
         $liste = array();
+        $nb_joueur=0;
         while($joueur = $liste_joueur->fetch()){
             array_push($liste,$joueur['id_joueur']);
+            $nbjoueur++;
         }
+
+        $_SESSION['nb_joueur'] = $nbjoueur;
 
         for ($i = 0; $i < count($liste)-1 ; $i++){
 
