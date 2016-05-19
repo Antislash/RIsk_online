@@ -447,8 +447,8 @@
 		var h = 520;
 		var ratio = w/h;
 		var wEcran = document.body.clientWidth;
-		var hEcran = document.body.clientHeight;
-		if(wEcran > ratio * hEcran){
+		var hEcran = document.body.clientHeight - 100;
+		if(wEcran < ratio * hEcran){
 			newW = wEcran;
 			newH = wEcran/ratio;
 		}
