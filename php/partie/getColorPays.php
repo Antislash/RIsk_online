@@ -1,5 +1,6 @@
 <?php
 include "../site/connexion.php"; //Connexion a la base de données
+include "../site/verif_connexion.php"; //Connexion a la base de données
 
 $infos = $bdd->query("	SELECT t1.id_pays, col.clr_css, t2.id_joueur, t1.nb_pions
 						FROM partie_has_joueur_has_pays t1
