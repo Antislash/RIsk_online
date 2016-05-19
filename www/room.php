@@ -34,9 +34,9 @@
 			if($room != false){
 				$_SESSION['room_id'] = $room['id_room'];
 			}
-			else{
-				header('Location: acceuil.php');
-			}
+//			else{
+//				header('Location: acceuil.php');
+//			}
 
 			//On passe le status du joueur à occupé
 			$bdd->exec("UPDATE user set code_sta = 'gam' WHERE usr_id =".$_SESSION['usr_id'] );

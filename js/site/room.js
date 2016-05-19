@@ -1,6 +1,6 @@
 var chat = setInterval('requestChat(readMessage)',500);
 setInterval('requestListeJoueur(affichageListeJoueur)',700);
-var verif = setInterval('verifierRoom(compteARebours)',2000);
+var verif = setInterval('verifierRoom()',10000);
 
 //Instantiation de l'objet ajax
 function getXMLHttpRequest() {
@@ -94,10 +94,9 @@ function debutPartie(){
 
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-            callback(xhr.responseText);
+            document.getElementById('chat-room').innerHTML =xhr.responseText;
         }
     };
-    
     xhr.open("GET", "../php/site/lancer_partie.php", true);
     xhr.send(null);
 }
@@ -113,7 +112,7 @@ function verifierRoom(){
             if(xhr.responseText == "1"){
                 //Cacher le boutton quitter
                 //document.getElementById('quitter').innerHTML = "";
-                
+
                 //On déasctive le chat et la vérification du statut de la room
                 clearInterval(verif);
                 clearInterval(chat);
