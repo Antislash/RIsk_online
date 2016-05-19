@@ -10,6 +10,14 @@
 
     include "../site/connexion.php";
 
+    //On récupére la liste des joueurs
+    $liste_joueur = $bdd->query("SELECT *
+                                 FROM user_has_room uhr
+                                 INNER JOIN room r ON r.room_id = uhr.id_room
+                                 WHERE statut_usr_room = 'in'
+                                 AND statut_room = 'en partie'
+                                 AND id_room =". $_SESSION['room_id']);
+
     //On enregistre les joueurs dans une liste ainsi que leur nombre
     $liste_user = array();
     $nb_joueur = 0;

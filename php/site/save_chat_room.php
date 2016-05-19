@@ -18,6 +18,7 @@
     'timestamp' => time(),
     'room_id' => $_SESSION['room_id']
   ));
+
   //header('Location: room.php#chat-room');
 
   function delete_msg($bdd) {

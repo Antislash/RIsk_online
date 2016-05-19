@@ -11,7 +11,6 @@
 
     include "connexion.php";
 
-    echo "salut";
     //On récupère le nombre de joueur
     $nb_joueur = $bdd->query("SELECT COUNT(*) as nbJoueur
                               FROM user_has_room

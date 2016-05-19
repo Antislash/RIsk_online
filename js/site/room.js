@@ -1,6 +1,6 @@
 var chat = setInterval('requestChat(readMessage)',500);
 setInterval('requestListeJoueur(affichageListeJoueur)',700);
-var verif = setInterval('verifierRoom()',10000);
+var verif = setInterval('verifierRoom()',2000);
 
 //Instantiation de l'objet ajax
 function getXMLHttpRequest() {
@@ -56,8 +56,8 @@ function saveMessage() {
 
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-            callback(xhr.responseText);
-         write(msg);
+           // callback(xhr.responseText);
+         //write(msg);
         }
     };
     var msg = encodeURIComponent(document.getElementById("barre-msg").value);
