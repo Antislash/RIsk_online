@@ -26,6 +26,7 @@
 		?>
 		<script>
 			refreshMap();
+			document.body.style.backgroundImage = "url(images/game.png)";
 		</script>
 		<div id="unites">
 			<table>
