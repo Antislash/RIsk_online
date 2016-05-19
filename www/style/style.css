@@ -670,3 +670,33 @@ a {
 #fleche img:hover{
 	cursor: pointer;
 }
+
+#unites{
+	font-size: 2em;
+	position: fixed;
+	left : 0px;
+	top: 0px;
+	padding: 10px;
+	background-image:linear-gradient(#444444, #272727); /* Norme W3C */
+	background-image:-moz-linear-gradient(#444444, #272727); /* Firefox */
+	background-image:-webkit-gradient(linear, #444444, #272727); /* Chrome, Safari */
+	background-image:-o-linear-gradient(#444444, #272727); /* Opera */
+	background-image:-ms-linear-gradient(#444444, #272727); /* IE */	
+	border-radius: 0px 0px 15px 0px;
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.8);	
+	opacity: 0.9;
+	text-align: center;
+}
+
+.td-selected{
+	background-color: green;
+    box-shadow: inset 0px 0px 15px 0px rgba(0, 0, 0, 0.8);	
+}
+
+#unites td{
+	width: 50px;
+}
+
+#unites-sup{
+	font-size: 1.5em;
+}
