@@ -47,11 +47,13 @@
 
         }
         else{
-            //Un autre joueur passe admin ( ne fonctionne pas avec le LIMIT 1
             $bdd->query("UPDATE user_has_room
-                        SET usr_admin = 1
-                        WHERE id_room=".$_SESSION['room_id']."
-                        AND statut_usr_room = 'in'" );
+						 SET usr_admin = 1
+						 WHERE id_user = (SELECT id_user 
+										  FROM user_has_room 
+										  WHERE id_room=".$_SESSION['room_id']." 
+										  AND statut_usr_room = 'in'
+										  limit 1)" );
         }
 
         //Le joueur n'est plus admin

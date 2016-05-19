@@ -45,7 +45,10 @@
 			</table>
 		</div>
 		<div id="etat">
-			Renforcement
+			→
+		</div>→
+		<div id="fleche">
+			<img src="images/fleche-droite.png" onmouseover="this.src='images/fleche-droite-hover.png'" onmouseout="this.src='images/fleche-droite.png'"/>
 		</div>
 		<svg
 		   id="map-svg"
