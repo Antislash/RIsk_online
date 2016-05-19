@@ -18,9 +18,15 @@
 
 			include "include/notif.php";
 
-//			if(isset($_GET['mess']) && $_GET['mess'] == 1){
-//				echo "Le nom d'utilisateur ou le mot de passe n'est pas correct";
-//			}
+			if(isset($_GET['mess'])){
+				if($_GET['mess']== 1){
+					echo "<script type=\"text/javascript\">notif(\"Le nom d'utilisateur ou le mot de passe est incorrect\",2)</script>";
+				}
+				if($_GET['mess'] == 2){
+					echo "<script type=\"text/javascript\">notif(\"Le nom d'utilisateur existe déja\",2)</script>";
+				}
+
+			}
 		?>
 		<nav id="top_navigation">
 			<img id="logo_risk" src="images/logo_risk.png"/>

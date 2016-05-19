@@ -8,10 +8,8 @@
 		session_start();
 	}
 	include "connexion.php";
-	
-	//Exemple TEST
-	//$_POST['connexionPseudo'] = 'Luc';
-	//$_POST['connexionPassword'] = 'test';
+
+	//On vérifie que les variable sont bien remplie
 	if(isset($_POST['inscriptionPseudo']) && isset($_POST['inscriptionPassword1'])){
 		$pseudo = filter_var($_POST['inscriptionPseudo'], FILTER_SANITIZE_STRING);
 		$password = filter_var($_POST['inscriptionPassword1'], FILTER_SANITIZE_STRING);
@@ -23,6 +21,7 @@
 		$user = $bdd->query($select);
 		$user = $user->fetch(PDO::FETCH_ASSOC);
 
+		//On vérifie que le pseudo n'existe pas
 		if($user['usr_pseudo'] == null){
 			//l'user n'existe pas
 			//TODO inscrire le joueur
@@ -44,7 +43,7 @@
 		else{
 			//Nom d'utilisateur déjà existant.
 			//TODO Redirigé vers formulaire inscription
-			header('Location: ../../www/login.php');
+			header('Location: ../../www/login.php?mess=2');
 		}
 	}
 	else{

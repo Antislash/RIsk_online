@@ -17,7 +17,7 @@ function notif(chaine, codeColor = 1){
         color = 'rgba(90, 200, 90, 0.7)';
         break;
     case 2:
-        color = 'rgba(90, 200, 90, 0.7)';
+        color = 'rgba(200, 90, 90, 0.7)';
         break;
     default:
         color = 'rgba(90, 200, 90, 0.7)';
