@@ -12,9 +12,7 @@
 <nav id="top_navigation" onBeforeUnload="return confirm('sur?');" onUnload="alert('ok');">
 	<a href="acceuil.php"><img id="logo_risk" src="images/logo_risk.png"/></a>
 	<a href="#"><img class="icon_menu" src="images/profil.png" onmouseover="this.src='images/profil_hover.png'" onmouseout="this.src='images/profil.png'"/></a>
-	<a href="#"><img class="icon_menu" src="images/stats.png" onmouseover="this.src='images/stats_hover.png'" onmouseout="this.src='images/stats.png'"/></a>
-	<a href="#"><img class="icon_menu" src="images/news.png" onmouseover="this.src='images/news_hover.png'" onmouseout="this.src='images/news.png'"/></a>
-	<a href="#"><img class="icon_menu" src="images/help.png" onmouseover="this.src='images/help_hover.png'" onmouseout="this.src='images/help.png'"/></a>
+	<a href="../php/site/logout.php"><img class="icon_menu" src="images/deco.png" onmouseover="this.src='images/deco-hover.png'" onmouseout="this.src='images/deco.png'"/></a>
 
 	<?php //Requête pour chercher si le joueur est présent dans une room
 	$room = $bdd->query("SELECT id_room 
@@ -47,13 +45,13 @@
 	</div>
 
 	<?php }else if ($room['id_room'] != null){
-			echo "<a href='room.php'>Room</a>";
+			echo "
+	<a href='room.php'><img class=\"icon_menu\" src=\"images/icon-room.png\" onmouseover=\"this.src='images/icon-room-hover.png'\" onmouseout=\"this.src='images/icon-room.png'\"/></a>";
 		}
 		else if($partie['id_partie'] != null){
-			echo "<a href='../php/partie/recup_info_joueur.php'>Game</a>";
+			echo "
+	<a href='game.php'><img class=\"icon_menu\" src=\"images/icon-game.png\" onmouseover=\"this.src='images/icon-game-hover.png'\" onmouseout=\"this.src='images/icon-game.png'\"/></a>";
 		}
 	?>
-
-	<a href="../php/site/logout.php">Déconnexion</a>
 
 </nav>
