@@ -700,3 +700,7 @@ a {
 #unites-sup{
 	font-size: 1.5em;
 }
+
+.pointer-tr:hover{
+	cursor: pointer;
+}
