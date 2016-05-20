@@ -1,4 +1,3 @@
-refreshEtatPartie();
 setInterval('refreshMap()', 4000);
 setInterval('refreshEtatPartie()', 7000);
 

@@ -35,12 +35,12 @@
 					<td rowspan="2">
 						<span id="unites-sup">5</span>
 					</td>
-					<td id="44" class="td-selected" >
+					<td class="td-selected" >
 						<span id="unites-plus">+</span>
 					</td>
 				</tr>
 				<tr>
-					<td id="43" >
+					<td >
 						<span id="unites-moins">-</span>
 					</td>
 				</tr>
@@ -49,7 +49,7 @@
 		<div id="etat">
 
 		</div>
-		<div id="fleche" id="45">
+		<div id="fleche">
 			<img src="images/fleche-droite.png" onmouseover="this.src='images/fleche-droite-hover.png'" onmouseout="this.src='images/fleche-droite.png'"/>
 		</div>
 		<svg
@@ -447,6 +447,8 @@
 		  <?php include "include/chat_game.php";?>
 	</body>
 	<script>
+
+		addListenerCountry();
 	function setMapSize(){
 		var w = 750;
 		var h = 520;
@@ -463,6 +465,16 @@
 		}
 		document.getElementById("map-svg").style.width = newW;
 		document.getElementById("map-svg").style.height = newH;
+	}
+
+	function addListenerCountry(){
+		var i;
+		for(i=1; i < 45; i++){
+			var e = document.getElementById(i);
+			e.addEventListener('click', function(e) {
+				alert(e.target.id);
+			});
+		}
 	}
 	</script>
 </html>
