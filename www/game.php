@@ -6,6 +6,7 @@
 		<script type="text/javascript" src="../js/site/afficherPartie.js"></script>
 		<script type="text/javascript" src="../js/site/game_chat.js"></script>
 		<script type="text/javascript" src="../js/site/attaque.js"></script>
+<!--		<script type="text/javascript" src="../js/partie/functions_partie.js"></script>-->
 		<link rel="stylesheet" href="style/style.css" />
 		<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 		<meta name="viewport" content="width=device-width" />
@@ -52,6 +53,9 @@
 		</div>
 		<div id="fleche" id="43">
 			<img id="43" src="images/fleche-droite.png" onmouseover="this.src='images/fleche-droite-hover.png'" onmouseout="this.src='images/fleche-droite.png'"/>
+		</div>
+		<div id="attaque" class="a-inactif" onclick="if(this.className == 'a-inactif'){this.className = 'a-actif';}else{this.className='a-inactif';}">
+
 		</div>
 		<svg
 		   id="map-svg"
@@ -478,6 +482,37 @@
 				}
 			});
 		}
+	}
+
+	function getXMLHttpRequest() {
+		var xhr = null;
+
+		if (window.XMLHttpRequest || window.ActiveXObject) {
+			if (window.ActiveXObject) {
+				try {
+					xhr = new ActiveXObject("Msxml2.XMLHTTP");
+				} catch(e) {
+					xhr = new ActiveXObject("Microsoft.XMLHTTP");
+				}
+			} else {
+				xhr = new XMLHttpRequest();
+			}
+		} else {
+			alert("Votre navigateur ne supporte pas l'objet XMLHTTPRequest...");
+			return null;
+		}
+
+		return xhr;
+	}
+	function nextStep(){
+		var xhr = getXMLHttpRequest();
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+				afficherCouleurCarte(xhr.responseText);
+			}
+		};
+		xhr.open("GET", "../php/partie/next_step.php", true);
+		xhr.send(null);
 	}
 	</script>
 </html>
