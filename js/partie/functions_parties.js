@@ -1,0 +1,3 @@
+function explodeArrayPays(string chaine){
+    
+}

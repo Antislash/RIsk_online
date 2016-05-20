@@ -6,11 +6,14 @@ include "../site/connexion.php";
 //TEST
 /*$id_partie = 166;
 $id_joueur = 2;*/
-//initialiseRenfortTour($bdd, $id_partie, $id_joueur);
+
 //initialiseRenfortStart($bdd, $id_partie);
 //addRenfortPays($bdd, $id_partie, $id_joueur, 2);
 //removeRenfortPays($bdd, $id_partie, $id_joueur, 2);
 //moveOneToFrom($bdd, $id_partie, $id_joueur, 2, 3);
+/*initialiseRenfortTour($bdd, $id_partie, $id_joueur);
+$pays = array(1 => 4, 4 => 3, 11 => 7);
+addArrayRenfort($bdd, $id_partie, $id_joueur, $pays);*/
 
 //Fonction récursive pour savoir s'il existe un chemin entre 2 pays
 function canMove($bdd, $id_partie, $id_joueur, $id_pays1, $id_pays2){
@@ -155,7 +158,7 @@ function getContinentJoueur($bdd, $id_partie, $id_joueur){
 	return $continentArray;
 }
 
-function getAllCountryJoueur($bdd, $id_partie, $id_joueur){
+function getAllCountryJoueur($bdd, $id_partie, $id_joueur, $implode = false){
 	//On récupère tous les pays du joueur
 	$allPaysJoueur = array();
 	$allPays = $bdd->query("SELECT * 
@@ -189,6 +192,13 @@ function getNbRenforts($bdd, $id_partie, $id_joueur){
 
 function initialiseRenfortTour($bdd, $id_partie, $id_joueur){
 	$nbRenfort = getNbRenforts($bdd, $id_partie, $id_joueur);
+	$reqRenfort = $bdd->query("	SELECT * 
+								FROM partie_has_joueur
+								WHERE id_partie = ".$id_partie." AND id_joueur = ".$id_joueur);
+	$joueur = $reqRenfort->fetch();
+	if($joueur['nb_renforts'] != 0){
+		return false;
+	}
 	$update = "	UPDATE partie_has_joueur
 			  	SET nb_renforts = ".$nbRenfort."
 				WHERE id_partie = ".$id_partie." AND id_joueur = ".$id_joueur;
@@ -204,11 +214,10 @@ function initialiseRenfortStart($bdd, $id_partie){
 	$req = $bdd->query("SELECT * 
 						FROM partie_has_joueur
 						WHERE id_partie = ".$id_partie);
-
 	foreach($req as $joueur){
 		array_push($joueurs, $joueur);
 	}
-	$nb_joueurs = sizeof($joueurs); //TODO calculer
+	$nb_joueurs = sizeof($joueurs);
 	switch($nb_joueurs){
 		case 2: $nb_renforts = 40;
 			break;
@@ -291,5 +300,13 @@ function removeRenfortPays($bdd, $id_partie, $id_joueur, $id_pays){
 		}
 	}
 	return false;
+}
+
+function addArrayRenfort($bdd, $id_partie, $id_joueur, array $pays){
+	foreach($pays as $key => $value){
+		for($i=0;$i<$value;$i++){
+			addRenfortPays($bdd, $id_partie, $id_joueur, $key);
+		}
+	}
 }
 ?>
