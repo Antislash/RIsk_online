@@ -5,6 +5,7 @@
 		<meta charset="utf-8" />
 		<script type="text/javascript" src="../js/site/afficherPartie.js"></script>
 		<script type="text/javascript" src="../js/site/game_chat.js"></script>
+		<script type="text/javascript" src="../js/site/attaque.js"></script>
 		<link rel="stylesheet" href="style/style.css" />
 		<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 		<meta name="viewport" content="width=device-width" />
