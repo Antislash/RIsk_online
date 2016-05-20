@@ -54,7 +54,13 @@ function refreshEtatPartie(){
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
 			var etat = xhr.responseText;
-
+			if(etat.lastIndexOf("attente") != -1){
+				document.getElementById("unites").style.display = "hidden";
+			}
+			else{
+				document.getElementById("unites").style.display = "block";
+				refreshNbRenfort();
+			}
 			document.getElementById('etat').innerHTML = etat;
 		}
 	};
