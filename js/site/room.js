@@ -110,8 +110,9 @@ function verifierRoom(){
 
             //Si la partie commence
             if(xhr.responseText == "1"){
-                //Cacher le boutton quitter
-                //document.getElementById('quitter').innerHTML = "";
+                //Cacher le boutton quitter et lancer
+                document.getElementById("quitter").style.display = "none";
+                document.getElementById("lancer").style.display = "none";
 
                 //On déasctive le chat et la vérification du statut de la room
                 clearInterval(verif);

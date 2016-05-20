@@ -3,5 +3,6 @@
 	include "../site/verif_connexion.php";
 	include "functions_partie.php";
 	
-	echo getNbRenforts($bdd, $_SESSION['id_partie'], $_SESSION['id_joueur']);
+	echo getNbRenforts($bdd, $_SESSION['id_partie'], $_SESSION['usr_id']);
+
 ?>

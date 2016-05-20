@@ -3,7 +3,7 @@
 	include "verif_connexion.php";
 	include "../partie/functions_partie.php";
 	
-	$joueurs = $bdd->query('SELECT p.id_joueur, p.nb_renforts, u.usr_pseudo, i.img_chemin, c.clr_css, t.nb_pays
+	$joueurs = $bdd->query('SELECT p.id_joueur, p.nb_renforts, u.usr_pseudo, i.img_chemin, c.clr_css, t.nb_pays, i.img_nom
 							FROM partie_has_joueur p
 							INNER JOIN user u ON u.usr_id = p.id_joueur
 							INNER JOIN image i ON i.img_id = u.id_img
@@ -19,7 +19,7 @@
 		$nb_renforts = getNbRenforts($bdd, $_SESSION['id_partie'], $joueur['id_joueur']);
 		echo "<tr class=\"bloc_player\">";
 		echo "<td class=\"avatar_player\">";
-		echo "<img src=\"images/" . $joueur['img_chemin'] . "\"/>";
+		echo "<img src=\"images/" . $joueur['img_nom'] . "\"/>";
 		echo "</td>";
 		echo "<td class=\"info_player\">";
 		echo "<span style=\"color: #".$joueur['clr_css']."\">".$joueur['usr_pseudo']."</span></br>";

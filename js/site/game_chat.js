@@ -1,4 +1,4 @@
-var chat = setInterval('requestChat(readMessage)',500);
+var chat = setInterval('requestChat(readMessage)',2000);
 
 //Instantiation de l'objet ajax
 function getXMLHttpRequest() {

@@ -22,6 +22,7 @@
 															WHERE statut_usr_room = 'in'
 															AND uhr.id_room=". $_SESSION['room_id']);
 
+
 									$saut_ligne = 0;
 									while($joueur = $joueurs->fetch(PDO::FETCH_ASSOC)){
                                         //On récupére le chemin de l'image à partir de l'id

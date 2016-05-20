@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Ce fichier sert à gérer les étapes d'un tours
+ */
+
     //On vérifie si les session sont déja activées
     if(session_id() == null){
         session_start();
@@ -30,6 +34,7 @@
 
         $statut_joueurs = $statut_joueurs->fetch();
 
+        echo "fini";
         //Si tous les joueur sont pret on place le statut de la partie à 'en cours'
         if($statut_joueur == false){
             $bdd->exec("UPDATE partie
@@ -50,13 +55,17 @@
                         AND id_joueur = ".$_SESSION['usr_id']);
         }
 
-    }else if($statut['etat_joueur'] == "renfort"){
+    }
+    //Si le joueur veut passer à la prochaine étape après la phase de renfort
+    else if($statut['etat_joueur'] == "renfort"){
+
         //On place l'état du joueur à attaque
         $bdd->exec("UPDATE partie_has_joueur 
                     SET etat_joueur = 'attaque' 
                     WHERE id_partie = ".$_SESSION['id_partie']." 
                     AND id_joueur = ".$_SESSION['usr_id']);
     }
+    //Si le joueur veut passer à la prochaine étape après la phase d'attaque
     else if($statut['etat_joueur'] == "attaque"){
         //On place l'état du joueur à deplace
         $bdd->exec("UPDATE partie_has_joueur 
@@ -64,6 +73,7 @@
                     WHERE id_partie = ".$_SESSION['id_partie']." 
                     AND id_joueur = ".$_SESSION['usr_id']);
     }
+    //Quand le joueur a fini la phase de déplacement
     else if($statut['etat_joueur'] == "deplace"){
         //On place l'etat du joueur à attente
         $bdd->exec("UPDATE partie_has_joueur 
@@ -71,11 +81,12 @@
                     WHERE id_partie = ".$_SESSION['id_partie']." 
                     AND id_joueur = ".$_SESSION['usr_id']);
 
-        //On passe la main au joueur suivant
+        //On annonce dans la partie qui a la main
         $bdd->exec("UPDATE partie 
                     SET a_qui_le_tour = ".$_SESSION['id_joueur_suivant']." 
                     WHERE id_partie = ". $_SESSION['id_partie']);
 
+        //On place ce nouveau joueur à la phase de renfort
         $bdd->exec("UPDATE partie_has_joueur 
                     SET etat_joueur = 'renfort' 
                     WHERE id_partie = ".$_SESSION['id_partie']." 

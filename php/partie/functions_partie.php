@@ -204,11 +204,14 @@ function getNbRenforts($bdd, $id_partie, $id_joueur){
 	}
 	//On récupère les continents possédés par le joueur;
 	$continentJoueur = getContinentJoueur($bdd, $id_partie, $id_joueur);
+
 	//On récupère les pays possédés par le joueur;
 	$paysJoueur = getAllCountryJoueur($bdd, $id_partie, $id_joueur);
+
 	//On prend le max entre 3 et (nb_pays)/3 (Pour avoir au minimum 3 renforts)
 	$nbRenfortsPays = max(3, sizeof($paysJoueur)/3);
 	$nbRenfortsContinent = 0;
+
 	//On récupère le nombre de renfort pour chaque continent possédé par le joueur
 	foreach($continentJoueur as $continent){
 		$nbRenfortsContinent += $continent['cnt_nb_renfort'];

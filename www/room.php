@@ -26,7 +26,7 @@
 								 FROM room rm 
 								 INNER JOIN user_has_room uhr ON rm.room_id = uhr.id_room  
 								 WHERE uhr.statut_usr_room = 'in'
-								 AND statut_room IN ('en cours','pleine')
+								 AND statut_room IN ('en cours','pleine', 'en partie')
 								 AND uhr.id_user ='". $_SESSION['usr_id']."'");
 
 			$room = $room->fetch();
@@ -34,7 +34,6 @@
 			if($room != false){
 				$_SESSION['room_id'] = $room['id_room'];
 			}
-
 			//On passe le status du joueur à occupé
 			$bdd->exec("UPDATE user set code_sta = 'gam' WHERE usr_id =".$_SESSION['usr_id'] );
 		?>
@@ -66,6 +65,18 @@
 							} ?>
 						</td>
 					</tr>
+					<!--
+					<?php if($room['room_password'] =! NULL ){ ?>
+						<tr>
+							<td>
+								Mot de passe:
+							</td>
+							<td>
+								<?php echo $room['room_password'] ?>
+							</td>
+						</tr>
+					<?php } ?>
+					-->
 					<tr>
 						<td>
 							Nombre de joueurs (2 - 6):
@@ -78,7 +89,7 @@
 					<tr>
 
 						<td >
-							<center><input class="button" type="submit" value="Lancer" onClick="debutPartie()"/></center>
+							<center><input id="lancer" class="button" type="submit" value="Lancer" onClick="debutPartie()"/></center>
 						</td>
 
 					<?php } ?>
