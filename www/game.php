@@ -29,48 +29,26 @@
 			document.body.style.backgroundImage = "url(images/game.png)";
 		</script>
 		<div id="unites">
-			<!-- Methode ajax pour afficher les boutton d'ajout de troupe-->
-			<?php
-
-				$renfort = $bdd->query("SELECT nb_renforts
-								FROM partie_has_joueur
-								WHERE id_joueur =".$_SESSION['usr_id']."
-								AND id_partie = ".$_SESSION['id_partie']);
-
-				$renfort = $renfort->fetch();
-
-
-				if(isset($_GET['b'])){
-					if($_GET['b'] == 1){
-						$_SESSION['boutton_troupe'] = "+";
-					}
-					if($_GET['b'] == 2){
-						$_SESSION['boutton_troupe'] = "-";
-					}
-				}
-
-			?>
-
 			<table>
 				<tr>
 					<td rowspan="2">
-						<span id="unites-sup"><?php echo $renfort['nb_renforts']; ?></span>
+						<span id="unites-sup">5</span>
 					</td>
-					<td onclick="bouttonPlus()" <?php if(isset($_SESSION['boutton_troupe']) && $_SESSION['boutton_troupe'] == "+") {  echo 						"class=\"td-selected\""; } ?> >
+					<td id="44" class="td-selected" >
 						<span id="unites-plus">+</span>
 					</td>
 				</tr>
 				<tr>
-					<td onclick="bouttonMoin()" <?php if(isset($_SESSION['boutton_troupe']) && $_SESSION['boutton_troupe'] == "-") {  echo 						"class=\"td-selected\""; } ?>>
+					<td id="43" >
 						<span id="unites-moins">-</span>
 					</td>
 				</tr>
 			</table>
 		</div>
 		<div id="etat">
-			
+
 		</div>
-		<div id="fleche">
+		<div id="fleche" id="45">
 			<img src="images/fleche-droite.png" onmouseover="this.src='images/fleche-droite-hover.png'" onmouseout="this.src='images/fleche-droite.png'"/>
 		</div>
 		<svg
