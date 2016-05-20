@@ -14,8 +14,8 @@
 			}
 			$i++;
 		}
-		var_dump($tabRenfort);
-		initialiseRenfortTour($bdd, $_SESSION['id_partie'], $_SESSION['usr_id']);
+		//var_dump($tabRenfort);
+		//initialiseRenfortTour($bdd, $_SESSION['id_partie'], $_SESSION['usr_id']);
 		addArrayRenfort($bdd, $_SESSION['id_partie'], $_SESSION['usr_id'], $tabRenfort);
 	}
 ?>
