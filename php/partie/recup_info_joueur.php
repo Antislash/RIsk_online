@@ -59,6 +59,11 @@
             $_SESSION['id_joueur_suivant'] = intval($liste[0]);
         }
 
+        $bdd->query("UPDATE room
+                     SET statut_room='fermer'
+                     WHERE room_id = ".$_SESSION['room_id']);
+
+
         header('Location: ../../www/game.php');
     }
 

@@ -36,7 +36,7 @@
 
         echo "fini";
         //Si tous les joueur sont pret on place le statut de la partie à 'en cours'
-        if($statut_joueur == false){
+        if($statut_joueurs == false){
             $bdd->exec("UPDATE partie
                         SET partie_statut = 'en cours'
                         WHERE id_partie =".$_SESSION['id_partie']);
