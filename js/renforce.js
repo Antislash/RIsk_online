@@ -52,7 +52,7 @@ function renforcer(){
 		xhr.open("POST", "renforcer.php", true);
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-				refreshEtatPartie();
+				nextStep();
 			}
 		};
 		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
