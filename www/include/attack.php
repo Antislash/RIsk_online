@@ -1,23 +1,4 @@
-<div id="emplacement_des">
 <?php
-
-include "../../php/site/connexion.php";
-
-function getAttackableCountry($bdd, $id_partie, $id_joueur, $id_pays){
-	//On recupere les pays voisins du pays
-	$neighboursCountries = $bdd->query("SELECT * FROM  `pays1_has_pays2`  WHERE `id_pays1` = ".$id_pays);
-	$neighboursCountriesPlayer = array();
-	//On parcourt les pays voisins
-	foreach($neighboursCountries as $country){
-		$req = $bdd->query("SELECT * FROM partie_has_joueur_has_pays WHERE id_partie = ".$id_partie." AND id_joueur = ".$id_joueur." AND id_pays = ".$country['id_pays2']);
-		$joueurHasPays = $req->fetch();
-		if($joueurHasPays == false){	//Si le joueur ne possède pas le pays
-			array_push($neighboursCountriesPlayer, $country['id_pays2']);
-		}
-	}
-	return $neighboursCountriesPlayer;
-}
-
 function attack($bdd, $id_partie, $id_pays_attack, $id_pays_defense, $id_joueur_attack) {
 
 	$query_troop_attack = $bdd->query("SELECT * FROM  `partie_has_joueur_has_pays` WHERE id_partie = ".$id_partie." AND id_pays = ".$id_pays_attack);
@@ -127,7 +108,4 @@ function affichage_des($des_attack, $des_defense) {
 	}
 	echo '</div>';
 }
-
-attack($bdd, 119, 1, 2, 11);
 ?>
-</div>
