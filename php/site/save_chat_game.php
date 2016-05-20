@@ -11,11 +11,11 @@
   include "connexion.php";
 
   delete_msg($bdd);
-  $req = $bdd->prepare('INSERT INTO chat_game (pseudo, message_text, timestamp, message_room_id) VALUES(:pseudo, :message_text, :timestamp, :id_partie)');
+  $req = $bdd->prepare('INSERT INTO chat_game (pseudo, message_text, timetsamp, message_partie_id) VALUES(:pseudo, :message_text, :timetsamp, :id_partie)');
   $req->execute(array(
     'pseudo' => $_SESSION['pseudo'],
     'message_text' => $_GET['message'],
-    'timestamp' => time(),
+    'timetsamp' => time(),
     'id_partie' => $_SESSION['id_partie']
   ));
 

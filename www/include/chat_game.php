@@ -22,5 +22,3 @@ function deroulerChat(elm){
 	}
 }
 </script>
-
-<script type="text/javascript" src="../../js/site/game_chat.js"></script>

@@ -64,4 +64,3 @@ function saveMessage() {
 
       document.getElementById("barre-msg").value = '';
 }
-}

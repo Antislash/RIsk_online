@@ -16,7 +16,7 @@ header("Content-Type: text/plain");
 if($_GET['action'] == 'new') {
     $reponse = $bdd->query("SELECT pseudo, message_text 
                             FROM chat_game 
-                            WHERE message_room_id=".$_SESSION['id_partie']."
+                            WHERE message_partie_id=".$_SESSION['id_partie']."
                             ORDER BY message_id ASC LIMIT 0, 50");
 
 
@@ -34,7 +34,7 @@ if($_GET['action'] == 'new') {
 if ($_GET['action'] == 'anc') {
   $reponse_2 = $bdd->query("SELECT pseudo, message 
                             FROM ancien_message_game 
-                            WHERE message_room_id=".$_SESSION['id_partie']."
+                            WHERE message_partie_id=".$_SESSION['id_partie']."
                             ORDER BY id ASC ");
 
 
