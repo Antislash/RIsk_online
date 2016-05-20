@@ -1,4 +1,3 @@
-setInterval('refreshMap()', 4000);
 
 function getXMLHttpRequest() {
     var xhr = null;

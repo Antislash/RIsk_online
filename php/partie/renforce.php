@@ -9,11 +9,13 @@
 		$tabRenfort = array();
 		foreach($renforts as $renfort)
 		{
-			if($renfort != '-1'){
+			if($renfort != ''){
 				$tabRenfort[$i] = $renfort;
 			}
 			$i++;
 		}
-		addArrayRenfort($tabRenfort);
+		//var_dump($tabRenfort);
+		//initialiseRenfortTour($bdd, $_SESSION['id_partie'], $_SESSION['usr_id']);
+		addArrayRenfort($bdd, $_SESSION['id_partie'], $_SESSION['usr_id'], $tabRenfort);
 	}
 ?>

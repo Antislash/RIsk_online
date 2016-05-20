@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 19 Mai 2016 à 16:04
+-- Généré le :  Ven 20 Mai 2016 à 11:41
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -48,8 +48,9 @@ CREATE TABLE IF NOT EXISTS `chat_game` (
   `timetsamp` int(11) NOT NULL,
   `message_partie_id` int(4) NOT NULL,
   PRIMARY KEY (`message_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+-- --------------------------------------------------------
 
 --
 -- Structure de la table `chat_messages`
@@ -111,12 +112,13 @@ CREATE TABLE IF NOT EXISTS `couleur` (
 
 INSERT INTO `couleur` (`clr_code`, `clr_css`) VALUES
 ('blanc', 'FFFFFF'),
-('bleu', '0000FF'),
-('jaune', 'FFFF00'),
+('bleu', '393977'),
+('jaune', 'fdff5a'),
 ('noir', '000000'),
+('orange', 'c96605'),
 ('rose', 'FF3366'),
-('rouge', 'FF0000'),
-('vert', '00FF00');
+('rouge', 'ba0c0c'),
+('vert', '61b567');
 
 -- --------------------------------------------------------
 

@@ -4,8 +4,9 @@ include "../site/connexion.php";
 
 //TODO récupérer ces valeurs en GET
 //TEST
-/*$id_partie = 166;
-$id_joueur = 2;*/
+/*$id_partie = 165;
+$id_joueur = 11;
+getNbRenforts($bdd, $id_partie, $id_joueur);*/
 
 //initialiseRenfortStart($bdd, $id_partie);
 //addRenfortPays($bdd, $id_partie, $id_joueur, 2);
@@ -14,6 +15,8 @@ $id_joueur = 2;*/
 /*initialiseRenfortTour($bdd, $id_partie, $id_joueur);
 $pays = array(1 => 4, 4 => 3, 11 => 7);
 addArrayRenfort($bdd, $id_partie, $id_joueur, $pays);*/
+//getAllCountryJoueur($bdd, $id_partie, $id_joueur, true);
+
 
 //Fonction récursive pour savoir s'il existe un chemin entre 2 pays
 function canMove($bdd, $id_partie, $id_joueur, $id_pays1, $id_pays2){
@@ -172,10 +175,33 @@ function getAllCountryJoueur($bdd, $id_partie, $id_joueur, $implode = false){
 		$paysComplete = $req->fetch();
 		array_push($allPaysJoueur, $paysComplete);
 	}
-	return $allPaysJoueur;
+	if($implode){
+		$chaine = "";
+		foreach($allPaysJoueur as $pays){
+			$chaine = $chaine.$pays['id_pays'].";";
+		}
+		return $chaine;
+	}
+	else{
+		return $allPaysJoueur;
+	}
 }
 
 function getNbRenforts($bdd, $id_partie, $id_joueur){
+	//On récupère l'état du jeu
+	$req = $bdd->query("SELECT * 
+						FROM partie_has_joueur 
+						WHERE id_partie = ".$id_partie." AND id_joueur = ".$id_joueur);
+	$joueur = $req->fetch();
+	if($joueur == false){
+		return false;
+	}
+	else if($joueur['etat_joueur'] == 'init'){
+		initialiseRenfortStart($bdd, $id_partie);
+	}
+	else{
+		initialiseRenfortTour($bdd, $id_partie, $id_joueur);
+	}
 	//On récupère les continents possédés par le joueur;
 	$continentJoueur = getContinentJoueur($bdd, $id_partie, $id_joueur);
 	//On récupère les pays possédés par le joueur;
