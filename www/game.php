@@ -53,6 +53,9 @@
 		<div id="fleche" id="43">
 			<img id="43" src="images/fleche-droite.png" onmouseover="this.src='images/fleche-droite-hover.png'" onmouseout="this.src='images/fleche-droite.png'"/>
 		</div>
+		<div id="attaque" class="a-inactif" onclick="if(this.className == 'a-inactif'){this.className = 'a-actif';}else{this.className='a-inactif';}">
+
+		</div>
 		<svg
 		   id="map-svg"
 		   width="975"
