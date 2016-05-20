@@ -6,6 +6,7 @@
 
     include "../site/connexion.php";
 
+
     //On regarde l'etat du joueur
     $statut = $bdd->query("SELECT etat_joueur
                            FROM partie_has_joueur
@@ -20,7 +21,7 @@
     }
     else if($statut['etat_joueur'] != 'attente'){
 
-        echo $statut['etat_joueur'];
+            echo $statut['etat_joueur'];
     }
     else{
         $joueur_joue = $bdd->query("SELECT usr_pseudo

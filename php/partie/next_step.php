@@ -15,7 +15,7 @@
 
     $statut = $statut->fetch();
 
-    if($statut['etat_joueur'] == "attente pret"){
+    if($statut['etat_joueur'] == "init"){
         //On place l'état du joueur à attente
         $bdd->exec("UPDATE partie_has_joueur 
                     SET etat_joueur = 'attente' 
@@ -35,6 +35,19 @@
             $bdd->exec("UPDATE partie
                         SET partie_statut = 'en cours'
                         WHERE id_partie =".$_SESSION['id_partie']);
+
+            //On récupére le joueur à qui c'est de commencer
+            $a_qui_le_tour = $bdd->query("SELECT a_qui_le_tour
+                                          FROM partie
+                                          WHERE id_partie =".$_SESSION['id_partie']);
+
+            $a_qui_le_tour = $a_qui_le_tour->fetch();
+
+            //On le met a la phase de renfort
+            $bdd->exec("UPDATE partie_has_joueur 
+                        SET etat_joueur = 'renfort' 
+                        WHERE id_partie = ".$_SESSION['id_partie']." 
+                        AND id_joueur = ".$_SESSION['usr_id']);
         }
 
     }else if($statut['etat_joueur'] == "renfort"){
@@ -62,5 +75,10 @@
         $bdd->exec("UPDATE partie 
                     SET a_qui_le_tour = ".$_SESSION['id_joueur_suivant']." 
                     WHERE id_partie = ". $_SESSION['id_partie']);
+
+        $bdd->exec("UPDATE partie_has_joueur 
+                    SET etat_joueur = 'renfort' 
+                    WHERE id_partie = ".$_SESSION['id_partie']." 
+                    AND id_joueur = ".$_SESSION['id_joueur_suivant']);
     }
 ?>

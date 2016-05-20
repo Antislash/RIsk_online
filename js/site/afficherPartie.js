@@ -55,13 +55,26 @@ function refreshEtatPartie(){
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
 			var etat = xhr.responseText;
-			if(etat.lastIndexOf("attente") != -1){
-				document.getElementById("unites").style.display = "hidden";
+			if(etat.indexOf("attente",0) != -1  ){
+
+				document.getElementById("unites").style.display = "none";
 			}
 			else{
+
 				document.getElementById("unites").style.display = "block";
 			}
-			document.getElementById('etat').innerHTML = etat;
+			if(etat.indexOf("attente",0) != -1){
+				document.getElementById("fleche").style.display = "block";
+			}
+			else{
+				document.getElementById("fleche").style.display = "none";
+			}
+			if(etat == "init"){
+				document.getElementById('etat').innerHTML = "Renforcement";
+			}
+			else{
+				document.getElementById('etat').innerHTML = etat;
+			}
 		}
 	};
 	xhr.open("GET", "../php/partie/etat_partie.php", true);

@@ -51,7 +51,7 @@
                                         VALUES (0,0,1,".intval($liste_user[$i]).")");
         
         $bdd->exec("INSERT INTO partie_has_joueur (id_joueur, id_partie, code_clr, joueur_dans_partie, etat_joueur)
-                                        VALUES (".intval($liste_user[$i])." , ".intval($id_partie['id']).",'".$couleur[$i]."',1, 'attente pret')");
+                                        VALUES (".intval($liste_user[$i])." , ".intval($id_partie['id']).",'".$couleur[$i]."',1, 'init')");
 
     }
 
