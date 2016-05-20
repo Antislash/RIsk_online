@@ -508,7 +508,7 @@
 		var xhr = getXMLHttpRequest();
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-				afficherCouleurCarte(xhr.responseText);
+				refreshMap();
 			}
 		};
 		xhr.open("GET", "../php/partie/next_step.php", true);

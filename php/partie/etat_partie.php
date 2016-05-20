@@ -15,7 +15,7 @@
     $statut = $statut->fetch();
 
     if($statut == false){
-        
+
         echo "Problème pour récupérer l'état du joueur";
     }
     else if($statut['etat_joueur'] != 'attente'){
@@ -23,12 +23,12 @@
         echo $statut['etat_joueur'];
     }
     else{
-        $joueur_joue = $bdd->query("SELECT a_qui_le_tour
-                                    FROM partie
-                                    WHERE id_partie". $_SESSION['id_partie']);
-
+        $joueur_joue = $bdd->query("SELECT usr_pseudo
+                                    FROM partie p
+                                    INNER JOIN user u ON p.a_qui_le_tour = u.usr_id
+                                    WHERE id_partie=". $_SESSION['id_partie']);
         $joueur_joue = $joueur_joue->fetch();
 
-        echo $joueur_joue['a_qui_le_tour']. " joue...";
+        echo $joueur_joue['usr_pseudo']. " joue...";
     }
 ?>

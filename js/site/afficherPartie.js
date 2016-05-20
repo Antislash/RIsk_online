@@ -1,5 +1,4 @@
 setInterval('refreshMap()', 4000);
-setInterval('refreshEtatPartie()', 7000);
 
 function getXMLHttpRequest() {
     var xhr = null;
@@ -28,6 +27,8 @@ function refreshMap(){
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
 			afficherCouleurCarte(xhr.responseText);
+			refreshEtatPartie();
+
 		}
 	};
 	xhr.open("GET", "../php/partie/getColorPays.php", true);
@@ -59,7 +60,6 @@ function refreshEtatPartie(){
 			}
 			else{
 				document.getElementById("unites").style.display = "block";
-				refreshNbRenfort();
 			}
 			document.getElementById('etat').innerHTML = etat;
 		}
