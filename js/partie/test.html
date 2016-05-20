@@ -1,4 +1,6 @@
-var arrayP;
+<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'></script>
+<script type='text/javascript'>
+var arrayP; 
 function getXMLHttpRequest() {
     var xhr = null;
 
@@ -37,7 +39,7 @@ function nextStep(){
 }
 
 function getPays(){
-    var xhr = getXMLHttpRequest();
+	var xhr = getXMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
             //alert(xhr.responseText);
@@ -46,5 +48,11 @@ function getPays(){
     };
     xhr.open("GET", "../../php/partie/get_pays_joueur.php", true);
     xhr.send(null);
-}
+ }
+
+
+$(document).ready(function(){
+    getPays();
+});</script>
+
 

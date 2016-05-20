@@ -14,6 +14,7 @@ $id_joueur = 2;*/
 /*initialiseRenfortTour($bdd, $id_partie, $id_joueur);
 $pays = array(1 => 4, 4 => 3, 11 => 7);
 addArrayRenfort($bdd, $id_partie, $id_joueur, $pays);*/
+//getAllCountryJoueur($bdd, $id_partie, $id_joueur, true);
 
 //Fonction récursive pour savoir s'il existe un chemin entre 2 pays
 function canMove($bdd, $id_partie, $id_joueur, $id_pays1, $id_pays2){
@@ -172,7 +173,16 @@ function getAllCountryJoueur($bdd, $id_partie, $id_joueur, $implode = false){
 		$paysComplete = $req->fetch();
 		array_push($allPaysJoueur, $paysComplete);
 	}
-	return $allPaysJoueur;
+	if($implode){
+		$chaine = "";
+		foreach($allPaysJoueur as $pays){
+			$chaine = $chaine.$pays['id_pays'].";";
+		}
+		return $chaine;
+	}
+	else{
+		return $allPaysJoueur;
+	}
 }
 
 function getNbRenforts($bdd, $id_partie, $id_joueur){
