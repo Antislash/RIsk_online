@@ -50,8 +50,8 @@
 		<div id="etat">
 
 		</div>
-		<div id="fleche">
-			<img src="images/fleche-droite.png" onmouseover="this.src='images/fleche-droite-hover.png'" onmouseout="this.src='images/fleche-droite.png'"/>
+		<div id="fleche" id="43">
+			<img id="43" src="images/fleche-droite.png" onmouseover="this.src='images/fleche-droite-hover.png'" onmouseout="this.src='images/fleche-droite.png'"/>
 		</div>
 		<svg
 		   id="map-svg"
@@ -470,10 +470,12 @@
 
 	function addListenerCountry(){
 		var i;
-		for(i=1; i < 45; i++){
+		for(i=1; i < 44; i++){
 			var e = document.getElementById(i);
 			e.addEventListener('click', function(e) {
-				alert(e.target.id);
+				if(e.target.id == 43){
+					nextStep();
+				}
 			});
 		}
 	}
