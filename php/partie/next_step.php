@@ -22,6 +22,21 @@
                     WHERE id_partie = ".$_SESSION['id_partie']." 
                     AND id_joueur = ".$_SESSION['usr_id']);
 
+        //On regarde si tous les joueur sont en attente
+        $statut_joueurs = $bdd->query("SELECT *
+                                       FROM partie_has_joueur
+                                       WHERE id_partie =".$_SESSION['id_partie']."
+                                       AND etat_joueur <> 'attente'");
+
+        $statut_joueurs = $statut_joueurs->fetch();
+
+        //Si tous les joueur sont pret on place le statut de la partie à 'en cours'
+        if($statut_joueur == false){
+            $bdd->exec("UPDATE partie
+                        SET partie_statut = 'en cours'
+                        WHERE id_partie =".$_SESSION['id_partie']);
+        }
+
     }else if($statut['etat_joueur'] == "renfort"){
         //On place l'état du joueur à attaque
         $bdd->exec("UPDATE partie_has_joueur 
@@ -44,6 +59,8 @@
                     AND id_joueur = ".$_SESSION['usr_id']);
 
         //On passe la main au joueur suivant
-        $bdd->exec();
+        $bdd->exec("UPDATE partie 
+                    SET a_qui_le_tour = ".$_SESSION['id_joueur_suivant']." 
+                    WHERE id_partie = ". $_SESSION['id_partie']);
     }
 ?>
