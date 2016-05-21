@@ -238,7 +238,7 @@ function nextStep(){
 			//Si le joueur a fini sa phase d'initialisation ou de renforcement  ou de déplacement
 			// on relance l'intervalle de rafraichissement de la map
 			if(xhr.responseText == "fini"){
-				var intervalMap = setInterval('refreshMap()', 4000);
+				intervalMap = setInterval('refreshMap()', 4000);
 			}
 		}
 	};
@@ -306,13 +306,14 @@ function phaseDeplacement(idPays){
 
 	//Si le pays n'est pas contenu dans la liste de pays appartenant au joueur
 	if (!arrayP.includes(idPays)){
+		$( paysSource ).removeClass( "countrySelected" );
 		paysSource = "";
-		paysDestination = ""
-		return false;
+		paysDestination = "";
 	}
 	// Si le joueur n'a pas de paysSource selectionné
 	else if (arrayP.includes(idPays) && paysSource == ""){
 		paysSource = idPays;
+		$(idPays ).addClass( "countrySelected" );
 	}
 	// Si le joueur n'a pas de paysDestination selectionné
 	else if (arrayP.includes(idPays) && paysSource != "" && paysDestination == "" && paysSource != idPays){
@@ -321,10 +322,16 @@ function phaseDeplacement(idPays){
 		//On vérifie si le déplacement est possible
 		verifierDeplacement();
 	}
+	else if (arrayP.includes(idPays) && paysSource == idPays && paysDestination ==""){
+		$( paysSource ).removeClass( "countrySelected" );
+		paysSource = "";
+	}
 	else if(idPays != paysSource && idPays != paysDestination){
+		$( paysSource ).removeClass( "countrySelected" );
 		paysSource = "";
 		paysDestination = ""
-		return false;
+
+		notif("Il n'est pas possible de faire ce déplacement",2);
 	}
 	// SI le joueur a renseigné les 2 pays
 	else if(arrayP.includes(idPays) && paysSource != "" && paysDestination != "" && deplacementOK){
@@ -388,6 +395,8 @@ function procederDeplacement(){
 	xhr.open("POST", "../php/partie/proceder_deplacement.php", true);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+			paysSource = "";
+			paysDestination = "";
 			nextStep();
 		}
 	};

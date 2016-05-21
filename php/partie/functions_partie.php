@@ -219,7 +219,6 @@ function initialiseRenfortStart($bdd, $id_partie){
 			return $nb_renforts;
 		}
 	}
-	var_dump($nb_renforts);
 	return $nb_renforts;
 }
 

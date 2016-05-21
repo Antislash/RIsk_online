@@ -732,3 +732,17 @@ a {
 	height: 0px;
 	transition: display opacity 1s;
 }
+
+/* The animation code */
+@keyframes clignote {
+	0%   {opacity: 0;}
+	65% {opacity:1;}
+	100%   {opacity: 0;}
+}
+
+/* The element to apply the animation to */
+.countrySelected {
+	animation-name: clignote;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+}

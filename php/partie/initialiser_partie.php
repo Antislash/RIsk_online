@@ -88,7 +88,7 @@
         }
     }
     else{
-        var_dump("Erreur nombre de pays");
+        echo "Erreur nombre de pays";
     }
 
 ?>

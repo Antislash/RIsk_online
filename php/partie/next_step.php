@@ -53,7 +53,7 @@
             $bdd->exec("UPDATE partie_has_joueur 
                         SET etat_joueur = 'renfort' 
                         WHERE id_partie = ".$_SESSION['id_partie']." 
-                        AND id_joueur = ".$_SESSION['usr_id']);
+                        AND id_joueur = ".$a_qui_le_tour['a_qui_le_tour']);
         }
 
     }
