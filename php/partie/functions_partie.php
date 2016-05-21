@@ -1,6 +1,7 @@
 <?php
 
 include "../site/connexion.php";
+include "../site/verif_connexion.php";
 
 //TODO récupérer ces valeurs en GET
 //TEST
@@ -17,6 +18,9 @@ $pays = array(1 => 4, 4 => 3, 11 => 7);
 addArrayRenfort($bdd, $id_partie, $id_joueur, $pays);*/
 //getAllCountryJoueur($bdd, $id_partie, $id_joueur, true);
 
+foreach(getAllCountryJoueur($bdd, $_SESSION['id_partie'], $_SESSION['usr_id']) as $pays) {
+	$paysVisited[$pays['id_pays']] = false;
+}
 
 //Fonction récursive pour savoir s'il existe un chemin entre 2 pays
 function canMove($bdd, $id_partie, $id_joueur, $id_pays1, $id_pays2){

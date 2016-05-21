@@ -190,17 +190,34 @@ function setMapSize(){
 	document.getElementById("map-svg").style.height = newH;
 }
 
+
 function eventFleche(etat){
 	var e = document.getElementById('fleche');
+	e.removeEventListener('click',renforcer);
+	e.removeEventListener('click',nextStep);
 	if(etat == 'renfort' || etat == 'init') {
-		e.addEventListener('click', function (e) {
-			renforcer();
-		});
+		e.addEventListener('click', renforcer);
+	}
+	else if(etat_joueur = "deplace"){
+		e.addEventListener('click', procederDeplacement);
 	}
 	else{
-		e.addEventListener('click', function (e) {
-			nextStep();
-		});
+		e.addEventListener('click', nextStep);
+	}
+}
+
+function clickCountry(e) {
+	if(etat_joueur == "renfort"){
+		renforcePays(e.target.id, modeRenfort);
+	}
+	else if(etat_joueur = "deplace" && parseInt(e.target.id) >= 1 && parseInt(e.target.id) < 43){
+		phaseDeplacement(e.target.id);
+	}
+	else if(etat_joueur = "deplace" && e.target.id == "fleche"){
+		procederDeplacement();
+	}
+	else if(e.target.id == 43){
+		nextStep();
 	}
 }
 
@@ -208,20 +225,7 @@ function addListenerCountry(){
 	var i;
 	for(i=1; i < 43; i++){
 		var e = document.getElementById(i);
-		e.addEventListener('click', function(e) {
-			if( etat_joueur = "renfort"){
-				renforcePays(e.target.id, modeRenfort);
-			}
-			else if(etat_joueur = "attaque" && e.target.id > 1 && e.target.id < 43){
-				phaseDeplacement(e.target.id);
-			}
-			else if(etat_joueur = "attaque" && e.target.id == 43){
-				procederDeplacement();
-			}
-			else if(e.target.id == 43){
-				nextStep();
-			}
-		});
+		e.addEventListener('click',clickCountry);
 	}
 }
 
@@ -317,11 +321,16 @@ function phaseDeplacement(idPays){
 		//On vérifie si le déplacement est possible
 		verifierDeplacement();
 	}
+	else if(idPays != paysSource && idPays != paysDestination){
+		paysSource = "";
+		paysDestination = ""
+		return false;
+	}
 	// SI le joueur a renseigné les 2 pays
 	else if(arrayP.includes(idPays) && paysSource != "" && paysDestination != "" && deplacementOK){
 
 		//On procéde au déplacement des troupes
-		deplacementVerife();
+		deplacementVerife(idPays);
 	}
 
 }
@@ -343,16 +352,16 @@ function verifierDeplacement(){
 			}
 		}
 	};
-	xhr.open("GET", "../php/partie/next_step.php", true);
+	xhr.open("GET", "../php/partie/verifier_deplacement.php?paysSource=" + paysSource + "&paysDestination=" + paysDestination, true);
 	xhr.send(null);
 }
 
 //Appelé une fois que la vérification du déplacement possible est faite
-function deplacementVerife(){
+function deplacementVerife(idPays){
 
 	//Dans le cas ou le joueur a selectionner le paysSource, PaysDestination et veut déplacer ses renfort de paysSource => PaysDestination
 	//et qu'il reste plus d'une unité sur le paysSource
-	 if(paysDestination == idPays && document.getElementById("renfort_"+paysSource.toString()) > 1 ){
+	 if(paysDestination == idPays && document.getElementById("renfort_"+paysSource.toString()).innerHTML > 1 ){
 
 		move[paysSource] =  parseInt(document.getElementById("renfort_"+paysSource.toString()).innerHTML) -1;
 		move[paysDestination] = parseInt(document.getElementById("renfort_"+paysDestination.toString()).innerHTML) +1;
@@ -363,7 +372,7 @@ function deplacementVerife(){
 
 	//Dans le cas ou le joueur a selectionner le paysSource, PaysDestination et veut déplacer ses renfort de PaysDestination => paysSource
 	//et qu'il reste plus d'une unité sur le PaysDestination
-	if(paysSource == idPays	&& document.getElementById("renfort_"+paysDestination.toString()) > 1){
+	if(paysSource == idPays	&& document.getElementById("renfort_"+paysDestination.toString()).innerHTML > 1){
 
 		move[paysDestination] = parseInt(document.getElementById("renfort_"+paysDestination.toString()).innerHTML) - 1;
 		move[paysSource] = parseInt(document.getElementById("renfort_"+paysSource.toString()).innerHTML) + 1;
@@ -383,5 +392,5 @@ function procederDeplacement(){
 		}
 	};
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	xhr.send("renfort="+move);
+	xhr.send("move="+move);
 }

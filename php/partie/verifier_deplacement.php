@@ -14,7 +14,7 @@
 
     //Si les 2 pays sont bien renseignés
     if(isset($_GET['paysSource']) && isset($_GET['paysDestination'])){
-        if(moveOneToFrom($bdd,$_SESSION['id_partie'], $_SESSION['usr_id'], $_GET['paysSource'],$_GET['paysDestination'])){
+        if(canMove($bdd,$_SESSION['id_partie'], $_SESSION['usr_id'], $_GET['paysSource'],$_GET['paysDestination'])){
             echo "1";
         }
         else{

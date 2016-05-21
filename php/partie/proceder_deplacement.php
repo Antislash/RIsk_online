@@ -8,14 +8,14 @@
     include "../site/verif_connexion.php";
     include "functions_partie.php";
 
-    if(isset($_POST['move']) && strlen($_POST['renfort']) > 0){
-        $renforts = explode(",", $_POST['renfort']);
+    if(isset($_POST['move']) && strlen($_POST['move']) > 0){
+        $moves = explode(",", $_POST['move']);
         $i = 0;
-        $tabRenfort = array();
-        foreach(deplace as move)
+        $tabDeplace = array();
+        foreach($moves as $deplace)
         {
-            if(deplace != ''){
-                $tabDeplace[$i] = deplace;
+            if($deplace != ''){
+                $tabDeplace[$i] = $deplace;
             }
             $i++;
         }
