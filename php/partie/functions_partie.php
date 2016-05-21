@@ -79,56 +79,6 @@ function getNeighbourCountry($bdd, $id_partie, $id_joueur, $id_pays){
 	return $neighboursCountriesPlayer;
 }
 
-/**
- * Fonctions qui déplace un renfort d'un pays à l'autre, si c'est possible
- * @param $bdd
- * @param $id_partie
- * @param $id_joueur
- * @param $id_paysFrom
- * @param $id_paysTo
- */
-function moveOneToFrom($bdd, $id_partie, $id_joueur, $id_paysFrom, $id_paysTo){
-	$allPays = $bdd->query("SELECT * 
-							FROM partie_has_joueur_has_pays 
-							WHERE id_partie = ".$id_partie." AND id_joueur = ".$id_joueur);
-	global $paysVisited;
-	$paysVisited = array();
-	//On initialise le tabeleau des pays visités à false
-	foreach($allPays as $pays){
-		$paysVisited[$pays['id_pays']] = false;
-	}
-	//On vérifie que le joueurs possède bien les deux pays
-	$req1 = $bdd->query("	SELECT * 
-							FROM partie_has_joueur_has_pays 
-							WHERE id_partie = ".$id_partie." AND id_joueur = ".$id_joueur." AND id_pays = ".$id_paysFrom);
-	$paysFrom = $req1->fetch();
-	$req2 = $bdd->query("	SELECT * 
-							FROM partie_has_joueur_has_pays 
-							WHERE id_partie = ".$id_partie." AND id_joueur = ".$id_joueur." AND id_pays = ".$id_paysTo);
-	$paysTo = $req2->fetch();
-	if($paysFrom != false && $paysTo != false) {    //Si le joueur possède les 2 pays
-		//pays appartiennent au joueur
-		if($paysFrom['nb_pions'] > 1){
-			//nb pion suffisant
-			if (canMove($bdd, $id_partie, $id_joueur, $id_paysFrom, $id_paysTo)) {
-				//frontièere commune
-				$update1 = "UPDATE partie_has_joueur_has_pays
-							SET nb_pions = ".($paysFrom['nb_pions']-1)."
-							WHERE id_partie = ".$id_partie." AND id_joueur = ".$id_joueur." AND id_pays = ".$paysFrom['id_pays'];
-				$update2 = "UPDATE partie_has_joueur_has_pays
-							SET nb_pions = ".($paysTo['nb_pions']+1)."
-							WHERE id_partie = ".$id_partie." AND id_joueur = ".$id_joueur." AND id_pays = ".$paysTo['id_pays'];
-				$req1 = $bdd->exec($update1);
-				$req2 = $bdd->exec($update2);
-				if(!($req1 == false || $req2 == false)){	//Si l'update est bon
-					return true;
-				}
-			}
-		}
-	}
-	return false;
-}
-
 function getContinentJoueur($bdd, $id_partie, $id_joueur){
 	//Tableau pour savoir le le nombre de pays pour chaque continent
 	$continentArrayNb = array();

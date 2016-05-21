@@ -1,6 +1,7 @@
 var arrayP;
 var modeRenfort = 'plus';
 var intervalMap = setInterval('refreshMap()', 4000);
+var etat_joueur = ""; // Etat globale du joueur dans la partie, sert notamment pour l'écoute des pays savoir quels fonction appellé
 
 function getXMLHttpRequest() {
     var xhr = null;
@@ -59,30 +60,43 @@ function refreshEtatPartie(){
 			var etat = xhr.responseText;
 			if(etat.indexOf("init",0) != -1  || etat.indexOf("renfort",0) != -1){
 				document.getElementById("unites").style.display = "block";
+				etat_joueur = "renfort";
 				clearInterval(intervalMap);
 				iniRenfort();
 			}
 			else{
 				document.getElementById("unites").style.display = "none";
+				etat_joueur = "attente";
 			}
 			if(etat.indexOf("attente",0) != -1 || etat.indexOf("joue",0) != -1){
 				document.getElementById("fleche").style.display = "none";
+				etat_joueur = "attente";
 			}
 			else{
 				document.getElementById("fleche").style.display = "block";
+				etat_joueur = "joue";
 				eventFleche(etat);
+
 			}
 			if(etat == "init" || etat == "renfort"){
 				document.getElementById('etat').innerHTML = "Renforcement";
+				etat_joueur = "renfort";
+				clearInterval(intervalMap);
 			}
 			else if(etat == "attaque"){
 				document.getElementById('etat').innerHTML = "Attaquer";
+				etat_joueur = "attaque";
 			}
 			else if(etat == "deplace"){
 				document.getElementById('etat').innerHTML = "Déplacer";
+				etat_joueur = "deplace";
+				clearInterval(intervalMap);
+				getPays();
+				phaseDeplacement();
 			}
 			else{
 				document.getElementById('etat').innerHTML = etat;
+				etat_joueur = "attente";
 			}
 		}
 	};
@@ -195,8 +209,16 @@ function addListenerCountry(){
 	for(i=1; i < 43; i++){
 		var e = document.getElementById(i);
 		e.addEventListener('click', function(e) {
-			renforcePays(e.target.id, modeRenfort);
-			if(e.target.id == 43){
+			if( etat_joueur = "renfort"){
+				renforcePays(e.target.id, modeRenfort);
+			}
+			else if(etat_joueur = "attaque" && e.target.id > 1 && e.target.id < 43){
+				phaseDeplacement(e.target.id);
+			}
+			else if(etat_joueur = "attaque" && e.target.id == 43){
+				procederDeplacement();
+			}
+			else if(e.target.id == 43){
 				nextStep();
 			}
 		});
@@ -209,7 +231,8 @@ function nextStep(){
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
 			refreshMap();
 
-			//Si le joueur a fini sa phase d'initialisation ou de renforcement on relance l'intervalle de rafraichissement de la map
+			//Si le joueur a fini sa phase d'initialisation ou de renforcement  ou de déplacement
+			// on relance l'intervalle de rafraichissement de la map
 			if(xhr.responseText == "fini"){
 				var intervalMap = setInterval('refreshMap()', 4000);
 			}
@@ -263,4 +286,102 @@ function changeModeRenfort(mode){
 		document.getElementById('unites-plus').className = 'td-selected';
 		modeRenfort = 'plus';
 	}
+}
+
+/**
+ * Utilisé pour la phase de déplacement du joueur
+ */
+var paysSource = "";
+var paysDestination = "";
+
+var move = new Array(50);
+
+var deplacementOK = false;
+
+function phaseDeplacement(idPays){
+
+	//Si le pays n'est pas contenu dans la liste de pays appartenant au joueur
+	if (!arrayP.includes(idPays)){
+		paysSource = "";
+		paysDestination = ""
+		return false;
+	}
+	// Si le joueur n'a pas de paysSource selectionné
+	else if (arrayP.includes(idPays) && paysSource == ""){
+		paysSource = idPays;
+	}
+	// Si le joueur n'a pas de paysDestination selectionné
+	else if (arrayP.includes(idPays) && paysSource != "" && paysDestination == "" && paysSource != idPays){
+		paysDestination = idPays;
+
+		//On vérifie si le déplacement est possible
+		verifierDeplacement();
+	}
+	// SI le joueur a renseigné les 2 pays
+	else if(arrayP.includes(idPays) && paysSource != "" && paysDestination != "" && deplacementOK){
+
+		//On procéde au déplacement des troupes
+		deplacementVerife();
+	}
+
+}
+
+function verifierDeplacement(){
+	var xhr = getXMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+			if(xhr.responseText == "1"){
+
+				deplacementOK = true;
+			}
+			else{
+
+				deplacementOK = false;
+
+				//Le joueur doit selectionner 1 nouveaux pays de destination si le déplacement n'est pas possible
+				paysDestination = "";
+			}
+		}
+	};
+	xhr.open("GET", "../php/partie/next_step.php", true);
+	xhr.send(null);
+}
+
+//Appelé une fois que la vérification du déplacement possible est faite
+function deplacementVerife(){
+
+	//Dans le cas ou le joueur a selectionner le paysSource, PaysDestination et veut déplacer ses renfort de paysSource => PaysDestination
+	//et qu'il reste plus d'une unité sur le paysSource
+	 if(paysDestination == idPays && document.getElementById("renfort_"+paysSource.toString()) > 1 ){
+
+		move[paysSource] =  parseInt(document.getElementById("renfort_"+paysSource.toString()).innerHTML) -1;
+		move[paysDestination] = parseInt(document.getElementById("renfort_"+paysDestination.toString()).innerHTML) +1;
+
+		document.getElementById("renfort_"+paysSource.toString()).innerHTML = (parseInt(document.getElementById("renfort_"+paysSource.toString()).innerHTML) - 1).toString();
+		document.getElementById("renfort_"+paysDestination.toString()).innerHTML = (parseInt(document.getElementById("renfort_"+paysDestination.toString()).innerHTML) + 1).toString();
+	}
+
+	//Dans le cas ou le joueur a selectionner le paysSource, PaysDestination et veut déplacer ses renfort de PaysDestination => paysSource
+	//et qu'il reste plus d'une unité sur le PaysDestination
+	if(paysSource == idPays	&& document.getElementById("renfort_"+paysDestination.toString()) > 1){
+
+		move[paysDestination] = parseInt(document.getElementById("renfort_"+paysDestination.toString()).innerHTML) - 1;
+		move[paysSource] = parseInt(document.getElementById("renfort_"+paysSource.toString()).innerHTML) + 1;
+
+		document.getElementById("renfort_"+paysDestination.toString()).innerHTML = (parseInt(document.getElementById("renfort_"+paysDestination.toString()).innerHTML) - 1).toString();
+		document.getElementById("renfort_"+paysSource.toString()).innerHTML = (parseInt(document.getElementById("renfort_"+paysSource.toString()).innerHTML) + 1).toString();
+	}
+}
+
+function procederDeplacement(){
+
+	var xhr = getXMLHttpRequest();
+	xhr.open("POST", "../php/partie/proceder_deplacement.php", true);
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+			nextStep();
+		}
+	};
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xhr.send("renfort="+move);
 }

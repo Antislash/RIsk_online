@@ -30,11 +30,12 @@
         $statut_joueurs = $bdd->query("SELECT *
                                        FROM partie_has_joueur
                                        WHERE id_partie =".$_SESSION['id_partie']."
-                                       AND etat_joueur <> 'attente'");
+                                       AND etat_joueur = 'init'");
 
         $statut_joueurs = $statut_joueurs->fetch();
 
         echo "fini";
+
         //Si tous les joueur sont pret on place le statut de la partie à 'en cours'
         if($statut_joueurs == false){
             $bdd->exec("UPDATE partie
@@ -64,6 +65,8 @@
                     SET etat_joueur = 'attaque' 
                     WHERE id_partie = ".$_SESSION['id_partie']." 
                     AND id_joueur = ".$_SESSION['usr_id']);
+
+        echo "fini";
     }
     //Si le joueur veut passer à la prochaine étape après la phase d'attaque
     else if($statut['etat_joueur'] == "attaque"){
@@ -91,5 +94,7 @@
                     SET etat_joueur = 'renfort' 
                     WHERE id_partie = ".$_SESSION['id_partie']." 
                     AND id_joueur = ".$_SESSION['id_joueur_suivant']);
+
+        echo "fini";
     }
 ?>

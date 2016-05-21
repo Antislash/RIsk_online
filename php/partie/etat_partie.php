@@ -6,6 +6,12 @@
 
     include "../site/connexion.php";
 
+    //On récupére l'état de la partie
+    $partie = $bdd->query("SELECT partie_statut
+                           FROM partie
+                           WHERE id_partie = ".$_SESSION['id_partie']);
+
+    $partie = $partie->fetch();
 
     //On regarde l'etat du joueur
     $statut = $bdd->query("SELECT etat_joueur
@@ -15,21 +21,43 @@
 
     $statut = $statut->fetch();
 
-    if($statut == false){
-
-        echo "Problème pour récupérer l'état du joueur";
+    if($partie == false){
+        echo "Problème pour récupérer l'état de la partie";
     }
-    else if($statut['etat_joueur'] != 'attente'){
+    else if($partie['partie_statut'] == 'init'){
+        if($statut == false){
+
+            echo "Problème pour récupérer l'état du joueur";
+        }
+        else if($statut['etat_joueur'] != 'attente'){
 
             echo $statut['etat_joueur'];
+        }
+        else{
+
+            echo "En attente des autres joueurs...";
+            
+        }
     }
-    else{
-        $joueur_joue = $bdd->query("SELECT usr_pseudo
+    else if($partie['partie_statut'] == 'en cours'){
+
+        if($statut == false){
+
+            echo "Problème pour récupérer l'état du joueur";
+        }
+        else if($statut['etat_joueur'] != 'attente'){
+
+            echo $statut['etat_joueur'];
+        }
+        else{
+            $joueur_joue = $bdd->query("SELECT usr_pseudo
                                     FROM partie p
                                     INNER JOIN user u ON p.a_qui_le_tour = u.usr_id
                                     WHERE id_partie=". $_SESSION['id_partie']);
-        $joueur_joue = $joueur_joue->fetch();
+            $joueur_joue = $joueur_joue->fetch();
 
-        echo $joueur_joue['usr_pseudo']. " joue...";
+            echo $joueur_joue['usr_pseudo']. " joue...";
+        }
     }
+
 ?>

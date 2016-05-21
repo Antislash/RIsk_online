@@ -10,8 +10,6 @@
 
     include "../site/connexion.php";
 
-    unset($_SESSION['room_id']);
-
     //On récupére la liste des joueurs
     $id_partie= $bdd->query("SELECT p.id_partie
 						    FROM partie p
@@ -40,10 +38,10 @@
         $nb_joueur=0;
         while($joueur = $liste_joueur->fetch()){
             array_push($liste,$joueur['id_joueur']);
-            $nbjoueur++;
+            $nb_joueur++;
         }
 
-        $_SESSION['nb_joueur'] = $nbjoueur;
+        $_SESSION['nb_joueur'] = $nb_joueur;
 
         for ($i = 0; $i < count($liste)-1 ; $i++){
 
@@ -59,9 +57,14 @@
             $_SESSION['id_joueur_suivant'] = intval($liste[0]);
         }
 
-        $bdd->query("UPDATE room
+        if(isset($_SESSION['room_id'])){
+            $bdd->query("UPDATE room
                      SET statut_room='fermer'
                      WHERE room_id = ".$_SESSION['room_id']);
+
+            unset($_SESSION['room_id']);
+        }
+
 
 
         header('Location: ../../www/game.php');
