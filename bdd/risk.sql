@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Sam 21 Mai 2016 à 19:07
+-- Généré le :  Sam 21 Mai 2016 à 19:29
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -664,7 +664,7 @@ CREATE TABLE IF NOT EXISTS `user_has_room` (
 -- Contraintes pour la table `joueur`
 --
 ALTER TABLE `joueur`
-  ADD CONSTRAINT `joueur_ibfk_3` FOREIGN KEY (`usr_id`) REFERENCES `joueur` (`usr_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `joueur_ibfk_3` FOREIGN KEY (`usr_id`) REFERENCES `user` (`usr_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `joueur_ibfk_2` FOREIGN KEY (`stats_id`) REFERENCES `stats_joueur` (`id_stats`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
