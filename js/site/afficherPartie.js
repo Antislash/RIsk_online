@@ -1,4 +1,5 @@
 var arrayP;
+var modeRenfort = 'plus';
 var intervalMap = setInterval('refreshMap()', 4000);
 
 function getXMLHttpRequest() {
@@ -123,7 +124,7 @@ function renforcePays(idPays, mode){
 		nbRenfort += -1;
 		document.getElementById("renfort_"+idPays.toString()).innerHTML = (parseInt(document.getElementById("renfort_"+idPays.toString()).innerHTML) + 1).toString();
 	}
-	else if(renfort[idPays] != -1 && nbRenfort > 0){
+	else if(renfort[idPays] != null && renfort[idPays] != -1 && nbRenfort >= 0 && mode == 'moins'){
 		renfort[idPays] += -1;
 		if(renfort[idPays] == 0){
 			renfort[idPays] = -1;
@@ -194,7 +195,7 @@ function addListenerCountry(){
 	for(i=1; i < 43; i++){
 		var e = document.getElementById(i);
 		e.addEventListener('click', function(e) {
-			renforcePays(e.target.id, 'plus');
+			renforcePays(e.target.id, modeRenfort);
 			if(e.target.id == 43){
 				nextStep();
 			}
@@ -249,4 +250,17 @@ function refreshPlayers(){
 	};
 	xhr.open("GET", "../php/site/liste_joueur_game.php", true);
 	xhr.send(null);
+}
+
+function changeModeRenfort(mode){
+	if(mode == 'moins'){
+		document.getElementById('unites-plus').className = null;
+		document.getElementById('unites-moins').className = 'td-selected';
+		modeRenfort = 'moins';
+	}
+	else if(mode == 'plus'){
+		document.getElementById('unites-moins').className = null;
+		document.getElementById('unites-plus').className = 'td-selected';
+		modeRenfort = 'plus';
+	}
 }

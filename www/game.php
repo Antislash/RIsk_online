@@ -37,13 +37,13 @@
 					<td rowspan="2">
 						<span id="unites-sup">5</span>
 					</td>
-					<td class="td-selected" >
-						<span id="unites-plus">+</span>
+					<td class="td-selected" id="unites-plus"  onclick="changeModeRenfort('plus');">
+						+
 					</td>
 				</tr>
 				<tr>
-					<td >
-						<span id="unites-moins">-</span>
+					<td id="unites-moins"  onclick="changeModeRenfort('moins');">
+						-
 					</td>
 				</tr>
 			</table>

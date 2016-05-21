@@ -690,7 +690,11 @@ a {
 
 .td-selected{
 	background-color: green;
-    box-shadow: inset 0px 0px 15px 0px rgba(0, 0, 0, 0.8);	
+    box-shadow: inset 0px 0px 15px 0px rgba(0, 0, 0, 0.8);
+}
+
+#unites-plus:hover, #unites-moins:hover{
+	cursor: pointer;
 }
 
 #unites td{
