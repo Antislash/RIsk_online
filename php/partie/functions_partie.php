@@ -197,11 +197,14 @@ function getNbRenforts($bdd, $id_partie, $id_joueur){
 		return false;
 	}
 	else if($joueur['etat_joueur'] == 'init'){
-		initialiseRenfortStart($bdd, $id_partie);
+		return initialiseRenfortStart($bdd, $id_partie);
 	}
 	else{
-		initialiseRenfortTour($bdd, $id_partie, $id_joueur);
+		return initialiseRenfortTour($bdd, $id_partie, $id_joueur);
 	}
+}
+
+function initialiseRenfortTour($bdd, $id_partie, $id_joueur){
 	//On récupère les continents possédés par le joueur;
 	$continentJoueur = getContinentJoueur($bdd, $id_partie, $id_joueur);
 
@@ -209,33 +212,26 @@ function getNbRenforts($bdd, $id_partie, $id_joueur){
 	$paysJoueur = getAllCountryJoueur($bdd, $id_partie, $id_joueur);
 
 	//On prend le max entre 3 et (nb_pays)/3 (Pour avoir au minimum 3 renforts)
-	$nbRenfortsPays = max(3, sizeof($paysJoueur)/3);
+	$nbRenfortsPays = max(3, (int)(sizeof($paysJoueur)/3));
 	$nbRenfortsContinent = 0;
 
 	//On récupère le nombre de renfort pour chaque continent possédé par le joueur
 	foreach($continentJoueur as $continent){
 		$nbRenfortsContinent += $continent['cnt_nb_renfort'];
 	}
-	return $nbRenfortsPays + $nbRenfortsContinent;
-}
-
-function initialiseRenfortTour($bdd, $id_partie, $id_joueur){
-	$nbRenfort = getNbRenforts($bdd, $id_partie, $id_joueur);
+	$nbRenfort = $nbRenfortsPays + $nbRenfortsContinent;
 	$reqRenfort = $bdd->query("	SELECT * 
 								FROM partie_has_joueur
 								WHERE id_partie = ".$id_partie." AND id_joueur = ".$id_joueur);
 	$joueur = $reqRenfort->fetch();
 	if($joueur['nb_renforts'] != 0){
-		return false;
+		return $nbRenfort;
 	}
 	$update = "	UPDATE partie_has_joueur
 			  	SET nb_renforts = ".$nbRenfort."
 				WHERE id_partie = ".$id_partie." AND id_joueur = ".$id_joueur;
 	$req = $bdd->exec($update);
-	if($req != false){
-		return true;
-	}
-	return false;
+	return $nbRenfort;
 }
 
 function initialiseRenfortStart($bdd, $id_partie){
@@ -266,9 +262,11 @@ function initialiseRenfortStart($bdd, $id_partie){
 					WHERE id_partie = ".$id_partie." AND id_joueur = ".$joueur['id_joueur'];
 		$req = $bdd->exec($update);
 		if($req == false){
-			return false;
+			return $nb_renforts;
 		}
 	}
+	var_dump($nb_renforts);
+	return $nb_renforts;
 }
 
 function addRenfortPays($bdd, $id_partie, $id_joueur, $id_pays){

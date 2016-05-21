@@ -51,7 +51,7 @@
 		<div id="etat">
 
 		</div>
-		<div id="fleche" id="43">
+		<div id="fleche">
 			<img id="43" src="images/fleche-droite.png" onmouseover="this.src='images/fleche-droite-hover.png'" onmouseout="this.src='images/fleche-droite.png'"/>
 		</div>
 		<div id="attaque" class="a-inactif" onclick="if(this.className == 'a-inactif'){this.className = 'a-actif';}else{this.className='a-inactif';}">
@@ -62,7 +62,7 @@
 		   width="975"
 		   height="676"
 		   viewbox="0 0 750 520"
-		   onload="setMapSize();">
+		   onload="setMapSize();addListenerCountry();">
 		   <g
 			 id="countries"
 			 transform="translate(-167.99651,-118.55507)">

@@ -1,6 +1,5 @@
 var arrayP;
 var intervalMap = setInterval('refreshMap()', 4000);
-addListenerCountry();
 
 function getXMLHttpRequest() {
     var xhr = null;
@@ -30,7 +29,7 @@ function refreshMap(){
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
 			afficherCouleurCarte(xhr.responseText);
 			refreshEtatPartie();
-
+			refreshPlayers();
 		}
 	};
 	xhr.open("GET", "../php/partie/getColorPays.php", true);
@@ -57,8 +56,7 @@ function refreshEtatPartie(){
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
 			var etat = xhr.responseText;
-			if(etat.indexOf("attente",0) == -1  || etat.indexOf("attaque",0) == -1 || etat.indexOf("deplace",0) == -1){
-
+			if(etat.indexOf("init",0) != -1  || etat.indexOf("renfort",0) != -1){
 				document.getElementById("unites").style.display = "block";
 				clearInterval(intervalMap);
 				iniRenfort();
@@ -66,14 +64,21 @@ function refreshEtatPartie(){
 			else{
 				document.getElementById("unites").style.display = "none";
 			}
-			if(etat.indexOf("attente",0) == -1){
-				document.getElementById("fleche").style.display = "block";
-			}
-			else{
+			if(etat.indexOf("attente",0) != -1 || etat.indexOf("joue",0) != -1){
 				document.getElementById("fleche").style.display = "none";
 			}
-			if(etat == "init"){
+			else{
+				document.getElementById("fleche").style.display = "block";
+				eventFleche(etat);
+			}
+			if(etat == "init" || etat == "renfort"){
 				document.getElementById('etat').innerHTML = "Renforcement";
+			}
+			else if(etat == "attaque"){
+				document.getElementById('etat').innerHTML = "Attaquer";
+			}
+			else if(etat == "deplace"){
+				document.getElementById('etat').innerHTML = "Déplacer";
 			}
 			else{
 				document.getElementById('etat').innerHTML = etat;
@@ -102,7 +107,7 @@ function getPays(){
 
 getPays();
 var renfort = new Array(50);
-var nbRenfort = 5;
+var nbRenfort;
 
 function renforcePays(idPays, mode){
 	if (!arrayP.includes(idPays)){
@@ -148,7 +153,7 @@ function renforcer(){
 	}
 }
 
-function refreshNbRenfort(nbRenfort){
+function refreshNbRenfort(){
 	document.getElementById("unites-sup").innerHTML = nbRenfort;
 }
 
@@ -170,9 +175,23 @@ function setMapSize(){
 	document.getElementById("map-svg").style.height = newH;
 }
 
+function eventFleche(etat){
+	var e = document.getElementById('fleche');
+	if(etat == 'renfort' || etat == 'init') {
+		e.addEventListener('click', function (e) {
+			renforcer();
+		});
+	}
+	else{
+		e.addEventListener('click', function (e) {
+			nextStep();
+		});
+	}
+}
+
 function addListenerCountry(){
 	var i;
-	for(i=1; i < 44; i++){
+	for(i=1; i < 43; i++){
 		var e = document.getElementById(i);
 		e.addEventListener('click', function(e) {
 			renforcePays(e.target.id, 'plus');
@@ -204,10 +223,30 @@ function iniRenfort(){
 	var xhr = getXMLHttpRequest();
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-			nbRenfort = xhr.responseText;
-			refreshNbRenfort(nbRenfort);
+			nbRenfort = parseInt(xhr.responseText);
+			refreshNbRenfort();
 		}
 	};
 	xhr.open("GET", "../php/partie/nb_renfort.php", true);
+	xhr.send(null);
+}
+
+function derouler(elm){
+	if(elm.className == "unwrap"){
+		elm.className = "wrapped";
+	}
+	else{
+		elm.className = "unwrap";
+	}
+}
+
+function refreshPlayers(){
+	var xhr = getXMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+			document.getElementById('list_player').innerHTML = xhr.responseText;
+		}
+	};
+	xhr.open("GET", "../php/site/liste_joueur_game.php", true);
 	xhr.send(null);
 }
