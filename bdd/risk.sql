@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 20 Mai 2016 à 11:41
+-- Généré le :  Sam 21 Mai 2016 à 19:07
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -260,54 +260,6 @@ CREATE TABLE IF NOT EXISTS `partie_has_joueur_has_pays` (
   KEY `fk_id_joueur` (`id_joueur`),
   KEY `fk_id_pays` (`id_pays`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Table pour savoir qui possède quel pays pour une partie';
-
---
--- Contenu de la table `partie_has_joueur_has_pays`
---
-
-INSERT INTO `partie_has_joueur_has_pays` (`id_partie`, `id_joueur`, `id_pays`, `nb_pions`) VALUES
-(165, 11, 1, 1),
-(165, 11, 2, 1),
-(165, 11, 3, 1),
-(165, 11, 4, 1),
-(165, 11, 7, 1),
-(165, 11, 8, 1),
-(165, 11, 10, 1),
-(165, 11, 13, 1),
-(165, 11, 14, 1),
-(165, 11, 15, 1),
-(165, 11, 17, 1),
-(165, 11, 19, 1),
-(165, 11, 22, 1),
-(165, 11, 24, 1),
-(165, 11, 25, 1),
-(165, 11, 26, 1),
-(165, 11, 30, 1),
-(165, 11, 35, 1),
-(165, 11, 37, 1),
-(165, 11, 41, 1),
-(165, 11, 42, 1),
-(165, 16, 5, 1),
-(165, 16, 6, 1),
-(165, 16, 9, 1),
-(165, 16, 11, 1),
-(165, 16, 12, 1),
-(165, 16, 16, 1),
-(165, 16, 18, 1),
-(165, 16, 20, 1),
-(165, 16, 21, 1),
-(165, 16, 23, 1),
-(165, 16, 27, 1),
-(165, 16, 28, 1),
-(165, 16, 29, 1),
-(165, 16, 31, 1),
-(165, 16, 32, 1),
-(165, 16, 33, 1),
-(165, 16, 34, 1),
-(165, 16, 36, 1),
-(165, 16, 38, 1),
-(165, 16, 39, 1),
-(165, 16, 40, 1);
 
 -- --------------------------------------------------------
 
@@ -712,6 +664,7 @@ CREATE TABLE IF NOT EXISTS `user_has_room` (
 -- Contraintes pour la table `joueur`
 --
 ALTER TABLE `joueur`
+  ADD CONSTRAINT `joueur_ibfk_3` FOREIGN KEY (`usr_id`) REFERENCES `joueur` (`usr_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `joueur_ibfk_2` FOREIGN KEY (`stats_id`) REFERENCES `stats_joueur` (`id_stats`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -724,6 +677,7 @@ ALTER TABLE `news`
 -- Contraintes pour la table `partie_has_joueur`
 --
 ALTER TABLE `partie_has_joueur`
+  ADD CONSTRAINT `partie_has_joueur_ibfk_4` FOREIGN KEY (`id_partie`) REFERENCES `partie` (`id_partie`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `partie_has_joueur_ibfk_2` FOREIGN KEY (`id_joueur`) REFERENCES `joueur` (`usr_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `partie_has_joueur_ibfk_3` FOREIGN KEY (`code_clr`) REFERENCES `couleur` (`clr_code`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
@@ -731,6 +685,7 @@ ALTER TABLE `partie_has_joueur`
 -- Contraintes pour la table `partie_has_joueur_has_pays`
 --
 ALTER TABLE `partie_has_joueur_has_pays`
+  ADD CONSTRAINT `partie_has_joueur_has_pays_ibfk_4` FOREIGN KEY (`id_partie`) REFERENCES `partie` (`id_partie`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `partie_has_joueur_has_pays_ibfk_2` FOREIGN KEY (`id_joueur`) REFERENCES `joueur` (`usr_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `partie_has_joueur_has_pays_ibfk_3` FOREIGN KEY (`id_pays`) REFERENCES `pays` (`id_pays`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
