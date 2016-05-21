@@ -47,13 +47,20 @@
 
         }
         else{
-            $bdd->query("UPDATE user_has_room
+            var_dump("UPDATE user_has_room
 						 SET usr_admin = 1
 						 WHERE id_user = (SELECT id_user 
 										  FROM user_has_room 
 										  WHERE id_room=".$_SESSION['room_id']." 
 										  AND statut_usr_room = 'in'
-										  limit 1)" );
+										  AND id_user <> ".$_SESSION['usr_id']."
+										  limit 1)");
+            $bdd->query("UPDATE user_has_room
+						 SET usr_admin = 1
+										  WHERE id_room=".$_SESSION['room_id']." 
+										  AND statut_usr_room = 'in'
+										  AND id_user <> ".$_SESSION['usr_id']."
+										  limit 1" );
         }
 
         //Le joueur n'est plus admin
@@ -87,6 +94,5 @@
                     WHERE room_id = ".$_SESSION['room_id']);
     }
 
-    //unset($_SESSION['room_id']);
-    header('Location: ../../www/acceuil.php');
+   header('Location: ../../www/acceuil.php');
 ?>
