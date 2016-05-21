@@ -306,32 +306,47 @@ function phaseDeplacement(idPays){
 
 	//Si le pays n'est pas contenu dans la liste de pays appartenant au joueur
 	if (!arrayP.includes(idPays)){
-		$( paysSource ).removeClass( "countrySelected" );
+		if(paysSource != "") {
+			document.getElementById(paysSource).classList.remove("countrySelected");
+		}
+		if(paysDestination != "") {
+			document.getElementById(paysDestination).classList.remove("countrySelected");
+		}
 		paysSource = "";
 		paysDestination = "";
 	}
 	// Si le joueur n'a pas de paysSource selectionné
 	else if (arrayP.includes(idPays) && paysSource == ""){
 		paysSource = idPays;
-		$(idPays ).addClass( "countrySelected" );
+		document.getElementById(paysSource).classList.add("countrySelected");
 	}
 	// Si le joueur n'a pas de paysDestination selectionné
 	else if (arrayP.includes(idPays) && paysSource != "" && paysDestination == "" && paysSource != idPays){
 		paysDestination = idPays;
+		document.getElementById(paysDestination).classList.add("countrySelected");
 
 		//On vérifie si le déplacement est possible
 		verifierDeplacement();
 	}
 	else if (arrayP.includes(idPays) && paysSource == idPays && paysDestination ==""){
-		$( paysSource ).removeClass( "countrySelected" );
+		if(paysSource != "") {
+			document.getElementById(paysSource).classList.remove("countrySelected");
+		}
+		if(paysDestination != "") {
+			document.getElementById(paysDestination).classList.remove("countrySelected");
+		}
 		paysSource = "";
 	}
 	else if(idPays != paysSource && idPays != paysDestination){
-		$( paysSource ).removeClass( "countrySelected" );
+		if(paysSource != "") {
+			document.getElementById(paysSource).classList.remove("countrySelected");
+		}
+		if(paysDestination != "") {
+			document.getElementById(paysDestination).classList.remove("countrySelected");
+		}
 		paysSource = "";
 		paysDestination = ""
 
-		notif("Il n'est pas possible de faire ce déplacement",2);
 	}
 	// SI le joueur a renseigné les 2 pays
 	else if(arrayP.includes(idPays) && paysSource != "" && paysDestination != "" && deplacementOK){
@@ -355,6 +370,8 @@ function verifierDeplacement(){
 				deplacementOK = false;
 
 				//Le joueur doit selectionner 1 nouveaux pays de destination si le déplacement n'est pas possible
+				document.getElementById(paysDestination).classList.remove("countrySelected");
+				notif("Il n'est pas possible de faire ce déplacement",2);
 				paysDestination = "";
 			}
 		}
