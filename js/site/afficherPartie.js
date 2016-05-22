@@ -3,6 +3,7 @@ var modeRenfort = 'plus';
 var intervalMap = setInterval('refreshMap()', 4000);
 var etat_joueur = ""; // Etat globale du joueur dans la partie, sert notamment pour l'écoute des pays savoir quels fonction appellé
 
+
 function getXMLHttpRequest() {
     var xhr = null;
 
@@ -75,7 +76,6 @@ function refreshEtatPartie(){
 			else{
 				document.getElementById("fleche").style.display = "block";
 				etat_joueur = "joue";
-				eventFleche(etat);
 
 			}
 			if(etat == "init" || etat == "renfort"){
@@ -190,31 +190,36 @@ function setMapSize(){
 	document.getElementById("map-svg").style.height = newH;
 }
 
-
-function eventFleche(etat){
-	var e = document.getElementById('fleche');
-	e.removeEventListener('click',renforcer);
-	e.removeEventListener('click',nextStep);
-	if(etat == 'renfort' || etat == 'init') {
-		e.addEventListener('click', renforcer);
+function clickFleche(e){
+	if(etat_joueur == 'renfort' || etat_joueur == 'init') {
+		renforcer();
 	}
 	else if(etat_joueur = "deplace"){
-		e.addEventListener('click', procederDeplacement);
+		procederDeplacement();
 	}
 	else{
-		e.addEventListener('click', nextStep);
+		nextStep();
 	}
 }
 
+
+function eventFleche(){
+	var e = document.getElementById('fleche');
+	e.addEventListener('click', clickFleche);
+}
+
 function clickCountry(e) {
-	if(etat_joueur == "renfort"){
+	if(victoire){
+		deplacementVerife(e.target.id);
+	}
+	else if(etat_joueur == "renfort"){
 		renforcePays(e.target.id, modeRenfort);
 	}
-	else if(etat_joueur = "deplace" && parseInt(e.target.id) >= 1 && parseInt(e.target.id) < 43){
+	else if(etat_joueur == "deplace"){
 		phaseDeplacement(e.target.id);
 	}
-	else if(etat_joueur = "deplace" && e.target.id == "fleche"){
-		procederDeplacement();
+	else if(etat_joueur == "attaque"){
+		attaquePays(e.target.id);
 	}
 	else if(e.target.id == 43){
 		nextStep();
@@ -382,6 +387,10 @@ function verifierDeplacement(){
 
 //Appelé une fois que la vérification du déplacement possible est faite
 function deplacementVerife(idPays){
+	if(idPays != paysDestination && idPays != paysSource){
+		procederDeplacement();
+		intervalMap = setInterval('refreshMap()', 4000);
+	}
 
 	//Dans le cas ou le joueur a selectionner le paysSource, PaysDestination et veut déplacer ses renfort de paysSource => PaysDestination
 	//et qu'il reste plus d'une unité sur le paysSource
@@ -407,16 +416,128 @@ function deplacementVerife(idPays){
 }
 
 function procederDeplacement(){
-
+	if(paysDestination != "") {
+		document.getElementById(paysDestination).classList.remove("countrySelected");
+	}
+	if(paysSource != "") {
+		document.getElementById(paysSource).classList.remove("countrySelected");
+	}
 	var xhr = getXMLHttpRequest();
 	xhr.open("POST", "../php/partie/proceder_deplacement.php", true);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
 			paysSource = "";
 			paysDestination = "";
-			nextStep();
+			if(!victoire) {
+				nextStep();
+			}
+			else{
+				victoire = false;
+			}
 		}
 	};
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xhr.send("move="+move);
+}
+
+function getAttackableCountries(idcountry) {
+	var xhr = getXMLHttpRequest();
+	var pays;
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+			arrayA = xhr.responseText.split(";");
+			for(var i = 0; i < arrayA.length ; i++){
+				if(arrayA[i] != "") {
+					document.getElementById(arrayA[i]).classList.add("countryAttaque");
+				}
+			}
+		}
+	};
+	xhr.open("GET", "../php/partie/getAttackableCountry.php?country="+idcountry, true);
+	xhr.send(null);
+}
+
+var idAttaque = "";
+var idDefense = "";
+var arrayA = new Array();
+var victoire = false;
+
+function attaquePays(idPays) {
+	if(idAttaque == ""){
+		if (!arrayP.includes(idPays)){
+			return ;
+		}
+		idAttaque = idPays.toString();
+		getAttackableCountries(idPays);
+		return ;
+	}
+	else if(idDefense == "" && arrayA.includes(idPays)){
+		idDefense = idPays.toString();
+		victoire = false;
+		document.getElementById("info-attaque").innerHTML = "";
+		attaquer();
+		return ;
+	}
+	else if(idAttaque == idPays.toString()){
+		idAttaque = "";
+		for(var i = 0; i < arrayA.length ; i++){
+			if(arrayA[i] != "") {
+				document.getElementById(arrayA[i]).classList.remove("countryAttaque");
+			}
+		}
+	}
+}
+
+function attaquer(){
+	document.getElementById("attaque").className = "a-actif";
+	if(!victoire && parseInt(document.getElementById("renfort_"+idAttaque.toString()).innerHTML) > 1 && parseInt(document.getElementById("renfort_"+idDefense.toString()).innerHTML) > 0){
+		procederAttaque();
+		refreshMap();
+	}
+	else {
+		sleep(2000);
+		for(var i = 0; i < arrayA.length ; i++){
+			if(arrayA[i] != "") {
+				document.getElementById(arrayA[i]).classList.remove("countryAttaque");
+			}
+		}
+		document.getElementById("attaque").className = "a-inactif";
+		if(victoire){
+			clearInterval(intervalMap);
+			paysDestination = idDefense;
+			paysSource = idAttaque;
+			arrayP.push(idDefense);
+			document.getElementById(paysSource).classList.add("countrySelected");
+			document.getElementById(paysDestination).classList.add("countrySelected");
+		}
+		idAttaque = "";
+		idDefense = "";
+	}
+}
+
+function procederAttaque(){
+	var xhr = getXMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+			if(xhr.responseText.indexOf("code_victoire",0) != -1){
+				victoire = true;
+			}
+			else {
+				document.getElementById("info-attaque").innerHTML = xhr.responseText;
+			}
+			sleep(1000);
+			attaquer();
+		}
+	};
+	xhr.open("GET", "../php/partie/proceder_attaque.php?idAttaque="+idAttaque+"&idDefense="+idDefense, true);
+	xhr.send(null);
+}
+
+function sleep(milliseconds) {
+	var start = new Date().getTime();
+	for (var i = 0; i < 1e7; i++) {
+		if ((new Date().getTime() - start) > milliseconds){
+			break;
+		}
+	}
 }

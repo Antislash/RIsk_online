@@ -44,7 +44,7 @@ function attack($bdd, $id_partie, $id_pays_attack, $id_pays_defense, $id_joueur_
 	}
 
 	else {
-		echo "Victoire !";
+		echo "code_victoire";
 	}
 }
 
@@ -84,26 +84,26 @@ function affichage_des($des_attack, $des_defense) {
 	echo '<div id="des_attaquant">';
 	for($i = 0; $i <count($des_attack); $i++) {
 		if(isset($des_defense[$i]) && $des_attack[$i] > $des_defense[$i]) {
-			echo '<img src="../images/dés/dé'.$des_attack[$i].' - win.png" alt="dé'.$des_attack[$i].'" height="60" width="60">';
+			echo '<img src="images/dés/dé'.$des_attack[$i].' - win.png" alt="dé'.$des_attack[$i].'" height="60" width="60">';
 		}
 		else if(isset($des_defense[$i]) && $des_attack[$i] <= $des_defense[$i]) {
-			echo '<img src="../images/dés/dé'.$des_attack[$i].' - loose.png" alt="dé'.$des_attack[$i].'" height="60" width="60">';
+			echo '<img src="images/dés/dé'.$des_attack[$i].' - loose.png" alt="dé'.$des_attack[$i].'" height="60" width="60">';
 		}
 		else {
-			echo '<img src="../images/dés/dé'.$des_attack[$i].'.png" alt="dé'.$des_attack[$i].'" height="60" width="60">';
+			echo '<img src="images/dés/dé'.$des_attack[$i].'.png" alt="dé'.$des_attack[$i].'" height="60" width="60">';
 		}
 	}
 	echo '</div>';
 	echo '<div id="des_defenseur">';
 	for($i = 0; $i <count($des_defense); $i++) {
 		if(isset($des_attack[$i]) && $des_defense[$i] >= $des_attack[$i]) {
-			echo '<img src="../images/dés/dé'.$des_defense[$i].' - win.png" alt="dé'.$des_defense[$i].'" height="60" width="60">';
+			echo '<img src="images/dés/dé'.$des_defense[$i].' - win.png" alt="dé'.$des_defense[$i].'" height="60" width="60">';
 		}
 		else if(isset($des_attack[$i]) && $des_defense[$i] < $des_attack[$i]) {
-			echo '<img src="../images/dés/dé'.$des_defense[$i].' - loose.png" alt="dé'.$des_defense[$i].'" height="60" width="60">';
+			echo '<img src="images/dés/dé'.$des_defense[$i].' - loose.png" alt="dé'.$des_defense[$i].'" height="60" width="60">';
 		}
 		else {
-			echo '<img src="../images/dés/dé'.$des_defense[$i].'.png" alt="dé'.$des_defense[$i].'" height="60" width="60">';
+			echo '<img src="images/dés/dé'.$des_defense[$i].'.png" alt="dé'.$des_defense[$i].'" height="60" width="60">';
 		}
 	}
 	echo '</div>';
