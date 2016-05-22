@@ -1,9 +1,45 @@
 var arrayP;
-var modeRenfort = 'plus';
+getPays(); //Rempli arrayP
 var intervalMap = setInterval('refreshMap()', 4000);
 var etat_joueur = ""; // Etat globale du joueur dans la partie, sert notamment pour l'écoute des pays savoir quels fonction appellé
 
+//POUR PHASE RENFORT
+var renfort = new Array(50); // Array qui sera rempli par les renforts
+var nbRenfort; //Nb de renfort lors de la phase renfort
+var modeRenfort = 'plus';
 
+//POUR PHASE DEPLACEMENT
+var paysSource = "";
+var paysDestination = "";
+var move = new Array(50);
+var deplacementOK = false;
+
+//POUR PHASE ATTAQUE
+var idAttaque = "";
+var idDefense = "";
+var arrayA = new Array();
+var victoire = false;
+
+//Fonction pour afficher la map en fonction de la taille de la fenetre
+function setMapSize(){
+	var w = 750;
+	var h = 520;
+	var ratio = w/h;
+	var wEcran = document.body.clientWidth;
+	var hEcran = document.body.clientHeight - 100;
+	if(wEcran < ratio * hEcran){
+		newW = wEcran;
+		newH = wEcran/ratio;
+	}
+	else{
+		newW = hEcran * ratio;
+		newH = hEcran;
+	}
+	document.getElementById("map-svg").style.width = newW;
+	document.getElementById("map-svg").style.height = newH;
+}
+
+//Outil pour AJAX
 function getXMLHttpRequest() {
     var xhr = null;
 
@@ -25,7 +61,7 @@ function getXMLHttpRequest() {
     return xhr;
 }
 
-
+//Fonction qui rafraichis la map et appelle le refraichissement de l'état et de la liste de joueurs
 function refreshMap(){
 	var xhr = getXMLHttpRequest();
 	xhr.onreadystatechange = function() {
@@ -38,22 +74,8 @@ function refreshMap(){
 	xhr.open("GET", "../php/partie/getColorPays.php", true);
 	xhr.send(null);
 }
-		
-function afficherCouleurCarte(infos){
-	var strPays = infos.split("|")[0];
-	var strCouleur = infos.split("|")[1];
-	var strPions = infos.split("|")[2];
-	var pays = strPays.split(";");
-	var couleur = strCouleur.split(";");
-	var pions = strPions.split(";");
-	if(couleur.length == pays.length){
-		for(var i = 0 ; i < couleur.length ; i++){
-			document.getElementById(pays[i]).style.fill = "#" + couleur[i];
-			document.getElementById("renfort_" + pays[i]).innerHTML = pions[i];
-		}
-	}
-}
 
+//Rafraichissement de l'état de la partie
 function refreshEtatPartie(){
 	var xhr = getXMLHttpRequest();
 	xhr.onreadystatechange = function() {
@@ -104,11 +126,46 @@ function refreshEtatPartie(){
 	xhr.send(null);
 }
 
+//Affichage des renforts
+function refreshNbRenfort(){
+	document.getElementById("unites-sup").innerHTML = nbRenfort;
+}
+
+//Affichage de la liste des joueurs
+function refreshPlayers(){
+	var xhr = getXMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+			document.getElementById('list_player').innerHTML = xhr.responseText;
+		}
+	};
+	xhr.open("GET", "../php/site/liste_joueur_game.php", true);
+	xhr.send(null);
+}
+
+//Affichage des infos sur la carte
+function afficherCouleurCarte(infos){
+	var strPays = infos.split("|")[0];
+	var strCouleur = infos.split("|")[1];
+	var strPions = infos.split("|")[2];
+	var pays = strPays.split(";");
+	var couleur = strCouleur.split(";");
+	var pions = strPions.split(";");
+	if(couleur.length == pays.length){
+		for(var i = 0 ; i < couleur.length ; i++){
+			document.getElementById(pays[i]).style.fill = "#" + couleur[i];
+			document.getElementById("renfort_" + pays[i]).innerHTML = pions[i];
+		}
+	}
+}
+
+//Outil pour faire un tableau depuis une chaine de caractére
 function explodeArrayPays(chaine){
 	var res = chaine.split(";");
 	return res;
 }
 
+//Fonction qui récupére les pays d'un joueur
 function getPays(){
 	var xhr = getXMLHttpRequest();
 	xhr.onreadystatechange = function() {
@@ -120,10 +177,7 @@ function getPays(){
 	xhr.send(null);
 }
 
-getPays();
-var renfort = new Array(50);
-var nbRenfort;
-
+//Fonction qui gére le renfort des pays lors du click
 function renforcePays(idPays, mode){
 	if (!arrayP.includes(idPays)){
 		return false;
@@ -146,11 +200,11 @@ function renforcePays(idPays, mode){
 		nbRenfort += 1;
 		document.getElementById("renfort_"+idPays.toString()).innerHTML = (parseInt(document.getElementById("renfort_"+idPays.toString()).innerHTML) - 1).toString();
 	}
-
 	refreshNbRenfort();
 	return true;
 }
 
+//Fonction qui traite les données de renfort accumulé grace a renfortPays
 function renforcer(){
 	if(nbRenfort == 0){
 		var xhr = getXMLHttpRequest();
@@ -168,28 +222,7 @@ function renforcer(){
 	}
 }
 
-function refreshNbRenfort(){
-	document.getElementById("unites-sup").innerHTML = nbRenfort;
-}
-
-function setMapSize(){
-	var w = 750;
-	var h = 520;
-	var ratio = w/h;
-	var wEcran = document.body.clientWidth;
-	var hEcran = document.body.clientHeight - 100;
-	if(wEcran < ratio * hEcran){
-		newW = wEcran;
-		newH = wEcran/ratio;
-	}
-	else{
-		newW = hEcran * ratio;
-		newH = hEcran;
-	}
-	document.getElementById("map-svg").style.width = newW;
-	document.getElementById("map-svg").style.height = newH;
-}
-
+//Fonction qui gére la fonction a appellé selon la phase au clicque sur la fleche
 function clickFleche(e){
 	if(etat_joueur == 'renfort' || etat_joueur == 'init') {
 		renforcer();
@@ -202,12 +235,7 @@ function clickFleche(e){
 	}
 }
 
-
-function eventFleche(){
-	var e = document.getElementById('fleche');
-	e.addEventListener('click', clickFleche);
-}
-
+//Fonction qui gére la fonction a appellé selon la phase au clique sur le pays
 function clickCountry(e) {
 	if(victoire){
 		deplacementVerife(e.target.id);
@@ -226,6 +254,11 @@ function clickCountry(e) {
 	}
 }
 
+//Fonctions d'ajout d'event
+function eventFleche(){
+	var e = document.getElementById('fleche');
+	e.addEventListener('click', clickFleche);
+}
 function addListenerCountry(){
 	var i;
 	for(i=1; i < 43; i++){
@@ -234,6 +267,7 @@ function addListenerCountry(){
 	}
 }
 
+//Fonction qui gére les étapes
 function nextStep(){
 	var xhr = getXMLHttpRequest();
 	xhr.onreadystatechange = function() {
@@ -251,7 +285,7 @@ function nextStep(){
 	xhr.send(null);
 }
 
-
+//Initialisation des renforts
 function iniRenfort(){
 	var xhr = getXMLHttpRequest();
 	xhr.onreadystatechange = function() {
@@ -264,26 +298,7 @@ function iniRenfort(){
 	xhr.send(null);
 }
 
-function derouler(elm){
-	if(elm.className == "unwrap"){
-		elm.className = "wrapped";
-	}
-	else{
-		elm.className = "unwrap";
-	}
-}
-
-function refreshPlayers(){
-	var xhr = getXMLHttpRequest();
-	xhr.onreadystatechange = function() {
-		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-			document.getElementById('list_player').innerHTML = xhr.responseText;
-		}
-	};
-	xhr.open("GET", "../php/site/liste_joueur_game.php", true);
-	xhr.send(null);
-}
-
+//Changement du mode de renfort
 function changeModeRenfort(mode){
 	if(mode == 'moins'){
 		document.getElementById('unites-plus').className = null;
@@ -297,15 +312,15 @@ function changeModeRenfort(mode){
 	}
 }
 
-/**
- * Utilisé pour la phase de déplacement du joueur
- */
-var paysSource = "";
-var paysDestination = "";
-
-var move = new Array(50);
-
-var deplacementOK = false;
+//Style déroulant de la liste des joueurs et du chat
+function derouler(elm){
+	if(elm.className == "unwrap"){
+		elm.className = "wrapped";
+	}
+	else{
+		elm.className = "unwrap";
+	}
+}
 
 function phaseDeplacement(idPays){
 
@@ -440,6 +455,7 @@ function procederDeplacement(){
 	xhr.send("move="+move);
 }
 
+//Recupération des pays attaquables
 function getAttackableCountries(idcountry) {
 	var xhr = getXMLHttpRequest();
 	var pays;
@@ -457,11 +473,7 @@ function getAttackableCountries(idcountry) {
 	xhr.send(null);
 }
 
-var idAttaque = "";
-var idDefense = "";
-var arrayA = new Array();
-var victoire = false;
-
+//Preparation de l'attaque
 function attaquePays(idPays) {
 	if(idAttaque == ""){
 		if (!arrayP.includes(idPays)){
@@ -488,6 +500,7 @@ function attaquePays(idPays) {
 	}
 }
 
+//Fonction qui lance l'attaque
 function attaquer(){
 	document.getElementById("attaque").className = "a-actif";
 	if(!victoire && parseInt(document.getElementById("renfort_"+idAttaque.toString()).innerHTML) > 1 && parseInt(document.getElementById("renfort_"+idDefense.toString()).innerHTML) > 0){
@@ -515,6 +528,7 @@ function attaquer(){
 	}
 }
 
+//Appel AJAX de l'attaque et affichage de l'attaque
 function procederAttaque(){
 	var xhr = getXMLHttpRequest();
 	xhr.onreadystatechange = function() {
@@ -533,6 +547,8 @@ function procederAttaque(){
 	xhr.send(null);
 }
 
+
+//Outil pour marquer un temps d'attente
 function sleep(milliseconds) {
 	var start = new Date().getTime();
 	for (var i = 0; i < 1e7; i++) {
