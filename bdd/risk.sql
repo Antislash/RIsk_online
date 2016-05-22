@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Sam 21 Mai 2016 à 19:29
+-- Généré le :  Dim 22 Mai 2016 à 23:51
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -64,7 +64,16 @@ CREATE TABLE IF NOT EXISTS `chat_messages` (
   `timestamp` int(11) NOT NULL,
   `message_room_id` int(4) NOT NULL,
   PRIMARY KEY (`message_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1562 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Contenu de la table `chat_messages`
+--
+
+INSERT INTO `chat_messages` (`message_id`, `message_text`, `pseudo`, `timestamp`, `message_room_id`) VALUES
+(1, 'Bonjour partant pour une partie ?', 'Mathilde', 1463952891, 107),
+(2, 'Oui, je suis partant', 'Ali', 1463953043, 107),
+(3, 'Moi aussi', 'Max', 1463953069, 107);
 
 -- --------------------------------------------------------
 
@@ -171,8 +180,8 @@ CREATE TABLE IF NOT EXISTS `joueur` (
 INSERT INTO `joueur` (`usr_id`, `stats_id`, `nb_pays`, `nb_continent`) VALUES
 (11, 1, 0, 0),
 (14, 1, 0, 0),
-(15, 1, 0, 0),
-(16, 1, 0, 0);
+(18, 1, 0, 0),
+(19, 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -221,7 +230,14 @@ CREATE TABLE IF NOT EXISTS `partie` (
   `partie_statut` varchar(20) NOT NULL,
   PRIMARY KEY (`id_partie`),
   KEY `fk_a_qui_le_tour` (`a_qui_le_tour`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=166 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=169 ;
+
+--
+-- Contenu de la table `partie`
+--
+
+INSERT INTO `partie` (`id_partie`, `nb_joueurs`, `date_crea`, `date_maj`, `map`, `a_qui_le_tour`, `partie_statut`) VALUES
+(168, 4, '2016-05-22', '2016-05-22', 0, 14, 'en cours');
 
 -- --------------------------------------------------------
 
@@ -243,6 +259,16 @@ CREATE TABLE IF NOT EXISTS `partie_has_joueur` (
   KEY `fk_code_clr` (`code_clr`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Contenu de la table `partie_has_joueur`
+--
+
+INSERT INTO `partie_has_joueur` (`id_partie`, `id_joueur`, `code_clr`, `joueur_dans_partie`, `etat_joueur`, `nb_renforts`) VALUES
+(168, 11, 'rouge', 1, 'attente', 27),
+(168, 14, 'bleu', 1, 'renfort', 3),
+(168, 18, 'vert', 1, 'attente', 3),
+(168, 19, 'jaune', 1, 'attente', 3);
+
 -- --------------------------------------------------------
 
 --
@@ -260,6 +286,54 @@ CREATE TABLE IF NOT EXISTS `partie_has_joueur_has_pays` (
   KEY `fk_id_joueur` (`id_joueur`),
   KEY `fk_id_pays` (`id_pays`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Table pour savoir qui possède quel pays pour une partie';
+
+--
+-- Contenu de la table `partie_has_joueur_has_pays`
+--
+
+INSERT INTO `partie_has_joueur_has_pays` (`id_partie`, `id_joueur`, `id_pays`, `nb_pions`) VALUES
+(168, 11, 3, 1),
+(168, 11, 5, 1),
+(168, 11, 9, 1),
+(168, 11, 13, 1),
+(168, 11, 14, 1),
+(168, 11, 22, 9),
+(168, 11, 29, 1),
+(168, 11, 30, 9),
+(168, 11, 31, 1),
+(168, 11, 32, 1),
+(168, 11, 36, 1),
+(168, 11, 38, 1),
+(168, 11, 41, 1),
+(168, 14, 2, 1),
+(168, 14, 8, 1),
+(168, 14, 11, 1),
+(168, 14, 18, 1),
+(168, 14, 40, 16),
+(168, 14, 42, 16),
+(168, 18, 1, 3),
+(168, 18, 4, 1),
+(168, 18, 7, 6),
+(168, 18, 10, 1),
+(168, 18, 15, 1),
+(168, 18, 33, 8),
+(168, 18, 34, 11),
+(168, 18, 37, 7),
+(168, 18, 39, 1),
+(168, 19, 6, 1),
+(168, 19, 12, 1),
+(168, 19, 16, 1),
+(168, 19, 17, 1),
+(168, 19, 19, 1),
+(168, 19, 20, 8),
+(168, 19, 21, 1),
+(168, 19, 23, 1),
+(168, 19, 24, 9),
+(168, 19, 25, 1),
+(168, 19, 26, 1),
+(168, 19, 27, 1),
+(168, 19, 28, 1),
+(168, 19, 35, 1);
 
 -- --------------------------------------------------------
 
@@ -526,7 +600,17 @@ CREATE TABLE IF NOT EXISTS `room` (
   `room_name` varchar(60) NOT NULL,
   `statut_room` varchar(15) NOT NULL,
   PRIMARY KEY (`room_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Table de définition d''une room' AUTO_INCREMENT=105 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Table de définition d''une room' AUTO_INCREMENT=111 ;
+
+--
+-- Contenu de la table `room`
+--
+
+INSERT INTO `room` (`room_id`, `room_date_creation`, `room_nb_joueur`, `room_password`, `room_name`, `statut_room`) VALUES
+(107, '2016-05-22', 4, NULL, 'Room de Mathilde', 'en cours'),
+(108, '2016-05-22', 4, NULL, 'Petite partie rapide', 'en cours'),
+(109, '2016-05-22', 4, NULL, 'Risk a 18h', 'en cours'),
+(110, '2016-05-22', 4, NULL, 'Partie rapide', 'fermer');
 
 -- --------------------------------------------------------
 
@@ -605,24 +689,26 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`usr_id`),
   KEY `fk_statut` (`code_sta`),
   KEY `fk_image_id` (`id_img`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
 
 --
 -- Contenu de la table `user`
 --
 
 INSERT INTO `user` (`usr_id`, `usr_pseudo`, `usr_password`, `usr_email`, `usr_date_inscription`, `id_img`, `code_sta`, `usr_level`) VALUES
-(2, 'Mathilde', '2226544ec104d654102a154fb4c2de52', NULL, '2016-01-05', 3, 'gam', 1),
+(2, 'Mathilde', '2226544ec104d654102a154fb4c2de52', NULL, '2016-01-05', 1, 'off', 1),
 (3, 'Luc', '893785018d20a58cf029e2e9fa6aacf8', NULL, '2016-03-11', 1, 'off', 1),
-(4, 'Vivien', 'f7d71c05a57c4f4300601662e5eba4ae', NULL, '2015-11-16', 4, 'on', 1),
-(5, 'Ali', '7a9b46ab6d983a85dd4d9a1aa64a3945', NULL, '2016-03-01', 1, 'on', 1),
-(6, 'Max', '6a061313d22e51e0f25b7cd4dc065233', NULL, '2016-03-08', 5, 'off', 1),
-(11, 'gataf', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-11', 1, 'off', 1),
-(12, 'test', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-11', 1, 'gam', 1),
-(14, 'patrick', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-15', 1, 'off', 1),
+(4, 'Vivien', 'f7d71c05a57c4f4300601662e5eba4ae', NULL, '2015-11-16', 2, 'off', 1),
+(5, 'Ali', '7a9b46ab6d983a85dd4d9a1aa64a3945', NULL, '2016-03-01', 1, 'off', 1),
+(6, 'Max', '6a061313d22e51e0f25b7cd4dc065233', NULL, '2016-03-08', 3, 'off', 1),
+(11, 'gataf', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-11', 1, 'on', 1),
+(12, 'test', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-11', 2, 'gam', 1),
+(14, 'patrick', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-15', 2, 'off', 1),
 (15, 'caf', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-15', 1, 'off', 1),
-(16, 'p', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-15', 1, 'off', 0),
-(17, 't', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-15', 1, 'off', 0);
+(16, 'p', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-15', 3, 'off', 1),
+(17, 't', '098f6bcd4621d373cade4e832627b4f6', NULL, '2016-05-15', 1, 'off', 1),
+(18, 'Alexis', '0cc175b9c0f1b6a831c399e269772661', NULL, '2016-05-22', 1, 'off', 0),
+(19, 'Marine', '6f8f57715090da2632453988d9a1501b', NULL, '2016-05-22', 1, 'off', 0);
 
 -- --------------------------------------------------------
 
@@ -638,6 +724,18 @@ CREATE TABLE IF NOT EXISTS `user1_has_user2` (
   KEY `fk_id_user1` (`id_usr1`),
   KEY `fk_id_user2` (`id_usr2`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Table pour les liens d''amitié';
+
+--
+-- Contenu de la table `user1_has_user2`
+--
+
+INSERT INTO `user1_has_user2` (`id_usr1`, `id_usr2`) VALUES
+(2, 14),
+(3, 14),
+(11, 14),
+(14, 2),
+(14, 3),
+(14, 11);
 
 -- --------------------------------------------------------
 
@@ -657,6 +755,21 @@ CREATE TABLE IF NOT EXISTS `user_has_room` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Contenu de la table `user_has_room`
+--
+
+INSERT INTO `user_has_room` (`id_room`, `id_user`, `usr_admin`, `statut_usr_room`) VALUES
+(107, 2, 1, 'in'),
+(107, 5, 0, 'in'),
+(107, 6, 0, 'in'),
+(108, 3, 1, 'in'),
+(109, 4, 1, 'in'),
+(110, 11, 1, 'in'),
+(110, 14, 0, 'in'),
+(110, 18, 0, 'in'),
+(110, 19, 0, 'in');
+
+--
 -- Contraintes pour les tables exportées
 --
 
@@ -664,8 +777,8 @@ CREATE TABLE IF NOT EXISTS `user_has_room` (
 -- Contraintes pour la table `joueur`
 --
 ALTER TABLE `joueur`
-  ADD CONSTRAINT `joueur_ibfk_3` FOREIGN KEY (`usr_id`) REFERENCES `user` (`usr_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `joueur_ibfk_2` FOREIGN KEY (`stats_id`) REFERENCES `stats_joueur` (`id_stats`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `joueur_ibfk_2` FOREIGN KEY (`stats_id`) REFERENCES `stats_joueur` (`id_stats`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `joueur_ibfk_3` FOREIGN KEY (`usr_id`) REFERENCES `user` (`usr_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Contraintes pour la table `news`
@@ -677,17 +790,17 @@ ALTER TABLE `news`
 -- Contraintes pour la table `partie_has_joueur`
 --
 ALTER TABLE `partie_has_joueur`
-  ADD CONSTRAINT `partie_has_joueur_ibfk_4` FOREIGN KEY (`id_partie`) REFERENCES `partie` (`id_partie`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `partie_has_joueur_ibfk_2` FOREIGN KEY (`id_joueur`) REFERENCES `joueur` (`usr_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `partie_has_joueur_ibfk_3` FOREIGN KEY (`code_clr`) REFERENCES `couleur` (`clr_code`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `partie_has_joueur_ibfk_3` FOREIGN KEY (`code_clr`) REFERENCES `couleur` (`clr_code`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `partie_has_joueur_ibfk_4` FOREIGN KEY (`id_partie`) REFERENCES `partie` (`id_partie`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Contraintes pour la table `partie_has_joueur_has_pays`
 --
 ALTER TABLE `partie_has_joueur_has_pays`
-  ADD CONSTRAINT `partie_has_joueur_has_pays_ibfk_4` FOREIGN KEY (`id_partie`) REFERENCES `partie` (`id_partie`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `partie_has_joueur_has_pays_ibfk_2` FOREIGN KEY (`id_joueur`) REFERENCES `joueur` (`usr_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `partie_has_joueur_has_pays_ibfk_3` FOREIGN KEY (`id_pays`) REFERENCES `pays` (`id_pays`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `partie_has_joueur_has_pays_ibfk_3` FOREIGN KEY (`id_pays`) REFERENCES `pays` (`id_pays`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `partie_has_joueur_has_pays_ibfk_4` FOREIGN KEY (`id_partie`) REFERENCES `partie` (`id_partie`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Contraintes pour la table `pays`
