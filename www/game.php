@@ -291,7 +291,7 @@
                         11
 
                     </text>
-                    <text id="renfort_12"  y="185" x="675">
+                    <text id="renfort_12"  y="185" x="680">
 
                         12
 
@@ -447,7 +447,33 @@
 
                     </text>
                 </g>
-		  </svg>
+			<g id="lignes">
+				<line x1="0" y1="78" x2="32" y2="78" style="stroke: black; stroke-width: 2px;"></line>
+				<line x1="195" y1="68" x2="232" y2="60" style="stroke: black; stroke-width: 2px;"></line>
+				<line x1="169" y1="116" x2="232" y2="60" style="stroke: black; stroke-width: 2px;"></line>
+				<line x1="230" y1="105" x2="232" y2="60" style="stroke: black; stroke-width: 2px;"></line>
+				<line x1="281" y1="80" x2="305" y2="95" style="stroke: black; stroke-width: 2px;"></line>
+				<line x1="321" y1="119" x2="355" y2="127" style="stroke: black; stroke-width: 2px;"></line>
+				<line x1="321" y1="119" x2="318" y2="150" style="stroke: black; stroke-width: 2px;"></line>
+				<line x1="318" y1="150" x2="355" y2="127" style="stroke: black; stroke-width: 2px;"></line>
+				<line x1="350" y1="173" x2="355" y2="127" style="stroke: black; stroke-width: 2px;"></line>
+				<line x1="350" y1="173" x2="318" y2="150" style="stroke: black; stroke-width: 2px;"></line>
+				<line x1="320" y1="197" x2="320" y2="182" style="stroke: black; stroke-width: 2px;"></line>
+				<line x1="397" y1="253" x2="397" y2="270" style="stroke: black; stroke-width: 2px;"></line>
+				<line x1="456" y1="310" x2="450" y2="320" style="stroke: black; stroke-width: 2px;"></line>
+				<line x1="464" y1="370" x2="470" y2="425" style="stroke: black; stroke-width: 2px;"></line>
+				<line x1="470" y1="425" x2="453" y2="420" style="stroke: black; stroke-width: 2px;"></line>
+				<line x1="308" y1="320" x2="282" y2="320" style="stroke: black; stroke-width: 2px;"></line>
+				<line x1="750" y1="78" x2="711" y2="78" style="stroke: black; stroke-width: 2px;"></line>
+				<line x1="610" y1="325" x2="610" y2="353" style="stroke: black; stroke-width: 2px;"></line>
+				<line x1="670" y1="362" x2="645" y2="362" style="stroke: black; stroke-width: 2px;"></line>
+				<line x1="670" y1="362" x2="670" y2="381" style="stroke: black; stroke-width: 2px;"></line>
+				<line x1="670" y1="362" x2="645" y2="400" style="stroke: black; stroke-width: 2px;"></line>
+				<line x1="645" y1="400" x2="645" y2="362" style="stroke: black; stroke-width: 2px;"></line>
+				<line x1="674" y1="182" x2="655" y2="160" style="stroke: black; stroke-width: 2px;"></line>
+				<line x1="674" y1="182" x2="645" y2="182" style="stroke: black; stroke-width: 2px;"></line>
+			</g>
+		   </svg>
 		  <?php include "include/liste_joueur.php";?>
 		  <?php include "include/chat_game.php";?>
 	</body>

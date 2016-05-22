@@ -1,4 +1,4 @@
-<?
+<?php
 	//On vérifie si les session sont déja activées
 	if(session_id() == null){
 		session_start();
