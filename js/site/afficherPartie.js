@@ -59,6 +59,7 @@ function refreshEtatPartie(){
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
 			var etat = xhr.responseText;
+			getPays();
 			if(etat.indexOf("init",0) != -1  || etat.indexOf("renfort",0) != -1){
 				document.getElementById("unites").style.display = "block";
 				etat_joueur = "renfort";
@@ -91,7 +92,6 @@ function refreshEtatPartie(){
 				document.getElementById('etat').innerHTML = "Déplacer";
 				etat_joueur = "deplace";
 				clearInterval(intervalMap);
-				getPays();
 				phaseDeplacement();
 			}
 			else{
