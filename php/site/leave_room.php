@@ -25,7 +25,7 @@
     if($joueur['usr_admin']== 1){
 
 
-        //On récupére le nombre de joueurs toujours présent dans ma room
+        //On récupére le nombre de joueurs toujours présent dans la room
         $room = $bdd->query("SELECT count(*) as nb_joueur
                              FROM user_has_room
                              WHERE statut_usr_room = 'in'
@@ -47,20 +47,13 @@
 
         }
         else{
-            var_dump("UPDATE user_has_room
-						 SET usr_admin = 1
-						 WHERE id_user = (SELECT id_user 
-										  FROM user_has_room 
-										  WHERE id_room=".$_SESSION['room_id']." 
-										  AND statut_usr_room = 'in'
-										  AND id_user <> ".$_SESSION['usr_id']."
-										  limit 1)");
+
             $bdd->query("UPDATE user_has_room
 						 SET usr_admin = 1
-										  WHERE id_room=".$_SESSION['room_id']." 
-										  AND statut_usr_room = 'in'
-										  AND id_user <> ".$_SESSION['usr_id']."
-										  limit 1" );
+                         WHERE id_room=".$_SESSION['room_id']." 
+                         AND statut_usr_room = 'in'
+                         AND id_user <> ".$_SESSION['usr_id']."
+                         limit 1" );
         }
 
         //Le joueur n'est plus admin

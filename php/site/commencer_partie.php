@@ -18,7 +18,7 @@
     $statut_room = $statut_room->fetch();
 
     //On vérifie que le statut soit bien "en partie"
-    if($statut_room != false && $statut_room['statut_room'] == 'en partie'){
+    if($statut_room != false && ($statut_room['statut_room'] == 'en partie' || $statut_room['statut_room'] == 'fermer')){
         echo "1";
     }
     else{

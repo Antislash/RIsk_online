@@ -1,4 +1,4 @@
-document.write("<script type='text/javascript' src='../../ajax/ajax_functions.js'></script>" );
+document.write("<script type='text/javascript' src='../ajax/ajax_functions.js'></script>" );
 
 setInterval('requestRoom(readRoom)',700);
 

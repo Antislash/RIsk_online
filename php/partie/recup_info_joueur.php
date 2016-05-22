@@ -16,6 +16,8 @@
 						    INNER JOIN partie_has_joueur phj ON p.id_partie = phj.id_partie
 						    WHERE phj.joueur_dans_partie = 1
                             AND p.partie_statut IN ('en cours', 'init')
+                            AND phj.etat_joueur <> 'defaite'
+						    AND phj.etat_joueur <> 'victoire'
                             AND phj.id_joueur = ".$_SESSION['usr_id']);
 
     $id_partie = $id_partie->fetch();
@@ -31,8 +33,9 @@
 
         //On récupère la liste des joueurs
         $liste_joueur = $bdd->query("SELECT id_joueur
-                                    FROM partie_has_joueur
-                                    WHERE id_partie =". $_SESSION['id_partie']);
+                                     FROM partie_has_joueur
+                                     WHERE id_partie =". $_SESSION['id_partie']."
+                                     AND etat_joueur <> 'defaite'");
         //On récupére l'id du joueur suivant
         $liste = array();
         $nb_joueur=0;

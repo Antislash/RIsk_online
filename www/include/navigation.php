@@ -29,7 +29,10 @@
 						   INNER JOIN partie_has_joueur phj ON p.id_partie = phj.id_partie
 						   WHERE phj.joueur_dans_partie = 1
 						   AND p.partie_statut IN ('en cours', 'init')
+						   AND phj.etat_joueur <> 'defaite'
+						   AND phj.etat_joueur <> 'victoire'
 						   AND phj.id_joueur = ".$_SESSION['usr_id']);
+
 
 	$partie = $partie->fetch();
 		//On vérifie que le joueur n'est pas déja présent dans une room, pour afficher les bouttons de création/rejoindre partie
