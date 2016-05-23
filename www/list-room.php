@@ -7,6 +7,7 @@
 		<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 		<meta name="viewport" content="width=device-width" />
 		<script type="text/javascript" src="../js/site/liste_room.js"></script>
+		<link rel="icon" type="image/png" href="images/favicon.png" />
 		<title>Risk Online</title>
 	</head>
 	<body>

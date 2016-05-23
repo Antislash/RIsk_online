@@ -14,6 +14,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>Risk Online</title>
     <script href="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <link rel="icon" type="image/png" href="images/favicon.png" />
     <script type="text/javascript" src="script.js"></script>
 </head>
 <body>

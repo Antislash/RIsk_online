@@ -6,8 +6,7 @@
 		<link rel="stylesheet" href="style/style.css" />
 		<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 		<meta name="viewport" content="width=device-width" />
-		<!--<script type="text/javascript" src="md5.js"></script>-->
-		<!--<script type="text/javascript" src="generateHome.js"></script>-->
+		<link rel="icon" type="image/png" href="images/favicon.png" />
 		<title>Risk Online</title>
 	</head>
 	<body>

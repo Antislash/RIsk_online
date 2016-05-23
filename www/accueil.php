@@ -5,6 +5,7 @@
 		<meta charset="utf-8" />
 		<link rel="stylesheet" href="style/style.css" />
 		<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+		<link rel="icon" type="image/png" href="images/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 		<title>Risk Online</title>
 	</head>
@@ -46,34 +47,17 @@
 						echo "<h3>".$new['nws_titre']."</h3>";
 						echo "<span class=\"date_news\">".$new['nws_date']."</span><br/><br/>";
 						echo mb_strimwidth($new['nws_contenu'], 0, 100, "...")."<br/><br/>";
-						echo "<span class=\"more\"><a href=\"news.php?news=".$new['nws_id']."\">Plus d'infos ...</a></span>";
+						echo "<span class=\"more\"><a href=\"#\">Plus d'infos ...</a></span>";
 						echo "<div id=\"list_news\">";
 						$i=-1;
 					}
 					else{
-						echo "<span class=\"date_news\">".$new['nws_date']."</span><a href=\"news.php?news=".$new['nws_id']."\">".mb_strimwidth($new['nws_titre'], 0, 40, "...")."</a><br/>";
+						echo "<span class=\"date_news\">".$new['nws_date']."</span><a href=\"#\">".mb_strimwidth($new['nws_titre'], 0, 40, "...")."</a><br/>";
 					}
 				}
 				$news->closeCursor();
 			?>
 			</div>
-		</div>
-		<div class="bloc" id="stats_home">
-			<h2>Statistiques</h2>
-			<table id="list_stats">
-				<tr>
-					<td class="stats_chiffre"><?php echo "55";?></td>
-					<td class="stats_text">% de parties gagnés</td>
-				</tr>
-				<tr>
-					<td class="stats_chiffre"><?php echo "37";?></td>
-					<td class="stats_text">nombre de tours moyen pour gagner</td>
-				</tr>
-				<tr>
-					<td class="stats_chiffre"><?php echo "8";?></td>
-					<td class="stats_text">achievements</td>
-				</tr>
-			</table>
 		</div>
 		<!--Bloc de contact amis-->
 		<?php include('include/contact.php');?>

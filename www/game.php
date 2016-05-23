@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!--Page d'accueil lorsqu'un utilisateur est connecté-->
 <html>
 	<head>
 		<meta charset="utf-8" />
@@ -7,6 +6,7 @@
 		<script type="text/javascript" src="../js/site/game_chat.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 		<link rel="stylesheet" href="style/style.css" />
+		<link rel="icon" type="image/png" href="images/favicon.png" />
 		<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 		<meta name="viewport" content="width=device-width" />
 		<title>Risk Online</title>
