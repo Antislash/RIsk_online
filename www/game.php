@@ -9,7 +9,7 @@
 		<link rel="stylesheet" href="style/style.css" />
 		<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 		<meta name="viewport" content="width=device-width" />
-		<title>Game</title>
+		<title>Risk Online</title>
 	</head>
 	<body>
 		<?php
@@ -23,7 +23,7 @@
 			include('../php/site/verif_connexion.php'); //Permet de garantir que l'utilisateur posséde bien les cookies et les variables de session essentiel
 		
 			if(!isset($_SESSION['id_partie'])){
-				header('Location: acceuil.php');
+				header('Location: accueil.php');
 			}
 		?>
 		<script>

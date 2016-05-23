@@ -24,7 +24,7 @@
 
     //Si le joueur n'est pas présent dans une partie
     if($id_partie == false){
-       // header('Location: ../../www/acceuil.php');
+       // header('Location: ../../www/accueil.php');
 
     }
     //Si il y a bien une partie

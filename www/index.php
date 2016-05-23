@@ -8,7 +8,7 @@
 		<meta name="viewport" content="width=device-width" />
 		<!--<script type="text/javascript" src="md5.js"></script>-->
 		<!--<script type="text/javascript" src="generateHome.js"></script>-->
-		<title>MAP</title>
+		<title>Risk Online</title>
 	</head>
 	<body>
 		<?php

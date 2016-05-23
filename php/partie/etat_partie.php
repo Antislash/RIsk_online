@@ -71,10 +71,10 @@
 
         }
         else if($statut['etat_joueur'] == "victoire"){
-            echo "<a href= \"acceuil.php\"> Victoire! </a>";
+            echo "<a href= \"accueil.php\"> Victoire! </a>";
         }
         else if($statut['etat_joueur'] == "defaite"){
-            echo "<a href= \"acceuil.php\"> Defaite... </a>";
+            echo "<a href= \"accueil.php\"> Defaite... </a>";
         }
         else{
 
@@ -92,7 +92,7 @@
                             WHERE id_partie = ".$_SESSION['id_partie']." 
                             AND id_joueur = ".$_SESSION['usr_id']);
 
-                echo "<a href= \"acceuil.php\"> Defaite... </a>";
+                echo "<a href= \"accueil.php\"> Defaite... </a>";
             }
             else{
                 //On regarde qui joue

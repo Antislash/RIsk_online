@@ -1,6 +1,6 @@
 <?php
 	/**
-	 * Ce fichier sert pour l'inscription des joueurs dans la page "www/login.php"
+	 * Ce fichier sert pour l'inscription des joueurs dans la page "www/index.php"
 	 */
 
 	//On vérifie si les session sont déja activées
@@ -43,12 +43,12 @@
 		else{
 			//Nom d'utilisateur déjà existant.
 			//TODO Redirigé vers formulaire inscription
-			header('Location: ../../www/login.php?mess=2');
+			header('Location: ../../www/index.php?mess=2');
 		}
 	}
 	else{
 		//Formulaire incomlet
 		//TODO Redirigé vers formulaire inscription
-		header('Location: ../../www/login.php');
+		header('Location: ../../www/index.php');
 	}
 ?>

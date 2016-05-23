@@ -6,7 +6,7 @@
 		<link rel="stylesheet" href="style/style.css" />
 		<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 		<meta name="viewport" content="width=device-width" />
-		<title>Acceuil</title>
+		<title>Risk Online</title>
 	</head>
 	<body>
 		<?php

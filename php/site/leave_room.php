@@ -87,5 +87,5 @@
                     WHERE room_id = ".$_SESSION['room_id']);
     }
 
-   header('Location: ../../www/acceuil.php');
+   header('Location: ../../www/accueil.php');
 ?>

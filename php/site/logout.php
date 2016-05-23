@@ -19,5 +19,5 @@
     setcookie('password',NULL,time()-3600);
 
     session_destroy();
-    header('Location: ../../www/login.php');
+    header('Location: ../../www/index.php');
 ?>

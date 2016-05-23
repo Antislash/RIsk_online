@@ -10,7 +10,7 @@
 
 
 <nav id="top_navigation" onBeforeUnload="return confirm('sur?');" onUnload="alert('ok');">
-	<a href="acceuil.php"><img id="logo_risk" src="images/logo_risk.png"/></a>
+	<a href="accueil.php"><img id="logo_risk" src="images/logo_risk.png"/></a>
 	<a href="#"><img class="icon_menu" src="images/profil.png" onmouseover="this.src='images/profil_hover.png'" onmouseout="this.src='images/profil.png'"/></a>
 	<a href="../php/site/logout.php"><img class="icon_menu" src="images/deco.png" onmouseover="this.src='images/deco-hover.png'" onmouseout="this.src='images/deco.png'"/></a>
 

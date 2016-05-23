@@ -1,6 +1,6 @@
 <?php
     /**
-     * Ce fichier permet aux joueurs de se connecter au site, appelé par le fichier "www/login.php"
+     * Ce fichier permet aux joueurs de se connecter au site, appelé par le fichier "www/index.php"
      */
 
     //On vérifie si les session sont déja activées
@@ -23,7 +23,7 @@
         $user = $user->fetch();
 
         if($user == false){
-            header('Location: ../../www/login.php?mess=1');
+            header('Location: ../../www/index.php?mess=1');
             echo "Problème de connexion a la base de données 1";
         }
 
@@ -38,7 +38,7 @@
             //On met le statut du joueur en ligne
             $bdd->exec("UPDATE user SET code_sta = 'on' WHERE usr_pseudo = '".$pseudo."'");
             //Redirection vers la page d'accueil
-            header('Location: ../../www/acceuil.php');
+            header('Location: ../../www/accueil.php');
         }
 
     }
@@ -57,14 +57,14 @@
 
         if ($user['usr_pseudo'] != null) {
             //TODO Rediriger l'utilisateur sur la page d'accueil
-            header('Location: ../../www/acceuil.php');
+            header('Location: ../../www/accueil.php');
         }
         else{
             //TODO Rediriger l'utilisateur sur la page de login
-            header('Location: ../../www/login.php');
+            header('Location: ../../www/index.php');
         }
     }
     else{
-        header('Location: ../../www/login.php');
+        header('Location: ../../www/index.php');
     }
 ?>
